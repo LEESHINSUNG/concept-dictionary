@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전자서명 — 기억해봐요</title>
+  <meta name="description" content="전자서명은 비밀키로 만드는, 내가 썼고 내용이 바뀌지 않았다는 증명이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="digital-signature">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>전자서명</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">전자서명</h1>
+      <p class="reading">digital signature</p>
+      <p class="define">전자서명은 비밀키로 만드는 <mark>"내가 썼고, 내용이 바뀌지 않았다"는 증명</mark>이에요. 내용을 숨기는 게 아니라 드러내 놓고 보증하는 쪽이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>종이 계약서 맨 아래에 찍는 도장을 떠올려 보세요. 도장은 내용을 가리지 않아요. 글은 누구나 읽을 수 있고, 도장은 <strong>"이 내용에 내가 동의했다"</strong>를 말해 주죠. 전자서명이 하는 일이 똑같아요.</p>
+      <p>다만 종이 도장보다 센 점이 둘 있어요. 첫째, 도장은 똑같이 파면 흉내 낼 수 있지만 전자서명은 <a href="public-private-key.html">비밀키</a> 없이는 만들 수 없어요. 둘째, 계약서 내용을 한 글자라도 고치면 <strong>서명이 그 자리에서 깨져요</strong>. 종이는 숫자를 고쳐도 도장은 멀쩡하지만요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">만들 때</p>
+          <p class="fact__value">비밀키 (나만)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">확인할 때</p>
+          <p class="fact__value">공개키 (누구나)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보장하는 것</p>
+          <p class="fact__value">작성자 + 변조 여부</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">원문</p>
+          <p class="node__note">그대로 보여요. 숨기지 않아요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">해시 뜨기<span class="arrow__note">지문 하나로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">서명</p>
+          <p class="node__note">해시값을 비밀키로 잠근 것</p>
+          <p><span class="chip-mono">비밀키</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">공개키로 확인<span class="arrow__note">값이 같은가</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 사람</p>
+          <p class="node__note">같으면 진짜, 다르면 의심</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 원문의 <a href="hash.html">해시값</a>을 구해요. 원문이 아무리 길어도 짧은 값 하나로 줄어들어서, 서명 계산이 가벼워져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그 해시값을 <strong>비밀키로 잠가</strong> 서명을 만들고, 원문과 함께 보내요. 비밀키는 나만 가지고 있으니 이 서명은 나만 만들 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>받는 쪽은 공개키로 서명을 풀어 나온 값과, 받은 원문으로 직접 구한 해시값을 비교해요. <strong>같으면 작성자도 맞고 내용도 그대로</strong>예요. 내용이 한 글자라도 바뀌었으면 해시값이 달라져서 바로 어긋나요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 프로그램을 설치할 때</p>
+        <p>내려받은 앱을 실행하면 운영체제가 먼저 서명을 확인해요. "확인되지 않은 개발자"라는 경고를 본 적 있다면, 서명이 없거나 맞지 않았다는 뜻이에요. 누가 만들었는지, 받는 도중에 누가 바꿔치기하지 않았는지를 보는 거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 암호화와는 반대 방향</p>
+        <p>헷갈리기 쉬운 부분이에요. <strong>숨기려면</strong> 받는 사람의 공개키로 잠그고(그 사람만 열 수 있게), <strong>증명하려면</strong> 내 비밀키로 잠가요(누구나 열어 보고 내가 썼음을 확인하게). 같은 열쇠 한 쌍을 반대로 쓰는 셈이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 서명이 보증하지 않는 것</p>
+        <p>서명은 "이 비밀키의 주인이 만들었다"까지만 말해 줘요. <strong>그 주인이 믿을 만한 사람인지는 말해 주지 않아요.</strong> 그래서 현실에서는 믿을 수 있는 기관이 "이 공개키는 이 회사 것이 맞다"고 다시 보증해 주는 인증서를 함께 써요.</p>
+      </div>
+
+      <p class="callout">git에서 커밋에 서명을 붙이는 것도 같은 원리예요. 누구나 이름과 메일 주소는 바꿔 적을 수 있지만, 서명은 비밀키가 있어야 만들 수 있으니까요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">숨기는 게 아니라, 증명하는 거예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

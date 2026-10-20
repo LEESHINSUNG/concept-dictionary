@@ -49,6 +49,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'digital-signature',
+    title: '전자서명',
+    sub: 'digital signature',
+    summary: '비밀키로 만드는 작성자와 변조 여부의 증명',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'hash',
     title: '해시',
     sub: 'hash · 해시 함수',
