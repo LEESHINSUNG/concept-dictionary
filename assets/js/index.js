@@ -4,6 +4,9 @@
 
   var C = window.Concept;
   var ALL_CAT = '전체';
+  var ALL_TAB = '전체';
+  // 탭 목록 = 전체 + 초성/영문/숫자/기타 (common.js의 그룹 순서는 그대로 둡니다)
+  var TABS = [ALL_TAB].concat(C.GROUPS);
 
   var el = {
     total: document.getElementById('total'),
@@ -23,7 +26,7 @@
     var tab = params.get('tab');
     var cat = params.get('cat');
     var q = params.get('q');
-    if (tab && C.GROUPS.indexOf(tab) !== -1) state.tab = tab;
+    if (tab && TABS.indexOf(tab) !== -1) state.tab = tab;
     if (cat) state.cat = cat;
     if (q) state.q = q;
   }
@@ -56,26 +59,21 @@
       // 검색 중에는 탭을 무시하고 전체에서 찾습니다.
       return C.sorted(list.filter(function (item) { return matches(item, needle); }));
     }
+    if (state.tab === ALL_TAB) return C.sorted(list);
     return C.sorted(list.filter(function (item) { return C.groupOf(item.title) === state.tab; }));
   }
 
   // ── 그리기 ───────────────────────────────────────
   function tabCounts() {
     var counts = {};
-    C.GROUPS.forEach(function (g) { counts[g] = 0; });
-    byCategory(C.all()).forEach(function (item) {
+    TABS.forEach(function (g) { counts[g] = 0; });
+    var list = byCategory(C.all());
+    list.forEach(function (item) {
       var g = C.groupOf(item.title);
       counts[g] = (counts[g] || 0) + 1;
     });
+    counts[ALL_TAB] = list.length;
     return counts;
-  }
-
-  function firstFilledTab() {
-    var counts = tabCounts();
-    for (var i = 0; i < C.GROUPS.length; i += 1) {
-      if (counts[C.GROUPS[i]] > 0) return C.GROUPS[i];
-    }
-    return 'ㄱ';
   }
 
   function renderCats() {
@@ -89,7 +87,7 @@
       button.addEventListener('click', function () {
         state.cat = name;
         var counts = tabCounts();
-        if (!state.q && !counts[state.tab]) state.tab = firstFilledTab();
+        if (!state.q && !counts[state.tab]) state.tab = ALL_TAB;
         render();
       });
       el.cats.appendChild(button);
@@ -100,7 +98,7 @@
     var counts = tabCounts();
     var searching = state.q.trim() !== '';
     el.tabs.textContent = '';
-    C.GROUPS.forEach(function (group) {
+    TABS.forEach(function (group) {
       var button = document.createElement('button');
       button.type = 'button';
       button.className = 'pill pill--tab' + (counts[group] ? '' : ' pill--empty');
@@ -211,7 +209,7 @@
   el.total.textContent = String(C.all().length);
   readHash();
   // 해시로 지정된 탭은 비어 있어도 그대로 존중합니다.
-  if (!state.tab) state.tab = firstFilledTab();
+  if (!state.tab) state.tab = ALL_TAB;
   el.search.value = state.q;
 
   el.search.addEventListener('input', function () {
