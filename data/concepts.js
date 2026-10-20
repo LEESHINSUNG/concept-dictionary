@@ -33,6 +33,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'digital-forensics',
+    title: '디지털 포렌식',
+    sub: 'digital forensics',
+    summary: '디지털 흔적을 바꾸지 않고 찾아내 증거로 만드는 일',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',

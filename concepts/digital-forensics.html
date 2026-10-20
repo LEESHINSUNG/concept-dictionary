@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>디지털 포렌식 — 기억해봐요</title>
+  <meta name="description" content="디지털 포렌식은 기기에 남은 디지털 흔적을 바꾸지 않고 찾아내 증거로 만드는 일이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 설명문 안에 쓰는 짧은 코드 조각 */
+    .case code, .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="digital-forensics">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>디지털 포렌식</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">사고 대응</span>
+      </div>
+      <h1 class="title">디지털 포렌식</h1>
+      <p class="reading">digital forensics · 디지털 법과학</p>
+      <p class="define">디지털 포렌식은 컴퓨터와 휴대폰에 남은 흔적을 <mark>하나도 바꾸지 않은 채 찾아내 증거로 만드는 일</mark>이에요. 무엇을 찾았는가보다, 찾는 과정이 깨끗했는가가 더 중요해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 사고 대응</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>드라마에서 사건 현장에 온 수사관이 가장 먼저 하는 일을 떠올려 보세요. 단서를 집어 드는 게 아니라 <strong>현장에 선을 치고 아무도 못 들어가게 막는 것</strong>이죠. 발자국 하나만 찍혀도 증거가 못 쓰게 되니까요. 디지털 포렌식은 그 현장 보존을 컴퓨터 안에서 하는 일이에요.</p>
+      <p>디지털 흔적은 종이보다 훨씬 쉽게 변해요. 파일을 열어 보기만 해도 '마지막 연 시각'이 바뀌고, 전원을 켜면 수십 개의 기록이 새로 쌓여요. 그래서 이 분야의 첫 번째 원칙은 <strong>원본을 건드리지 않는 것</strong>이에요. 포렌식(forensics)이라는 말 자체가 '법정에 내놓을 수 있는'이라는 뜻이고요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">첫 번째 원칙</p>
+          <p class="fact__value">원본은 건드리지 않아요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">안 바뀌었다는 증명</p>
+          <p class="fact__value">해시값 비교</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">누가 다뤘는지 기록</p>
+          <p class="fact__value">연계 보관성</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">사건 기기</p>
+          <p class="node__note">원본. 그대로 봉인해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">통째로 복제<span class="arrow__note">쓰기 방지 장치</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">사본</p>
+          <p class="node__note">해시값이 원본과 같아야 해요</p>
+          <p>
+            <span class="chip-mono">원본 해시</span>
+            <span class="chip-mono">= 사본 해시</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">사본만 분석<span class="arrow__note">원본은 금고로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">보고서</p>
+          <p class="node__note">삭제 흔적 · 접속 기록 · 시간 순서</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>원본에 손대지 않고 봉인해요. 전원을 켜거나 파일을 한 번 열기만 해도 기록이 바뀌어 증거로서의 가치가 떨어져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>읽기만 되고 쓰기는 막아 주는 장치를 거쳐 저장장치를 통째로 복제하고, <strong>원본과 사본의 해시값이 같은지</strong> 확인해요. 해시값은 내용이 한 글자만 달라도 완전히 달라지는 지문 같은 값이라, 둘이 같으면 "바뀌지 않았다"는 증명이 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>분석은 사본으로만 해요. 삭제된 파일의 흔적, 접속 기록, 시간 순서를 복원하면서 <strong>누가 언제 이 증거를 다뤘는지</strong>를 전부 적어 둬요. 이 기록을 연계 보관성(Chain of Custody)이라고 불러요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 켜져 있는 컴퓨터, 끌까 말까</p>
+        <p>현장에 도착했더니 PC가 켜져 있어요. 전원을 뽑으면 저장장치는 그 순간 상태로 굳지만, <strong>메모리에만 있던 것들은 함께 사라져요</strong>. 암호를 풀어 둔 키, 실행 중인 악성 프로그램, 연결돼 있던 주소 같은 것들이요. 그래서 사라지기 쉬운 것부터 먼저 담는 순서를 지켜요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 해시값이 다르면 끝이에요</p>
+        <p>복제를 마친 뒤 사본의 해시값이 원본과 다르게 나왔어요. 그러면 그 사본은 증거로 쓸 수 없어요. 내용이 멀쩡해 보여도 "중간에 뭔가 바뀌었다"는 뜻이니까요. 반대로 값이 같으면 몇 년 뒤에도 <strong>그때 그 상태 그대로임을 증명</strong>할 수 있어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 감염된 회사 PC를 조사해요</p>
+        <p>직원 PC가 <a href="botnet.html">봇넷</a>에 감염된 것 같아요. 포렌식으로 들여다보면 언제 무엇을 통해 감염됐는지, <a href="c2-server.html">C&amp;C 서버</a>와 어떤 주소로 통신했는지, 회사 안의 다른 PC로 번졌는지가 기록에 남아 있어요. 사고를 수습하는 일도 포렌식의 큰 몫이에요.</p>
+      </div>
+
+      <p class="callout">회사에서 사고가 났을 때 가장 흔한 실수는 <strong>직접 해결해 보려다 증거를 지우는 것</strong>이에요. 악성 파일을 삭제하거나, 백신을 돌리거나, PC를 초기화하면 흔적도 함께 사라져요. 이상하면 그대로 두고, 네트워크 선만 뽑은 뒤 담당자에게 알리는 게 맞아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">찾아내는 일보다, 건드리지 않는 일.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 사고 대응</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
