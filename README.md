@@ -3,7 +3,7 @@
 내가 공부하고 이해한 개념을 가나다순으로 모아 둔 개인 개념 사전이에요.
 순수 HTML / CSS / JavaScript로만 만들었고, GitHub Pages로 배포됩니다.
 
-**사이트:** https://LEESHINSUNG.github.io/concept-dictionary/
+**사이트:** https://leeshinsung.github.io/concept-dictionary/
 
 ## 개념 추가하는 방법
 
