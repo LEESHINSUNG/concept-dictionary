@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DDoS — 기억해봐요</title>
+  <meta name="description" content="DDoS는 수많은 기기가 한꺼번에 접속해 서비스를 마비시키는 공격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="ddos">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>DDoS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">DDoS</h1>
+      <p class="reading">디도스 · Distributed Denial of Service</p>
+      <p class="define">DDoS는 <mark>수많은 기기가 한꺼번에 접속해 서비스를 마비시키는 공격</mark>이에요. 서버를 부수는 게 아니라, 가짜 손님으로 줄을 세워 진짜 손님이 못 들어가게 만들어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>작은 피자 가게에 누군가 장난으로 가짜 손님 수천 명을 보냈다고 해 볼게요. 가게는 멀쩡해요. 주방도, 재료도 그대로죠. 그런데 <strong>줄이 너무 길어서 진짜 손님은 들어가지 못해요</strong>. DDoS가 노리는 게 정확히 이 상태예요.</p>
+      <p>이름을 풀면 <strong>Distributed(분산) Denial of Service(서비스 거부)</strong>예요. 한 곳에서 괴롭히면 DoS, 여러 곳에서 나눠서 하면 DDoS고요. 이 'D' 하나가 중요한 이유는 막는 방법이 달라지기 때문이에요. 한 명이 괴롭히면 그 사람만 막으면 되지만, 수천 곳에서 조금씩 들어오면 누가 손님이고 누가 아닌지 가려내기가 어려워요. 그 수천 곳을 만드는 데 흔히 <a href="botnet.html">봇넷</a>이 쓰여요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">전체 이름</p>
+          <p class="fact__value">Distributed Denial of Service</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">DoS와 차이</p>
+          <p class="fact__value">한 곳에서 → 수많은 곳에서</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">막기 어려운 이유</p>
+          <p class="fact__value">진짜 손님과 구분이 안 돼요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">감염된 기기 수천 대</p>
+          <p class="node__note">가짜 요청을 보내요</p>
+          <p><span class="chip-mono">봇넷</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">동시에 요청<span class="arrow__note">1초에 수십만 건</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">표적 서버</p>
+          <p class="node__note">처리 한계를 넘어서요</p>
+          <p>
+            <span class="chip-mono">회선 가득</span>
+            <span class="chip-mono">대기열 가득</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">차례가 안 와요<span class="arrow__note">뒤로 밀려요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">진짜 사용자</p>
+          <p class="node__note">화면만 돌다가 포기해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공격자가 <a href="c2-server.html">C&amp;C 서버</a>를 통해 "저 주소로 접속하라"고 명령을 내려요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>수천 대가 동시에 요청을 보내면 서버의 처리 능력과 인터넷 회선이 가득 차요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>진짜 사용자의 요청은 뒤로 밀려 차례가 오지 않아요. 서버는 고장 나지 않았는데 아무도 쓰지 못하는 상태가 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 수강신청이 느린 건 DDoS가 아니에요</p>
+        <p>수강신청 날 서버가 멈춘 것과 DDoS는 겉보기에 똑같아요. 다른 건 <strong>누가 보냈는가</strong>예요. 수강신청은 진짜 학생들이 몰린 것이라 서버를 늘리면 풀려요. DDoS는 보낸 쪽이 처음부터 서비스를 막으려고 만든 가짜 손님이라, 서버를 늘려도 공격자가 더 보내면 그만이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 가짜 손님을 문 앞에서 걸러내요</p>
+        <p>그래서 방어는 '더 큰 가게'가 아니라 <strong>문 앞에서 거르는 쪽</strong>으로 가요. 전 세계에 흩어진 중계 서버(CDN)가 공격을 나눠 받고, 사람이라면 하지 않을 이상한 요청 패턴을 걸러내요. 평소와 다른 접속이 갑자기 몰리면 자동으로 차단 규칙이 올라가고요.</p>
+      </div>
+
+      <p class="callout">개인이 할 일은 조금 달라요. DDoS는 보통 서비스를 운영하는 쪽이 당하는 공격이지만, 내 기기가 <strong>공격에 동원되는 쪽</strong>이 될 수는 있어요. 공유기 비밀번호를 바꾸고 기기를 업데이트해 두면 그 역할을 피할 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">가짜 손님으로 줄을 세워, 진짜 손님을 막아요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

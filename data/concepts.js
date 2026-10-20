@@ -17,6 +17,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'ddos',
+    title: 'DDoS',
+    sub: '디도스 · Distributed Denial of Service',
+    summary: '수많은 기기로 접속을 몰아 서비스를 마비시키는 공격',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',
