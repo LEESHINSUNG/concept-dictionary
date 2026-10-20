@@ -1,6 +1,14 @@
 /* 개념 목록. 항목은 slug 알파벳순으로 유지합니다 (화면 정렬은 common.js가 처리). */
 window.CONCEPTS = [
   {
+    slug: 'aes',
+    title: 'AES',
+    sub: '에이이에스 · Advanced Encryption Standard',
+    summary: '전 세계가 함께 쓰는 공통키 암호 표준',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'anti-passback',
     title: 'Anti-Passback',
     sub: '안티패스백 · 되돌림 방지',

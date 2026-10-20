@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AES — 기억해봐요</title>
+  <meta name="description" content="AES는 공통키 암호의 사실상 표준이에요. 같은 열쇠로 잠그고 여는 방식 중 가장 널리 쓰여요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="aes">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>AES</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">AES</h1>
+      <p class="reading">에이이에스 · Advanced Encryption Standard</p>
+      <p class="define">AES는 <mark>공통키 암호에서 전 세계가 함께 쓰는 표준</mark>이에요. 같은 열쇠로 잠그고 여는 방식 중에 가장 널리 쓰여요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>자물쇠를 살 때 대부분 이름 있는 제품을 고르죠. 직접 만든 자물쇠보다, 많은 사람이 오래 두들겨 보고도 안 열린 제품이 믿음직하니까요. AES는 <strong>암호 세계의 그 믿음직한 규격품</strong>이에요.</p>
+      <p>방식 자체는 <a href="symmetric-key.html">공통키</a>예요. 잠글 때와 열 때 같은 열쇠를 쓰죠. 이름을 풀면 'Advanced Encryption Standard', 우리말로 <strong>고급 암호 표준</strong>이에요. 이름에 '표준'이 들어 있는 이유는 공개 심사를 거쳐 표준으로 뽑힌 알고리즘이기 때문이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">종류</p>
+          <p class="fact__value">공통키(대칭키)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">열쇠 길이</p>
+          <p class="fact__value fact__value--mono">128 · 192 · 256비트</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰이는 곳</p>
+          <p class="fact__value">디스크 잠금 · 와이파이 · HTTPS</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">원래 내용 + 열쇠</p>
+          <p class="node__note">정해진 크기로 잘라서 넣어요</p>
+          <p><span class="chip-mono">열쇠 256비트</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">여러 번 뒤섞기<span class="arrow__note">자리 바꾸고 더하고</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">AES</p>
+          <p class="node__note">같은 과정을 여러 바퀴 반복해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">완성<span class="arrow__note">규칙이 안 보여요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">암호문</p>
+          <p class="node__note">같은 열쇠로만 되돌릴 수 있어요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>내용을 정해진 크기의 덩어리로 잘라요. 그래서 '블록 암호'라고 불러요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>덩어리마다 자리를 바꾸고 열쇠와 섞는 과정을 <strong>여러 바퀴 반복</strong>해요. 한 바퀴만 돌면 규칙이 보이지만, 여러 번 겹치면 원래 모습이 사라져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>열쇠가 길수록 가능한 열쇠의 수가 폭발적으로 늘어나, 하나씩 다 넣어 보는 방식으로는 현실적으로 풀 수 없게 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 이미 매일 쓰고 있어요</p>
+        <p>노트북 디스크 잠금, 집 와이파이, 웹사이트의 자물쇠 표시. 이름이 보이지 않을 뿐 안에서는 대부분 AES가 돌고 있어요. 설정 화면에서 <code>AES-256</code> 같은 글자를 본 적이 있다면 그게 열쇠 길이예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 열쇠 길이는 길수록 좋을까</p>
+        <p>256비트가 128비트보다 안전한 건 맞지만, 실제로 뚫리는 경우는 알고리즘이 약해서가 아니에요. <strong>열쇠를 어디에 뒀느냐</strong>가 문제죠. 코드 안에 열쇠를 적어 두거나, 설정 파일째로 올려 버리면 열쇠 길이는 아무 의미가 없어요.</p>
+      </div>
+
+      <p class="callout">직접 구현하지 않는 게 가장 중요한 원칙이에요. 암호는 조금만 잘못 써도 안전하지 않은데, 그게 겉으로 드러나지 않아요. 언어마다 검증된 라이브러리가 있으니 그걸 쓰면 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">모두가 쓰는, 빠르고 튼튼한 자물쇠.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
