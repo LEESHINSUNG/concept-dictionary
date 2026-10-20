@@ -56,7 +56,9 @@ ul, ol { padding-left: 1.2em; }
 .wrap {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 24px;
+  /* 아이폰의 노치·홈 인디케이터 영역(safe area)을 피해 여백을 줍니다. */
+  padding-left: calc(24px + env(safe-area-inset-left, 0px));
+  padding-right: calc(24px + env(safe-area-inset-right, 0px));
 }
 
 .sr-only {
@@ -88,7 +90,7 @@ mark {
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
-  padding-top: 32px;
+  padding-top: calc(32px + env(safe-area-inset-top, 0px));
   padding-bottom: 28px;
 }
 
@@ -114,7 +116,11 @@ mark {
 }
 
 /* ── 목차 화면 ─────────────────────────────────────── */
-.index-main { padding-top: 24px; padding-bottom: 56px; line-height: 1.6; }
+.index-main {
+  padding-top: 24px;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  line-height: 1.6;
+}
 
 .search { margin-bottom: 20px; }
 
@@ -288,7 +294,7 @@ mark {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding-top: 16px;
+  padding-top: calc(16px + env(safe-area-inset-top, 0px));
   padding-bottom: 16px;
 }
 
@@ -318,7 +324,10 @@ mark {
 .back-link:hover { border-color: var(--accent); background: var(--chip-bg); }
 
 /* ── 상세 본문 ─────────────────────────────────────── */
-.detail-main { padding-top: 28px; padding-bottom: 56px; }
+.detail-main {
+  padding-top: 28px;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+}
 
 .sect {
   margin-bottom: 20px;
@@ -682,7 +691,10 @@ mark {
 
 /* ── 좁은 화면 ─────────────────────────────────────── */
 @media (max-width: 479px) {
-  .wrap { padding: 0 16px; }
+  .wrap {
+    padding-left: calc(16px + env(safe-area-inset-left, 0px));
+    padding-right: calc(16px + env(safe-area-inset-right, 0px));
+  }
   .sect, .wrapup { padding: 22px 18px; }
   .define { padding: 18px; font-size: 20px; }
   .card { padding: 16px 18px; }
