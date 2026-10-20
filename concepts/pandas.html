@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pandas — 기억해봐요</title>
+  <meta name="description" content="pandas는 엑셀 같은 표 데이터를 파이썬 코드로 다루는 라이브러리예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 안내문 안에 쓰는 짧은 코드 조각 */
+    .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="pandas">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>pandas</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">데이터 분석</span>
+      </div>
+      <h1 class="title">pandas</h1>
+      <p class="reading">판다스</p>
+      <p class="define">pandas는 엑셀 같은 <mark>표 데이터를 파이썬 코드로 다루는 도구</mark>예요. 수만 줄짜리 표에서도 원하는 줄만 고르고 평균을 내는 일을 한 줄로 끝낼 수 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 Python › 데이터 분석</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>엑셀에서 표를 열고 마우스로 정렬하고, 필요한 줄만 걸러내고, 맨 아래에 합계를 내죠. pandas는 <strong>그 일을 파이썬 코드로 하는 도구</strong>예요.</p>
+      <p>pandas가 표를 담아 두는 그릇을 <strong>데이터프레임(DataFrame)</strong>이라고 불러요. 엑셀 시트 한 장이 통째로 변수 하나에 들어왔다고 생각하면 돼요. 줄이 10줄이든 10만 줄이든 코드는 똑같아서, 같은 작업을 매달 반복할 때 특히 편해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">표를 담는 그릇</p>
+          <p class="fact__value fact__value--mono">DataFrame</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">설치</p>
+          <p class="fact__value fact__value--mono">pip install pandas</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">파일 읽기</p>
+          <p class="fact__value fact__value--mono">pd.read_csv()</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">표 파일</p>
+          <p class="node__note">엑셀 · CSV · DB 테이블</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">read_csv<span class="arrow__note">읽어 들여요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">DataFrame</p>
+          <p class="node__note">파이썬 안에 올라온 표</p>
+          <p>
+            <span class="chip-mono">행 row</span>
+            <span class="chip-mono">열 column</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">고르고 계산<span class="arrow__note">코드 한 줄</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">원하는 결과</p>
+          <p class="node__note">걸러낸 표 · 합계 · 평균</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>표 파일을 읽어 오면 DataFrame이라는 표가 파이썬 안에 만들어져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>열 이름으로 원하는 줄만 고르거나, 평균·합계를 한 줄로 계산해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>결과는 다시 파일로 저장하거나 그래프로 그릴 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>판매 기록이 담긴 <strong>sales.csv</strong> 파일에서 평균 금액을 구해 볼게요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> pip install pandas
+<span class="c-comment"># PyPI에서 pandas를 찾아 내려받고 설치해요</span>
+Successfully installed pandas</code></pre>
+      </div>
+
+      <div class="code">
+        <p class="code__head">main.py</p>
+        <pre><code><span class="c-keyword">import</span> pandas <span class="c-keyword">as</span> pd
+
+df = pd.read_csv(<span class="c-string">"sales.csv"</span>)  <span class="c-comment"># 표 파일을 읽어 와요</span>
+<span class="c-keyword">print</span>(df.head(<span class="c-string">3</span>))            <span class="c-comment"># 앞에서 3줄만 보기</span>
+<span class="c-keyword">print</span>(df[<span class="c-string">"금액"</span>].mean())     <span class="c-comment"># '금액' 열의 평균</span></code></pre>
+      </div>
+
+      <p class="callout">같은 폴더에 <code>sales.csv</code>가 있어야 하고, <code>금액</code>이라는 열 이름이 파일에 있어야 해요. 출력은 파일 내용에 따라 달라져요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">엑셀로 손이 하던 일을, pandas는 코드 한 줄로.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 Python › 데이터 분석</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
