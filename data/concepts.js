@@ -1,6 +1,14 @@
 /* 개념 목록. 항목은 slug 알파벳순으로 유지합니다 (화면 정렬은 common.js가 처리). */
 window.CONCEPTS = [
   {
+    slug: 'botnet',
+    title: '봇넷',
+    sub: 'botnet',
+    summary: '공격자가 한꺼번에 조종하는 감염된 기기 무리',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',

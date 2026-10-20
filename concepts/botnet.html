@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>봇넷 — 기억해봐요</title>
+  <meta name="description" content="봇넷은 해커가 몰래 감염시켜 한꺼번에 조종하는 기기 무리예요. 내 기기도 모르는 사이 그 일부가 될 수 있어요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 설명문 안에 쓰는 짧은 코드 조각 */
+    .case code, .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="botnet">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>봇넷</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">봇넷</h1>
+      <p class="reading">botnet · 봇(bot) + 네트워크(network)</p>
+      <p class="define">봇넷은 공격자가 몰래 감염시켜 <mark>한 번의 명령으로 함께 움직이게 만든 기기 무리</mark>예요. 내 컴퓨터나 공유기도 주인 모르게 그 무리의 하나가 될 수 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>영화 속 좀비를 떠올려 보세요. 평범하던 사람이 물리면 좀비가 되고, 조종하는 쪽이 한마디 하면 전부 같은 방향으로 몰려가죠. 봇넷은 <strong>그 좀비 떼를 기기로 만든 것</strong>이에요. 실제로 감염된 컴퓨터를 <strong>좀비 PC</strong>라고 불러요.</p>
+      <p>여기서 <strong>봇(bot)</strong>은 로봇의 줄임말로, 사람 대신 시킨 일을 자동으로 하는 프로그램이에요. 감염된 기기들이 하나의 통신망(<strong>네트워크</strong>)으로 묶여 명령을 받기 때문에 둘을 합쳐 봇넷이라고 불러요. 무서운 점은 조용하다는 거예요. 기기는 평소처럼 켜져 있고, 주인은 조금 느려졌다고만 느껴요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">감염된 기기</p>
+          <p class="fact__value">봇 · 좀비 PC</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">명령을 내리는 곳</p>
+          <p class="fact__value fact__value--mono">C&amp;C 서버</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">주로 쓰이는 곳</p>
+          <p class="fact__value">DDoS · 스팸 발송</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">지휘소(C&amp;C 서버)에서 명령을 내려요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">명령 전달<span class="arrow__note">조용히 한 줄</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">감염된 기기 무리</p>
+          <p class="node__note">주인은 눈치채지 못해요</p>
+          <p>
+            <span class="chip-mono">PC</span>
+            <span class="chip-mono">공유기</span>
+            <span class="chip-mono">IP 카메라</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">한꺼번에 접속<span class="arrow__note">수천 · 수만 대</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">표적 서버</p>
+          <p class="node__note">몰린 접속에 멈춰 버려요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>비밀번호가 약하거나 업데이트가 안 된 기기가 악성코드에 감염돼 '봇'이 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>봇은 공격자의 지휘소인 <strong>C&amp;C 서버</strong>에 몰래 접속해 명령을 기다려요. 이때는 아무 일도 하지 않아서 더 들키지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>명령이 떨어지면 수천 대가 동시에 움직여요. 한 대씩은 약해도 한꺼번에 몰리면 큰 서비스도 멈춰요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 쇼핑몰이 열리지 않아요</p>
+        <p>세일 날 아침, 쇼핑몰 서버에 1초 만에 수십만 건의 접속이 몰려요. 전부 봇넷이 만든 가짜 손님이에요. 진짜 손님은 화면이 돌기만 하다 떠나죠. 이렇게 <strong>접속을 몰아서 서비스를 마비시키는 공격</strong>을 DDoS(디도스)라고 불러요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 우리 집 공유기가 병사가 됐어요</p>
+        <p>설치 기사님이 놓고 간 공유기의 비밀번호가 아직 <code>admin</code>이에요. 공격자는 그런 기기를 인터넷에서 기계적으로 찾아내 감염시켜요. 집 인터넷이 가끔 느려질 뿐이지만, 공격당한 쪽의 기록에는 <strong>우리 집 주소가 공격자로 남아요</strong>.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">실제로 있었던 일 · 2016년 Mirai</p>
+        <p>2016년 10월 21일, 미국의 DNS 업체 Dyn이 봇넷의 공격을 받아 트위터·넷플릭스 같은 주요 사이트들이 한동안 열리지 않았어요. 동원된 것은 대단한 슈퍼컴퓨터가 아니라, <strong>공장 초기 비밀번호를 그대로 쓰던 IP 카메라와 녹화기(DVR)</strong>였어요.</p>
+      </div>
+
+      <p class="callout">그래서 막는 방법도 평범해요. 공유기·카메라의 <strong>기본 비밀번호를 반드시 바꾸고</strong>, 펌웨어와 운영체제를 업데이트하고, 쓰지 않는 원격 접속 기능을 꺼 두는 것. 이 세 가지가 내 기기를 병사로 만들지 않는 가장 확실한 방법이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">내 기기가 모르는 사이, 남의 군대가 돼요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
