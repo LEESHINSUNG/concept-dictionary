@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anti-Passback — 기억해봐요</title>
+  <meta name="description" content="Anti-Passback은 들어간 기록이 있는 카드로는 또 들어갈 수 없게 막는 출입 통제 규칙이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="anti-passback">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>Anti-Passback</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">출입 통제</span>
+      </div>
+      <h1 class="title">Anti-Passback</h1>
+      <p class="reading">안티패스백 · 되돌림 방지</p>
+      <p class="define">Anti-Passback은 <mark>들어간 기록이 있는 카드로는 또 들어갈 수 없게 막는 규칙</mark>이에요. 사원증 하나를 여러 사람이 돌려 쓰는 걸 막아요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 출입 통제</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>지하철 개찰구를 떠올려 보세요. 한 번 찍고 들어간 교통카드로는 밖에서 또 찍어도 들어갈 수 없죠. <strong>나간 기록이 있어야 다시 들어갈 수 있어요.</strong> Anti-Passback은 회사 건물 출입문에 이 규칙을 그대로 적용한 거예요.</p>
+      <p>이름이 동작을 그대로 설명해요. <strong>패스백(pass back)</strong>은 '카드를 뒤로 넘겨주기'예요. 먼저 들어간 사람이 문 안쪽에서 카드를 밖에 있는 사람에게 건네주는 행동이죠. 그 앞에 '반대'라는 뜻의 <strong>anti</strong>를 붙여, 그걸 막는 규칙이라는 이름이 됐어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">이름의 뜻</p>
+          <p class="fact__value">카드 넘겨주기를 막음</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">판단 기준</p>
+          <p class="fact__value">입실·퇴실이 번갈아야 함</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">종류</p>
+          <p class="fact__value">Hard · Soft · Timed</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">출입 카드</p>
+          <p class="node__note">직전 기록은 '입실'</p>
+          <p><span class="chip-mono">입실</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">다시 태그<span class="arrow__note">들어가려고 해요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">출입 통제 시스템</p>
+          <p class="node__note">마지막 기록을 확인해요</p>
+          <p>
+            <span class="chip-mono">입실</span>
+            <span class="chip-mono">퇴실</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">거부<span class="arrow__note">퇴실 기록이 없어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">문이 열리지 않아요</p>
+          <p class="node__note">기록이 남아 관리자가 알 수 있어요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>카드를 태그할 때마다 시스템은 그 사람이 '입실'인지 '퇴실'인지를 함께 기록해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>들어오려면 직전 기록이 '퇴실'이어야 해요. 마지막이 '입실'이라면 그 카드의 주인은 이미 안에 있다는 뜻이니까요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>기록이 맞지 않으면 문을 열지 않거나, 열어 주되 관리자에게 알림을 보내요. 어느 쪽일지는 아래 종류에 따라 달라요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 사원증 돌려쓰기를 막아요</p>
+        <p>A씨가 출근하며 카드를 찍고 들어간 뒤, 문 안쪽에서 카드를 밖의 B씨에게 건네줘요. B씨가 같은 카드를 찍지만 직전 기록이 '입실'이라 문이 열리지 않아요. <strong>Anti-Passback이 원래 막으려고 만들어진 바로 그 상황</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 따라 들어온 사람이 드러나요</p>
+        <p>A씨가 문을 잡아 줘서 B씨가 카드를 찍지 않고 함께 들어갔어요. 시스템이 보기에 B씨는 아직 <strong>건물 밖에 있는 사람</strong>이에요. 그래서 퇴근할 때 B씨가 퇴실 태그를 하면 기록이 맞지 않아 걸려요. 들어온 적이 없는 사람이 나갈 수는 없으니까요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">종류 · 얼마나 엄격하게 막을까</p>
+        <p><strong>Hard</strong>는 규칙을 어기면 그냥 거부해요. 가장 엄격하고 가장 많이 쓰여요. <strong>Soft</strong>는 문은 열어 주되 관리자에게 알림만 보내요. 문이 안 열려서 더 위험해질 수 있는 곳에 써요. <strong>Timed</strong>는 한 번 쓴 카드를 정해진 시간(예: 15분) 동안만 다시 못 쓰게 막아요. 나가는 쪽 리더기가 따로 없는 출입구에 맞아요.</p>
+      </div>
+
+      <p class="callout">현장에서 가장 많이 부딪히는 문제는 <strong>비상 상황</strong>이에요. 화재나 정전처럼 모두가 빨리 나가야 할 때 Hard 규칙이 그대로 걸려 있으면 사람이 갇힐 수 있어요. 그래서 보통 비상시에는 규칙을 풀도록 미리 설정해 둬요. 구체적인 설정 이름과 방식은 장비 제조사마다 달라서, 쓰는 제품의 설명서를 봐야 해요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">들어간 기록이 있으면, 또 들어갈 수 없어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 출입 통제</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

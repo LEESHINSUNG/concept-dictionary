@@ -1,6 +1,14 @@
 /* 개념 목록. 항목은 slug 알파벳순으로 유지합니다 (화면 정렬은 common.js가 처리). */
 window.CONCEPTS = [
   {
+    slug: 'anti-passback',
+    title: 'Anti-Passback',
+    sub: '안티패스백 · 되돌림 방지',
+    summary: '한 카드로 두 번 연속 들어갈 수 없게 막는 출입 규칙',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'botnet',
     title: '봇넷',
     sub: 'botnet',
