@@ -41,6 +41,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'hash',
+    title: '해시',
+    sub: 'hash · 해시 함수',
+    summary: '데이터를 정해진 길이의 지문 하나로 바꾸는 계산',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',

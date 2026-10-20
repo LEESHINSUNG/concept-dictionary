@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>해시 — 기억해봐요</title>
+  <meta name="description" content="해시는 어떤 데이터든 정해진 길이의 지문 하나로 바꾸는 계산이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 설명문 안에 쓰는 짧은 코드 조각 */
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="hash">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>해시</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">기초 개념</span>
+      </div>
+      <h1 class="title">해시</h1>
+      <p class="reading">hash · 해시 함수</p>
+      <p class="define">해시는 <mark>어떤 데이터든 정해진 길이의 지문 하나로 바꾸는 계산</mark>이에요. 같은 내용은 늘 같은 값이 나오고, 한 글자만 달라도 값이 통째로 바뀌어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 기초 개념</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>믹서기에 과일을 넣고 갈면 주스가 나와요. 같은 과일을 같은 양 넣으면 늘 같은 맛이 나오죠. 그런데 <strong>주스를 보고 원래 과일로 되돌릴 수는 없어요</strong>. 해시가 딱 이래요. 한 방향으로만 가는 계산이에요.</p>
+      <p>그래서 해시값을 <strong>지문</strong>에 비유하기도 해요. 지문을 보고 그 사람이 맞는지는 확인할 수 있지만, 지문만 가지고 사람을 만들어 낼 수는 없으니까요. 내용을 숨기려고 쓰는 게 아니라, <strong>바뀌었는지 확인하려고</strong> 쓰는 도구예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">결과 길이</p>
+          <p class="fact__value">입력과 상관없이 일정</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">방향</p>
+          <p class="fact__value">되돌릴 수 없어요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰임</p>
+          <p class="fact__value">변조 확인 · 비밀번호 저장</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">아무 데이터</p>
+          <p class="node__note">한 글자든 1GB 영상이든</p>
+          <p>
+            <span class="chip-mono">문서</span>
+            <span class="chip-mono">영상</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">해시 함수<span class="arrow__note">한 방향으로만</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">해시값</p>
+          <p class="node__note">길이가 늘 똑같아요</p>
+          <p><span class="chip-mono">64자리</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">비교<span class="arrow__note">같은가 다른가</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">바뀌었는지 판단</p>
+          <p class="node__note">값이 다르면 내용이 달라진 거예요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>데이터를 넣으면 정해진 길이의 값 하나가 나와요. 입력이 아무리 길어도 결과 길이는 늘 같아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>한 글자만 달라져도 값이 통째로 달라져요. 그래서 '조금 비슷한 해시값' 같은 건 없어요. 같거나, 완전히 다르거나예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>거꾸로는 갈 수 없어요. 그래서 서비스는 비밀번호를 그대로 저장하지 않고 <strong>해시값만 저장</strong>해요. 털려도 원래 비밀번호는 바로 드러나지 않으니까요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>느낌표 하나만 더 붙여서 값이 얼마나 달라지는지 보여 드릴게요. 파이썬만 있으면 바로 됩니다.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> python3 -c <span class="c-string">"import hashlib; print(hashlib.sha256('안녕하세요'.encode()).hexdigest())"</span>
+2c68318e352971113645cbc72861e1ec23f48d5baa5f9b405fed9dddca893eb4
+
+<span class="c-prompt">$</span> python3 -c <span class="c-string">"import hashlib; print(hashlib.sha256('안녕하세요!'.encode()).hexdigest())"</span>
+e0f639938481a5a0c0632b36b0fc7d363c18c8ee5b0a2484d168d5c99b55b9f3</code></pre>
+      </div>
+
+      <p class="callout">느낌표 하나 차이인데 <strong>값이 한 글자도 겹치지 않아요</strong>. <a href="digital-forensics.html">디지털 포렌식</a>에서 원본과 사본이 같은지 확인할 때 쓰는 것도 바로 이 성질이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">내용이 바뀌면, 지문도 바뀌어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 기초 개념</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
