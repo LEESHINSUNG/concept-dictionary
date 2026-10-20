@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C&amp;C 서버 — 기억해봐요</title>
+  <meta name="description" content="C&amp;C 서버는 공격자가 감염된 기기에 명령을 내리고 결과를 받는 지휘소예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="c2-server">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>C&amp;C 서버</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 인프라</span>
+      </div>
+      <h1 class="title">C&amp;C 서버</h1>
+      <p class="reading">씨앤씨 서버 · Command and Control</p>
+      <p class="define">C&amp;C 서버는 공격자가 <mark>감염된 기기에 명령을 내리고 결과를 받아 보는 지휘소</mark>예요. <a href="botnet.html">봇넷</a>의 머리에 해당해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 공격 인프라</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>택시 회사를 떠올려 보세요. 택시들은 도시 곳곳에 흩어져 있지만, <strong>배차 센터</strong>가 "어디로 가세요"라고 무전을 보내면 한꺼번에 움직이죠. C&amp;C 서버는 공격자가 가진 그 배차 센터예요.</p>
+      <p>이름은 <strong>Command and Control</strong>, 우리말로 '명령과 제어'의 머리글자예요. 글자 수를 줄여 <strong>C2</strong>라고도 써요. 감염된 기기 하나하나는 사실 할 줄 아는 게 많지 않아요. 여기서 명령이 내려올 때만 움직이기 때문에, 이 서버가 공격의 중심이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">다른 표기</p>
+          <p class="fact__value fact__value--mono">C2</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">명령 내리기 · 결과 받기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">연결이 끊기면</p>
+          <p class="fact__value">봇넷이 멈춰요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">명령을 올려 두기만 해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">명령 등록<span class="arrow__note">미리 적어 둬요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">C&amp;C 서버</p>
+          <p class="node__note">명령을 보관하고 결과를 모아요</p>
+          <p>
+            <span class="chip-mono">명령 대기</span>
+            <span class="chip-mono">결과 수집</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">먼저 물어봐요<span class="arrow__note">할 일 있나요?</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">감염된 기기</p>
+          <p class="node__note">받은 명령을 실행해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공격자는 기기에 직접 접속하지 않아요. C&amp;C 서버에 명령을 올려 두기만 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>감염된 기기가 <strong>주기적으로 먼저</strong> C&amp;C 서버에 접속해 "할 일 있나요?"라고 물어봐요. 밖에서 들어오는 연결은 막혀 있어도, 안에서 밖으로 나가는 연결은 보통 열려 있기 때문이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 방어하는 쪽은 이 '물어보는 통신'을 찾아 끊어요. 지휘소와 연결이 끊긴 기기는 명령을 받지 못해 조용해져요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 10분마다 반복되는 짧은 접속</p>
+        <p>회사 PC 한 대가 매일, 10분 간격으로, 들어 본 적 없는 주소에 아주 짧게 접속해요. 사용자는 아무것도 느끼지 못하죠. 보안 담당자가 이상하게 보는 건 내용이 아니라 <strong>규칙적인 리듬</strong>이에요. 사람이 쓰는 컴퓨터는 이렇게 시계처럼 정확하게 같은 곳에 연결하지 않거든요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 지휘소를 끊으면 조용해져요</p>
+        <p>그래서 수사 기관과 보안 업체는 공격자의 서버를 압수하거나, 그 주소로 가는 연결을 자기네 서버로 돌려 받아요. 명령을 줄 곳이 사라지면 감염된 기기들은 그대로 멈춰요. 반대로 공격자는 이를 피하려고 주소를 수시로 바꾸거나 지휘소를 여러 개 두기도 해요.</p>
+      </div>
+
+      <p class="callout">내 쪽에서 할 수 있는 일은 평범해요. 백신과 운영체제를 최신으로 두고, 출처를 모르는 프로그램을 실행하지 않는 것. 애초에 감염되지 않으면 지휘소가 부를 기기도 없어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">봇넷의 머리. 끊으면 몸이 멈춰요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 공격 인프라</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

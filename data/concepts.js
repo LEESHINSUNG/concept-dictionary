@@ -9,6 +9,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'c2-server',
+    title: 'C&C 서버',
+    sub: '씨앤씨 서버 · Command and Control',
+    summary: '감염된 기기에 명령을 내리는 공격자의 지휘소',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',
