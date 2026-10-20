@@ -15,5 +15,13 @@ window.CONCEPTS = [
     summary: '파이썬 패키지를 모아 둔 공용 창고',
     category: 'Python',
     date: '2026-10-20'
+  },
+  {
+    slug: 'uv',
+    title: 'uv',
+    sub: '유브이',
+    summary: 'Rust로 만든 파이썬 패키지·프로젝트 관리 도구',
+    category: 'Python',
+    date: '2026-10-20'
   }
 ];
