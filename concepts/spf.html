@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPF — 기억해봐요</title>
+  <meta name="description" content="SPF는 이 도메인의 메일은 이 서버들만 보낼 수 있다고 DNS에 적어 두는 규칙이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="spf">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SPF</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">메일 인증</span>
+      </div>
+      <h1 class="title">SPF</h1>
+      <p class="reading">에스피에프 · Sender Policy Framework</p>
+      <p class="define">SPF는 <mark>"우리 도메인의 메일은 이 서버들만 보낸다"고 미리 적어 두는 규칙</mark>이에요. 받는 쪽이 그 목록을 보고 발신자를 사칭한 메일을 걸러내요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 메일 인증</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사 정문의 <strong>방문자 명단</strong>을 떠올려 보세요. 오늘 들어올 사람을 미리 적어 두면, 경비실은 찾아온 사람이 명단에 있는지만 보면 돼요. 명단에 없으면 "우리 회사 직원인데요"라고 말해도 들여보내지 않죠.</p>
+      <p>메일 주소는 봉투에 적는 보내는 사람 이름과 같아서 <strong>누구나 마음대로 적을 수 있어요</strong>. 그래서 거래처나 사장님을 사칭한 메일이 오는 거고요. SPF는 그 사칭을 막기 위해, 도메인 주인이 "우리 메일을 보낼 수 있는 서버는 이것들뿐"이라고 공개된 곳에 적어 두는 방식이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">적어 두는 곳</p>
+          <p class="fact__value fact__value--mono">DNS TXT 레코드</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">확인하는 것</p>
+          <p class="fact__value">보낸 서버의 IP 주소</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">같이 쓰는 짝</p>
+          <p class="fact__value fact__value--mono">DKIM · DMARC</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">도메인 주인</p>
+          <p class="node__note">허용 서버 목록을 적어 둬요</p>
+          <p><span class="chip-mono">TXT 레코드</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">DNS 조회<span class="arrow__note">메일이 올 때마다</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">받는 메일 서버</p>
+          <p class="node__note">보낸 IP가 목록에 있는지 봐요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">판정<span class="arrow__note">통과 또는 실패</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받은 편지함 · 스팸함</p>
+          <p class="node__note">목록에 없으면 걸러져요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>도메인 주인이 DNS에 한 줄을 적어 둬요. "우리 도메인 이름으로 메일을 보낼 수 있는 서버는 이것들이다"라는 목록이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>메일이 도착하면 받는 서버가 <strong>그 도메인의 DNS를 직접 조회해</strong> 목록을 가져와요. 보낸 사람 말을 믿는 게 아니라 도메인 주인이 공개해 둔 목록을 믿는 거예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>실제로 보낸 서버의 IP가 목록에 없으면 사칭으로 보고 스팸함에 넣거나 거부해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>아무 도메인의 SPF 설정은 공개돼 있어서 바로 꺼내 볼 수 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> dig +short TXT github.com | grep spf
+<span class="c-comment"># 도메인마다 내용이 달라요. 아래는 레코드가 생긴 모양이에요.</span>
+
+v=spf1 include:_spf.google.com ip4:198.51.100.20 ~all</code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">한 줄 읽는 법</p>
+        <p><code>v=spf1</code>은 SPF 규칙이라는 표시예요. <code>include:</code>는 "저쪽 목록도 우리 목록으로 친다"는 뜻이라, 메일을 대신 보내 주는 서비스를 쓸 때 적어요. <code>ip4:</code>는 직접 적는 서버 주소고요. 맨 끝의 <code>~all</code>은 <strong>"나머지는 일단 의심"</strong>, <code>-all</code>은 <strong>"나머지는 확실히 거부"</strong>예요. 설정을 막 바꿨을 때는 빠뜨린 서버가 있을 수 있어 느슨한 쪽부터 쓰고, 확신이 서면 조여요.</p>
+      </div>
+
+      <p class="callout">SPF만으로는 부족한 상황이 있어요. 메일이 <strong>다른 주소로 자동 전달되면</strong> 마지막에 보낸 서버가 전달한 쪽이라 목록에 없고, 그래서 멀쩡한 메일이 실패로 나와요. 그래서 메일에 <a href="digital-signature.html">전자서명</a>을 붙이는 DKIM, 그리고 둘의 결과로 어떻게 처리할지 정하는 DMARC를 함께 씁니다.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">우리 메일은 이 서버에서만 나갑니다.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 메일 인증</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

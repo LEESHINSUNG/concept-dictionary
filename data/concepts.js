@@ -105,6 +105,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'spf',
+    title: 'SPF',
+    sub: '에스피에프 · Sender Policy Framework',
+    summary: '도메인의 메일을 보낼 수 있는 서버를 DNS에 적어 두는 규칙',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'symmetric-key',
     title: '공통키',
     sub: '대칭키 · symmetric key',
