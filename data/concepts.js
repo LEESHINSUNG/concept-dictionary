@@ -73,6 +73,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'erp',
+    title: 'ERP',
+    sub: '이알피 · Enterprise Resource Planning',
+    summary: '회사의 돈·물건·사람 정보를 한 시스템에 모아 쓰는 통합 시스템',
+    category: '업무 시스템',
+    date: '2026-10-21'
+  },
+  {
     slug: 'hash',
     title: '해시',
     sub: 'hash · 해시 함수',
