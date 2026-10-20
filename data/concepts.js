@@ -81,6 +81,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'rsa',
+    title: 'RSA',
+    sub: '알에스에이 · Rivest-Shamir-Adleman',
+    summary: '소인수분해의 어려움에 기댄 공개키 암호',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'sha-256',
     title: 'SHA-256',
     sub: '샤-256 · Secure Hash Algorithm',
