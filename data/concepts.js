@@ -49,6 +49,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'public-private-key',
+    title: '공개키-비밀키',
+    sub: '비대칭키 · public key / private key',
+    summary: '잠그는 열쇠와 여는 열쇠를 다르게 만든 암호 방식',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'pypi',
     title: 'PyPI',
     sub: '파이파이',

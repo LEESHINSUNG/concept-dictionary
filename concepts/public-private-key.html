@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>공개키-비밀키 — 기억해봐요</title>
+  <meta name="description" content="공개키-비밀키는 잠그는 열쇠와 여는 열쇠를 다르게 만든 암호 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 설명문 안에 쓰는 짧은 코드 조각 */
+    .case code, .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="public-private-key">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>공개키-비밀키</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">공개키-비밀키</h1>
+      <p class="reading">비대칭키 · public key / private key</p>
+      <p class="define">공개키-비밀키는 <mark>잠그는 열쇠와 여는 열쇠를 아예 다르게 만든 방식</mark>이에요. 잠그는 열쇠는 온 세상에 알려 줘도 안전해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>길가의 <strong>우체통</strong>을 떠올려 보세요. 투입구는 누구에게나 열려 있어서 아무나 편지를 넣을 수 있죠. 하지만 안에 있는 편지를 꺼내는 문의 열쇠는 집배원만 가지고 있어요. <strong>넣는 건 누구나, 꺼내는 건 한 사람만</strong>이에요.</p>
+      <p>공개키가 그 투입구, 비밀키가 꺼내는 열쇠예요. 두 열쇠는 한 쌍으로 만들어지고, 공개키로 잠근 것은 짝이 되는 비밀키로만 열려요. 공개키는 아무리 퍼져도 괜찮아요. 그걸로는 <strong>잠글 수만 있고 열 수는 없으니까요</strong>. 그래서 <a href="symmetric-key.html">공통키</a>의 가장 큰 고민이었던 '열쇠를 어떻게 건네지?'가 사라져요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">다른 이름</p>
+          <p class="fact__value">비대칭키</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">공개키</p>
+          <p class="fact__value">누구나 가져도 됨 · 잠그기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">비밀키</p>
+          <p class="fact__value">나만 보관 · 열기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보내는 사람</p>
+          <p class="node__note">받는 사람의 공개키로 잠가요</p>
+          <p><span class="chip-mono">공개키</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">전송<span class="arrow__note">공개키로는 못 열어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">암호문</p>
+          <p class="node__note">짝이 되는 열쇠로만 열려요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">비밀키로 열기<span class="arrow__note">받는 사람만</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 사람</p>
+          <p class="node__note">비밀키는 혼자만 가지고 있어요</p>
+          <p><span class="chip-mono">비밀키</span></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>받는 사람이 열쇠 두 개를 <strong>한 쌍으로</strong> 만들어요. 하나는 공개키로 누구에게나 알려 주고, 하나는 비밀키로 자기만 보관해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>보내는 사람은 받는 사람의 공개키로 내용을 잠가요. 공개돼 있는 열쇠인데도 괜찮은 이유는, 그 열쇠로는 잠그는 것만 되기 때문이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>열 수 있는 건 짝이 되는 비밀키 하나뿐이에요. 그래서 둘은 <strong>미리 만나 열쇠를 주고받을 필요가 없어요</strong>. 처음 보는 사이에도 바로 비밀 대화를 시작할 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 주소창의 자물쇠(HTTPS)</p>
+        <p>처음 보는 사이트에 접속해도 바로 안전한 연결이 되는 건 이 방식 덕분이에요. 다만 이 방식은 계산이 무거워서 대화 전체에 쓰기엔 느려요. 그래서 <strong>처음에만</strong> 공개키로 안전한 통로를 만들고, 그 안에서 빠른 <a href="symmetric-key.html">공통키</a>를 하나 주고받은 뒤, 실제 대화는 그 공통키로 해요. 두 방식의 장점만 가져오는 셈이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 거꾸로 쓰면 서명이 돼요</p>
+        <p>비밀키로 잠그면 어떻게 될까요? 공개키는 모두가 가지고 있으니 누구나 열 수 있어요. 숨기는 효과는 없죠. 대신 <strong>"이건 비밀키 주인이 만든 것"이라는 증명</strong>이 돼요. 그 비밀키를 가진 사람은 한 명뿐이니까요. 이게 전자서명의 원리예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · GitHub에 올리는 SSH 키</p>
+        <p>내 컴퓨터에서 열쇠 한 쌍을 만들어 공개키만 GitHub 설정에 올려 둬요. 비밀키는 내 컴퓨터에만 남고요. 그 뒤로는 비밀번호 없이도 "이 사람이 맞다"는 확인이 자동으로 돼요. 공개키를 올릴 때 <code>id_rsa.pub</code>처럼 <code>.pub</code>이 붙은 쪽을 올리는 이유가 이거예요.</p>
+      </div>
+
+      <p class="callout">모든 안전이 <strong>비밀키 하나</strong>에 걸려 있어요. 비밀키 파일이 새어 나가면 그 열쇠로 지킨 모든 게 함께 무너져요. 공유 폴더나 채팅으로 옮기지 않고, 자리를 비울 때 잠그는 것만으로도 많이 달라져요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">잠그는 열쇠는 나눠 주고, 여는 열쇠는 나만.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
