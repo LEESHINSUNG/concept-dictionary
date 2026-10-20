@@ -89,6 +89,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'histogram',
+    title: '히스토그램',
+    sub: 'histogram · 도수분포도',
+    summary: '값이 어느 구간에 몇 개씩 모여 있는지 보는 막대그림',
+    category: '품질관리',
+    date: '2026-10-21'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',

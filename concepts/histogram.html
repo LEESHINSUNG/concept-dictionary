@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>히스토그램 — 기억해봐요</title>
+  <meta name="description" content="히스토그램은 값이 어느 구간에 몇 개씩 모여 있는지 보여 주는 막대그림이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 막대그림 */
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      padding: 18px 14px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .chart__col {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart__plot {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+      height: 170px;
+    }
+    .chart__count { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .chart__fill {
+      width: 100%;
+      background: var(--line-strong);
+      border-radius: 6px 6px 0 0;
+    }
+    .chart__fill--peak { background: var(--accent); }
+    .chart__label {
+      font-size: 12px;
+      font-family: var(--mono);
+      color: var(--muted);
+      text-align: center;
+    }
+    .chart__axis { margin-top: 10px; font-size: 13px; color: var(--muted); text-align: center; }
+    @media (max-width: 479px) {
+      .chart { gap: 3px; padding: 14px 8px; }
+      .chart__label { font-size: 10px; }
+      .chart__count { font-size: 11px; }
+    }
+    .case code, .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="histogram">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>히스토그램</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">QC 7가지 도구</span>
+      </div>
+      <h1 class="title">히스토그램</h1>
+      <p class="reading">histogram · 도수분포도</p>
+      <p class="define">히스토그램은 <mark>값이 어느 구간에 몇 개씩 모여 있는지 보여 주는 막대그림</mark>이에요. 평균 하나만 봐서는 보이지 않는 '퍼짐'이 드러나요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 품질관리 › QC 7가지 도구</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>반 학생들의 키를 5cm 단위로 나눠 줄을 세워 본다고 해 볼게요. 150~155cm 줄에 몇 명, 155~160cm 줄에 몇 명. 줄의 길이를 막대로 그리면 그게 히스토그램이에요. <strong>"우리 반 평균 키 162cm"라는 한 문장보다 훨씬 많은 걸 알려 줘요.</strong></p>
+      <p>평균은 가운데 한 점만 알려 주지만, 히스토그램은 <strong>어디에 몰려 있고 얼마나 흩어져 있는지</strong>를 보여 줘요. 공장에서 과자 무게를 재든, 서버 응답 시간을 재든, 숫자가 여러 개 쌓이면 가장 먼저 그려 보는 그림이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">가로축</p>
+          <p class="fact__value">값의 구간</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">세로축</p>
+          <p class="fact__value">그 구간에 든 개수</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">중심 · 퍼짐 · 모양</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">과자 100봉지의 무게를 2g 구간으로 나눠 센 결과예요.</p>
+
+      <div class="chart" role="img" aria-label="과자 무게 히스토그램. 46~48g 3개, 48~50g 9개, 50~52g 20개, 52~54g 31개, 54~56g 22개, 56~58g 11개, 58~60g 4개.">
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">3</span><span class="chart__fill" style="height: 10%"></span></span>
+          <span class="chart__label">46–48</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">9</span><span class="chart__fill" style="height: 29%"></span></span>
+          <span class="chart__label">48–50</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">20</span><span class="chart__fill" style="height: 65%"></span></span>
+          <span class="chart__label">50–52</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">31</span><span class="chart__fill chart__fill--peak" style="height: 100%"></span></span>
+          <span class="chart__label">52–54</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">22</span><span class="chart__fill" style="height: 71%"></span></span>
+          <span class="chart__label">54–56</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">11</span><span class="chart__fill" style="height: 35%"></span></span>
+          <span class="chart__label">56–58</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__count">4</span><span class="chart__fill" style="height: 13%"></span></span>
+          <span class="chart__label">58–60</span>
+        </div>
+      </div>
+      <p class="chart__axis">가로축: 무게(g) · 세로축: 봉지 수</p>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>값의 범위를 몇 개의 구간으로 나누고, 구간마다 몇 개가 들어가는지 세어 막대 높이로 그려요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이 그림의 평균은 약 53g이에요. 그런데 평균만 보면 <strong>46g짜리도 60g짜리도 있다는 사실은 사라져요.</strong> 히스토그램은 그 퍼짐을 그대로 보여 줘요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>중요한 건 <strong>모양</strong>이에요. 가운데가 높은 산 모양이면 평소대로 잘 만들어지고 있다는 뜻이고, 모양이 이상하면 거기서 이야기가 시작돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 평균이 같은데 하나는 불량이 나와요</p>
+        <p>두 공장 모두 평균 53g이에요. 그런데 A공장은 막대가 가운데 좁게 모여 있고, B공장은 넓게 퍼져 있어요. 규격이 50~56g이라면 <strong>B공장에서만 규격을 벗어난 제품이 나와요.</strong> 평균 숫자만 보고받았다면 두 공장이 똑같아 보였겠죠.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 봉우리가 두 개예요</p>
+        <p>산이 하나가 아니라 둘로 갈라져 있다면, 대개 <strong>서로 다른 두 집단이 섞인 것</strong>이에요. 기계 두 대의 설정이 다르거나, 오전조와 오후조의 작업이 다르거나요. 섞인 데이터를 나눠서 다시 그려 보면 원인이 금방 드러나요.</p>
+      </div>
+
+      <p class="callout">막대그래프와 헷갈리기 쉬워요. 막대그래프는 사과·배처럼 <strong>종류</strong>를 비교해서 막대를 떨어뜨려 그리고, 히스토그램은 이어지는 <strong>값의 구간</strong>이라 막대를 붙여 그려요. 그래서 순서를 마음대로 바꿀 수 없어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">평균 하나로는 안 보이는 걸 보여 줘요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 품질관리 › QC 7가지 도구</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
