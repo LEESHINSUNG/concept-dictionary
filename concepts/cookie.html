@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>쿠키 — 기억해봐요</title>
+  <meta name="description" content="쿠키는 웹사이트가 내 브라우저에 맡겨 두는 작은 메모예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="cookie">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>쿠키</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">웹</span>
+        <span class="chip">HTTP</span>
+      </div>
+      <h1 class="title">쿠키</h1>
+      <p class="reading">cookie · HTTP 쿠키</p>
+      <p class="define">쿠키는 <mark>웹사이트가 내 브라우저에 맡겨 두는 작은 메모</mark>예요. 그 메모 덕분에 사이트가 "아까 그 사람"을 알아봐요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 웹 › HTTP</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>옷 보관소에 외투를 맡기면 <strong>번호표</strong>를 주죠. 직원은 손님 얼굴을 외우지 않아요. 번호표만 보면 되니까요. 쿠키가 그 번호표예요.</p>
+      <p>웹의 기본 규칙인 <strong>HTTP는 방금 전 일을 기억하지 못해요.</strong> 요청 하나하나가 서로 모르는 사이라서, 로그인을 하고 다음 페이지로 넘어가면 서버 입장에서는 완전히 처음 보는 사람이 됩니다. 그래서 서버가 첫 응답에 메모 하나를 끼워 보내고, 브라우저는 그 메모를 보관했다가 <strong>그 사이트에 갈 때마다 자동으로 함께 보내요</strong>. 기억을 서버가 아니라 손님이 들고 다니는 셈이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">만드는 쪽</p>
+          <p class="fact__value fact__value--mono">Set-Cookie 헤더</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보관하는 곳</p>
+          <p class="fact__value">내 브라우저</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보내는 때</p>
+          <p class="fact__value">같은 사이트 요청마다 자동</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">첫 방문</p>
+          <p class="node__note">서버가 메모를 끼워 보내요</p>
+          <p><span class="chip-mono">Set-Cookie</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">받아서 보관<span class="arrow__note">브라우저가 알아서</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">브라우저에 저장</p>
+          <p class="node__note">사이트마다 따로 보관해요</p>
+          <p><span class="chip-mono">session=abc123</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">다시 방문<span class="arrow__note">자동으로 첨부</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">서버가 알아봄</p>
+          <p class="node__note">로그인이 풀리지 않아요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>로그인에 성공하면 서버가 응답에 <code>Set-Cookie</code> 한 줄을 끼워 보내요. 보통 안에는 이름이 아니라 <strong>뜻 없는 긴 문자열</strong>이 들어 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>브라우저는 그 값을 사이트별로 보관해 둬요. 다른 사이트의 쿠키와는 섞이지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그 사이트에 요청을 보낼 때마다 브라우저가 쿠키를 자동으로 붙여요. 서버는 그 값으로 "아까 로그인한 그 사람"임을 알아봐요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>응답 헤더만 꺼내 보면 쿠키가 오는 걸 눈으로 볼 수 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> curl -sI https://github.com | grep -i <span class="c-string">'^set-cookie'</span>
+<span class="c-comment"># set-cookie: 이름=값; Path=/; Secure; HttpOnly; SameSite=Lax</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">뒤에 붙는 말들이 안전장치예요</p>
+        <p><code>HttpOnly</code>는 자바스크립트가 그 쿠키를 읽지 못하게 막아요. 페이지에 악성 스크립트가 끼어들어도 로그인 값을 훔쳐 가지 못하게요. <code>Secure</code>는 암호화된 연결에서만 보내라는 뜻이고, <code>SameSite</code>는 다른 사이트에서 넘어온 요청에 쿠키를 붙일지 정해요. 남의 사이트가 내 이름으로 요청을 보내는 공격을 막는 장치예요.</p>
+      </div>
+
+      <p class="callout">쿠키에는 <strong>비밀번호나 개인정보를 그대로 담지 않아요</strong>. 브라우저에 있는 값은 사용자가 열어 볼 수도, 고칠 수도 있거든요. 그래서 뜻 없는 긴 값만 담고, 진짜 정보는 서버가 그 값으로 찾아봅니다.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">서버가 맡기고, 브라우저가 들고 다녀요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 웹 › HTTP</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

@@ -33,6 +33,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'cookie',
+    title: '쿠키',
+    sub: 'cookie · HTTP 쿠키',
+    summary: '웹사이트가 내 브라우저에 맡겨 두는 작은 메모',
+    category: '웹',
+    date: '2026-10-21'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',
