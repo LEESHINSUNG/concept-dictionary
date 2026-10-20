@@ -41,6 +41,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'control-chart',
+    title: '관리도',
+    sub: 'control chart · 컨트롤 차트',
+    summary: '시간에 따라 값을 찍고 한계선으로 이상을 가려내는 그림',
+    category: '품질관리',
+    date: '2026-10-21'
+  },
+  {
     slug: 'cookie',
     title: '쿠키',
     sub: 'cookie · HTTP 쿠키',
