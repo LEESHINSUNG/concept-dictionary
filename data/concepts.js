@@ -105,6 +105,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'pareto-chart',
+    title: '파레토 차트',
+    sub: 'Pareto chart · 파레토도',
+    summary: '원인을 많은 순서대로 세워 무엇부터 고칠지 정하는 그림',
+    category: '품질관리',
+    date: '2026-10-21'
+  },
+  {
     slug: 'public-private-key',
     title: '공개키-비밀키',
     sub: '비대칭키 · public key / private key',

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>파레토 차트 — 기억해봐요</title>
+  <meta name="description" content="파레토 차트는 문제의 원인을 많은 순서대로 세워, 무엇부터 고칠지 고르게 해 주는 그림이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      padding: 18px 14px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .chart__col {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart__plot {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+      height: 170px;
+    }
+    .chart__cum {
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--accent);
+    }
+    .chart__count { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .chart__fill { width: 100%; background: var(--line-strong); border-radius: 6px 6px 0 0; }
+    .chart__fill--vital { background: var(--accent); }
+    .chart__label { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.35; }
+    .chart__axis { margin-top: 10px; font-size: 13px; color: var(--muted); text-align: center; }
+    @media (max-width: 479px) {
+      .chart { gap: 3px; padding: 14px 8px; }
+      .chart__label { font-size: 10px; }
+      .chart__count, .chart__cum { font-size: 10px; }
+    }
+    .case code, .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="pareto-chart">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>파레토 차트</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">QC 7가지 도구</span>
+      </div>
+      <h1 class="title">파레토 차트</h1>
+      <p class="reading">Pareto chart · 파레토도</p>
+      <p class="define">파레토 차트는 <mark>원인을 많은 순서대로 세워 놓은 막대그림</mark>이에요. 왼쪽 몇 개만 잡아도 문제의 대부분이 사라진다는 걸 눈으로 보여 줘요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 품질관리 › QC 7가지 도구</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>고칠 게 열 가지인데 시간은 하루뿐이라면, 뭐부터 해야 할까요. 파레토 차트는 그 질문에 답해 주는 그림이에요. 원인별 건수를 세어 <strong>많은 것부터 왼쪽에 세우면</strong>, 어디에 힘을 쏟아야 하는지가 바로 보여요.</p>
+      <p>바탕에는 <strong>"결과의 대부분은 일부 원인에서 나온다"</strong>는 경험이 있어요. 흔히 80:20이라고 부르죠. 실제 비율은 상황마다 다르지만, 원인이 고르게 퍼져 있는 경우는 드물다는 건 대체로 맞아요. 그래서 <strong>전부 고치려 들지 말고 큰 것부터</strong>라는 판단을 하게 해 줘요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">막대 순서</p>
+          <p class="fact__value">많은 것부터 왼쪽으로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">함께 보는 것</p>
+          <p class="fact__value">누적 비율</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 때</p>
+          <p class="fact__value">무엇부터 할지 고를 때</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">한 달 동안 들어온 고객 불만 100건을 항목별로 세어 봤어요. 파란 글씨는 왼쪽부터 더한 누적 비율이에요.</p>
+
+      <div class="chart" role="img" aria-label="고객 불만 파레토 차트. 배송 지연 45건 누적 45퍼센트, 포장 파손 25건 누적 70퍼센트, 상품 불량 15건 누적 85퍼센트, 오배송 10건 누적 95퍼센트, 기타 5건 누적 100퍼센트.">
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__cum">45%</span><span class="chart__count">45</span><span class="chart__fill chart__fill--vital" style="height: 100%"></span></span>
+          <span class="chart__label">배송<br>지연</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__cum">70%</span><span class="chart__count">25</span><span class="chart__fill chart__fill--vital" style="height: 56%"></span></span>
+          <span class="chart__label">포장<br>파손</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__cum">85%</span><span class="chart__count">15</span><span class="chart__fill" style="height: 33%"></span></span>
+          <span class="chart__label">상품<br>불량</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__cum">95%</span><span class="chart__count">10</span><span class="chart__fill" style="height: 22%"></span></span>
+          <span class="chart__label">오배송</span>
+        </div>
+        <div class="chart__col">
+          <span class="chart__plot"><span class="chart__cum">100%</span><span class="chart__count">5</span><span class="chart__fill" style="height: 11%"></span></span>
+          <span class="chart__label">기타</span>
+        </div>
+      </div>
+      <p class="chart__axis">파란 막대 둘만 해결해도 불만의 70%가 사라져요</p>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>원인별로 건수를 세어 <strong>많은 것부터 왼쪽에</strong> 늘어놓아요. 순서를 마음대로 바꾸지 않는 게 규칙이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>왼쪽부터 차례로 더한 누적 비율을 함께 적어요. 보통은 꺾은선으로 그리는데, 이 그림에서는 막대 위 숫자로 표시했어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>누적 비율이 가파르게 올라가다 완만해지는 지점, 그 <strong>왼쪽까지가 먼저 손봐야 할 것들</strong>이에요. 오른쪽 자잘한 항목은 다 고쳐도 표가 잘 안 나요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 목소리 큰 사람의 문제부터 고치게 돼요</p>
+        <p>회의에서 "요즘 오배송이 많다"는 말이 나오면 다들 오배송을 고치려 들어요. 그런데 세어 보니 오배송은 10건, 배송 지연은 45건이었어요. <strong>파레토 차트는 인상 대신 숫자로 순서를 정하게 해 줘요.</strong> 이게 이 그림의 가장 큰 쓸모예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 건수 말고 금액으로도 그려요</p>
+        <p>건수로는 작아도 한 번 터지면 손해가 큰 항목이 있어요. 그럴 땐 세로축을 건수 대신 <strong>금액이나 걸린 시간</strong>으로 바꿔서 다시 그려요. 축을 바꾸면 순서가 완전히 달라지기도 하는데, 그 차이 자체가 중요한 정보예요.</p>
+      </div>
+
+      <p class="callout">같은 막대그림이라도 <a href="histogram.html">히스토그램</a>과는 쓰임이 달라요. 히스토그램은 <strong>값이 어떻게 퍼져 있는지</strong>를 보려고 구간 순서대로 그리고, 파레토 차트는 <strong>무엇부터 할지</strong> 고르려고 크기 순서대로 그려요. 원인을 골랐다면 다음은 그 원인을 파고들 차례예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">다 고치지 말고, 큰 것부터.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 품질관리 › QC 7가지 도구</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
