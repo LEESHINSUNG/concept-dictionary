@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyPI — 기억해봐요</title>
+  <meta name="description" content="PyPI는 파이썬 패키지를 모아 둔 공용 창고예요. 이름만 알면 한 줄로 가져와 쓸 수 있어요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="pypi">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>PyPI</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">패키지 관리</span>
+      </div>
+      <h1 class="title">PyPI</h1>
+      <p class="reading">파이파이 · Python Package Index</p>
+      <p class="define">PyPI는 파이썬 프로그램의 <mark>부품을 모아 둔 공용 창고</mark>예요. 이름만 알면 한 줄로 내 컴퓨터에 가져와 쓸 수 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 Python › 패키지 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>스마트폰에 새 앱이 필요하면 앱스토어에서 찾아 설치하죠. PyPI는 <strong>파이썬 개발자를 위한 앱스토어</strong>예요.</p>
+      <p>누군가 만들어 둔 유용한 코드 묶음을 <strong>패키지</strong>라고 해요. 그 패키지를 PyPI에 올려 두면, 다른 사람들은 처음부터 만들지 않고 가져다 쓸 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">이름</p>
+          <p class="fact__value">Python Package Index</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">주소</p>
+          <p class="fact__value fact__value--mono">pypi.org</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 법</p>
+          <p class="fact__value fact__value--mono">pip install 이름</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">만든 사람</p>
+          <p class="node__note">코드를 패키지로 묶어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">업로드</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">PyPI 창고</p>
+          <p class="node__note">패키지를 보관해요</p>
+          <p>
+            <span class="chip-mono">requests</span>
+            <span class="chip-mono">django</span>
+            <span class="chip-mono">numpy</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">pip install<span class="arrow__note">배달원 pip</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">내 컴퓨터</p>
+          <p class="node__note">import 해서 바로 써요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>만든 사람이 완성한 패키지를 PyPI에 올려요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>필요한 사람이 pip로 이름을 말하면 창고에서 꺼내 와요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>내 코드에서 import 한 줄이면 바로 사용할 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>인터넷에서 자료를 받아 오는 <strong>requests</strong> 패키지를 가져와 볼게요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> pip install requests
+<span class="c-comment"># PyPI에서 requests를 찾아 내려받고 설치해요</span>
+Successfully installed requests</code></pre>
+      </div>
+
+      <div class="code">
+        <p class="code__head">main.py</p>
+        <pre><code><span class="c-keyword">import</span> requests
+
+res = requests.get(<span class="c-string">"https://pypi.org"</span>)
+<span class="c-keyword">print</span>(res.status_code)  <span class="c-comment"># 200이면 성공!</span></code></pre>
+      </div>
+
+      <p class="callout">출력은 환경마다 조금 달라요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">PyPI는 창고, pip는 배달원.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 Python › 패키지 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

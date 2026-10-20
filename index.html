@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>기억해봐요 — 개념 사전</title>
+  <meta name="description" content="내가 공부하고 이해한 개념을 가나다순으로 모아 둔 개인 개념 사전이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head__inner">
+      <div>
+        <h1 class="site-head__title">기억해봐요</h1>
+        <p class="site-head__sub">내가 공부하고 이해한 개념을 가나다순으로 모아요.</p>
+      </div>
+      <p class="site-head__count">총 <span id="total">0</span>개</p>
+    </div>
+  </header>
+
+  <main class="wrap index-main">
+    <div class="search">
+      <label class="search__label" for="search">개념 검색</label>
+      <input class="search__input" id="search" type="search" placeholder="예: PyPI, 가상환경" autocomplete="off">
+    </div>
+
+    <p class="group-label" id="cats-label">카테고리</p>
+    <div class="pills" id="cats" role="group" aria-labelledby="cats-label"></div>
+
+    <p class="group-label" id="tabs-label">초성으로 찾기</p>
+    <div class="pills" id="tabs" role="group" aria-labelledby="tabs-label"></div>
+
+    <p class="result" id="result" aria-live="polite"></p>
+
+    <div id="list"></div>
+  </main>
+
+  <script src="./data/concepts.js"></script>
+  <script defer src="./assets/js/common.js"></script>
+  <script defer src="./assets/js/index.js"></script>
+</body>
+</html>
