@@ -81,6 +81,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'fishbone-diagram',
+    title: '특성요인도',
+    sub: 'fishbone diagram · 이시카와 다이어그램',
+    summary: '하나의 결과에 영향을 준 원인을 생선뼈 모양으로 펼친 그림',
+    category: '품질관리',
+    date: '2026-10-21'
+  },
+  {
     slug: 'hash',
     title: '해시',
     sub: 'hash · 해시 함수',

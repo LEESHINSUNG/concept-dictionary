@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>특성요인도 — 기억해봐요</title>
+  <meta name="description" content="특성요인도는 하나의 결과에 영향을 준 원인들을 생선뼈 모양으로 펼쳐 보는 그림이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 생선뼈 그림 */
+    .fish {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px 14px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .fish__row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .fish__bone {
+      flex: 1 1 180px;
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      border-radius: 12px;
+    }
+    .fish__cause { font-size: 16px; font-weight: 700; }
+    .fish__detail { margin-top: 4px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+    .fish__spine { display: flex; align-items: center; gap: 10px; }
+    .fish__line { position: relative; flex: 1 1 auto; height: 4px; background: var(--line-strong); border-radius: 2px; }
+    .fish__line::after {
+      content: '';
+      position: absolute;
+      right: -2px; top: -6px;
+      width: 0; height: 0;
+      border-left: 12px solid var(--line-strong);
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
+    .fish__head {
+      flex: 0 0 auto;
+      max-width: 55%;
+      padding: 12px 16px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .case code, .callout code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="fishbone-diagram">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>특성요인도</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">QC 7가지 도구</span>
+      </div>
+      <h1 class="title">특성요인도</h1>
+      <p class="reading">fishbone diagram · 이시카와 다이어그램</p>
+      <p class="define">특성요인도는 <mark>하나의 결과에 영향을 준 원인들을 생선뼈 모양으로 펼쳐 보는 그림</mark>이에요. 머리에 문제를 적고, 뼈를 따라 원인을 뻗어 나가요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 품질관리 › QC 7가지 도구</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>일이 잘못되면 보통 "누가 실수했지?"부터 찾게 되죠. 그런데 원인이 하나인 경우는 거의 없어요. 특성요인도는 <strong>떠오르는 원인을 한 장에 다 펼쳐 놓고 보자</strong>는 그림이에요.</p>
+      <p>다 그려 놓으면 생선 뼈처럼 생겨서 <strong>피시본(fishbone)</strong>이라고도 불러요. 만든 사람의 이름을 따 이시카와 다이어그램이라고도 하고요. 혼자 머리로 생각하면 떠오른 한두 개에서 멈추는데, <strong>칸을 나눠 두면 "그러면 재료 쪽은 어때?"처럼 빠진 곳을 찾게 돼요.</strong> 여럿이 둘러앉아 함께 채울 때 가장 쓸모 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">머리</p>
+          <p class="fact__value">해결할 문제 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">큰 뼈</p>
+          <p class="fact__value">원인의 묶음 (4M)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 때</p>
+          <p class="fact__value">여럿이 원인을 모을 때</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">"배달이 늦어요"라는 문제를 네 묶음으로 펼쳐 봤어요.</p>
+
+      <div class="fish" role="img" aria-label="특성요인도. 문제는 배달이 늦어요. 원인 묶음은 사람, 기계, 재료, 방법 네 가지.">
+        <div class="fish__row">
+          <div class="fish__bone">
+            <p class="fish__cause">사람</p>
+            <p class="fish__detail">바쁜 시간에 인원이 모자라요 · 신입 교육이 짧아요</p>
+          </div>
+          <div class="fish__bone">
+            <p class="fish__cause">기계</p>
+            <p class="fish__detail">오토바이 정비가 밀렸어요 · 주문 화면이 느려요</p>
+          </div>
+        </div>
+
+        <div class="fish__spine">
+          <span class="fish__line" aria-hidden="true"></span>
+          <span class="fish__head">배달이 늦어요</span>
+        </div>
+
+        <div class="fish__row">
+          <div class="fish__bone">
+            <p class="fish__cause">재료</p>
+            <p class="fish__detail">포장 박스가 자주 떨어져요 · 보냉백이 부족해요</p>
+          </div>
+          <div class="fish__bone">
+            <p class="fish__cause">방법</p>
+            <p class="fish__detail">접수와 조리 순서가 뒤섞여요 · 묶음 배달 기준이 없어요</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>오른쪽 머리에 해결할 문제 하나를 적어요. <strong>"품질이 나쁘다"처럼 두루뭉술하면 안 돼요.</strong> "배달이 30분 넘게 걸린다"처럼 구체적일수록 원인도 구체적으로 나와요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>큰 뼈에 원인의 묶음을 적어요. 공장에서는 사람·기계·재료·방법 네 가지로 나누는 게 전통적이고, 이 영어 머리글자를 따 <strong>4M</strong>이라고 불러요. 사무실 일이라면 묶음 이름을 바꿔도 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>묶음마다 "왜 그렇지?"를 거듭 물으며 잔뼈를 뻗어요. 인원이 모자란다면 왜 모자란지, 그게 또 왜인지까지요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 원인이 아니라 결과를 적는 실수</p>
+        <p>"배달이 늦어요"의 원인으로 "고객 불만이 많다"를 적으면 안 돼요. 그건 <strong>이 문제 때문에 생긴 결과</strong>지 원인이 아니거든요. 뼈에 적을지 말지 헷갈리면 "이게 사라지면 문제도 사라지나?"를 물어보면 돼요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 그려 놓고 끝내면 그냥 낙서예요</p>
+        <p>이 그림은 <strong>원인 후보를 모으는 도구</strong>지, 진짜 원인을 가려 주는 도구가 아니에요. 다 그렸으면 그중 어느 것이 실제로 큰지 데이터로 세어 봐야 해요. 그때 쓰는 게 <a href="pareto-chart.html">파레토 차트</a>고요. 모으고(특성요인도) → 고르고(파레토) → 고친 뒤 지켜보는 순서예요.</p>
+      </div>
+
+      <p class="callout">여럿이 적을 때는 말하는 사람 순서를 정하거나 각자 쪽지에 적어 붙이는 게 좋아요. 그냥 회의하면 <strong>직급이 높은 사람이 말한 원인만 크게 적히기</strong> 쉽거든요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">결과 하나에, 원인은 여러 갈래.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 품질관리 › QC 7가지 도구</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
