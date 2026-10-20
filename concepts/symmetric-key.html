@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>공통키 — 기억해봐요</title>
+  <meta name="description" content="공통키는 잠글 때와 열 때 같은 열쇠를 쓰는 암호 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="symmetric-key">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>공통키</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">공통키</h1>
+      <p class="reading">대칭키 · symmetric key</p>
+      <p class="define">공통키는 <mark>잠글 때와 열 때 같은 열쇠를 쓰는 암호 방식</mark>이에요. 빠르고 간단하지만, 그 열쇠를 상대에게 안전하게 건네는 일이 늘 숙제예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>집 현관 자물쇠를 떠올려 보세요. 나갈 때 잠그는 열쇠와 들어올 때 여는 열쇠가 <strong>같은 열쇠</strong>죠. 공통키 방식이 정확히 이래요. 양쪽이 똑같은 열쇠를 하나씩 들고 있어야 대화가 돼요.</p>
+      <p>그래서 <strong>대칭키</strong>라고도 불러요. 잠그는 쪽과 여는 쪽이 똑같아서 좌우 대칭 같다는 뜻이에요. 계산이 단순해서 아주 빠르다는 게 큰 장점이고요. 문제는 하나예요. 멀리 있는 친구에게 이 열쇠를 <strong>어떻게 건네느냐</strong>는 거죠.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">다른 이름</p>
+          <p class="fact__value">대칭키</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">특징</p>
+          <p class="fact__value">잠금·해제가 같은 열쇠</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">약점</p>
+          <p class="fact__value">열쇠를 건네는 과정</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보내는 사람</p>
+          <p class="node__note">열쇠로 잠가요</p>
+          <p><span class="chip-mono">열쇠 A</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">전송<span class="arrow__note">가로채도 못 읽어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">암호문</p>
+          <p class="node__note">뜻을 알 수 없는 글자 덩어리</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">같은 열쇠로 열기<span class="arrow__note">열쇠 A</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 사람</p>
+          <p class="node__note">원래 내용을 읽어요</p>
+          <p><span class="chip-mono">열쇠 A</span></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>보내는 쪽이 열쇠로 내용을 잠가요. 이걸 암호화라고 하고, 겉으로는 뜻 없는 글자 덩어리가 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>중간에서 누가 가로채도 열쇠가 없으면 내용을 알 수 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>받는 쪽은 <strong>똑같은 열쇠</strong>로 풀어요. 그런데 이 열쇠를 미리 어떻게 건넬까요? 같은 길로 보내면 그것도 가로채이는데요. 이게 공통키의 가장 큰 고민이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 비밀번호 걸린 압축파일</p>
+        <p>서류를 ZIP으로 묶으면서 비밀번호를 걸어 메일로 보내요. 받는 사람은 그 비밀번호를 알아야 열 수 있죠. 여기서 비밀번호가 바로 공통키예요. 그런데 <strong>비밀번호를 같은 메일로 함께 보내면</strong> 아무 의미가 없어요. 메일을 보는 사람은 둘 다 보니까요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 사람이 늘면 열쇠가 폭발해요</p>
+        <p>둘이 비밀 이야기를 하려면 열쇠가 하나면 돼요. 그런데 서로 다른 짝끼리 따로 이야기하려면, 세 명이면 3개, 열 명이면 45개의 열쇠가 필요해요. 사람이 늘수록 관리해야 할 열쇠가 훨씬 더 빠르게 늘어나죠.</p>
+      </div>
+
+      <p class="callout">그래서 열쇠를 건네는 문제를 푸는 다른 방식이 따로 생겼어요. 잠그는 열쇠와 여는 열쇠를 아예 다르게 만드는 방법이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">같은 열쇠로 잠그고 열어요. 문제는 열쇠 전달.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

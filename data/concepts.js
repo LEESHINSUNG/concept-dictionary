@@ -57,6 +57,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'symmetric-key',
+    title: '공통키',
+    sub: '대칭키 · symmetric key',
+    summary: '잠글 때와 열 때 같은 열쇠를 쓰는 암호 방식',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'uv',
     title: 'uv',
     sub: '유브이',
