@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHA-256 — 기억해봐요</title>
+  <meta name="description" content="SHA-256은 가장 널리 쓰이는 해시 함수로, 무엇을 넣든 16진수 64자리 값이 나와요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="sha-256">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SHA-256</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">SHA-256</h1>
+      <p class="reading">샤-256 · Secure Hash Algorithm</p>
+      <p class="define">SHA-256은 <mark>가장 널리 쓰이는 해시 함수</mark>예요. 무엇을 넣든 16진수 64자리 값 하나가 나와요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-20">2026-10-20</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>종이에는 A4라는 규격이 있죠. 전 세계가 같은 크기를 쓰니까 어디서 인쇄하든 서류가 맞아떨어져요. <a href="hash.html">해시</a>가 '지문을 뜨는 일'이라면, SHA-256은 <strong>그중 가장 많이 쓰이는 규격</strong>이에요.</p>
+      <p>이름을 풀면 <strong>Secure Hash Algorithm</strong>, 뒤에 붙은 <strong>256</strong>은 결과값의 길이가 256비트라는 뜻이에요. 16진수로 적으면 64자리가 되고요. 규격이 같아야 서로 값을 비교할 수 있기 때문에, 파일을 받을 때도 인증서를 확인할 때도 다 같은 함수를 써요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">결과 길이</p>
+          <p class="fact__value fact__value--mono">256비트 = 64자리</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">계열</p>
+          <p class="fact__value">SHA-2 집안</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰이는 곳</p>
+          <p class="fact__value">파일 검증 · 인증서 · 서명</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">입력</p>
+          <p class="node__note">크기는 상관없어요</p>
+          <p>
+            <span class="chip-mono">한 글자</span>
+            <span class="chip-mono">1GB 영상</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">계산<span class="arrow__note">늘 같은 방식</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">SHA-256</p>
+          <p class="node__note">256비트로 압축해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">출력<span class="arrow__note">길이 고정</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">16진수 64자리</p>
+          <p class="node__note">예: 2c68318e…893eb4</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>이름의 256은 결과가 256비트라는 뜻이에요. 1바이트가 8비트니까 32바이트이고, 16진수로 적으면 한 글자가 4비트라 64자리가 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>한 글자를 넣든 1GB 영상을 넣든 결과는 똑같이 64자리예요. 그래서 큰 파일도 짧은 값 하나로 비교할 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>오래 검증된 규격이라 여기저기서 같은 함수를 써요. <strong>서로 같은 규격을 써야 값을 맞춰 볼 수 있으니까요.</strong></span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>맥과 리눅스에는 계산해 주는 명령이 기본으로 들어 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> printf <span class="c-string">'안녕하세요'</span> | shasum -a 256
+2c68318e352971113645cbc72861e1ec23f48d5baa5f9b405fed9dddca893eb4  -
+
+<span class="c-comment"># 파일이라면 이름만 적으면 돼요</span>
+<span class="c-prompt">$</span> shasum -a 256 내려받은파일.zip</code></pre>
+      </div>
+
+      <p class="callout">파일을 내려받는 곳에 <code>SHA-256</code> 값이 적혀 있는 걸 본 적 있을 거예요. 내려받은 뒤 직접 계산해 그 값과 같으면, 받는 도중에 깨지거나 바뀌지 않았다는 뜻이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">무엇을 넣어도, 64자리.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-20 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

@@ -73,6 +73,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'sha-256',
+    title: 'SHA-256',
+    sub: '샤-256 · Secure Hash Algorithm',
+    summary: '무엇을 넣어도 64자리 값이 나오는 대표 해시 함수',
+    category: '보안',
+    date: '2026-10-20'
+  },
+  {
     slug: 'symmetric-key',
     title: '공통키',
     sub: '대칭키 · symmetric key',
