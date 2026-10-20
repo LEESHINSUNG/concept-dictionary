@@ -25,6 +25,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'bpm',
+    title: 'BPM',
+    sub: '비피엠 · Business Process Management',
+    summary: '일이 흘러가는 순서를 그려 놓고 계속 고쳐 나가는 활동',
+    category: '업무 시스템',
+    date: '2026-10-21'
+  },
+  {
     slug: 'c2-server',
     title: 'C&C 서버',
     sub: '씨앤씨 서버 · Command and Control',
