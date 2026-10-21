@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WAN — 기억해봐요</title>
+  <meta name="description" content="WAN은 멀리 떨어진 LAN들을 이어 주는 넓은 범위의 네트워크예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="wan">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>WAN</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">구조</span>
+      </div>
+      <h1 class="title">WAN</h1>
+      <p class="reading">완 · Wide Area Network</p>
+      <p class="define">WAN은 <mark>멀리 떨어진 LAN들을 이어 주는 넓은 범위의 네트워크</mark>예요. 우리가 아는 인터넷이 세상에서 가장 큰 WAN이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 구조</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네 안의 골목길이 <a href="lan.html">LAN</a>이라면, 도시와 도시를 잇는 <strong>고속도로가 WAN</strong>이에요. 골목은 내가 쓸고 관리하지만 고속도로는 그럴 수 없죠. 멀리 가려면 그 길을 빌려 쓸 수밖에 없어요.</p>
+      <p>이름을 풀면 <strong>Wide Area Network</strong>, '넓은 지역의 망'이에요. 서울 본사와 부산 지사를 잇는 회선도 WAN이고, 전 세계가 얽힌 인터넷도 WAN이에요. 중요한 건 <strong>내 것이 아닌 길을 지난다는 점</strong>이에요. 그래서 속도가 들쭉날쭉하고, 중간에 누가 들여다볼 수도 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">범위</p>
+          <p class="fact__value">도시 · 국가 · 전 세계</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표적인 것</p>
+          <p class="fact__value">인터넷</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">누가 깔았나</p>
+          <p class="fact__value">통신사 (빌려 씀)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">서울 지사 LAN</p>
+          <p class="node__note">건물 안은 자기들끼리</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">라우터로 나감<span class="arrow__note">바깥으로 가는 문</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">WAN</p>
+          <p class="node__note">통신사가 깔아 둔 먼 길</p>
+          <p>
+            <span class="chip-mono">여럿이 공유</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">도착<span class="arrow__note">다시 건물 안으로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">부산 지사 LAN</p>
+          <p class="node__note">거기도 자기들만의 망</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>LAN 안에서 해결되지 않는 주소로 가려 하면, <strong>라우터</strong>가 바깥으로 가는 문 역할을 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><a href="packet.html">패킷</a>은 통신사의 장비들을 여러 번 갈아타며 목적지 쪽으로 넘겨져요. 어느 길로 갈지는 그때그때 달라져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>목적지 LAN의 라우터가 받아서 건물 안으로 들여보내요. <strong>LAN과 WAN은 경쟁하는 게 아니라 안과 밖의 관계</strong>예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 공유기 뒷면의 WAN 포트</p>
+        <p>집 공유기를 보면 포트 하나만 색이 다르고 <code>WAN</code> 또는 <code>INTERNET</code>이라고 적혀 있어요. <strong>거기가 바깥 세상으로 나가는 문</strong>이고, 나머지 포트들은 집 안 LAN이에요. 선을 반대로 꽂으면 인터넷이 안 되는 이유가 이거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 사무실은 빠른데 외부는 느려요</p>
+        <p>같은 층 동료에게 파일 보내는 건 순식간인데 클라우드 업로드는 한참 걸리죠. LAN은 내 건물 안의 전용 길이라 빠르고, WAN은 <strong>남들과 나눠 쓰는 먼 길</strong>이라 그래요. 이 차이를 알면 "회사 인터넷이 느리다"는 말도 어디가 느린지 나눠 볼 수 있어요.</p>
+      </div>
+
+      <p class="callout">WAN은 내 것이 아닌 길이라 중간에 거치는 곳이 많아요. 그래서 회사망에 밖에서 접속할 때는 그 위에 따로 안전한 통로를 만들어 써요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">LAN끼리 잇는, 남들과 나눠 쓰는 먼 길.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 구조</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

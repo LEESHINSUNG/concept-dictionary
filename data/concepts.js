@@ -215,5 +215,13 @@ window.CONCEPTS = [
     summary: 'Rust로 만든 파이썬 패키지·프로젝트 관리 도구',
     category: 'Python',
     date: '2026-10-20'
+  },
+  {
+    slug: 'wan',
+    title: 'WAN',
+    sub: '완 · Wide Area Network',
+    summary: '멀리 떨어진 LAN들을 이어 주는 넓은 범위의 네트워크',
+    category: '네트워크',
+    date: '2026-10-21'
   }
 ];
