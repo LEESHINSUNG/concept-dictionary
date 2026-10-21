@@ -209,6 +209,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'server',
+    title: '서버',
+    sub: 'server · 서비스를 주는 쪽',
+    summary: '요청을 받아 처리해 주는 쪽. 기계가 아니라 역할의 이름',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'sha-256',
     title: 'SHA-256',
     sub: '샤-256 · Secure Hash Algorithm',
