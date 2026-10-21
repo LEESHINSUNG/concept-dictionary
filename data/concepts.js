@@ -265,6 +265,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'vpn',
+    title: 'VPN',
+    sub: '브이피엔 · Virtual Private Network',
+    summary: '공용 인터넷 위에 내는 암호화된 전용 통로',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'wan',
     title: 'WAN',
     sub: '완 · Wide Area Network',

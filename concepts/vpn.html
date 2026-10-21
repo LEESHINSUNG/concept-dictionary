@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>VPN — 기억해봐요</title>
+  <meta name="description" content="VPN은 공용 인터넷 위에 나만 쓰는 암호화된 통로를 만드는 기술이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="vpn">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>VPN</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">보안</span>
+      </div>
+      <h1 class="title">VPN</h1>
+      <p class="reading">브이피엔 · Virtual Private Network</p>
+      <p class="define">VPN은 <mark>공용 인터넷 위에 나만 쓰는 암호화된 통로를 내는 기술</mark>이에요. 남들과 같은 길을 쓰면서도 내 짐은 아무도 못 열어 보게 하는 거죠.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사 서류를 집으로 보내야 하는데 <a href="wan.html">WAN</a>, 그러니까 남들과 함께 쓰는 길밖에 없다고 해 볼게요. 서류를 그냥 들고 가면 지나는 사람이 볼 수 있죠. 그래서 <strong>봉인된 상자에 넣어</strong> 보내요. 길은 공용이지만 상자는 받는 사람만 열 수 있어요.</p>
+      <p>이름을 풀면 <strong>Virtual Private Network</strong>, '가상의 전용 네트워크'예요. 전용선을 새로 까는 건 너무 비싸니까, <strong>있는 길 위에 암호로 만든 전용 통로를 흉내 내는 것</strong>이죠. 그래서 '가상'이라는 말이 붙었어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">암호화된 통로 만들기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 때</p>
+          <p class="fact__value">재택근무 · 공공 와이파이</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">바탕 기술</p>
+          <p class="fact__value">암호화 · 인증</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">내 노트북</p>
+          <p class="node__note">카페 와이파이에 붙어 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">암호화된 터널<span class="arrow__note">중간에선 못 읽어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">VPN 서버</p>
+          <p class="node__note">터널을 풀어 안으로 들여보내요</p>
+          <p><span class="chip-mono">신원 확인</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">내부로 전달<span class="arrow__note">사내에 있는 것처럼</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">회사 LAN</p>
+          <p class="node__note">사내 시스템에 접속돼요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 VPN 서버와 서로를 확인하고, 이번 연결에만 쓸 열쇠를 나눠 가져요. <a href="public-private-key.html">공개키-비밀키</a>로 안전하게 주고받은 뒤, 실제 통신은 빠른 <a href="symmetric-key.html">공통키</a>로 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>내 기기에서 나가는 <a href="packet.html">패킷</a>을 통째로 암호화해 다시 포장해요. 중간에 있는 누군가는 <strong>"어디론가 가는 알 수 없는 덩어리"</strong>만 보게 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>VPN 서버가 포장을 풀어 원래 패킷을 꺼내 전달해요. 그래서 밖에 있어도 <strong>회사 <a href="lan.html">LAN</a> 안에 있는 것처럼</strong> 쓸 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 카페 와이파이에서</p>
+        <p>이름만 같은 가짜 <a href="ssid.html">SSID</a>에 잘못 붙었다고 해도, VPN을 켜 두었다면 오가는 내용은 암호화돼 있어요. <strong>길을 못 믿을 때 내 쪽에서 통로를 보호하는 방법</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 재택근무</p>
+        <p>회사 시스템은 보통 사내에서만 열려 있어요. VPN에 접속하면 내 노트북이 <strong>사내 주소를 하나 받아</strong> 회사망의 일원처럼 취급돼요. 그래서 집에서도 사내 서버에 들어갈 수 있는 거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · VPN이 해 주지 않는 것</p>
+        <p>흔한 오해예요. VPN은 <strong>통로를 가려 줄 뿐 나를 지워 주지 않아요.</strong> 로그인해서 쓰는 서비스는 여전히 내가 누구인지 알고, VPN 업체는 내 통신이 지나가는 길목에 있어요. 믿을 만한 곳인지가 중요한 이유예요.</p>
+      </div>
+
+      <p class="callout">회사가 운영하는 VPN과 광고로 보는 상용 VPN은 목적이 달라요. 앞은 <strong>사내망에 들어가려고</strong>, 뒤는 <strong>내 통신을 가리려고</strong> 쓰는 거예요. 같은 기술이지만 쓰는 이유가 다릅니다.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">공용 길 위에 낸, 나만의 터널.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
