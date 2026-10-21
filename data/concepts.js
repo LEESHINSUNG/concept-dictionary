@@ -241,6 +241,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'ssid',
+    title: 'SSID',
+    sub: '에스에스아이디 · Service Set Identifier',
+    summary: '와이파이의 이름. 목록에 뜨는 그 글자',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'symmetric-key',
     title: '공통키',
     sub: '대칭키 · symmetric key',

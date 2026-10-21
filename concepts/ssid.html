@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SSID — 기억해봐요</title>
+  <meta name="description" content="SSID는 와이파이의 이름이에요. 목록에 뜨는 그 글자가 SSID예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ssid">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SSID</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">무선</span>
+      </div>
+      <h1 class="title">SSID</h1>
+      <p class="reading">에스에스아이디 · Service Set Identifier</p>
+      <p class="define">SSID는 <mark>와이파이의 이름</mark>이에요. 휴대폰 와이파이 목록에 뜨는 그 글자들이 전부 SSID예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 무선</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>길에 가게가 여러 곳 늘어서 있으면 <strong>간판</strong>을 보고 들어갈 곳을 고르죠. 전파도 눈에 보이지 않을 뿐 여러 개가 겹쳐 날아다녀요. SSID는 그중 어느 것에 붙을지 고르게 해 주는 <strong>간판</strong>이에요.</p>
+      <p>공유기는 켜져 있는 동안 <strong>"나 여기 있어요, 이름은 ○○예요"</strong>라는 짧은 알림을 계속 뿌려요. 내 휴대폰은 그걸 주워 모아 목록으로 보여 주고요. 그래서 목록에 뜨는 건 "연결할 수 있다"가 아니라 <strong>"전파가 닿는다"</strong>는 뜻이에요. 들어갈 수 있는지는 비밀번호를 넣어 봐야 알죠.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">말뜻</p>
+          <p class="fact__value">Service Set Identifier</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보이는 곳</p>
+          <p class="fact__value">와이파이 목록</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">정하는 사람</p>
+          <p class="fact__value">공유기 주인</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공유기</p>
+          <p class="node__note">이름을 계속 알려요</p>
+          <p><span class="chip-mono">SSID</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">전파로 알림<span class="arrow__note">몇 초에 한 번씩</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">내 기기</p>
+          <p class="node__note">들리는 이름을 모아 목록으로</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">고르고 암호 입력<span class="arrow__note">여기서 걸러져요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">LAN에 합류</p>
+          <p class="node__note">주소를 받고 통신 시작</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공유기는 자기 이름을 담은 짧은 알림을 주기적으로 뿌려요. 내 기기는 가만히 듣고만 있어도 목록을 채울 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이름을 고르면 그때부터 암호를 확인해요. <strong>SSID는 이름일 뿐 자물쇠가 아니에요.</strong> 지키는 일은 암호와 암호화 방식이 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>통과하면 공유기가 주소를 하나 내주고, 그 순간부터 그 <a href="lan.html">LAN</a>의 식구가 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 이름을 숨기면 안전해질까</p>
+        <p>공유기에는 SSID를 뿌리지 않는 설정이 있어요. 목록에서 사라지니 안전해 보이죠. 하지만 <strong>내 기기가 그 이름을 부르며 찾아다니게 돼서</strong>, 도구로 들여다보면 오히려 더 쉽게 드러나요. 보안은 숨기기가 아니라 <strong>제대로 된 암호</strong>로 하는 거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 같은 이름의 가짜 와이파이</p>
+        <p>SSID는 누구나 똑같이 지을 수 있어요. 카페 이름과 똑같은 와이파이를 켜 두면 사람들이 멋모르고 붙죠. 거기에 붙으면 <strong>오가는 내용을 그 사람이 중간에서 보게 돼요.</strong> 그래서 공공장소에서는 이름만 보고 믿지 않는 게 좋아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 같은 이름이 여러 개인 경우</p>
+        <p>반대로 넓은 사무실에서는 <strong>일부러 여러 공유기에 같은 SSID</strong>를 줘요. 그러면 걸어 다녀도 끊기지 않고 가까운 장비로 알아서 옮겨 붙어요. 이름이 같다고 장비가 하나인 건 아닌 거예요.</p>
+      </div>
+
+      <p class="callout">공공 와이파이에서 중요한 일을 해야 한다면, 이름을 믿는 대신 <strong>내 쪽에서 통로를 암호화</strong>하는 게 확실해요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">와이파이의 이름표. 자물쇠는 아니에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 무선</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
