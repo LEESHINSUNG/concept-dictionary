@@ -121,6 +121,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'lan-topology',
+    title: 'LAN 접속 형태',
+    sub: '토폴로지 · topology · 망 구성 방식',
+    summary: '기기를 어떤 모양으로 잇느냐 — 스타형·버스형·링형',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'osi-model',
     title: 'OSI 참조 모델',
     sub: 'OSI model · 개방형 시스템 상호연결',

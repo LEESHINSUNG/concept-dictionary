@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LAN 접속 형태 — 기억해봐요</title>
+  <meta name="description" content="LAN 접속 형태는 기기들을 어떤 모양으로 이어 붙이느냐를 말해요. 스타형·버스형·링형이 기본이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 세 가지 접속 형태 그림 */
+    .topos { display: flex; flex-wrap: wrap; gap: 12px; }
+    .topo {
+      flex: 1 1 240px;
+      padding: 18px 16px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .topo__name { font-size: 17px; font-weight: 700; }
+    .topo__desc { margin-top: 4px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+    .topo__art { margin: 16px 0 4px; }
+    .dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 46px;
+      padding: 6px 8px;
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .dot--hub { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+
+    /* 스타형: 가운데 허브에 선이 모임 */
+    .star { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; justify-items: center; align-items: center; }
+    .star__cell { position: relative; }
+    .star__cell--top::after,
+    .star__cell--bottom::after {
+      content: ''; position: absolute; left: 50%; width: 2px; height: 16px; background: var(--line-strong);
+    }
+    .star__cell--top::after { bottom: -16px; }
+    .star__cell--bottom::after { top: -16px; }
+    .star__cell--left::after,
+    .star__cell--right::after {
+      content: ''; position: absolute; top: 50%; width: 16px; height: 2px; background: var(--line-strong);
+    }
+    .star__cell--left::after { right: -16px; }
+    .star__cell--right::after { left: -16px; }
+
+    /* 버스형: 한 줄에 매달림 */
+    .bus__line { height: 4px; background: var(--line-strong); border-radius: 2px; }
+    .bus__nodes { display: flex; justify-content: space-around; gap: 8px; }
+    .bus__node { position: relative; margin-top: 16px; }
+    .bus__node::before {
+      content: ''; position: absolute; left: 50%; top: -16px; width: 2px; height: 16px; background: var(--line-strong);
+    }
+
+    /* 링형: 둘레를 따라 한 바퀴 */
+    .ring { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; justify-items: center; }
+    .ring__loop {
+      position: absolute;
+      inset: 16px 28px;
+      border: 3px solid var(--line-strong);
+      border-radius: 999px;
+    }
+    .ring .dot { position: relative; z-index: 1; }
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="lan-topology">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>LAN 접속 형태</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">구조</span>
+      </div>
+      <h1 class="title">LAN 접속 형태</h1>
+      <p class="reading">토폴로지 · topology · 망 구성 방식</p>
+      <p class="define">접속 형태는 <mark>기기들을 어떤 모양으로 이어 붙이느냐</mark>예요. 스타형·버스형·링형이 기본이고, 모양에 따라 <strong>고장 났을 때의 결과가 달라져요</strong>.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 구조</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>교실 자리 배치를 떠올려 보세요. 선생님을 가운데 두고 둘러앉을 수도, 긴 책상 하나에 나란히 앉을 수도, 둥글게 돌려 앉을 수도 있죠. <strong>같은 사람들이라도 배치가 다르면 말이 전해지는 방식이 달라져요.</strong></p>
+      <p><a href="lan.html">LAN</a>도 똑같아요. 기기를 어떤 모양으로 잇느냐에 따라 <strong>선 하나가 끊겼을 때 누가 같이 끊기는지</strong>가 달라져요. 그래서 접속 형태를 고르는 건 사실 "어디가 고장 나면 어디까지 멈추는가"를 고르는 일이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">세 가지 기본</p>
+          <p class="fact__value">스타 · 버스 · 링</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">갈리는 점</p>
+          <p class="fact__value">고장 났을 때의 범위</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">요즘 대부분</p>
+          <p class="fact__value">스타형</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="topos">
+        <div class="topo">
+          <p class="topo__name">스타형</p>
+          <p class="topo__desc">가운데 장치에 하나씩 따로 연결해요</p>
+          <div class="topo__art star" role="img" aria-label="스타형. 가운데 허브에 네 대의 PC가 각각 연결된 모양.">
+            <span></span>
+            <span class="star__cell star__cell--top"><span class="dot">PC</span></span>
+            <span></span>
+            <span class="star__cell star__cell--left"><span class="dot">PC</span></span>
+            <span class="dot dot--hub">허브</span>
+            <span class="star__cell star__cell--right"><span class="dot">PC</span></span>
+            <span></span>
+            <span class="star__cell star__cell--bottom"><span class="dot">PC</span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="topo">
+          <p class="topo__name">버스형</p>
+          <p class="topo__desc">한 줄에 모두가 매달려 있어요</p>
+          <div class="topo__art" role="img" aria-label="버스형. 하나의 긴 선에 세 대의 PC가 매달린 모양.">
+            <div class="bus__line"></div>
+            <div class="bus__nodes">
+              <span class="bus__node"><span class="dot">PC</span></span>
+              <span class="bus__node"><span class="dot">PC</span></span>
+              <span class="bus__node"><span class="dot">PC</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topo">
+          <p class="topo__name">링형</p>
+          <p class="topo__desc">둥글게 이어져 한 방향으로 돌아요</p>
+          <div class="topo__art ring" role="img" aria-label="링형. 네 대의 PC가 고리 모양으로 이어진 모양.">
+            <span class="ring__loop" aria-hidden="true"></span>
+            <span class="dot">PC</span>
+            <span class="dot">PC</span>
+            <span class="dot">PC</span>
+            <span class="dot">PC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>스타형</strong>은 가운데 장치에 각자 선을 꽂아요. 한 선이 끊겨도 그 기기만 끊기죠. 대신 <strong>가운데 장치가 죽으면 전부 멈춰요.</strong> 관리가 쉬워서 요즘 사무실과 집은 거의 이 모양이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>버스형</strong>은 긴 선 하나에 모두 매달려요. 선이 적게 들어 예전에 많이 썼는데, <strong>그 줄이 끊기면 전체가 멈추고</strong> 여럿이 동시에 말하면 신호가 부딪혀요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>링형</strong>은 둥글게 이어져 한 방향으로 돌아요. 순서대로 차례가 오니 충돌이 없지만, <strong>한 곳이 끊기면 고리가 끊겨요.</strong> 그래서 보통 두 겹으로 깔아 대비해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 우리 집도 스타형이에요</p>
+        <p>공유기를 가운데 두고 노트북, TV, 휴대폰이 각각 붙어 있죠. 노트북 와이파이를 꺼도 TV는 멀쩡해요. 반대로 <strong>공유기 전원을 뽑으면 전부 끊기고요.</strong> 스타형의 장단점이 그대로 드러나는 모습이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 겉모습과 속은 다를 수 있어요</p>
+        <p>선이 꽂힌 모양은 스타형인데, 가운데 장치가 신호를 <strong>모든 포트로 그대로 뿌리면 동작은 버스형</strong>이에요. 예전 허브가 그랬어요. 요즘 스위치는 받는 쪽에게만 보내서 모양도 속도 스타형이고요. 그래서 "무슨 형이냐"를 물을 때는 선 모양인지 신호 흐름인지를 구분해야 해요.</p>
+      </div>
+
+      <p class="callout">버스형처럼 <strong>한 줄을 여럿이 나눠 쓸 때</strong>는 말이 겹치는 문제가 생겨요. 이걸 정리하려고 만든 규칙이 Ethernet의 CSMA/CD예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">모양이 다르면, 고장 났을 때가 달라요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 구조</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
