@@ -21,3 +21,4 @@
 | `data/concepts.js` | 개념 목록 데이터 |
 | `assets/css`, `assets/js` | 공통 스타일·스크립트 |
 | `scripts/check.mjs` | 무결성 검사 (`node scripts/check.mjs`) |
+| `scripts/sort.mjs` | 개념 목록을 slug 알파벳순으로 정렬 (`node scripts/sort.mjs`) |

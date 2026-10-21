@@ -13,9 +13,9 @@
 2. slug 결정: 영문 소문자·숫자·하이픈 (한글 표제어는 영문 번역/로마자). 충돌 시 `-2`.
 3. 최신·사실 정보가 필요한 내용은 웹 검색으로 확인한다. 확실하지 않은 수치·버전·통계는 쓰지 않는다.
 4. `concepts/_template.html`을 복사해 `concepts/<slug>.html` 작성 (구조·id는 템플릿을 따른다).
-5. `data/concepts.js`에 항목 추가 (slug 알파벳순 위치). 작성일은 `TZ=Asia/Tokyo date +%F`.
+5. `data/concepts.js`에 항목 추가. 작성일은 `TZ=Asia/Tokyo date +%F`. 넣은 뒤 `node scripts/sort.mjs`를 돌리면 slug 알파벳순으로 알아서 정리된다.
 6. 기존 개념 페이지 본문에 이번 개념이 언급된 곳이 있는지 `grep`으로 찾아, 있으면 링크를 건다 (문장은 바꾸지 않고 링크만 추가. 이번 커밋에 함께 넣는다).
-7. `node scripts/check.mjs` 통과 확인. 실패하면 고친다.
+7. `node scripts/check.mjs` 통과 확인. 실패하면 고친다. 정렬 경고가 나오면 `node scripts/sort.mjs`를 돌린다.
 8. `git add`는 이번에 만든·바꾼 파일만. 커밋 메시지: `concept: add <title>` (수정 `concept: update <title>`, 삭제 `concept: remove <title>`).
 9. `git push origin main`. 이후 `gh run list --limit 1`로 배포 상태를 확인할 수 있으면 확인.
 10. 사용자에게 보고: 한 줄 결과 + 주소 `https://<계정>.github.io/<저장소>/concepts/<slug>.html` (반영까지 1~2분).
