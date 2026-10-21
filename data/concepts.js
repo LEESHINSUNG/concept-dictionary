@@ -57,6 +57,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'csma-cd',
+    title: 'CSMA/CD',
+    sub: '씨에스엠에이 씨디 · 충돌 감지 방식',
+    summary: '한 줄을 여럿이 나눠 쓸 때 말이 겹치지 않게 하는 규칙',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',
