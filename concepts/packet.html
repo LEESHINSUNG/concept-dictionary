@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>패킷 — 기억해봐요</title>
+  <meta name="description" content="패킷은 데이터를 작게 잘라 주소를 붙인 조각이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="packet">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>패킷</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">기초 개념</span>
+      </div>
+      <h1 class="title">패킷</h1>
+      <p class="reading">packet · 꾸러미</p>
+      <p class="define">패킷은 <mark>데이터를 작게 잘라 주소와 순서를 붙인 조각</mark>이에요. 네트워크는 통째로가 아니라 늘 이 조각 단위로 움직여요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 기초 개념</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>이사할 때 짐을 통째로 옮기지 않죠. <strong>상자에 나눠 담고 겉에 주소를 적어요.</strong> 상자들은 각자 트럭에 실려 가다가 도착해서 다시 모여요. 패킷이 그 상자예요.</p>
+      <p>왜 굳이 자를까요? 길을 <strong>여럿이 나눠 쓰기 위해서</strong>예요. 큰 파일 하나를 통째로 보내면 그게 다 지나갈 때까지 다른 사람은 기다려야 해요. 잘게 잘라 번갈아 보내면 모두가 조금씩 동시에 쓸 수 있어요. 게다가 가다가 하나가 망가져도 <strong>그 조각만 다시 보내면 돼요.</strong></p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">왜 자르나</p>
+          <p class="fact__value">길을 나눠 쓰려고</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">겉에 붙는 것</p>
+          <p class="fact__value">보낸 곳 · 받을 곳 · 순서</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">도착하면</p>
+          <p class="fact__value">순서대로 다시 합침</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보낼 파일</p>
+          <p class="node__note">사진 한 장, 영상 한 편</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">자르고 주소 붙이기<span class="arrow__note">조각마다 번호</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">패킷 여러 개</p>
+          <p class="node__note">각자 길을 찾아가요</p>
+          <p>
+            <span class="chip-mono">1</span>
+            <span class="chip-mono">2</span>
+            <span class="chip-mono">3</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">번호대로 조립<span class="arrow__note">빠진 건 다시 요청</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">원래 파일</p>
+          <p class="node__note">받는 쪽에서 되살아나요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>보낼 데이터를 정해진 크기로 잘라요. 조각마다 <strong>보낸 곳 주소, 받을 곳 주소, 몇 번째인지</strong>를 적은 머리말이 붙어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>조각들은 각자 길을 찾아가요. <strong>서로 다른 길로 가기도 하고, 순서가 뒤바뀌어 도착하기도 해요.</strong></span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>받는 쪽은 번호를 보고 제자리에 끼워 맞춰요. 빠진 번호가 있으면 그것만 다시 보내 달라고 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>패킷이 목적지까지 어떤 길로 가는지 보여 주는 명령이 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> ping -c 4 example.com
+<span class="c-comment"># 작은 패킷 4개를 보내고 돌아오는 시간을 재요</span>
+
+<span class="c-prompt">$</span> traceroute example.com
+<span class="c-comment"># 거쳐 가는 길목을 하나씩 보여 줘요. 출력은 환경마다 달라요</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">영상통화가 가끔 깨지는 이유</p>
+        <p>조각 몇 개가 늦거나 사라졌기 때문이에요. 파일을 받을 때는 빠진 조각을 <strong>다시 달라고 해서 기다리지만</strong>, 실시간 통화는 기다릴 수가 없어요. 늦게 온 조각은 이미 쓸모가 없으니 그냥 버리고 넘어가요. 그래서 잠깐 화면이 뭉개지는 거예요.</p>
+      </div>
+
+      <p class="callout">조각에 무엇을 어떻게 적을지는 <a href="protocol.html">프로토콜</a>이 정해 둬요. 그래서 다른 회사가 만든 장비끼리도 서로의 상자를 읽을 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">통째로 말고, 상자에 나눠서.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 기초 개념</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

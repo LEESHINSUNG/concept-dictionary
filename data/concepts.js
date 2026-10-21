@@ -113,6 +113,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'packet',
+    title: '패킷',
+    sub: 'packet · 꾸러미',
+    summary: '데이터를 작게 잘라 주소와 순서를 붙인 조각',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'pandas',
     title: 'pandas',
     sub: '판다스',
