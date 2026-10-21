@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>프로토콜 — 기억해봐요</title>
+  <meta name="description" content="프로토콜은 서로 다른 기계가 대화하기 위해 미리 맞춰 둔 약속이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="protocol">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>프로토콜</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">기초 개념</span>
+      </div>
+      <h1 class="title">프로토콜</h1>
+      <p class="reading">protocol · 통신 규약</p>
+      <p class="define">프로토콜은 <mark>서로 다른 기계가 말이 통하도록 미리 맞춰 둔 약속</mark>이에요. 무엇을 어떤 순서로 주고받을지 정해 둔 규칙 묶음이죠.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 기초 개념</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>전화를 받을 때를 떠올려 보세요. 받는 쪽이 먼저 "여보세요", 그다음 거는 쪽이 용건, 끝에는 "들어갈게요". <strong>양쪽이 같은 순서를 알고 있어서</strong> 대화가 되는 거예요. 한쪽이 갑자기 용건부터 말하면 어색해지죠.</p>
+      <p>기계들끼리도 똑같아요. 만든 회사도 운영체제도 제각각인데 서로 통하는 건, <strong>먼저 무엇을 보내고 어떻게 답하는지를 문서로 못 박아 뒀기 때문</strong>이에요. 그 약속이 프로토콜이에요. 웹은 HTTP, 메일은 SMTP, 주소를 찾는 건 DNS처럼 하는 일마다 따로 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">정하는 것</p>
+          <p class="fact__value">형식 · 순서 · 오류 처리</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표적인 것</p>
+          <p class="fact__value fact__value--mono">HTTP · TCP · IP</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">지키면</p>
+          <p class="fact__value">만든 회사가 달라도 통함</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보내는 기기</p>
+          <p class="node__note">약속된 모양으로 적어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">같은 약속<span class="arrow__note">양쪽이 아는 규칙</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">프로토콜</p>
+          <p class="node__note">무엇을 어떤 순서로 주고받을지</p>
+          <p>
+            <span class="chip-mono">형식</span>
+            <span class="chip-mono">순서</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">그대로 해석<span class="arrow__note">오해 없이</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 기기</p>
+          <p class="node__note">만든 회사가 달라도 돼요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>프로토콜은 <strong>글자 하나하나의 자리까지</strong> 정해 둬요. 어디까지가 주소이고 어디부터가 내용인지 양쪽이 똑같이 알아야 하니까요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>순서도 정해요. 누가 먼저 말을 걸고, 어떤 답이 오면 다음으로 넘어가는지까지요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>잘못됐을 때 어떻게 할지도 약속에 들어 있어요. 못 알아들었을 때 어떤 번호로 답할지 같은 것들이요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>웹 브라우저가 평소에 주고받는 HTTP 대화를 그대로 꺼내 볼 수 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> curl -v https://example.com 2&gt;&amp;1 | head -12
+<span class="c-comment"># &gt; 로 시작하는 줄이 내가 보낸 말, &lt; 로 시작하는 줄이 서버의 답이에요</span>
+<span class="c-comment"># &gt; GET / HTTP/1.1</span>
+<span class="c-comment"># &lt; HTTP/1.1 200 OK</span></code></pre>
+      </div>
+
+      <p class="callout">첫 줄의 <code>GET / HTTP/1.1</code>이 "이 페이지를 HTTP 1.1 방식으로 주세요"라는 말이고, <code>200 OK</code>는 "찾았어요"라는 약속된 번호예요. 404도 "그런 건 없어요"라는 뜻의 약속된 번호고요. <a href="cookie.html">쿠키</a>도 이 대화에 끼워 보내는 한 줄이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">같은 약속을 알아야, 말이 통해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 기초 개념</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

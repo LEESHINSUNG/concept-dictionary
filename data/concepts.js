@@ -129,6 +129,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'protocol',
+    title: '프로토콜',
+    sub: 'protocol · 통신 규약',
+    summary: '기계끼리 말이 통하도록 미리 맞춰 둔 약속',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'public-private-key',
     title: '공개키-비밀키',
     sub: '비대칭키 · public key / private key',
