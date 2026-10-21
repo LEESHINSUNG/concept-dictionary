@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OSI 참조 모델 — 기억해봐요</title>
+  <meta name="description" content="OSI 참조 모델은 네트워크가 하는 일을 7개 층으로 나눠 정리한 지도예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 이 페이지의 7계층 그림 */
+    .layers { display: flex; flex-direction: column; gap: 6px; }
+    .layer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      border-radius: 12px;
+    }
+    .layer--accent { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+    .layer__no {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; height: 30px;
+      background: var(--bg);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .layer__name { flex: 1 1 120px; font-size: 16px; font-weight: 700; }
+    .layer__eg {
+      flex: 0 1 auto;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      text-align: right;
+    }
+    .layer--accent .layer__eg { color: #D8E4F8; }
+    .layers__dir { margin: 8px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+    @media (max-width: 479px) {
+      .layer { flex-wrap: wrap; gap: 8px 10px; }
+      .layer__eg { flex: 1 1 100%; text-align: left; }
+    }
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="osi-model">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>OSI 참조 모델</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">구조</span>
+      </div>
+      <h1 class="title">OSI 참조 모델</h1>
+      <p class="reading">OSI model · 개방형 시스템 상호연결</p>
+      <p class="define">OSI 참조 모델은 <mark>네트워크가 하는 일을 일곱 층으로 나눠 정리한 지도</mark>예요. 각 층은 자기 일만 하고, 아래층이 어떻게 하는지는 몰라도 돼요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 구조</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>택배를 보낼 때를 떠올려 보세요. 나는 <strong>물건을 상자에 넣고 송장만 적으면</strong> 끝이에요. 그다음 분류센터가 지역별로 나누고, 기사님이 트럭에 싣고, 트럭은 도로를 달려요. <strong>나는 도로 사정을 몰라도 되고, 기사님은 상자 안에 뭐가 들었는지 몰라도 돼요.</strong> 각자 자기 단계만 책임지면 전체가 돌아가요.</p>
+      <p>네트워크도 이렇게 층을 나눠 놨어요. 맨 위는 사람이 쓰는 앱, 맨 아래는 실제 전선과 전파예요. 와이파이에서 랜선으로 바꿔도 앱을 고치지 않아도 되는 건, <strong>바뀐 게 맨 아래층뿐이기 때문</strong>이에요. 이렇게 나눠 두면 문제가 생겼을 때 "몇 층 문제인지"부터 좁혀 갈 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">층 수</p>
+          <p class="fact__value">7개</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">맨 위 · 맨 아래</p>
+          <p class="fact__value">앱 · 전선과 전파</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 이유</p>
+          <p class="fact__value">문제를 층으로 좁히려고</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">위에서 아래로 7층이에요. 오른쪽은 그 층에서 흔히 보는 이름이고요.</p>
+
+      <div class="layers" role="img" aria-label="OSI 7계층. 7 응용, 6 표현, 5 세션, 4 전송, 3 네트워크, 2 데이터링크, 1 물리.">
+        <div class="layer">
+          <span class="layer__no" aria-hidden="true">7</span>
+          <span class="layer__name">응용</span>
+          <span class="layer__eg">HTTP · SMTP</span>
+        </div>
+        <div class="layer">
+          <span class="layer__no" aria-hidden="true">6</span>
+          <span class="layer__name">표현</span>
+          <span class="layer__eg">문자 인코딩 · 암호화</span>
+        </div>
+        <div class="layer">
+          <span class="layer__no" aria-hidden="true">5</span>
+          <span class="layer__name">세션</span>
+          <span class="layer__eg">연결의 시작과 끝</span>
+        </div>
+        <div class="layer layer--accent">
+          <span class="layer__no" aria-hidden="true">4</span>
+          <span class="layer__name">전송</span>
+          <span class="layer__eg">TCP · UDP · 포트</span>
+        </div>
+        <div class="layer layer--accent">
+          <span class="layer__no" aria-hidden="true">3</span>
+          <span class="layer__name">네트워크</span>
+          <span class="layer__eg">IP · 라우터</span>
+        </div>
+        <div class="layer layer--accent">
+          <span class="layer__no" aria-hidden="true">2</span>
+          <span class="layer__name">데이터링크</span>
+          <span class="layer__eg">MAC 주소 · 스위치</span>
+        </div>
+        <div class="layer">
+          <span class="layer__no" aria-hidden="true">1</span>
+          <span class="layer__name">물리</span>
+          <span class="layer__eg">랜선 · 전파 · 전기 신호</span>
+        </div>
+      </div>
+      <p class="layers__dir">보낼 때는 7층에서 1층으로 내려가고, 받을 때는 1층에서 7층으로 올라가요</p>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>보낼 때 데이터는 위에서 아래로 내려가며 <strong>층마다 머리말이 하나씩 붙어요.</strong> 상자를 포장하고, 그 위에 송장을 붙이고, 또 운송장을 붙이는 것처럼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>받는 쪽에서는 거꾸로 아래에서 위로 올라가며 <strong>그 머리말을 하나씩 벗겨요.</strong> 각 층은 같은 층이 붙인 것만 읽으면 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 한 층을 통째로 바꿔도 위아래가 멀쩡해요. 랜선을 와이파이로 바꿔도 브라우저는 아무것도 달라지지 않아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · "그건 2계층 장비예요"</p>
+        <p>현장에서 쓰는 말이 전부 이 번호에서 나와요. <strong>L2 스위치</strong>는 MAC 주소를 보고 넘기는 2계층 장비, <strong>L7 로드밸런서</strong>는 주소의 내용까지 읽고 나누는 7계층 장비라는 뜻이에요. 번호를 알면 그 장비가 어디까지 들여다보는지 바로 가늠이 돼요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 인터넷이 안 될 때 아래부터</p>
+        <p>문제를 찾을 때는 보통 아래층부터 올라가요. 랜선이 꽂혀 있나(1층) → 공유기까지 닿나(2·3층) → 특정 포트만 막혔나(4층) → 사이트 자체 문제인가(7층). <strong>층을 나눠 두면 어림짐작 대신 순서대로 좁힐 수 있어요.</strong></p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 실제로는 4계층으로 더 많이 말해요</p>
+        <p>OSI는 이해와 설명을 위한 <strong>참조용 모델</strong>이에요. 실제 인터넷이 돌아가는 방식은 TCP/IP 4계층 쪽에 더 가깝고, 실무에서도 그렇게 묶어 부르는 경우가 많아요. 그래도 7계층 번호는 공용어처럼 쓰여서 알아 두면 대화가 편해요.</p>
+      </div>
+
+      <p class="callout">층마다 데이터를 부르는 이름도 달라요. 4계층에서는 세그먼트, 3계층에서는 <a href="packet.html">패킷</a>, 2계층에서는 프레임이라고 불러요. 같은 데이터인데 어느 층에서 보느냐에 따라 이름이 바뀌는 거예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">각 층은 자기 일만 해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 구조</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

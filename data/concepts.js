@@ -113,6 +113,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'osi-model',
+    title: 'OSI 참조 모델',
+    sub: 'OSI model · 개방형 시스템 상호연결',
+    summary: '네트워크가 하는 일을 일곱 층으로 나눠 정리한 지도',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'packet',
     title: '패킷',
     sub: 'packet · 꾸러미',
