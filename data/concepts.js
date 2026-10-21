@@ -41,6 +41,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'client',
+    title: '클라이언트',
+    sub: 'client · 서비스를 받는 쪽',
+    summary: '서버에 먼저 요청을 보내 결과를 받아 쓰는 쪽',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'control-chart',
     title: '관리도',
     sub: 'control chart · 컨트롤 차트',

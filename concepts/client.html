@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>클라이언트 — 기억해봐요</title>
+  <meta name="description" content="클라이언트는 서버에 요청을 보내 결과를 받아 쓰는 쪽이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="client">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>클라이언트</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">기초 개념</span>
+      </div>
+      <h1 class="title">클라이언트</h1>
+      <p class="reading">client · 서비스를 받는 쪽</p>
+      <p class="define">클라이언트는 <mark>먼저 요청을 보내 결과를 받아 쓰는 쪽</mark>이에요. <a href="server.html">서버</a>와 짝을 이루는 역할 이름이고, 지금 이 글을 보는 브라우저가 바로 클라이언트예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 기초 개념</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>식당에서 주방이 서버라면 <strong>손님이 클라이언트</strong>예요. 손님이 "이거 주세요"라고 해야 주방이 움직이죠. 아무도 주문하지 않으면 주방은 가만히 있고요.</p>
+      <p>여기서 가장 중요한 건 <strong>먼저 말을 거는 쪽</strong>이라는 점이에요. 서버는 기다리고, 클라이언트가 두드려요. 브라우저, 메일 앱, 게임 앱 전부 클라이언트고요. 그래서 클라이언트는 주소가 바뀌어도 괜찮아요. <strong>찾아가는 쪽이지 찾아오게 하는 쪽이 아니니까요.</strong></p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">말뜻</p>
+          <p class="fact__value">서비스를 받는 쪽 · 의뢰인</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표적인 것</p>
+          <p class="fact__value">브라우저 · 앱</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">특징</p>
+          <p class="fact__value">먼저 말을 거는 쪽</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node node--accent">
+          <p class="node__title">클라이언트</p>
+          <p class="node__note">필요할 때 먼저 두드려요</p>
+          <p>
+            <span class="chip-mono">브라우저</span>
+            <span class="chip-mono">앱</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">요청<span class="arrow__note">이것 좀 주세요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">서버</p>
+          <p class="node__note">기다리다 처리해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">응답<span class="arrow__note">결과를 돌려줘요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">화면에 표시</p>
+          <p class="node__note">받은 걸 사람이 보게 꾸며요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>클라이언트가 먼저 연결을 열고 요청을 보내요. 무엇을 어떤 모양으로 보낼지는 <a href="protocol.html">프로토콜</a>이 정해 둔 대로예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>서버는 결과만 돌려줘요. <strong>화면을 어떻게 그릴지는 클라이언트 몫</strong>이에요. 같은 데이터로 웹은 웹대로, 앱은 앱대로 다르게 보여 주죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>서버는 요청이 끝나면 보통 잊어버려요. 그래서 "아까 그 사람"임을 이어 가려고 <a href="cookie.html">쿠키</a> 같은 걸 클라이언트가 들고 다니는 거예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>브라우저 말고도 클라이언트는 많아요. 터미널 명령 하나도 훌륭한 클라이언트예요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> curl https://example.com
+<span class="c-comment"># curl이 클라이언트가 되어 요청을 보내고, 받은 HTML을 그대로 보여 줘요</span>
+<span class="c-comment"># 브라우저는 여기에 더해 화면으로 그려 주는 것뿐이에요</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">한 프로그램이 둘 다일 수 있어요</p>
+        <p>쇼핑몰 웹 서버는 브라우저에게는 서버지만, 데이터베이스에게 물어볼 때는 <strong>자기가 클라이언트가 돼요.</strong> 서버와 클라이언트는 기계의 종류가 아니라 <strong>그 순간 맡은 역할</strong>이라는 걸 가장 잘 보여 주는 예예요.</p>
+      </div>
+
+      <p class="callout">그래서 "이건 서버고 저건 클라이언트다"라고 기계를 가르는 대신, <strong>"지금 누가 먼저 말을 걸었나"</strong>를 보면 헷갈리지 않아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">먼저 말을 거는 쪽이 클라이언트.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 기초 개념</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
