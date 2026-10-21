@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ethernet — 기억해봐요</title>
+  <meta name="description" content="이더넷은 유선 LAN에서 가장 널리 쓰이는 연결 규격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ethernet">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>Ethernet</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">전송 규격</span>
+      </div>
+      <h1 class="title">Ethernet</h1>
+      <p class="reading">이더넷 · 유선 LAN 표준</p>
+      <p class="define">이더넷은 <mark>유선 LAN에서 가장 널리 쓰이는 연결 규격</mark>이에요. 랜선의 모양부터 그 위를 흐르는 신호의 규칙까지 한 묶음으로 정해 둔 약속이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-21">2026-10-21</time></span>
+        <span>카테고리 네트워크 › 전송 규격</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>도로를 생각해 보세요. 차선 폭, 신호등 색, 우측통행 같은 것들이 정해져 있으니까 <strong>어느 회사가 만든 차든 같은 길을 달릴 수 있죠.</strong> 이더넷은 유선 네트워크의 그 도로 규격이에요.</p>
+      <p>그래서 이더넷은 선 이름이기도 하고 규칙 이름이기도 해요. 우리가 '랜선'이라고 부르는 그 케이블이 이더넷 케이블이고, 그 안에서 <strong>데이터를 어떻게 묶어 보낼지</strong>를 정한 것도 이더넷이에요. <a href="osi-model.html">OSI 참조 모델</a>로는 2계층, 그러니까 <strong>옆 기기에게 건네주는 일</strong>을 맡아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">쓰는 곳</p>
+          <p class="fact__value">유선 LAN</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">선과 단자</p>
+          <p class="fact__value fact__value--mono">랜케이블 · RJ-45</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">찾는 방법</p>
+          <p class="fact__value fact__value--mono">MAC 주소</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보내는 PC</p>
+          <p class="node__note">받을 기기의 MAC 주소를 적어요</p>
+          <p><span class="chip-mono">프레임</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">랜선으로<span class="arrow__note">전기 신호</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">스위치</p>
+          <p class="node__note">어느 포트에 누가 있는지 표로 기억해요</p>
+          <p><span class="chip-mono">MAC 주소 표</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">해당 포트로만<span class="arrow__note">남들은 못 봐요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 PC</p>
+          <p class="node__note">내 주소가 맞으면 열어 봐요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>모든 네트워크 장치에는 공장에서 박혀 나온 <strong>MAC 주소</strong>가 있어요. 이더넷은 이 주소로 옆 기기를 찾아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>보낼 데이터 앞뒤에 보낸 쪽·받을 쪽 MAC 주소와 검사용 값을 붙여 <strong>프레임</strong>이라는 덩어리로 만들어요. <a href="packet.html">패킷</a>을 이 봉투에 담아 보내는 셈이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>스위치는 어느 포트에 어떤 MAC 주소가 있는지 표로 외워 둬요. 그래서 <strong>받을 기기가 꽂힌 포트로만</strong> 보내요. 예전 허브처럼 모두에게 뿌리지 않아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>내 기기의 MAC 주소도 바로 볼 수 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> ifconfig en0 | grep ether     <span class="c-comment"># 맥</span>
+ether a1:b2:c3:d4:e5:f6
+
+<span class="c-comment"># 두 자리씩 여섯 묶음이에요. 앞쪽 세 묶음은 제조사 몫이고요</span>
+<span class="c-comment"># 리눅스는 ip link, 윈도우는 ipconfig /all</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">1Gbps, 100Mbps는 세대 차이예요</p>
+        <p>랜선이나 공유기에 적힌 속도는 이더넷 규격의 세대를 말해요. 같은 모양 단자를 쓰더라도 <strong>양쪽 장비와 케이블 중 가장 느린 것에 맞춰져요.</strong> 공유기가 빨라도 오래된 랜선을 쓰면 거기서 막히는 이유예요.</p>
+      </div>
+
+      <p class="callout">와이파이는 이더넷이 아니라 따로 정해진 무선 규격이에요. 다만 둘 다 같은 <a href="lan.html">LAN</a> 안에서 섞여 쓰이고, 공유기가 그 사이를 이어 줘요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">유선 랜의 공용어.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-21 · 카테고리 네트워크 › 전송 규격</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

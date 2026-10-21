@@ -89,6 +89,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'ethernet',
+    title: 'Ethernet',
+    sub: '이더넷 · 유선 LAN 표준',
+    summary: '유선 LAN에서 가장 널리 쓰이는 연결 규격',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'fishbone-diagram',
     title: '특성요인도',
     sub: 'fishbone diagram · 이시카와 다이어그램',
