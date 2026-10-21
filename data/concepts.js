@@ -113,6 +113,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'lan',
+    title: 'LAN',
+    sub: '랜 · Local Area Network',
+    summary: '집·사무실처럼 좁은 범위를 묶은 네트워크',
+    category: '네트워크',
+    date: '2026-10-21'
+  },
+  {
     slug: 'osi-model',
     title: 'OSI 참조 모델',
     sub: 'OSI model · 개방형 시스템 상호연결',
