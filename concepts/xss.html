@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>XSS — 기억해봐요</title>
+  <meta name="description" content="XSS는 남의 사이트에 내 스크립트를 끼워 넣어 방문자의 브라우저에서 실행시키는 공격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="xss">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>XSS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">XSS</h1>
+      <p class="reading">크로스 사이트 스크립팅 · Cross-Site Scripting</p>
+      <p class="define">XSS는 <mark>사이트에 내 코드를 끼워 넣어, 그 사이트를 보는 사람의 브라우저에서 실행시키는 공격</mark>이에요. 피해자는 <strong>믿는 사이트를 보고 있었을 뿐</strong>인데 당해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네 게시판에 공지를 붙인다고 해 볼게요. 누군가 <strong>공식 안내문처럼 보이는 가짜 쪽지</strong>를 그 게시판에 붙여 두면, 지나가던 사람들은 동사무소가 붙인 줄 알고 믿어요. 게시판이 믿을 만하니까 거기 붙은 것도 믿는 거죠.</p>
+      <p>XSS가 그래요. 공격자는 댓글이나 검색어 같은 <strong>글을 쓸 수 있는 곳에 코드를 적어 넣어요.</strong> 사이트가 그걸 글자로 다루지 않고 그대로 페이지에 넣어 버리면, 그 페이지를 여는 사람의 브라우저가 <strong>그 사이트의 코드인 줄 알고 실행</strong>해요. 그러면 <a href="cookie.html">쿠키</a>를 훔치거나 화면을 바꿔 가짜 로그인 창을 띄울 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">끼워 넣는 것</p>
+          <p class="fact__value fact__value--mono">JavaScript 코드</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">실행되는 곳</p>
+          <p class="fact__value">방문자의 브라우저</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">막는 법</p>
+          <p class="fact__value">입력을 글자로만 다루기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">댓글 칸에 코드를 적어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">저장<span class="arrow__note">그냥 글인 줄 알고</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">사이트</p>
+          <p class="node__note">그대로 페이지에 넣어 보내요</p>
+          <p><span class="chip-mono">걸러내지 않음</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">페이지 열기<span class="arrow__note">그 사이트 코드인 줄</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">방문자 브라우저</p>
+          <p class="node__note">공격자 코드를 실행해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공격자가 글을 쓸 수 있는 곳에 <strong>코드처럼 생긴 글</strong>을 넣어요. 댓글, 닉네임, 검색어, 주소 끝의 값 등 사람이 적을 수 있는 곳이면 어디든 후보예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>사이트가 그 값을 <strong>글자로 다루지 않고</strong> 페이지에 그대로 끼워 넣으면, 브라우저가 보기에는 <strong>그 사이트가 보낸 코드</strong>와 구별이 안 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 그 사이트의 권한으로 실행돼요. 로그인 정보가 든 쿠키를 읽거나, 사용자가 누르는 곳을 바꿔치기할 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 왜 "크로스 사이트"일까</p>
+        <p>코드를 넣은 사람과 피해를 입는 사람이 <strong>서로 다른 자리</strong>에 있기 때문이에요. 공격자는 A 사이트에 글을 남겼을 뿐이고, 실제로 당하는 건 나중에 그 글을 보는 사람들이에요. 공격자가 피해자를 직접 건드리지 않는다는 게 이 공격의 특징이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 막는 쪽은 한 가지 원칙</p>
+        <p><strong>사용자가 넣은 값은 끝까지 '글자'로만 다룬다</strong>예요. 화면에 내보낼 때 <code>&lt;</code>나 <code>&gt;</code> 같은 글자를 코드가 아닌 기호로 바꿔 쓰면(이스케이프), 댓글에 태그를 적어도 그냥 태그 모양의 글자로 보여요. 대부분의 요즘 도구는 이걸 기본으로 해 줘요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 겹겹이 막아요</p>
+        <p>쿠키에 <code>HttpOnly</code>를 붙이면 코드가 실행돼도 로그인 쿠키는 읽지 못해요. 브라우저에 <strong>"이 사이트에서는 지정한 출처의 코드만 실행해라"</strong>라고 알려 주는 설정(CSP)도 있고요. 한 겹이 뚫려도 다음 겹이 버티게 하는 거예요.</p>
+      </div>
+
+      <p class="callout"><a href="javascript.html">JavaScript</a>가 브라우저 안에서 할 수 있는 일이 많다는 게 이 공격이 무서운 이유예요. 반대로 말하면, <strong>입력을 글자로만 다루는 습관</strong> 하나가 대부분을 막아 줘요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">남의 사이트를 빌려, 방문자를 노려요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

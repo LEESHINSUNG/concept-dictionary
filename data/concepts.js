@@ -375,5 +375,13 @@ window.CONCEPTS = [
     summary: '와이파이로 오가는 내용을 암호로 지키는 규격',
     category: '네트워크',
     date: '2026-10-22'
+  },
+  {
+    slug: 'xss',
+    title: 'XSS',
+    sub: '크로스 사이트 스크립팅 · Cross-Site Scripting',
+    summary: '사이트에 코드를 끼워 넣어 방문자 브라우저에서 실행시키는 공격',
+    category: '보안',
+    date: '2026-10-22'
   }
 ];

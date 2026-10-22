@@ -118,7 +118,7 @@
 
       <div class="case">
         <p class="case__title">뒤에 붙는 말들이 안전장치예요</p>
-        <p><code>HttpOnly</code>는 <a href="javascript.html">자바스크립트</a>가 그 쿠키를 읽지 못하게 막아요. 페이지에 악성 스크립트가 끼어들어도 로그인 값을 훔쳐 가지 못하게요. <code>Secure</code>는 암호화된 연결에서만 보내라는 뜻이고, <code>SameSite</code>는 다른 사이트에서 넘어온 요청에 쿠키를 붙일지 정해요. 남의 사이트가 내 이름으로 요청을 보내는 공격을 막는 장치예요.</p>
+        <p><code>HttpOnly</code>는 <a href="javascript.html">자바스크립트</a>가 그 쿠키를 읽지 못하게 막아요. 페이지에 악성 스크립트가 끼어드는 <a href="xss.html">XSS</a> 공격을 당해도 로그인 값은 훔쳐 가지 못하게요. <code>Secure</code>는 암호화된 연결에서만 보내라는 뜻이고, <code>SameSite</code>는 다른 사이트에서 넘어온 요청에 쿠키를 붙일지 정해요. 남의 사이트가 내 이름으로 요청을 보내는 공격을 막는 장치예요.</p>
       </div>
 
       <p class="callout">쿠키에는 <strong>비밀번호나 개인정보를 그대로 담지 않아요</strong>. 브라우저에 있는 값은 사용자가 열어 볼 수도, 고칠 수도 있거든요. 그래서 뜻 없는 긴 값만 담고, 진짜 정보는 서버가 그 값으로 찾아봅니다.</p>
