@@ -65,6 +65,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'crypto-compromise',
+    title: '암호 알고리즘의 위태화',
+    sub: '暗号アルゴリズムの危殆化 · 危殆化',
+    summary: '시간이 지나며 암호가 약해져 더는 안전하지 않게 되는 일',
+    category: '보안',
+    date: '2026-10-22'
+  },
+  {
     slug: 'csma-cd',
     title: 'CSMA/CD',
     sub: '씨에스엠에이 씨디 · 충돌 감지 방식',

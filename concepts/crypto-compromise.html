@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>암호 알고리즘의 위태화 — 기억해봐요</title>
+  <meta name="description" content="위태화는 시간이 지나면서 암호가 점점 약해져 더는 안전하지 않게 되는 일이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="crypto-compromise">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>암호 알고리즘의 위태화</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">암호 알고리즘의 위태화</h1>
+      <p class="reading">暗号アルゴリズムの危殆化 · 危殆化(きたいか)</p>
+      <p class="define">위태화는 <mark>시간이 지나면서 암호가 점점 약해져 더는 안전하다고 할 수 없게 되는 일</mark>이에요. 암호가 갑자기 깨지는 게 아니라 <strong>천천히 늙는 것</strong>에 가까워요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>20년 전에 산 금고를 떠올려 보세요. 금고는 그대로예요. 녹슬지도 않았고 문도 멀쩡하죠. 그런데 <strong>그동안 도둑의 공구가 좋아졌어요.</strong> 예전엔 사흘 걸리던 일이 이제 한 시간이면 되고요. 금고는 변한 게 없는데 <strong>더는 안전하지 않게 된</strong> 거예요.</p>
+      <p>암호도 똑같아요. 암호가 안전한 이유는 "아무도 못 푼다"가 아니라 <strong>"푸는 데 너무 오래 걸린다"</strong>예요. 그런데 컴퓨터는 계속 빨라지고, 수학자들은 더 영리한 지름길을 찾아내요. 그 '너무 오래'가 조금씩 짧아지다 어느 날 <strong>현실적인 시간</strong>이 되는 거죠. 일본어 교재에서는 이걸 <strong>危殆化(위태화)</strong>라고 불러요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">원인</p>
+          <p class="fact__value">계산 능력 향상 · 새 공격법</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">결과</p>
+          <p class="fact__value">안전하다고 볼 기간이 끝남</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대비</p>
+          <p class="fact__value">바꿔 끼울 수 있게 만들기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">처음 만들 때</p>
+          <p class="node__note">그 시절 기준으로 충분히 안전</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">시간이 흐름<span class="arrow__note">컴퓨터가 빨라져요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">위태화</p>
+          <p class="node__note">암호는 그대로인데 상대적으로 약해져요</p>
+          <p>
+            <span class="chip-mono">새 공격법</span>
+            <span class="chip-mono">값싼 계산</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">권고 변경<span class="arrow__note">표준 기관이 알려요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">교체</p>
+          <p class="node__note">더 강한 것으로 옮겨 가요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>암호의 안전함은 <strong>"푸는 데 걸리는 시간"</strong>으로 정해져요. 수십 년이 걸린다면 안전하다고 보는 거예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그런데 계산은 해마다 싸지고 빨라져요. 거기에 <strong>약점을 파고드는 지름길</strong>까지 발견되면 걸리는 시간이 확 줄어요. 암호 자체는 한 글자도 바뀌지 않았는데 말이죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 표준 기관이 <strong>"이제 그만 쓰세요"</strong>라고 권고를 바꾸고, 업계가 더 강한 것으로 옮겨 가요. 이 교체는 보통 몇 년에 걸쳐 일어나요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 실제로 겪은 일들</p>
+        <p><a href="rc4.html">RC4</a>는 한때 웹 어디에나 쓰였지만 치우침이 드러나 표준에서 금지됐어요. 해시 쪽에서는 SHA-1이 같은 길을 걸었고요. 연구자들이 <strong>서로 다른 두 파일에서 같은 해시값을 실제로 만들어 보이면서</strong> 끝이 났어요. 그래서 지금은 <a href="sha-256.html">SHA-256</a>을 써요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 설계할 때 미리 해 둘 일</p>
+        <p>위태화는 막을 수 없어요. 대신 <strong>올 것을 알고 만들 수는 있어요.</strong> 암호 방식을 코드 속에 박아 두지 않고 설정으로 빼 두면, 나중에 바꿀 때 한 줄로 끝나요. 반대로 여기저기 박아 두면 <strong>교체 자체가 불가능해져</strong> 알면서도 못 바꾸는 일이 생겨요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 다음에 올 것</p>
+        <p>양자컴퓨터가 충분히 커지면 <a href="rsa.html">RSA</a>와 <a href="ecc.html">ECC</a>가 기대는 어려움이 무너질 수 있다고 알려져 있어요. 언제가 될지는 아무도 모르지만, <strong>그에 견디는 새로운 암호를 미리 준비하는 일</strong>이 이미 진행되고 있어요. 지금 주고받은 내용을 모아 뒀다가 나중에 푸는 일도 가능해서, 미리 움직이는 거예요.</p>
+      </div>
+
+      <p class="callout">그래서 <strong>"이 암호는 안전한가요?"</strong>라는 질문에는 늘 <strong>"지금 기준으로는"</strong>이 붙어요. 영원히 안전한 암호는 없고, 제때 갈아타는 준비가 되어 있느냐가 실력이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">암호는 깨지는 게 아니라, 늙어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
