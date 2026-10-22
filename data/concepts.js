@@ -105,6 +105,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'ecc',
+    title: 'ECC',
+    sub: '타원곡선 암호 · Elliptic Curve Cryptography',
+    summary: '짧은 열쇠로 같은 안전함을 내는 공개키 암호',
+    category: '보안',
+    date: '2026-10-22'
+  },
+  {
     slug: 'erp',
     title: 'ERP',
     sub: '이알피 · Enterprise Resource Planning',

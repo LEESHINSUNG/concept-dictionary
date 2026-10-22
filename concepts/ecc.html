@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ECC — 기억해봐요</title>
+  <meta name="description" content="ECC는 타원곡선을 이용해 짧은 열쇠로 같은 안전함을 내는 공개키 암호예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ecc">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>ECC</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">암호화</span>
+      </div>
+      <h1 class="title">ECC</h1>
+      <p class="reading">타원곡선 암호 · Elliptic Curve Cryptography</p>
+      <p class="define">ECC는 <mark>타원곡선이라는 수학 위에서 만든 공개키 암호</mark>예요. <a href="rsa.html">RSA</a>보다 훨씬 <strong>짧은 열쇠로 같은 수준의 안전함</strong>을 냅니다.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 보안 › 암호화</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>당구대 위에서 공을 한 번 친다고 해 볼게요. 어디서 쳐서 몇 번 튕겼는지 알면 <strong>끝나는 자리를 계산하는 건 쉬워요.</strong> 그런데 공이 멈춘 자리만 보고 <strong>"몇 번 튕겼지?"를 거꾸로 알아내는 건 훨씬 어렵죠.</strong></p>
+      <p>ECC가 기대는 성질이 이거예요. 곡선 위의 점을 정해진 규칙으로 여러 번 옮기면 결과 점이 나오는데, <strong>결과 점만 보고 몇 번 옮겼는지는 알아내기 어려워요.</strong> 옮긴 횟수가 비밀키, 결과 점이 공개키인 셈이죠. <a href="public-private-key.html">공개키-비밀키</a>의 원리는 그대로이고, 기대는 수학만 다른 거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">종류</p>
+          <p class="fact__value">공개키-비밀키(비대칭키)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">기대는 성질</p>
+          <p class="fact__value">곡선 위 이동을 되돌리기 어려움</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">장점</p>
+          <p class="fact__value">짧은 열쇠 · 빠름 · 가벼움</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">시작점 + 횟수</p>
+          <p class="node__note">횟수가 나만 아는 비밀</p>
+          <p><span class="chip-mono">비밀키</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">곡선 위를 이동<span class="arrow__note">계산은 쉬워요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">도착한 점</p>
+          <p class="node__note">모두에게 공개해요</p>
+          <p><span class="chip-mono">공개키</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">횟수 역추적<span class="arrow__note">사실상 불가능</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">비밀키를 찾지 못해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>모두가 같은 곡선과 같은 시작점을 씁니다. 여기까지는 비밀이 아니에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>나만 아는 숫자만큼 점을 옮겨요. 그 <strong>도착한 점이 내 공개키</strong>, 옮긴 횟수가 비밀키예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>공개된 곡선과 도착점을 다 알아도 <strong>횟수를 되짚는 계산은 감당이 안 돼요.</strong> RSA가 소인수분해에 기대는 자리를, ECC는 이 성질에 기대요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 열쇠가 짧다는 게 왜 좋을까</p>
+        <p>안전함이 같다면 <strong>짧을수록 이득</strong>이에요. 계산이 빨라 배터리를 덜 먹고, 주고받는 양이 적어 느린 회선에서도 잘 돌아가요. 그래서 휴대폰, 카드, 사물인터넷 기기처럼 <strong>힘이 약한 장치</strong>에서 특히 많이 쓰여요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 이미 쓰고 있어요</p>
+        <p>요즘 사이트에 접속할 때 열쇠를 나누는 과정, SSH 키를 만들 때 자주 권하는 <code>ed25519</code>, 블록체인의 지갑 주소까지 전부 타원곡선 계열이에요. 이름이 드러나지 않을 뿐 <strong>RSA를 대신해 가는 중</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 곡선은 직접 고르지 않아요</p>
+        <p>어떤 곡선을 쓰느냐가 안전함을 좌우하는데, <strong>직접 정하는 일은 없어요.</strong> 검증된 곡선 몇 가지가 표준으로 정해져 있고 라이브러리가 그걸 써요. 암호는 직접 만들지 않는다는 원칙이 여기서도 그대로예요.</p>
+      </div>
+
+      <p class="callout">RSA와 ECC는 좋고 나쁨이 아니라 <strong>기대는 수학이 다른 두 갈래</strong>예요. 다만 같은 안전함을 더 적은 비용으로 내기 때문에 새로 만드는 시스템은 ECC 쪽을 고르는 경우가 많아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">짧은 열쇠로, 같은 안전함.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 보안 › 암호화</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
