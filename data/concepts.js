@@ -313,6 +313,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'typescript',
+    title: 'TypeScript',
+    sub: '타입스크립트 · TS',
+    summary: 'JavaScript에 타입을 더해 실수를 미리 잡아 주는 언어',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'uv',
     title: 'uv',
     sub: '유브이',
