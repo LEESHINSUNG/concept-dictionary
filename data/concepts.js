@@ -305,6 +305,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'session-hijacking',
+    title: '세션 하이재킹',
+    sub: 'session hijacking · 세션 가로채기',
+    summary: '로그인한 사람의 출입증을 가로채 그 사람인 척하는 공격',
+    category: '보안',
+    date: '2026-10-23'
+  },
+  {
     slug: 'sha-256',
     title: 'SHA-256',
     sub: '샤-256 · Secure Hash Algorithm',
