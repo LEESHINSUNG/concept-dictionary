@@ -193,6 +193,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'icann',
+    title: 'ICANN',
+    sub: '아이칸 · 국제 인터넷 주소 관리 기구',
+    summary: '인터넷의 이름과 번호가 겹치지 않도록 관리하는 기구',
+    category: '네트워크',
+    date: '2026-10-23'
+  },
+  {
     slug: 'javascript',
     title: 'JavaScript',
     sub: '자바스크립트 · JS',
