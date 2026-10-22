@@ -201,6 +201,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'php',
+    title: 'PHP',
+    sub: '피에이치피',
+    summary: '서버에서 HTML을 만들어 내보내는 프로그래밍 언어',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'protocol',
     title: '프로토콜',
     sub: 'protocol · 통신 규약',
