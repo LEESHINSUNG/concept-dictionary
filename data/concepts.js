@@ -137,6 +137,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'javascript',
+    title: 'JavaScript',
+    sub: '자바스크립트 · JS',
+    summary: '웹 페이지를 움직이게 만드는 프로그래밍 언어',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'lan',
     title: 'LAN',
     sub: '랜 · Local Area Network',
