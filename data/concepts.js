@@ -145,6 +145,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'hacktivist',
+    title: '핵티비스트',
+    sub: 'hacktivist · hack + activist',
+    summary: '돈이 아니라 주장을 알리려고 해킹하는 사람',
+    category: '보안',
+    date: '2026-10-23'
+  },
+  {
     slug: 'hash',
     title: '해시',
     sub: 'hash · 해시 함수',
