@@ -217,6 +217,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'react',
+    title: 'React',
+    sub: '리액트',
+    summary: '화면을 조각으로 나눠 만드는 JavaScript 라이브러리',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'router',
     title: '라우터',
     sub: 'router · 경로 선택 장치',
