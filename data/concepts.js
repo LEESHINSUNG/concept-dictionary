@@ -137,6 +137,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'html',
+    title: 'HTML',
+    sub: '에이치티엠엘 · HyperText Markup Language',
+    summary: '웹 페이지의 뼈대와 뜻을 적는 언어',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'javascript',
     title: 'JavaScript',
     sub: '자바스크립트 · JS',

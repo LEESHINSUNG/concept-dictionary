@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HTML — 기억해봐요</title>
+  <meta name="description" content="HTML은 웹 페이지의 뼈대를 적는 언어예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="html">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>HTML</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">웹</span>
+        <span class="chip">마크업</span>
+      </div>
+      <h1 class="title">HTML</h1>
+      <p class="reading">에이치티엠엘 · HyperText Markup Language</p>
+      <p class="define">HTML은 <mark>웹 페이지의 뼈대를 적는 언어</mark>예요. 글자를 예쁘게 하는 게 아니라 <strong>"이건 제목, 저건 문단"처럼 뜻을 표시</strong>하는 일을 해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 웹 › 마크업</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건물로 치면 <strong>골조</strong>예요. 벽을 세워 방을 나누고 문이 들어갈 자리를 정하는 일이죠. 벽지와 가구는 CSS가, 스위치를 눌렀을 때 불이 켜지는 건 <a href="javascript.html">JavaScript</a>가 맡아요.</p>
+      <p>HTML이 하는 일은 꾸미기가 아니라 <strong>이름표 붙이기</strong>예요. 이 줄은 큰 제목, 저 덩어리는 문단, 이 글자는 다른 곳으로 가는 링크. 그래서 글자 크기를 키우려고 제목 태그를 쓰면 안 돼요. <strong>커 보여서가 아니라 정말 제목일 때</strong> 쓰는 거예요. 그래야 검색 엔진도 화면 읽어 주는 프로그램도 내용을 제대로 알아들어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">이름 뜻</p>
+          <p class="fact__value">하이퍼텍스트 표시 언어</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">글의 단위</p>
+          <p class="fact__value fact__value--mono">&lt;태그&gt;</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">맡은 일</p>
+          <p class="fact__value">내용의 뜻과 구조</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">내가 쓴 태그</p>
+          <p class="node__note">여기부터 여기까지가 제목</p>
+          <p><span class="chip-mono">&lt;h1&gt;…&lt;/h1&gt;</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">읽어 들이기<span class="arrow__note">위에서 아래로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">브라우저</p>
+          <p class="node__note">태그를 해석해 구조를 세워요</p>
+          <p><span class="chip-mono">문서 구조</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">그리기<span class="arrow__note">모양은 CSS가</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">화면</p>
+          <p class="node__note">제목은 제목답게 보여요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>태그는 여는 것과 닫는 것이 짝이에요. <code>&lt;p&gt;</code>로 열고 <code>&lt;/p&gt;</code>로 닫으면 <strong>그 사이가 한 문단</strong>이라는 뜻이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>태그 안에 태그를 넣어 상자처럼 겹쳐요. 그렇게 쌓이면 <strong>문서 전체가 하나의 나무 모양 구조</strong>가 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>브라우저는 이 구조를 기본 모양으로 그려 줘요. 꾸미는 일은 CSS에, 움직이는 일은 <a href="javascript.html">JavaScript</a>에 넘겨요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>메모장에 아래를 적고 <code>test.html</code>로 저장한 뒤 더블클릭하면 바로 열려요.</p>
+
+      <div class="code">
+        <p class="code__head">test.html</p>
+        <pre><code><span class="c-keyword">&lt;!DOCTYPE html&gt;</span>
+<span class="c-keyword">&lt;html</span> lang=<span class="c-string">"ko"</span><span class="c-keyword">&gt;</span>
+  <span class="c-keyword">&lt;head&gt;&lt;meta</span> charset=<span class="c-string">"utf-8"</span><span class="c-keyword">&gt;&lt;title&gt;</span>첫 페이지<span class="c-keyword">&lt;/title&gt;&lt;/head&gt;</span>
+  <span class="c-keyword">&lt;body&gt;</span>
+    <span class="c-keyword">&lt;h1&gt;</span>안녕하세요<span class="c-keyword">&lt;/h1&gt;</span>
+    <span class="c-keyword">&lt;p&gt;</span>이건 문단이에요.<span class="c-keyword">&lt;/p&gt;</span>
+  <span class="c-keyword">&lt;/body&gt;</span>
+<span class="c-keyword">&lt;/html&gt;</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">맨 윗줄의 선언과 charset</p>
+        <p><code>&lt;!DOCTYPE html&gt;</code>은 "요즘 방식으로 읽어 달라"는 표시예요. <code>charset="utf-8"</code>은 글자를 어떤 규칙으로 풀어 읽을지 알려 주는 건데, <strong>이게 빠지면 한글이 깨져 보이는 일이 생겨요.</strong></p>
+      </div>
+
+      <p class="callout">지금 보고 있는 이 페이지도 HTML로 만들어졌어요. 브라우저에서 <strong>페이지 소스 보기</strong>를 누르면 이 글의 태그를 그대로 볼 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">무엇인지를 적어 두는 언어.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 웹 › 마크업</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
