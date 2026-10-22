@@ -209,6 +209,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'router',
+    title: '라우터',
+    sub: 'router · 경로 선택 장치',
+    summary: '네트워크 사이에서 다음 길을 골라 주는 장치',
+    category: '네트워크',
+    date: '2026-10-22'
+  },
+  {
     slug: 'rsa',
     title: 'RSA',
     sub: '알에스에이 · Rivest-Shamir-Adleman',

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>라우터 — 기억해봐요</title>
+  <meta name="description" content="라우터는 서로 다른 네트워크 사이에서 다음 길을 골라 주는 장치예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="router">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>라우터</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">장비</span>
+      </div>
+      <h1 class="title">라우터</h1>
+      <p class="reading">router · 경로 선택 장치</p>
+      <p class="define">라우터는 <mark>서로 다른 네트워크 사이에서 다음 길을 골라 주는 장치</mark>예요. 집에 있는 공유기도 라우터예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 네트워크 › 장비</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>우체국 분류 담당자를 떠올려 보세요. 부산으로 갈 편지를 보고 <strong>"이건 부산행 트럭"</strong> 하고 넘기죠. 그 사람은 부산 어느 골목 몇 번지까지 가는 길을 다 알지 못해요. <strong>다음 한 걸음만 알면 돼요.</strong> 나머지는 다음 사람이 알아서 하니까요.</p>
+      <p>라우터가 정확히 그 일을 해요. 신기한 건 <strong>인터넷 전체 지도를 아는 장비가 하나도 없다</strong>는 점이에요. 각자 "이 주소대는 저쪽으로" 정도만 알고 넘기는데, 그렇게 수십 번 넘겨지다 보면 지구 반대편까지 도착해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">다음 길 고르기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value fact__value--mono">IP 주소</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">OSI 계층</p>
+          <p class="fact__value">3계층 (네트워크)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">우리 LAN</p>
+          <p class="node__note">밖으로 나갈 패킷</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">목적지 확인<span class="arrow__note">IP 주소를 봐요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">라우터</p>
+          <p class="node__note">길 표에서 다음 한 걸음을 골라요</p>
+          <p><span class="chip-mono">라우팅 표</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">넘기기<span class="arrow__note">한 걸음만</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">다음 라우터</p>
+          <p class="node__note">거기서 또 한 걸음 골라요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>도착한 <a href="packet.html">패킷</a>의 겉에 적힌 <strong>목적지 IP 주소</strong>를 읽어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>가지고 있는 <strong>길 표(라우팅 표)</strong>에서 "이런 주소대는 저쪽 방향"을 찾아 다음 장비로 넘겨요. 들어 있는 내용은 건드리지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>이 과정이 라우터마다 되풀이돼요. <strong>한 번에 한 걸음씩</strong> 가까워지다가 마지막 라우터가 목적지 <a href="lan.html">LAN</a> 안으로 들여보내요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>내 패킷이 거쳐 가는 라우터들을 하나씩 볼 수 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> traceroute example.com
+<span class="c-comment"># 한 줄이 라우터 하나예요. 보통 10~20번쯤 넘겨져요</span>
+<span class="c-comment"># 첫 줄은 대개 우리 집 공유기고요. 출력은 환경마다 달라요</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">스위치와 무엇이 다를까</p>
+        <p>둘 다 받아서 넘기는 장비지만 보는 게 달라요. 스위치는 <strong>같은 LAN 안</strong>에서 MAC 주소를 보고 넘기고, 라우터는 <strong>LAN과 LAN 사이</strong>에서 IP 주소를 보고 넘겨요. 동네 안 배달과 도시 간 배송의 차이라고 보면 돼요. 집 공유기는 작은 라우터와 스위치, 무선 장치가 한 상자에 들어 있는 거예요.</p>
+      </div>
+
+      <p class="callout">그래서 라우터는 <a href="lan.html">LAN</a>과 <a href="wan.html">WAN</a>이 만나는 문 역할을 해요. 공유기 뒷면에서 포트 하나만 색이 다른 이유이기도 하고요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">전체 길이 아니라, 다음 한 걸음만 알아요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 네트워크 › 장비</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
