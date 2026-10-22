@@ -161,6 +161,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'nextjs',
+    title: 'Next.js',
+    sub: '넥스트 제이에스',
+    summary: 'React로 사이트를 만들 때 필요한 것을 갖춘 프레임워크',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'osi-model',
     title: 'OSI 참조 모델',
     sub: 'OSI model · 개방형 시스템 상호연결',
