@@ -321,6 +321,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'safeguard',
+    title: '세이프가드',
+    sub: 'safeguard · 보호 대책',
+    summary: '위험을 줄이려고 실제로 걸어 두는 보호 대책',
+    category: '보안',
+    date: '2026-10-23'
+  },
+  {
     slug: 'server',
     title: '서버',
     sub: 'server · 서비스를 주는 쪽',
