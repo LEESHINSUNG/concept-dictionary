@@ -73,6 +73,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'csirt',
+    title: 'CSIRT',
+    sub: '씨서트 · Computer Security Incident Response Team',
+    summary: '보안 사고가 났을 때 움직이도록 미리 꾸려 둔 대응 팀',
+    category: '보안',
+    date: '2026-10-23'
+  },
+  {
     slug: 'csma-cd',
     title: 'CSMA/CD',
     sub: '씨에스엠에이 씨디 · 충돌 감지 방식',
