@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>제로데이 — 기억해봐요</title>
+  <meta name="description" content="제로데이는 고칠 방법이 아직 없는 상태에서 드러난 취약점이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="zero-day">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>제로데이</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">취약점</span>
+      </div>
+      <h1 class="title">제로데이</h1>
+      <p class="reading">zero-day · 제로데이 취약점</p>
+      <p class="define">제로데이는 <mark>고칠 방법이 아직 없는 상태에서 알려진 취약점</mark>이에요. 만든 쪽이 손쓸 수 있었던 날이 <strong>0일</strong>이라서 붙은 이름이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-23">2026-10-23</time></span>
+        <span>카테고리 보안 › 취약점</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>아파트 현관문에 <strong>아무도 몰랐던 구조적 결함</strong>이 있다고 해 볼게요. 어떤 각도로 밀면 그냥 열려요. 도둑은 알고 있는데 제조사도 주민도 모르는 상태라면, <strong>잠가도 소용이 없어요.</strong> 자물쇠를 바꾸고 싶어도 아직 대체품이 없고요.</p>
+      <p>제로데이가 그 상태예요. 중요한 건 <strong>"고치는 방법이 아직 없다"</strong>는 점이에요. 평소의 보안은 "빨리 업데이트하세요"로 해결되지만, 제로데이는 받을 업데이트 자체가 없어요. 그래서 <strong>값이 비싸고</strong>, 꼭 노려야 할 상대가 있는 공격에 아껴 쓰이는 경우가 많아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">이름의 뜻</p>
+          <p class="fact__value">대응할 수 있었던 날이 0일</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">핵심</p>
+          <p class="fact__value">고칠 패치가 아직 없음</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">끝나는 때</p>
+          <p class="fact__value">패치가 나오고 적용된 뒤</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">누군가 먼저 발견</p>
+          <p class="node__note">만든 쪽은 아직 몰라요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">공격 시작<span class="arrow__note">막을 방법이 없어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">제로데이 기간</p>
+          <p class="node__note">알려졌지만 고칠 수 없는 때</p>
+          <p><span class="chip-mono">패치 없음</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">패치 배포<span class="arrow__note">이제 보통 취약점</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">업데이트</p>
+          <p class="node__note">적용해야 끝나요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>누군가 결함을 먼저 찾아내요. 연구자가 찾으면 조용히 알려 고치게 하지만, <strong>공격하는 쪽이 먼저 찾으면</strong> 알리지 않고 숨겨 둬요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>공격이 시작돼도 <strong>받을 수 있는 수정본이 없어요.</strong> 이 구간이 제로데이예요. 백신도 처음 보는 수법이라 놓치기 쉬워요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>패치가 나오면 제로데이는 끝나요. 다만 <strong>사람들이 실제로 설치해야</strong> 끝이에요. 미루는 기간이 길수록 그 틈이 그대로 공격 기회로 남아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 패치가 없는데 뭘 할 수 있나</p>
+        <p>구멍 자체는 못 막아도 <strong>길목을 좁힐 수는 있어요.</strong> 해당 기능을 잠시 끄고, 바깥에서 닿는 통로를 막고, 이상한 움직임이 보이는지 기록을 더 자세히 남겨요. 제로데이 소식이 뜨면 제조사가 <strong>임시 회피 방법</strong>을 먼저 안내하는 경우가 많아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 아껴 쓰는 무기</p>
+        <p>제로데이는 <strong>한 번 쓰면 들통나요.</strong> 공격 흔적이 남으면 분석돼 곧 패치가 나오니까요. 그래서 아무 데나 쓰지 않고, <strong>꼭 들어가야 하는 상대</strong>에게만 쓰는 경우가 많아요. 그 희소성 때문에 거래 가격이 아주 높다고 알려져 있어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 발견했다면</p>
+        <p>취약점을 찾았을 때는 공개하기 전에 <strong>만든 쪽에 먼저 알리고 고칠 시간을 주는</strong> 것이 업계의 관행이에요. 곧바로 공개하면 고치기도 전에 악용되니까요. 회사들이 제보에 보상을 주는 제도를 운영하는 것도 이 흐름이에요.</p>
+      </div>
+
+      <p class="callout">개인이 할 수 있는 가장 확실한 대비는 <strong>업데이트를 미루지 않는 것</strong>이에요. 제로데이 자체는 막기 어렵지만, 대부분의 실제 피해는 <strong>이미 패치가 나온 구멍</strong>을 안 막아서 생기거든요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">알려졌는데, 아직 고칠 수 없는 구멍.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-23 · 카테고리 보안 › 취약점</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

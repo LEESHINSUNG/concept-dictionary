@@ -391,5 +391,13 @@ window.CONCEPTS = [
     summary: '사이트에 코드를 끼워 넣어 방문자 브라우저에서 실행시키는 공격',
     category: '보안',
     date: '2026-10-22'
+  },
+  {
+    slug: 'zero-day',
+    title: '제로데이',
+    sub: 'zero-day · 제로데이 취약점',
+    summary: '고칠 방법이 아직 없는 상태에서 알려진 취약점',
+    category: '보안',
+    date: '2026-10-23'
   }
 ];
