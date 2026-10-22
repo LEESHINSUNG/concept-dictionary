@@ -343,5 +343,13 @@ window.CONCEPTS = [
     summary: '멀리 떨어진 LAN들을 이어 주는 넓은 범위의 네트워크',
     category: '네트워크',
     date: '2026-10-21'
+  },
+  {
+    slug: 'wpa2',
+    title: 'WPA2',
+    sub: '더블유피에이 투 · Wi-Fi Protected Access 2',
+    summary: '와이파이로 오가는 내용을 암호로 지키는 규격',
+    category: '네트워크',
+    date: '2026-10-22'
   }
 ];

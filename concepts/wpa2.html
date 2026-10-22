@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WPA2 — 기억해봐요</title>
+  <meta name="description" content="WPA2는 와이파이 통신을 암호로 지키는 규격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="wpa2">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>WPA2</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">무선 보안</span>
+      </div>
+      <h1 class="title">WPA2</h1>
+      <p class="reading">더블유피에이 투 · Wi-Fi Protected Access 2</p>
+      <p class="define">WPA2는 <mark>와이파이로 오가는 내용을 암호로 지키는 규격</mark>이에요. 공유기 설정에서 고르는 그 항목이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 네트워크 › 무선 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>와이파이는 <strong>전파라서 벽을 넘어 퍼져요.</strong> 랜선은 꽂은 사람만 쓰지만, 전파는 옆집에도 길 건너에도 닿죠. 그래서 무선은 처음부터 <strong>"누가 주워 들어도 못 읽게"</strong> 만들어야 해요. 그 일을 맡은 규격이 WPA2예요.</p>
+      <p>이름 뒤의 2에서 짐작되듯 앞선 것들이 있었어요. 가장 오래된 <strong>WEP</strong>은 금방 뚫렸고, 다음에 나온 <strong>WPA</strong>도 낡은 암호 방식 위에 세워져 한계가 있었어요. WPA2는 그 바탕을 <a href="aes.html">AES</a>로 바꾼 것이고, 그래서 오래 쓰이고 있어요. 지금은 더 새로운 <strong>WPA3</strong>도 있어서, 장비가 지원하면 그쪽을 고르면 돼요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">지키는 대상</p>
+          <p class="fact__value">와이파이 구간의 통신</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 암호</p>
+          <p class="fact__value fact__value--mono">AES (CCMP)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">더 새로운 것</p>
+          <p class="fact__value">WPA3</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">내 기기</p>
+          <p class="node__note">비밀번호로 자격을 보여요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">인사 나누기<span class="arrow__note">이번 연결용 열쇠 마련</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">WPA2</p>
+          <p class="node__note">오가는 전파를 AES로 잠가요</p>
+          <p>
+            <span class="chip-mono">기기마다 다른 열쇠</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">전파로 전송<span class="arrow__note">주워들어도 못 읽어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">공유기</p>
+          <p class="node__note">풀어서 인터넷으로 보내요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>비밀번호를 넣으면 곧바로 그 비밀번호로 암호화하는 게 아니에요. 서로 인사를 주고받으며 <strong>이번 연결에만 쓸 열쇠를 따로 만들어요.</strong></span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 같은 와이파이를 쓰는 <strong>기기마다 열쇠가 달라요.</strong> 옆자리 사람이 같은 비밀번호를 알아도 내 통신을 바로 풀어 보지는 못해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>이후 오가는 내용은 <a href="aes.html">AES</a>로 잠겨서 날아가요. 전파를 주워 담아도 뜻 없는 덩어리만 보여요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 공유기 설정 화면의 그 목록</p>
+        <p>보안 방식 칸에 <code>WEP</code>, <code>WPA/WPA2</code>, <code>WPA2</code>, <code>WPA3</code> 같은 게 늘어서 있죠. <strong>WEP은 고르면 안 돼요.</strong> 오래전에 깨진 방식이라 켜 두면 안 건 것과 비슷해요. 섞어 쓰는 설정도 오래된 기기 때문에 어쩔 수 없을 때만 쓰는 게 좋아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 비밀번호가 제일 약한 고리예요</p>
+        <p>WPA2 자체는 튼튼하지만 <strong>비밀번호가 짧고 뻔하면 소용없어요.</strong> 공격하는 쪽은 접속할 때 오가는 인사말을 녹음해 두고, 조용한 곳에서 비밀번호 후보를 끝없이 넣어 봐요. 길고 짐작하기 어려운 문구를 쓰는 게 가장 큰 차이를 만들어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 지켜 주는 구간은 딱 한 구간</p>
+        <p>WPA2는 <strong>내 기기와 공유기 사이</strong>만 지켜요. 공유기를 지나 인터넷으로 나간 뒤는 별개예요. 카페 와이파이가 WPA2라도, 그 카페 공유기를 운영하는 쪽은 통신을 볼 수 있어요. 그래서 <a href="vpn.html">VPN</a>이나 사이트 자체의 암호화가 따로 필요해요.</p>
+      </div>
+
+      <p class="callout"><a href="ssid.html">SSID</a>가 간판이라면 WPA2는 자물쇠예요. 이름을 숨기는 것보다 <strong>자물쇠를 제대로 채우는 쪽</strong>이 훨씬 중요해요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">전파는 퍼지니까, 잠가서 보내요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 네트워크 › 무선 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
