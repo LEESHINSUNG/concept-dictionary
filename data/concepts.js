@@ -73,6 +73,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'css',
+    title: 'CSS',
+    sub: '씨에스에스 · Cascading Style Sheets',
+    summary: 'HTML로 세운 뼈대에 모양을 입히는 언어',
+    category: '웹',
+    date: '2026-10-22'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CSS — 기억해봐요</title>
+  <meta name="description" content="CSS는 HTML로 만든 뼈대에 모양을 입히는 언어예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="css">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>CSS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">웹</span>
+        <span class="chip">스타일</span>
+      </div>
+      <h1 class="title">CSS</h1>
+      <p class="reading">씨에스에스 · Cascading Style Sheets</p>
+      <p class="define">CSS는 <mark><a href="html.html">HTML</a>로 세운 뼈대에 모양을 입히는 언어</mark>예요. <strong>어떤 요소를 골라서, 어떻게 보이게 할지</strong>를 적어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-22">2026-10-22</time></span>
+        <span>카테고리 웹 › 스타일</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>같은 골조의 집이라도 벽지와 조명을 바꾸면 전혀 다른 집이 되죠. CSS가 그 <strong>인테리어</strong>예요. HTML은 그대로 두고 CSS만 갈아 끼워도 사이트 분위기가 통째로 바뀌어요.</p>
+      <p>적는 방식은 늘 똑같아요. <strong>무엇을 고를지(선택자)</strong>와 <strong>어떻게 할지(속성과 값)</strong> 두 가지예요. "모든 제목을 파랗게", "이 버튼만 둥글게" 같은 식이죠. 이름 앞의 <strong>Cascading</strong>은 '폭포처럼 흘러내린다'는 뜻인데, 여러 규칙이 같은 요소에 겹칠 때 <strong>정해진 순서대로 흘러 최종 모습이 정해진다</strong>는 의미예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">이름 뜻</p>
+          <p class="fact__value">겹쳐 흐르는 스타일 시트</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">규칙의 모양</p>
+          <p class="fact__value fact__value--mono">선택자 { 속성: 값 }</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">맡은 일</p>
+          <p class="fact__value">색 · 크기 · 배치</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">HTML 요소들</p>
+          <p class="node__note">제목 · 문단 · 버튼</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">선택자로 고르기<span class="arrow__note">어떤 것에 적용할까</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">CSS 규칙</p>
+          <p class="node__note">겹치면 순서대로 정리해요</p>
+          <p>
+            <span class="chip-mono">color</span>
+            <span class="chip-mono">font-size</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">적용<span class="arrow__note">내용은 그대로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">꾸며진 화면</p>
+          <p class="node__note">같은 글, 다른 모습</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>선택자로 대상을 골라요. 태그 이름(<code>p</code>), 지정한 이름(<code>.card</code>) 등으로 고를 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>고른 대상에 속성과 값을 줘요. <strong>HTML은 한 글자도 바뀌지 않아요.</strong> 보이는 방식만 달라져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>한 요소에 여러 규칙이 걸리면 <strong>더 구체적으로 고른 쪽</strong>이, 구체성이 같으면 <strong>나중에 적힌 쪽</strong>이 이겨요. 이게 Cascading이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>HTML 파일 안에 <code>&lt;style&gt;</code> 한 덩어리만 넣어도 바로 적용돼요.</p>
+
+      <div class="code">
+        <p class="code__head">style 부분</p>
+        <pre><code>h1 {
+  color: <span class="c-string">#1F5FD0</span>;      <span class="c-comment">/* 모든 h1을 파랗게 */</span>
+  font-size: <span class="c-string">40px</span>;
+}
+
+.warn {
+  background: <span class="c-string">#FFE98A</span>;  <span class="c-comment">/* class="warn"인 것만 노랗게 */</span>
+}</code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">왜 따로 떼어 놓을까</p>
+        <p>태그마다 모양을 적을 수도 있지만, 그러면 색 하나 바꾸는 데 파일 수십 개를 고쳐야 해요. CSS 파일 하나로 모아 두면 <strong>한 줄만 고쳐도 사이트 전체가 바뀌어요.</strong> 이 사전도 <code>assets/css/style.css</code> 한 파일이 모든 페이지의 모양을 맡고 있어요.</p>
+      </div>
+
+      <p class="callout">요즘 CSS는 꾸미기를 넘어 <strong>화면 크기에 따라 배치를 바꾸는 일</strong>까지 해요. 이 사전이 휴대폰에서는 세로로, PC에서는 가로로 늘어서는 것도 CSS가 하는 일이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">뼈대에 옷을 입혀요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-22 · 카테고리 웹 › 스타일</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
