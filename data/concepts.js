@@ -257,6 +257,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'rc4',
+    title: 'RC4',
+    sub: '알씨 포 · Rivest Cipher 4',
+    summary: '한때 널리 쓰였지만 약점이 드러나 금지된 공통키 암호',
+    category: '보안',
+    date: '2026-10-22'
+  },
+  {
     slug: 'react',
     title: 'React',
     sub: '리액트',
