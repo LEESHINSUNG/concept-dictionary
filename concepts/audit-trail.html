@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>감사 증적 — 기억해봐요</title>
+  <meta name="description" content="감사 증적은 누가 언제 무엇을 했는지 나중에 되짚을 수 있게 남겨 둔 기록이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="audit-trail">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>감사 증적</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">사고 대응</span>
+      </div>
+      <h1 class="title">감사 증적</h1>
+      <p class="reading">監査証跡 · audit trail</p>
+      <p class="define">감사 증적은 <mark>누가 언제 무엇을 했는지 나중에 되짚을 수 있게 남겨 둔 기록</mark>이에요. <strong>발자국</strong>이라는 뜻의 '증적(証跡)'이 이름에 그대로 들어 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-23">2026-10-23</time></span>
+        <span>카테고리 보안 › 사고 대응</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>도서관 대출 기록을 떠올려 보세요. 누가 어떤 책을 언제 빌리고 언제 돌려줬는지가 줄줄이 남아 있죠. 책이 사라졌을 때 <strong>마지막으로 누가 가져갔는지</strong>를 바로 알 수 있어요. 기록이 없다면 아무도 알 수 없고요.</p>
+      <p>시스템에서도 똑같아요. 누가 로그인했고, 어떤 자료를 열어 봤고, 무엇을 고쳤고, 권한을 누가 올려 줬는지를 남겨요. 중요한 건 <strong>눈 앞의 문제를 푸는 기록이 아니라</strong>는 점이에요. 평소에는 아무도 안 봐요. 그런데 사고가 나거나 <strong>"정말 그랬나요?"를 증명해야 할 때</strong> 이것 말고는 기댈 게 없어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">남기는 것</p>
+          <p class="fact__value">누가 · 언제 · 무엇을</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 때</p>
+          <p class="fact__value">사고 조사 · 감사 · 증명</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">생명</p>
+          <p class="fact__value">고쳐지지 않는 것</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">누군가의 행동</p>
+          <p class="node__note">접속 · 열람 · 수정 · 삭제</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">그때마다 기록<span class="arrow__note">사람 손 안 빌려요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">감사 증적</p>
+          <p class="node__note">따로 보관하고 고치지 못하게 해요</p>
+          <p>
+            <span class="chip-mono">시각</span>
+            <span class="chip-mono">계정</span>
+            <span class="chip-mono">대상</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">나중에 되짚기<span class="arrow__note">순서대로 이어 봐요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">무슨 일이 있었나</p>
+          <p class="node__note">조사 결과 · 감사 보고</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>기록은 <strong>자동으로</strong> 남아야 해요. 사람이 적는 기록은 바쁘면 빠지고, 숨기고 싶을 때 안 적히니까요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>기록은 <strong>지우거나 고칠 수 없어야</strong> 해요. 본 시스템과 다른 곳에 따로 쌓고, 관리자라도 손대지 못하게 막아요. <strong>고칠 수 있는 기록은 증거가 되지 못해요.</strong></span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>시각이 정확해야 해요. 서버마다 시계가 어긋나 있으면 <strong>순서를 맞출 수 없어</strong> 기록이 있어도 쓸모가 없어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 있어야 할 때 없는 경우</p>
+        <p>사고가 나서 조사를 시작했는데 <strong>기록이 2주 치뿐</strong>이라 그 전 일은 알 수 없어요. 침입은 몇 달 전이었는데 말이죠. 보관 기간을 얼마로 둘지는 비용 문제이기도 해서, <strong>평소에 정해 두어야 하는 결정</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 억울함을 벗겨 주기도 해요</p>
+        <p>감사 증적은 잡아내는 용도로만 쓰이는 게 아니에요. <strong>"그 시각에 나는 손대지 않았다"</strong>를 보여 주는 것도 기록이에요. 그래서 기록이 잘 남는 조직은 사람을 의심하는 대신 <strong>사실을 확인하고 넘어갈 수</strong> 있어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 포렌식과의 관계</p>
+        <p><a href="digital-forensics.html">디지털 포렌식</a>이 사고 뒤에 흔적을 <strong>찾아내는 일</strong>이라면, 감사 증적은 <strong>미리 남겨 두는 일</strong>이에요. 남겨 둔 게 많을수록 찾아낼 것도 많아지죠. 사고가 난 뒤에 "그때 로그를 켜 둘걸" 하고 후회하는 일이 흔해요.</p>
+      </div>
+
+      <p class="callout">기록을 남기는 것 자체가 <strong>예방</strong>이 되기도 해요. 다 남는다는 걸 알면 함부로 하기 어려워지니까요. CCTV가 범인을 잡기도 하지만 애초에 덜 일어나게 만드는 것과 같아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">남겨 두지 않으면, 나중에 알 길이 없어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-23 · 카테고리 보안 › 사고 대응</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

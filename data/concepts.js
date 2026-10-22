@@ -17,6 +17,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'audit-trail',
+    title: '감사 증적',
+    sub: '監査証跡 · audit trail',
+    summary: '누가 언제 무엇을 했는지 되짚을 수 있게 남긴 기록',
+    category: '보안',
+    date: '2026-10-23'
+  },
+  {
     slug: 'botnet',
     title: '봇넷',
     sub: 'botnet',
