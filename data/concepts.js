@@ -201,6 +201,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'ietf',
+    title: 'IETF',
+    sub: '아이이티에프 · Internet Engineering Task Force',
+    summary: '인터넷의 통신 규칙(RFC)을 만들고 다듬는 공개 모임',
+    category: '네트워크',
+    date: '2026-10-23'
+  },
+  {
     slug: 'javascript',
     title: 'JavaScript',
     sub: '자바스크립트 · JS',
