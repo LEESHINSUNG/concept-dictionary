@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IPS — 기억해봐요</title>
+  <meta name="description" content="IPS는 침입으로 보이는 통신을 알아챌 뿐 아니라 그 자리에서 끊어 버리는 시스템이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ips">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>IPS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">IPS</h1>
+      <p class="reading">침입 방지 시스템 · Intrusion Prevention System · 侵入防止システム</p>
+      <p class="define">IPS는 <mark>침입으로 보이는 통신을 알아챌 뿐 아니라 그 자리에서 끊어 버리는 시스템</mark>이에요. <a href="ids.html">IDS</a>가 CCTV라면 IPS는 <strong>자동으로 닫히는 문</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>CCTV는 수상한 사람을 찍어 둘 뿐이에요. 경비원이 화면을 보고 달려가야 막히죠. 그런데 <strong>수상하면 즉시 셔터가 내려오는 문</strong>이라면 사람을 기다릴 필요가 없어요. 대신 <strong>멀쩡한 손님도 가끔 갇혀요.</strong></p>
+      <p>이게 IDS와 IPS의 차이 전부예요. 둘은 <strong>알아채는 방법이 같아요.</strong> 다른 건 알아챈 다음이죠. IDS는 알리고 끝, IPS는 <strong>스스로 끊어요.</strong> 그러려면 통신의 옆이 아니라 <strong>한가운데 서 있어야</strong> 해요. 그 자리에 있다는 게 IPS의 힘이자 약점이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">알아채고 끊기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">서는 자리</p>
+          <p class="fact__value">통신 한가운데</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대가</p>
+          <p class="fact__value">헛차단 · 지연 · 단일 장애점</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">들어오는 통신</p>
+          <p class="node__note">반드시 여기를 지나요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">통과하며 검사<span class="arrow__note">옆이 아니라 한가운데</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">IPS</p>
+          <p class="node__note">수상하면 그 자리에서 버려요</p>
+          <p>
+            <span class="chip-mono">통과</span>
+            <span class="chip-mono">차단</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">통과한 것만<span class="arrow__note">나머지는 못 들어와요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">서버</p>
+          <p class="node__note">공격은 닿지도 않아요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>IPS는 <strong>통신이 반드시 지나는 자리</strong>에 놓여요. 그래야 흘려보낼지 버릴지를 정할 수 있거든요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>수상하다고 판단되면 그 <a href="packet.html">패킷</a>을 버리거나 연결을 끊어요. <strong>사람이 보기 전에 이미 끝나 있어요.</strong></span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>대신 판단을 잘못하면 <strong>멀쩡한 사용자가 그대로 막혀요.</strong> IDS의 헛경보는 성가신 정도지만, IPS의 헛차단은 <strong>곧바로 장애</strong>가 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 처음엔 보기만 해요</p>
+        <p>IPS를 들여놓고도 한동안은 <strong>차단을 끄고 알림만 받는</strong> 경우가 많아요. 우리 서비스의 평소 통신을 IPS가 어떻게 보는지 먼저 확인하는 거예요. 익숙해진 뒤에 규칙을 하나씩 차단으로 돌려요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 길 한가운데 선다는 것</p>
+        <p>모든 통신이 지나니 <strong>IPS가 느려지면 서비스가 느려지고, IPS가 죽으면 길이 막혀요.</strong> 그래서 고장 났을 때 <strong>그냥 통과시킬지 아예 막을지</strong>를 미리 정해 둬요. 안전을 택하면 서비스가 멈추고, 가용성을 택하면 그 시간 동안 무방비가 돼요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 방화벽과 다른 점</p>
+        <p>방화벽은 주로 <strong>어디서 어디로, 어느 문으로</strong>를 보고 가릅니다. IPS는 한 걸음 더 들어가 <strong>오가는 내용이 공격처럼 생겼는지</strong>를 봐요. 그래서 허용된 문으로 들어오는 공격도 걸러낼 수 있어요.</p>
+      </div>
+
+      <p class="callout">세 글자만 바뀌었는데 운영의 무게가 달라져요. <strong>D(Detection)는 알리고, P(Prevention)는 끊어요.</strong> 끊는 쪽을 택하면 잘못 끊었을 때의 책임도 함께 지는 거예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">알아채는 데서 멈추지 않고, 끊어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

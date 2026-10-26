@@ -233,6 +233,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'ips',
+    title: 'IPS',
+    sub: '침입 방지 시스템 · Intrusion Prevention System · 侵入防止システム',
+    summary: '침입으로 보이는 통신을 그 자리에서 끊어 버리는 시스템',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'javascript',
     title: 'JavaScript',
     sub: '자바스크립트 · JS',
