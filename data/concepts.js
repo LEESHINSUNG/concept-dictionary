@@ -129,6 +129,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'cvss',
+    title: 'CVSS',
+    sub: '공통 취약점 평가 시스템 · Common Vulnerability Scoring System · 共通脆弱性評価システム',
+    summary: '취약점이 얼마나 위험한지를 공통 기준으로 점수 매기는 체계',
+    category: '보안',
+    date: '2026-10-27'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CVSS — 기억해봐요</title>
+  <meta name="description" content="CVSS는 취약점이 얼마나 위험한지를 공통된 기준으로 점수 매기는 체계예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 점수 띠 */
+    .bands { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .band {
+      flex: 1 1 110px;
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .band--high { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+    .band__score { font-family: var(--mono); font-size: 15px; font-weight: 700; }
+    .band__label { margin-top: 2px; font-size: 14px; color: var(--muted); }
+    .band--high .band__label { color: #D8E4F8; }
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="cvss">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>CVSS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">취약점</span>
+      </div>
+      <h1 class="title">CVSS</h1>
+      <p class="reading">공통 취약점 평가 시스템 · Common Vulnerability Scoring System · 共通脆弱性評価システム</p>
+      <p class="define">CVSS는 <mark>취약점이 얼마나 위험한지를 공통된 기준으로 점수 매기는 체계</mark>예요. <a href="cve.html">CVE</a>가 이름표라면 CVSS는 <strong>그 옆에 붙는 점수</strong>예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 보안 › 취약점</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>지진이 났을 때 <strong>"꽤 흔들렸다"</strong>보다 <strong>"규모 6.2"</strong>가 훨씬 쓸모 있죠. 느낌은 사람마다 다르지만 숫자는 누가 들어도 같으니까요. CVSS는 취약점에 그 숫자를 붙이는 일이에요.</p>
+      <p>점수는 <strong>0.0에서 10.0</strong> 사이로 나와요. 아무렇게나 매기는 게 아니라 <strong>정해진 항목을 하나씩 체크해서 계산</strong>해요. 멀리서도 공격할 수 있는지, 계정이 필요한지, 사용자가 뭔가 눌러야 하는지, 뚫리면 뭐가 얼마나 망가지는지 같은 것들이요. 그래서 <strong>누가 매겨도 비슷한 값</strong>이 나와요. 지금 쓰이는 판은 <strong>v4.0</strong>이고, FIRST라는 단체가 만들고 관리해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">점수 범위</p>
+          <p class="fact__value fact__value--mono">0.0 ~ 10.0</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">현재 판</p>
+          <p class="fact__value fact__value--mono">v4.0</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">만드는 곳</p>
+          <p class="fact__value">FIRST</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">취약점의 성질</p>
+          <p class="node__note">어떻게 찌를 수 있나</p>
+          <p>
+            <span class="chip-mono">원격 여부</span>
+            <span class="chip-mono">권한 필요</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">항목별 체크<span class="arrow__note">정해진 표대로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">CVSS</p>
+          <p class="node__note">계산식에 넣어요</p>
+          <p><span class="chip-mono">0.0 ~ 10.0</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">점수와 등급<span class="arrow__note">우선순위의 근거</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">무엇부터 고칠까</p>
+          <p class="node__note">숫자로 줄을 세워요</p>
+        </div>
+      </div>
+
+      <div class="bands" role="img" aria-label="CVSS 점수 구간. 0.1에서 3.9 낮음, 4.0에서 6.9 보통, 7.0에서 8.9 높음, 9.0에서 10.0 심각.">
+        <div class="band"><p class="band__score">0.1 – 3.9</p><p class="band__label">낮음</p></div>
+        <div class="band"><p class="band__score">4.0 – 6.9</p><p class="band__label">보통</p></div>
+        <div class="band band--high"><p class="band__score">7.0 – 8.9</p><p class="band__label">높음</p></div>
+        <div class="band band--high"><p class="band__score">9.0 – 10.0</p><p class="band__label">심각</p></div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>취약점 자체의 성질</strong>만 보고 기본 점수를 내요. 어디에 설치됐든 달라지지 않는 값이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>거기에 <strong>지금 실제로 공격이 돌고 있는지</strong>, <strong>우리 환경에서 그게 얼마나 중요한지</strong>를 더해 조정할 수 있어요. 같은 취약점이라도 <strong>회사마다 최종 점수가 달라지는</strong> 이유예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>점수는 구간에 따라 낮음·보통·높음·심각으로 불러요. <strong>"7점 이상은 이번 주 안에"</strong> 같은 사내 규칙을 세울 수 있게 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 10점이 우리에겐 0점일 수도 있어요</p>
+        <p>기본 점수 9.8짜리 심각한 취약점이라도, <strong>우리가 그 기능을 꺼 두었거나 외부에서 닿을 수 없는 자리</strong>라면 실제 위험은 거의 없어요. 반대로 6점짜리가 <strong>우리 핵심 서버의 정면</strong>에 있으면 더 급하죠. 점수는 출발점이지 결론이 아니에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 점수가 하는 진짜 일</p>
+        <p>취약점이 수백 개 쏟아질 때 <strong>무엇부터 손댈지 정하는 근거</strong>가 돼요. "느낌상 이게 더 급해 보여서"가 아니라 숫자로 줄을 세우니, <strong>나중에 왜 그 순서였는지 설명할 수 있어요.</strong> 감사에서도 이 근거를 봐요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · v4.0으로 넘어가는 중</p>
+        <p>v3 계열이 오래 쓰였고 지금은 <strong>v4.0</strong>이 최신이에요. 다만 현장에는 두 판이 섞여 있어서, 일본의 JVN처럼 <strong>v3와 v4 점수를 나란히 보여 주는</strong> 곳도 있어요. 점수를 비교할 때는 <strong>어느 판으로 매긴 값인지</strong>부터 확인해야 해요.</p>
+      </div>
+
+      <p class="callout">CVE와 CVSS는 짝이에요. <strong>CVE는 "어느 구멍이냐", CVSS는 "얼마나 위험하냐"</strong>를 답해요. 둘이 있어야 "무엇을 먼저 막을까"에 답할 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">느낌 대신 숫자로, 순서를 정해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 보안 › 취약점</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
