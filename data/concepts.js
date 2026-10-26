@@ -41,6 +41,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'broken-windows-theory',
+    title: '깨진 유리창 이론',
+    sub: 'broken windows theory · 割れ窓理論',
+    summary: '작은 흐트러짐을 두면 더 큰 문제가 따라온다는 생각',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'c2-server',
     title: 'C&C 서버',
     sub: 'Command and Control (C2) · C&Cサーバ',

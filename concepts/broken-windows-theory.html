@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>깨진 유리창 이론 — 기억해봐요</title>
+  <meta name="description" content="깨진 유리창 이론은 작은 흐트러짐을 두면 더 큰 문제가 따라온다는 생각이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="broken-windows-theory">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>깨진 유리창 이론</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">관리</span>
+      </div>
+      <h1 class="title">깨진 유리창 이론</h1>
+      <p class="reading">broken windows theory · 割れ窓理論</p>
+      <p class="define">깨진 유리창 이론은 <mark>작은 흐트러짐을 그대로 두면 더 큰 문제가 따라온다</mark>는 생각이에요. <strong>"여긴 아무도 신경 쓰지 않는구나"</strong>라는 신호가 문제라는 거죠.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건물에 유리창 하나가 깨진 채로 며칠 방치됐다고 해 볼게요. 곧 다른 창문도 깨지고, 벽에 낙서가 생기고, 쓰레기가 쌓여요. <strong>유리창이 깨졌다는 사실 자체보다, 아무도 고치지 않는다는 사실</strong>이 더 큰 일을 부르는 거예요.</p>
+      <p>원래는 도시의 치안을 설명하려고 나온 이론인데, 보안과 조직 관리에서 자주 빌려 써요. <strong>지키지 않아도 아무 일 없는 규칙</strong>이 하나 생기면, 사람들은 다른 규칙도 그럴 거라고 생각하거든요. "다들 비밀번호 공유하던데", "저 서버도 패치 안 했던데" 하는 식으로요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">핵심</p>
+          <p class="fact__value">방치됐다는 신호</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대응</p>
+          <p class="fact__value">작을 때 바로 고치기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰이는 곳</p>
+          <p class="fact__value">보안 문화 · 코드 품질</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">작은 흐트러짐</p>
+          <p class="node__note">규칙 하나를 그냥 넘어감</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">방치<span class="arrow__note">아무 일도 안 생겨요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">신호가 퍼져요</p>
+          <p class="node__note">"여긴 안 지켜도 되는구나"</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">따라 하기<span class="arrow__note">기준이 내려가요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">큰 문제</p>
+          <p class="node__note">이제 되돌리기 어려워요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>처음 어긋난 것은 아주 작아요. 임시로 열어 둔 권한 하나, 미뤄 둔 업데이트 하나처럼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그게 <strong>아무 탈 없이 지나가면</strong> 사람들이 봐요. 규칙이 종이 위에만 있다는 걸 알게 되는 거죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그 뒤로는 기준이 계속 내려가요. <strong>한 번 내려간 기준을 되올리는 일</strong>은 처음부터 지키는 것보다 훨씬 힘들어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 보안 경보를 무시하기 시작하면</p>
+        <p>헛경보가 많아 하나씩 넘기다 보면 어느새 <strong>모든 경보를 넘기게</strong> 돼요. 그러면 진짜 경보가 울려도 똑같이 지나가죠. <a href="ids.html">IDS</a>를 들여놓고도 사고를 놓치는 조직의 전형적인 모습이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 테스트용 계정이 남아 있어요</p>
+        <p>급해서 만든 임시 계정, 잠깐 열어 둔 포트, 주석 처리해 둔 검사 코드. <strong>"나중에 정리하자"가 쌓이면</strong> 어느 것이 임시인지도 모르게 돼요. 공격자는 그런 틈을 찾아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 반대로 쓰면 좋은 신호</p>
+        <p>이 이론은 뒤집어서도 쓸 수 있어요. <strong>작은 것을 바로바로 고치는 모습</strong>이 보이면 "여긴 신경 쓰는 곳"이라는 신호가 돼요. 사람들이 규칙을 지키게 만드는 가장 싼 방법이기도 하고요. <a href="safeguard.html">세이프가드</a>가 실제로 작동하려면 이 분위기가 먼저 있어야 해요.</p>
+      </div>
+
+      <p class="callout">도시 치안에서의 효과를 두고는 학계에서 논쟁이 이어져 왔어요. 다만 <strong>"방치된 신호가 다음 행동을 부른다"</strong>는 통찰 자체는 조직과 보안 문화를 설명할 때 널리 쓰여요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">깨진 것보다, 아무도 안 고친다는 신호가 문제예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
