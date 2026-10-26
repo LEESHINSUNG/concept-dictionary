@@ -481,6 +481,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'spreadsheet',
+    title: '스프레드시트',
+    sub: 'spreadsheet · スプレッドシート',
+    summary: '칸에 값과 수식을 넣어 계산이 저절로 이어지는 표 프로그램',
+    category: '업무 시스템',
+    date: '2026-10-27'
+  },
+  {
     slug: 'ssid',
     title: 'SSID',
     sub: '에스에스아이디 · Service Set Identifier',

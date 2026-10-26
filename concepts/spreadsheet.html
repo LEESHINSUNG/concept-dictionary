@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>스프레드시트 — 기억해봐요</title>
+  <meta name="description" content="스프레드시트는 칸에 값과 수식을 넣어 계산을 자동으로 이어 주는 표 프로그램이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 작은 시트 */
+    .sheet { border: 1px solid var(--line-strong); border-radius: 10px; overflow: hidden; font-family: var(--mono); font-size: 14px; }
+    .sheet__row { display: flex; }
+    .sheet__row + .sheet__row { border-top: 1px solid var(--line); }
+    .sheet__cell { flex: 1 1 0; min-width: 0; padding: 8px 10px; background: var(--surface); text-align: right; }
+    .sheet__cell + .sheet__cell { border-left: 1px solid var(--line); }
+    .sheet__cell--head { background: var(--bg); color: var(--muted); text-align: center; font-weight: 700; }
+    .sheet__cell--formula { background: var(--chip-bg); color: var(--chip-ink); font-weight: 700; }
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="spreadsheet">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>스프레드시트</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">도구</span>
+      </div>
+      <h1 class="title">스프레드시트</h1>
+      <p class="reading">spreadsheet · スプレッドシート</p>
+      <p class="define">스프레드시트는 <mark>칸에 값과 수식을 넣어 계산이 저절로 이어지게 만든 표 프로그램</mark>이에요. 엑셀과 구글 시트가 대표적이죠.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 업무 시스템 › 도구</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>모눈종이에 숫자를 적는다고 해 볼게요. 합계를 적어 놨는데 위 숫자 하나가 틀려서 고치면, <strong>합계도 지우고 다시 계산해 적어야</strong> 하죠. 아래 칸들도 줄줄이요.</p>
+      <p>스프레드시트는 거기서 딱 하나를 바꿨어요. 합계 칸에 숫자 대신 <strong>"위 세 칸을 더해라"라는 말을 적어 두는</strong> 거예요. 그러면 위 숫자를 고치는 순간 합계가 <strong>알아서 다시 계산돼요.</strong> 칸마다 주소가 있고, 수식이 그 주소를 가리키고, 가리킨 값이 바뀌면 따라 바뀌는 것. 이 단순한 구조 하나로 <strong>프로그래밍을 몰라도 계산을 자동화</strong>할 수 있게 됐어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">기본 단위</p>
+          <p class="fact__value">셀(칸)과 주소</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">핵심</p>
+          <p class="fact__value">수식이 다른 칸을 가리킴</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표 제품</p>
+          <p class="fact__value">Excel · Google Sheets</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">파란 칸에는 숫자가 아니라 수식이 들어 있어요.</p>
+
+      <div class="sheet" role="img" aria-label="스프레드시트 예시. B2 100, B3 250, B4 80이고 B5에는 합계 수식 SUM B2 대 B4가 들어 있어 430이 됩니다.">
+        <div class="sheet__row">
+          <span class="sheet__cell sheet__cell--head">　</span>
+          <span class="sheet__cell sheet__cell--head">A</span>
+          <span class="sheet__cell sheet__cell--head">B</span>
+        </div>
+        <div class="sheet__row">
+          <span class="sheet__cell sheet__cell--head">2</span>
+          <span class="sheet__cell">사과</span>
+          <span class="sheet__cell">100</span>
+        </div>
+        <div class="sheet__row">
+          <span class="sheet__cell sheet__cell--head">3</span>
+          <span class="sheet__cell">배</span>
+          <span class="sheet__cell">250</span>
+        </div>
+        <div class="sheet__row">
+          <span class="sheet__cell sheet__cell--head">4</span>
+          <span class="sheet__cell">감</span>
+          <span class="sheet__cell">80</span>
+        </div>
+        <div class="sheet__row">
+          <span class="sheet__cell sheet__cell--head">5</span>
+          <span class="sheet__cell">합계</span>
+          <span class="sheet__cell sheet__cell--formula">=SUM(B2:B4)</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>칸마다 <strong>열 글자 + 행 번호</strong>로 된 주소가 있어요. 위 그림의 250이 들어 있는 칸은 <code>B3</code>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>수식은 값을 적는 대신 <strong>주소를 가리켜요.</strong> <code>=SUM(B2:B4)</code>는 "B2부터 B4까지 더해라"라는 뜻이라 화면에는 430이 보여요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>B3을 250에서 300으로 고치면 <strong>합계가 저절로 480이 돼요.</strong> 가리킨 값이 바뀌면 가리킨 쪽도 따라 바뀌는 것, 이게 전부예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 왜 이렇게까지 퍼졌을까</p>
+        <p>필요한 사람이 <strong>그 자리에서 직접 만들 수 있기 때문</strong>이에요. 개발을 요청하고 몇 달 기다릴 일을 오후 한나절이면 끝내죠. 그래서 회사의 수많은 업무가 공식 시스템이 아니라 <strong>누군가의 엑셀 파일</strong> 위에서 돌아가요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 그래서 생기는 문제</p>
+        <p>화면에는 결과만 보이고 <strong>수식은 눌러 봐야 보여요.</strong> 한 칸의 범위를 잘못 잡아도 숫자가 그럴듯하게 나와서 아무도 모르죠. 파일을 복사해 쓰다 보면 <strong>어느 것이 진짜인지</strong>도 흐려지고요. 이런 도구들을 관리 대상으로 올리는 일이 <strong>EUC 통제 감사</strong>예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 넘어갈 때</p>
+        <p>줄이 수십만 개가 되거나 매달 같은 작업을 반복하게 되면 한계가 와요. 그때 <a href="pandas.html">pandas</a> 같은 도구로 옮기면 <strong>같은 작업을 코드로 적어 두고 그대로 돌릴 수</strong> 있어요. 수식이 코드로 남으니 무엇을 했는지도 보이고요.</p>
+      </div>
+
+      <p class="callout">스프레드시트의 힘과 약점은 같은 곳에서 나와요. <strong>누구나 만들 수 있다</strong>는 점이요. 그래서 빠르게 퍼지고, 그래서 아무도 점검하지 않게 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">칸이 칸을 가리켜요. 그게 전부예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 업무 시스템 › 도구</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
