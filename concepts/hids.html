@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HIDS — 기억해봐요</title>
+  <meta name="description" content="HIDS는 서버나 PC 한 대 안에서 벌어지는 일을 들여다보며 침입을 찾는 IDS예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="hids">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>HIDS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">HIDS</h1>
+      <p class="reading">호스트 침입 탐지 시스템 · Host-based IDS · ホスト型IDS</p>
+      <p class="define">HIDS는 <mark>서버나 PC 한 대 안에 자리 잡고 그 안을 들여다보는 <a href="ids.html">IDS</a></mark>예요. <a href="nids.html">NIDS</a>가 복도를 본다면 HIDS는 <strong>방 안</strong>을 봐요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>복도 CCTV로는 <strong>방 안에서 무슨 일이 있었는지</strong> 알 수 없죠. 누가 들어갔다는 건 알아도, 들어가서 금고를 열었는지 책만 보고 나왔는지는 모르니까요. 그래서 중요한 방에는 <strong>안쪽에도 따로</strong> 눈을 둬요.</p>
+      <p>HIDS가 그 안쪽 눈이에요. 지켜볼 기기 안에 프로그램으로 들어가 <strong>어떤 파일이 바뀌었는지, 누가 로그인했는지, 어떤 프로그램이 실행됐는지</strong>를 봐요. 네트워크로는 보이지 않는 일까지 잡을 수 있고, <strong>암호화된 통신도 기기 안에서는 이미 풀려 있어</strong> 내용을 볼 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 자리</p>
+          <p class="fact__value">기기 안쪽</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">파일 변경 · 로그인 · 실행</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">한계</p>
+          <p class="fact__value">기기마다 깔아야 함</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">서버 안의 움직임</p>
+          <p class="node__note">파일 · 계정 · 프로세스</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">안에서 지켜보기<span class="arrow__note">깔아 둔 프로그램이</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">HIDS</p>
+          <p class="node__note">평소 모습과 견줘요</p>
+          <p>
+            <span class="chip-mono">기준값 비교</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">경보<span class="arrow__note">바뀌면 안 될 게 바뀜</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">담당자</p>
+          <p class="node__note">그 기기를 바로 짚어요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>평소 상태를 먼저 기록해 둬요. 중요한 파일의 <a href="hash.html">해시값</a>을 떠 두는 식이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이후 그 값이 달라지면 <strong>내용이 바뀌었다는 뜻</strong>이라 바로 알 수 있어요. 시스템 파일처럼 바뀔 일이 없는 것이 바뀌면 특히 수상하죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>로그인 기록과 실행된 프로그램도 함께 봐요. <strong>어느 기기에서 무슨 일이 있었는지</strong>가 바로 나와서 조사로 이어 가기 좋아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 침입자가 먼저 노리는 것</p>
+        <p>HIDS는 지켜보는 기기 <strong>안에</strong> 있어요. 그래서 그 기기를 완전히 장악한 공격자는 <strong>HIDS 자체를 끄거나 기록을 지울 수</strong> 있어요. 그래서 경보와 기록은 <strong>다른 서버로 바로 보내 두는</strong> 게 중요해요. <a href="audit-trail.html">감사 증적</a>을 따로 쌓는 이유와 같아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 관리 비용</p>
+        <p>서버 수백 대면 <strong>수백 번 설치하고 수백 번 업데이트</strong>해야 해요. 기기마다 성능도 조금씩 잡아먹고요. 그래서 보통 <strong>중요한 서버에만</strong> 두고, 나머지는 NIDS로 넓게 지켜봐요.</p>
+      </div>
+
+      <p class="callout">둘을 비교하면 간단해요. <strong>NIDS는 넓게 얕게, HIDS는 좁게 깊게.</strong> 둘 다 알아채기만 하고 막지는 않는다는 점은 같아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">좁게, 대신 깊게 봐요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

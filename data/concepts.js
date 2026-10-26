@@ -185,6 +185,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'hids',
+    title: 'HIDS',
+    sub: '호스트 침입 탐지 시스템 · Host-based IDS · ホスト型IDS',
+    summary: '기기 한 대 안을 들여다보며 침입을 찾는 IDS',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'histogram',
     title: '히스토그램',
     sub: '도수분포도 · histogram · ヒストグラム',
