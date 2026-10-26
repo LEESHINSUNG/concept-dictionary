@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>표준에러 — 기억해봐요</title>
+  <meta name="description" content="표준에러는 오류와 알림을 결과와 섞이지 않게 따로 내보내는 통로예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="stderr">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>표준에러</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">입출력</span>
+      </div>
+      <h1 class="title">표준에러</h1>
+      <p class="reading">stderr · standard error</p>
+      <p class="define">표준에러는 <mark>오류와 알림을 결과와 섞이지 않게 따로 내보내는 통로</mark>예요. <a href="stdout.html">표준출력</a>과 <strong>일부러 길을 나눠 둔 것</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 운영체제 › 입출력</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>공장에 출고구가 하나뿐이라면 어떻게 될까요. <strong>완성품과 불량 보고서가 같은 상자에 섞여</strong> 트럭에 실릴 거예요. 받는 쪽은 매번 그걸 골라내야 하죠. 그래서 공장은 보통 <strong>출고구와 보고 창구를 따로</strong> 둬요.</p>
+      <p>프로그램도 그래서 길이 둘이에요. 계산 결과는 1번(표준출력)으로, <strong>"파일이 없어요" 같은 말은 2번(표준에러)</strong>으로 나가요. 덕분에 결과를 파일에 쌓는 동안에도 <strong>오류만은 화면에 바로 떠요.</strong> 일이 잘못됐는데 조용히 파일에 묻혀 버리면 알아차릴 수 없으니까요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">번호</p>
+          <p class="fact__value fact__value--mono">2</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">기본 연결</p>
+          <p class="fact__value">터미널 화면</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">나눠 둔 이유</p>
+          <p class="fact__value">결과가 더럽혀지지 않게</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">프로그램</p>
+          <p class="node__note">결과와 오류를 둘 다 내놔요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">길이 둘<span class="arrow__note">섞이지 않아요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">두 통로</p>
+          <p class="node__note">각각 따로 갈아 끼워요</p>
+          <p>
+            <span class="chip-mono">1 결과</span>
+            <span class="chip-mono">2 오류</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">따로 도착<span class="arrow__note">1은 파일, 2는 화면</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 쪽</p>
+          <p class="node__note">결과는 깨끗하게, 오류는 눈에 띄게</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>프로그램은 <strong>이건 결과, 저건 오류</strong>를 스스로 구분해 각각 다른 번호로 내보내요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><code>&gt;</code>로 길을 바꾸면 <strong>1번만</strong> 옮겨져요. 2번은 건드리지 않았으니 그대로 화면에 남아요. 오류를 따로 보내려면 <code>2&gt;</code>라고 번호를 적어 줘야 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>둘을 한곳에 모으고 싶으면 <code>2&gt;&amp;1</code>이라고 써요. <strong>"2번을 1번이 가는 곳으로 합쳐라"</strong>는 뜻이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>없는 파일을 찾게 해서 오류를 일부러 내 볼게요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> ls 없는파일 &gt; out.txt
+ls: 없는파일: No such file or directory    <span class="c-comment"># 여전히 화면에!</span>
+
+<span class="c-prompt">$</span> ls 없는파일 2&gt; err.txt              <span class="c-comment"># 2번을 파일로</span>
+<span class="c-prompt">$</span> cat err.txt
+ls: 없는파일: No such file or directory
+
+<span class="c-comment"># 출력은 환경마다 조금 달라요</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">첫 줄이 이 개념의 전부예요</p>
+        <p><code>&gt; out.txt</code>로 길을 돌렸는데도 <strong>오류가 화면에 그대로 나왔죠.</strong> 1번만 옮겼기 때문이에요. 만약 길이 하나뿐이었다면 이 메시지는 <code>out.txt</code> 안에 섞여 들어가 아무도 못 봤을 거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">진행 상황도 2번으로 나와요</p>
+        <p>내려받기 진행률이나 "처리 중입니다" 같은 안내도 보통 2번으로 내보내요. <strong>오류가 아니어도 결과물이 아니면 2번</strong>인 거예요. 그래야 결과를 파일로 받을 때 그런 글자가 섞이지 않아요.</p>
+      </div>
+
+      <p class="callout">이 1번과 2번이라는 숫자는 그냥 정한 게 아니라 <strong>운영체제가 통로에 붙여 주는 번호표</strong>예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">결과와 오류는, 다른 길로.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 운영체제 › 입출력</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

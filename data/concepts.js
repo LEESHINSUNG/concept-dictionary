@@ -385,6 +385,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'stderr',
+    title: '표준에러',
+    sub: 'stderr · standard error',
+    summary: '오류와 알림을 결과와 섞이지 않게 내보내는 통로',
+    category: '운영체제',
+    date: '2026-10-26'
+  },
+  {
     slug: 'stdout',
     title: '표준출력',
     sub: 'stdout · standard output',
