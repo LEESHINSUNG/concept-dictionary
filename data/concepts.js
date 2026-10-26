@@ -19,7 +19,7 @@ window.CONCEPTS = [
   {
     slug: 'audit-trail',
     title: '감사 증적',
-    sub: '監査証跡 · audit trail',
+    sub: 'audit trail · 監査証跡',
     summary: '누가 언제 무엇을 했는지 되짚을 수 있게 남긴 기록',
     category: '보안',
     date: '2026-10-23'
@@ -27,7 +27,7 @@ window.CONCEPTS = [
   {
     slug: 'botnet',
     title: '봇넷',
-    sub: 'botnet',
+    sub: 'botnet · ボットネット',
     summary: '공격자가 한꺼번에 조종하는 감염된 기기 무리',
     category: '보안',
     date: '2026-10-20'
@@ -43,7 +43,7 @@ window.CONCEPTS = [
   {
     slug: 'c2-server',
     title: 'C&C 서버',
-    sub: '씨앤씨 서버 · Command and Control',
+    sub: 'Command and Control (C2) · C&Cサーバ',
     summary: '감염된 기기에 명령을 내리는 공격자의 지휘소',
     category: '보안',
     date: '2026-10-20'
@@ -51,7 +51,7 @@ window.CONCEPTS = [
   {
     slug: 'client',
     title: '클라이언트',
-    sub: 'client · 서비스를 받는 쪽',
+    sub: 'client · クライアント',
     summary: '서버에 먼저 요청을 보내 결과를 받아 쓰는 쪽',
     category: '네트워크',
     date: '2026-10-21'
@@ -59,7 +59,7 @@ window.CONCEPTS = [
   {
     slug: 'control-chart',
     title: '관리도',
-    sub: 'control chart · 컨트롤 차트',
+    sub: 'control chart · 管理図',
     summary: '시간에 따라 값을 찍고 한계선으로 이상을 가려내는 그림',
     category: '품질관리',
     date: '2026-10-21'
@@ -67,7 +67,7 @@ window.CONCEPTS = [
   {
     slug: 'cookie',
     title: '쿠키',
-    sub: 'cookie · HTTP 쿠키',
+    sub: 'cookie · クッキー',
     summary: '웹사이트가 내 브라우저에 맡겨 두는 작은 메모',
     category: '웹',
     date: '2026-10-21'
@@ -75,7 +75,7 @@ window.CONCEPTS = [
   {
     slug: 'crypto-compromise',
     title: '암호 알고리즘의 위태화',
-    sub: '暗号アルゴリズムの危殆化 · 危殆化',
+    sub: 'cryptographic compromise · 暗号アルゴリズムの危殆化',
     summary: '시간이 지나며 암호가 약해져 더는 안전하지 않게 되는 일',
     category: '보안',
     date: '2026-10-22'
@@ -115,7 +115,7 @@ window.CONCEPTS = [
   {
     slug: 'digital-forensics',
     title: '디지털 포렌식',
-    sub: 'digital forensics',
+    sub: 'digital forensics · デジタルフォレンジック',
     summary: '디지털 흔적을 바꾸지 않고 찾아내 증거로 만드는 일',
     category: '보안',
     date: '2026-10-20'
@@ -123,7 +123,7 @@ window.CONCEPTS = [
   {
     slug: 'digital-signature',
     title: '전자서명',
-    sub: 'digital signature',
+    sub: 'digital signature · 電子署名',
     summary: '비밀키로 만드는 작성자와 변조 여부의 증명',
     category: '보안',
     date: '2026-10-20'
@@ -155,7 +155,7 @@ window.CONCEPTS = [
   {
     slug: 'file-descriptor',
     title: '파일 디스크립터',
-    sub: 'file descriptor · 파일 기술자',
+    sub: '파일 기술자 · file descriptor · ファイルディスクリプタ',
     summary: '열어 둔 통로마다 운영체제가 붙여 주는 번호표',
     category: '운영체제',
     date: '2026-10-26'
@@ -163,7 +163,7 @@ window.CONCEPTS = [
   {
     slug: 'fishbone-diagram',
     title: '특성요인도',
-    sub: 'fishbone diagram · 이시카와 다이어그램',
+    sub: '이시카와 다이어그램 · fishbone diagram · 特性要因図',
     summary: '하나의 결과에 영향을 준 원인을 생선뼈 모양으로 펼친 그림',
     category: '품질관리',
     date: '2026-10-21'
@@ -171,7 +171,7 @@ window.CONCEPTS = [
   {
     slug: 'hacktivist',
     title: '핵티비스트',
-    sub: 'hacktivist · hack + activist',
+    sub: 'hacktivist · ハクティビスト',
     summary: '돈이 아니라 주장을 알리려고 해킹하는 사람',
     category: '보안',
     date: '2026-10-23'
@@ -179,7 +179,7 @@ window.CONCEPTS = [
   {
     slug: 'hash',
     title: '해시',
-    sub: 'hash · 해시 함수',
+    sub: '해시 함수 · hash · ハッシュ',
     summary: '데이터를 정해진 길이의 지문 하나로 바꾸는 계산',
     category: '보안',
     date: '2026-10-20'
@@ -187,7 +187,7 @@ window.CONCEPTS = [
   {
     slug: 'histogram',
     title: '히스토그램',
-    sub: 'histogram · 도수분포도',
+    sub: '도수분포도 · histogram · ヒストグラム',
     summary: '값이 어느 구간에 몇 개씩 모여 있는지 보는 막대그림',
     category: '품질관리',
     date: '2026-10-21'
@@ -235,7 +235,7 @@ window.CONCEPTS = [
   {
     slug: 'lan-topology',
     title: 'LAN 접속 형태',
-    sub: '토폴로지 · topology · 망 구성 방식',
+    sub: '토폴로지 · network topology · ネットワークトポロジー',
     summary: '기기를 어떤 모양으로 잇느냐 — 스타형·버스형·링형',
     category: '네트워크',
     date: '2026-10-21'
@@ -251,7 +251,7 @@ window.CONCEPTS = [
   {
     slug: 'osi-model',
     title: 'OSI 참조 모델',
-    sub: 'OSI model · 개방형 시스템 상호연결',
+    sub: 'OSI reference model · OSI参照モデル',
     summary: '네트워크가 하는 일을 일곱 층으로 나눠 정리한 지도',
     category: '네트워크',
     date: '2026-10-21'
@@ -259,7 +259,7 @@ window.CONCEPTS = [
   {
     slug: 'packet',
     title: '패킷',
-    sub: 'packet · 꾸러미',
+    sub: 'packet · パケット',
     summary: '데이터를 작게 잘라 주소와 순서를 붙인 조각',
     category: '네트워크',
     date: '2026-10-21'
@@ -275,7 +275,7 @@ window.CONCEPTS = [
   {
     slug: 'pareto-chart',
     title: '파레토 차트',
-    sub: 'Pareto chart · 파레토도',
+    sub: '파레토도 · Pareto chart · パレート図',
     summary: '원인을 많은 순서대로 세워 무엇부터 고칠지 정하는 그림',
     category: '품질관리',
     date: '2026-10-21'
@@ -291,7 +291,7 @@ window.CONCEPTS = [
   {
     slug: 'protocol',
     title: '프로토콜',
-    sub: 'protocol · 통신 규약',
+    sub: '통신 규약 · protocol · プロトコル',
     summary: '기계끼리 말이 통하도록 미리 맞춰 둔 약속',
     category: '네트워크',
     date: '2026-10-21'
@@ -299,7 +299,7 @@ window.CONCEPTS = [
   {
     slug: 'public-private-key',
     title: '공개키-비밀키',
-    sub: '비대칭키 · public key / private key',
+    sub: '비대칭키 · public key / private key · 公開鍵・秘密鍵',
     summary: '잠그는 열쇠와 여는 열쇠를 다르게 만든 암호 방식',
     category: '보안',
     date: '2026-10-20'
@@ -331,7 +331,7 @@ window.CONCEPTS = [
   {
     slug: 'router',
     title: '라우터',
-    sub: 'router · 경로 선택 장치',
+    sub: 'router · ルータ',
     summary: '네트워크 사이에서 다음 길을 골라 주는 장치',
     category: '네트워크',
     date: '2026-10-22'
@@ -347,7 +347,7 @@ window.CONCEPTS = [
   {
     slug: 'safeguard',
     title: '세이프가드',
-    sub: 'safeguard · 보호 대책',
+    sub: '보호 대책 · safeguard · セーフガード',
     summary: '위험을 줄이려고 실제로 걸어 두는 보호 대책',
     category: '보안',
     date: '2026-10-23'
@@ -355,7 +355,7 @@ window.CONCEPTS = [
   {
     slug: 'server',
     title: '서버',
-    sub: 'server · 서비스를 주는 쪽',
+    sub: 'server · サーバ',
     summary: '요청을 받아 처리해 주는 쪽. 기계가 아니라 역할의 이름',
     category: '네트워크',
     date: '2026-10-21'
@@ -363,7 +363,7 @@ window.CONCEPTS = [
   {
     slug: 'session-hijacking',
     title: '세션 하이재킹',
-    sub: 'session hijacking · 세션 가로채기',
+    sub: '세션 가로채기 · session hijacking · セッションハイジャック',
     summary: '로그인한 사람의 출입증을 가로채 그 사람인 척하는 공격',
     category: '보안',
     date: '2026-10-23'
@@ -395,7 +395,7 @@ window.CONCEPTS = [
   {
     slug: 'stderr',
     title: '표준에러',
-    sub: 'stderr · standard error',
+    sub: 'stderr · standard error · 標準エラー出力',
     summary: '오류와 알림을 결과와 섞이지 않게 내보내는 통로',
     category: '운영체제',
     date: '2026-10-26'
@@ -403,7 +403,7 @@ window.CONCEPTS = [
   {
     slug: 'stdout',
     title: '표준출력',
-    sub: 'stdout · standard output',
+    sub: 'stdout · standard output · 標準出力',
     summary: '프로그램이 결과를 내보내는 기본 통로',
     category: '운영체제',
     date: '2026-10-26'
@@ -411,7 +411,7 @@ window.CONCEPTS = [
   {
     slug: 'symmetric-key',
     title: '공통키',
-    sub: '대칭키 · symmetric key',
+    sub: '대칭키 · symmetric key · 共通鍵',
     summary: '잠글 때와 열 때 같은 열쇠를 쓰는 암호 방식',
     category: '보안',
     date: '2026-10-20'
@@ -467,7 +467,7 @@ window.CONCEPTS = [
   {
     slug: 'zero-day',
     title: '제로데이',
-    sub: 'zero-day · 제로데이 취약점',
+    sub: 'zero-day · ゼロデイ',
     summary: '고칠 방법이 아직 없는 상태에서 알려진 취약점',
     category: '보안',
     date: '2026-10-23'
