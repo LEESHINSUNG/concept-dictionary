@@ -193,6 +193,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'fraud-triangle',
+    title: '부정 트라이앵글 이론',
+    sub: 'fraud triangle · 不正のトライアングル理論',
+    summary: '부정은 기회·동기·정당화가 모두 모일 때 일어난다는 생각',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'hacktivist',
     title: '핵티비스트',
     sub: 'hacktivist · ハクティビスト',
