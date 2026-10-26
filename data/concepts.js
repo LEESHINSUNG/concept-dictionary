@@ -377,6 +377,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'risk-based-authentication',
+    title: '위험 기반 인증',
+    sub: 'Risk-Based Authentication (RBA) · リスクベース認証',
+    summary: '상황이 수상한 정도에 따라 확인 절차의 세기를 바꾸는 방식',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'router',
     title: '라우터',
     sub: 'router · ルータ',

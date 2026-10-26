@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>위험 기반 인증 — 기억해봐요</title>
+  <meta name="description" content="위험 기반 인증은 상황이 얼마나 수상한지를 보고 확인 절차의 세기를 바꾸는 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="risk-based-authentication">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>위험 기반 인증</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">인증</span>
+      </div>
+      <h1 class="title">위험 기반 인증</h1>
+      <p class="reading">Risk-Based Authentication (RBA) · リスクベース認証</p>
+      <p class="define">위험 기반 인증은 <mark>상황이 얼마나 수상한지를 보고 확인 절차의 세기를 그때그때 바꾸는 방식</mark>이에요. 평소에는 조용히, <strong>이상할 때만 한 번 더</strong> 묻어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 인증</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>단골 가게를 떠올려 보세요. 매일 오던 손님이 늘 사던 걸 사 가면 주인은 아무것도 묻지 않아요. 그런데 그 손님이 <strong>새벽에, 처음 보는 사람과 함께, 평소의 열 배를 사 가겠다</strong>고 하면 한 번쯤 확인하겠죠. <strong>사람을 바꾼 게 아니라 상황이 달라진 것</strong>이니까요.</p>
+      <p>위험 기반 인증이 그래요. 로그인할 때마다 <strong>어디서, 어떤 기기로, 어느 시간에, 평소와 같은 패턴인지</strong>를 점수처럼 따져요. 점수가 낮으면 그냥 들여보내고, 높으면 <strong>문자 인증이나 추가 확인을 한 번 더</strong> 요구해요. 모두에게 늘 같은 절차를 요구하는 대신, <strong>필요한 순간에만 귀찮게 하는 것</strong>이 목적이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">위치 · 기기 · 시간 · 평소 행동</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">결과</p>
+          <p class="fact__value">통과 · 추가 확인 · 차단</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">노리는 것</p>
+          <p class="fact__value">안전함과 편함을 함께</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">로그인 시도</p>
+          <p class="node__note">아이디와 비밀번호는 맞았어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">상황 살피기<span class="arrow__note">평소와 같은가</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">위험 점수</p>
+          <p class="node__note">여러 단서를 모아 매겨요</p>
+          <p>
+            <span class="chip-mono">낯선 기기</span>
+            <span class="chip-mono">먼 나라</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">점수에 따라<span class="arrow__note">낮으면 그냥 통과</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">추가 확인</p>
+          <p class="node__note">높을 때만 한 번 더</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>비밀번호가 맞았다고 바로 끝내지 않아요. <strong>지금 이 접속이 평소와 얼마나 다른지</strong>를 함께 봐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>늘 쓰던 기기로 집에서 들어오면 점수가 낮아요. <strong>처음 보는 기기로, 10분 전까지 다른 나라에 있던 계정이</strong> 들어오면 높아지고요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>점수가 높을 때만 문자 인증이나 재확인을 걸어요. 아주 높으면 아예 막기도 하고요. <strong>대부분의 사용자는 아무것도 느끼지 못해요.</strong></span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 이미 겪어 보셨을 거예요</p>
+        <p>해외여행 중에 평소 쓰던 서비스에 접속했더니 <strong>갑자기 문자 인증을 요구</strong>하거나 "새로운 기기에서 로그인했습니다" 메일이 오죠. 비밀번호는 맞았는데도요. 그게 위험 기반 인증이 일한 결과예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 비밀번호가 새어 나갔을 때</p>
+        <p>이 방식이 빛나는 자리예요. 공격자가 비밀번호를 알아내도 <strong>낯선 기기와 낯선 곳에서 들어오기 때문에</strong> 점수가 올라가 한 번 더 막혀요. <a href="session-hijacking.html">세션 하이재킹</a>처럼 출입증을 훔친 경우에도, 평소와 다른 자리에서 쓰면 걸릴 수 있어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 잘못 판단하면</p>
+        <p>점수를 너무 민감하게 매기면 <strong>멀쩡한 사용자가 매번 문자 인증에 시달려요.</strong> 느슨하면 걸러야 할 접속을 놓치고요. <a href="ids.html">IDS</a>의 헛경보와 똑같은 고민이에요. 그래서 <strong>점수 기준을 꾸준히 조율하는 일</strong>이 운영의 핵심이에요.</p>
+      </div>
+
+      <p class="callout">모두를 똑같이 귀찮게 하면 사람들이 우회할 길을 찾아요. <strong>필요한 순간에만 묻는 것</strong>이 결국 더 안전한 이유예요. <a href="captcha.html">CAPTCHA</a>를 수상할 때만 띄우는 요즘 방식도 같은 생각이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">평소엔 조용히, 수상할 때만 한 번 더.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 인증</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
