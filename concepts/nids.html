@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NIDS — 기억해봐요</title>
+  <meta name="description" content="NIDS는 네트워크를 흐르는 통신을 들여다보며 침입을 찾는 IDS예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="nids">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>NIDS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">NIDS</h1>
+      <p class="reading">네트워크 침입 탐지 시스템 · Network-based IDS · ネットワーク型IDS</p>
+      <p class="define">NIDS는 <mark>네트워크를 흐르는 통신을 들여다보며 침입을 찾는 <a href="ids.html">IDS</a></mark>예요. 길목 한 곳에서 <strong>여러 대를 한꺼번에</strong> 지켜봐요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건물 <strong>복도와 출입구에 달린 CCTV</strong>예요. 방마다 들어가 보지 않아도 <strong>오가는 사람을 다 볼 수 있죠.</strong> 한 자리에 달아 두면 그 길을 지나는 모두를 지켜볼 수 있다는 게 가장 큰 장점이에요.</p>
+      <p>NIDS는 네트워크 길목에 자리를 잡고 지나가는 <a href="packet.html">패킷</a>을 들여다봐요. 서버 수십 대에 각각 프로그램을 깔지 않아도 되고, <strong>지켜보는 대상이 눈치채지 못해요.</strong> 대신 한계도 분명해요. <strong>암호화된 통신은 안이 보이지 않고</strong>, 그 길을 지나지 않는 일은 알 수 없어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 자리</p>
+          <p class="fact__value">네트워크 길목</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">장점</p>
+          <p class="fact__value">여러 대를 한 번에</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">한계</p>
+          <p class="fact__value">암호화된 속은 못 봄</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">오가는 통신</p>
+          <p class="node__note">서버 여러 대의 것이 한 길로</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">흐름 복사<span class="arrow__note">끼어들지 않아요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">NIDS</p>
+          <p class="node__note">패킷 속을 들여다봐요</p>
+          <p><span class="chip-mono">길목 한 자리</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">경보<span class="arrow__note">수상한 통신 발견</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">담당자</p>
+          <p class="node__note">어느 기기인지 추적해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>스위치의 복사 기능이나 전용 장비로 <strong>흐름을 그대로 떠서</strong> NIDS에 넘겨요. 원래 통신은 아무 영향을 받지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>패킷의 주소와 내용에서 <strong>알려진 공격의 생김새</strong>를 찾거나, 평소와 다른 흐름을 가려내요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>걸리면 경보를 올려요. 다만 <strong>그 기기 안에서 무슨 일이 벌어졌는지까지는 알 수 없어요.</strong> 그건 서버 안을 보는 쪽의 몫이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 암호화가 늘면서 생긴 숙제</p>
+        <p>요즘 통신은 대부분 암호화돼 있어요. NIDS가 들여다봐도 <strong>뜻 없는 덩어리</strong>만 보이죠. 그래서 내용 대신 <strong>누가 누구와 얼마나 자주 통신하는지</strong> 같은 겉모습으로 판단하는 쪽이 늘었어요. 감염 기기가 <a href="c2-server.html">C&amp;C 서버</a>에 규칙적으로 말을 거는 리듬이 그렇게 잡혀요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 놓치는 길</p>
+        <p>같은 서버 안에서 벌어지는 일이나, NIDS가 없는 다른 경로로 나가는 통신은 <strong>아예 보이지 않아요.</strong> 사무실 한 곳만 지켜보는데 직원이 집에서 접속하면 그 통신은 지나가지 않는 거예요.</p>
+      </div>
+
+      <p class="callout">그래서 NIDS와 HIDS는 고르는 사이가 아니라 <strong>보는 자리가 다른 짝</strong>이에요. 길목과 방 안을 함께 봐야 빈틈이 줄어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">길목에서, 지나가는 모두를 봐요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

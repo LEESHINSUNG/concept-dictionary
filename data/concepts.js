@@ -257,6 +257,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'nids',
+    title: 'NIDS',
+    sub: '네트워크 침입 탐지 시스템 · Network-based IDS · ネットワーク型IDS',
+    summary: '네트워크를 흐르는 통신을 보며 침입을 찾는 IDS',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'osi-model',
     title: 'OSI 참조 모델',
     sub: 'OSI reference model · OSI参照モデル',
