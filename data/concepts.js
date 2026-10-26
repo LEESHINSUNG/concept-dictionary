@@ -297,6 +297,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'jvn',
+    title: 'JVN',
+    sub: '일본 취약점 정보 포털 · Japan Vulnerability Notes',
+    summary: '일본에서 취약점과 제조사 대응을 모아 공개하는 포털',
+    category: '보안',
+    date: '2026-10-27'
+  },
+  {
     slug: 'lan',
     title: 'LAN',
     sub: '랜 · Local Area Network',
