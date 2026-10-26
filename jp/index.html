@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>일본어 단어장 — 기억해봐요</title>
+  <meta name="description" content="공부하며 만난 일본어 단어를 한자·읽는 법과 함께 모아 둔 단어장이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/jp.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap site-head__inner">
+      <div>
+        <nav class="switch" aria-label="사전 고르기">
+          <a href="../index.html">IT 용어</a>
+          <a href="./index.html" aria-current="page">일본어 단어장</a>
+        </nav>
+        <h1 class="site-head__title">일본어 단어장</h1>
+        <p class="site-head__sub">공부하며 만난 일본어 단어를 한자·읽는 법과 함께 모아요.</p>
+      </div>
+      <p class="site-head__count">총 <span id="total">0</span>개</p>
+    </div>
+  </header>
+
+  <main class="wrap index-main">
+    <div class="search">
+      <label class="search__label" for="search">단어 검색</label>
+      <input class="search__input" id="search" type="search" placeholder="예: 順序, じゅんじょ, 순서" autocomplete="off">
+    </div>
+
+    <p class="group-label" id="pos-label">품사</p>
+    <div class="pills" id="pos" role="group" aria-labelledby="pos-label"></div>
+
+    <p class="group-label" id="tabs-label">오십음으로 찾기</p>
+    <div class="pills" id="tabs" role="group" aria-labelledby="tabs-label"></div>
+
+    <p class="result" id="result" aria-live="polite"></p>
+
+    <div id="list"></div>
+  </main>
+
+  <script src="../data/words.js"></script>
+  <script defer src="../assets/js/jp-common.js"></script>
+  <script defer src="../assets/js/jp-index.js"></script>
+</body>
+</html>

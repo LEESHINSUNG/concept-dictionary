@@ -1,6 +1,10 @@
 # 기억해봐요 — 개념 사전 (GitHub Pages · 순수 HTML/CSS/JS)
 
-사용자가 공부한 개념을 기록하는 정적 사이트. 빌드 도구·프레임워크 없음. 모든 링크는 상대경로.
+사용자가 공부한 것을 기록하는 정적 사이트. 빌드 도구·프레임워크 없음. 모든 링크는 상대경로.
+
+**사전이 둘이다.** 요청이 어느 쪽인지 먼저 가린다.
+- **IT 용어** — `/` · `concepts/<slug>.html` · `data/concepts.js`
+- **일본어 단어장** — `/jp/` · `jp/words/<slug>.html` · `data/words.js`
 
 ## 사용자 요청 형식
 - `개념 추가: <이름> [카테고리] [메모]` — 메모가 있으면 메모를 우선 반영하고, 없으면 AI가 작성.
@@ -19,6 +23,23 @@
 8. `git add`는 이번에 만든·바꾼 파일만. 커밋 메시지: `concept: add <title>` (수정 `concept: update <title>`, 삭제 `concept: remove <title>`).
 9. `git push origin main`. 이후 `gh run list --limit 1`로 배포 상태를 확인할 수 있으면 확인.
 10. 사용자에게 보고: 한 줄 결과 + 주소 `https://<계정>.github.io/<저장소>/concepts/<slug>.html` (반영까지 1~2분).
+
+## 일본어 단어 추가 절차
+- 요청 형식: `단어 추가: <단어>` (수정 `단어 수정:`, 삭제 `단어 삭제:`)
+1. `data/words.js`에서 같은 word/slug가 있는지 확인한다.
+2. slug는 **로마자 읽기**로 정한다 (順序 → `junjo`, 随時 → `zuiji`). 충돌 시 `-2`.
+3. `jp/_template.html`을 복사해 `jp/words/<slug>.html` 작성. 구조와 id(`head kanji example near summary pager`)는 바꾸지 않는다.
+4. `data/words.js`에 항목 추가 — `slug, word, kana, meaning, pos, date` 필수. `level`(N1 등)은 확실할 때만.
+5. `node scripts/sort.mjs` → `node scripts/check.mjs` 통과 확인.
+6. 커밋 메시지: `word: add <단어>` (수정 `word: update`, 삭제 `word: remove`). push는 마지막에 1번.
+
+## 일본어 단어 작성 규칙
+- 구성: 한 줄 뜻 → ① 한자 풀이 → ② 예문 → ③ 헷갈리는 말 → 한 줄 정리.
+- **한자 풀이**는 낱자마다 카드 하나. 훈음·음독·훈독과 함께 **그 모양에서 왜 그 뜻이 나왔는지**를 적는다. 자원 설명이 갈리면 "~라고 풀이해요"처럼 단정하지 않는다.
+- **예문은 3개 안팎**, 실제로 쓰이는 문장으로. 한자에는 `<ruby>…<rt>…</rt></ruby>`로 후리가나를 얹는다. 표제어에는 얹지 않는다.
+- **헷갈리는 말**은 비슷한 단어와 무엇이 다른지. 없으면 섹션을 비우지 말고 쓰임새가 갈리는 지점을 적는다.
+- 오십음 행은 `kana`의 첫 글자로 자동 판정된다. 데이터에 적지 않는다.
+- JLPT 급수는 공식 단어 목록이 없으므로 **확실하지 않으면 적지 않는다.**
 
 ## 콘텐츠 작성 규칙
 - 독자는 **처음 보는 사람**. 일상 비유로 시작하고, 전문용어는 처음 나올 때 풀어 쓴다.

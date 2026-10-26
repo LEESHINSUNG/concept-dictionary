@@ -1,0 +1,72 @@
+/* 일본어 단어장에만 더해지는 스타일 (공통 style.css는 그대로 씀) */
+
+/* 사이트 전환 */
+.switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+}
+.switch a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+}
+.switch a[aria-current='page'] { background: var(--accent); color: #FFFFFF; }
+
+/* 목차 카드 */
+.card__word { display: block; font-size: 26px; font-weight: 700; line-height: 1.35; }
+.card__kana { margin-left: 10px; font-size: 15px; font-weight: 400; color: var(--muted); }
+.chip--level { background: var(--mark); color: var(--ink); }
+
+/* 상세: 표제어 */
+.word-title { margin-top: 14px; font-size: clamp(48px, 15vw, 76px); font-weight: 900; line-height: 1.15; letter-spacing: 0.02em; }
+.word-kana { margin-top: 8px; font-size: 24px; color: var(--muted); }
+
+/* 한자 풀이 */
+.kanji { display: flex; flex-wrap: wrap; gap: 12px; }
+.kanji__item {
+  flex: 1 1 240px;
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.kanji__char {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px; height: 64px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  border-radius: 12px;
+  font-size: 34px;
+  font-weight: 700;
+}
+.kanji__ko { font-size: 17px; font-weight: 700; }
+.kanji__on { margin-top: 2px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.kanji__note { margin-top: 6px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+
+/* 예문 */
+.ex { padding: 18px 20px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; }
+.ex + .ex { margin-top: 12px; }
+.ex__ja { font-size: 20px; line-height: 2.1; }
+.ex__ko { margin-top: 6px; font-size: 15px; color: var(--muted); }
+ruby rt { font-size: 0.48em; font-weight: 400; color: var(--muted); }
+
+/* 비슷한 말 */
+.near { display: flex; flex-wrap: wrap; gap: 10px; }
+.near__item { flex: 1 1 220px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; }
+.near__w { font-size: 18px; font-weight: 700; }
+.near__d { margin-top: 4px; font-size: 14px; color: var(--muted); line-height: 1.55; }

@@ -16,17 +16,20 @@ const warn = (message) => warnings.push(message);
 const rel = (p) => path.relative(ROOT, p) || '.';
 
 /* ── 데이터 읽기 ───────────────────────────────────── */
-function loadConcepts() {
-  const file = path.join(ROOT, 'data', 'concepts.js');
+function loadData(fileName, key) {
+  const file = path.join(ROOT, 'data', fileName);
   const sandbox = { window: {} };
   vm.runInNewContext(fs.readFileSync(file, 'utf8'), sandbox, { filename: file });
-  const list = sandbox.window.CONCEPTS;
+  const list = sandbox.window[key];
   if (!Array.isArray(list)) {
-    fail('data/concepts.js: window.CONCEPTS 배열이 없습니다.');
+    fail(`data/${fileName}: window.${key} 배열이 없습니다.`);
     return [];
   }
   return list;
 }
+
+const loadConcepts = () => loadData('concepts.js', 'CONCEPTS');
+const loadWords = () => loadData('words.js', 'WORDS');
 
 /* ── 모든 HTML 파일 목록 ───────────────────────────── */
 function htmlFiles() {
@@ -34,6 +37,7 @@ function htmlFiles() {
   const walk = (dir) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+      if (entry.name === '_template.html') continue;
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) walk(full);
       else if (entry.name.endsWith('.html')) out.push(full);
@@ -205,13 +209,106 @@ function checkCategories(concepts) {
   }
 }
 
+/* ── 6. 일본어 단어장 ─────────────────────────────── */
+const WORD_REQUIRED = ['slug', 'word', 'kana', 'meaning', 'pos', 'date'];
+const WORD_IDS = ['head', 'kanji', 'example', 'near', 'summary', 'pager'];
+const KANA_RE = /^[\u3041-\u309F\u30A1-\u30FFー・\s]+$/;
+
+function checkWords(words) {
+  const seenSlug = new Set();
+  const seenWord = new Set();
+
+  words.forEach((item, i) => {
+    const where = `data/words.js [${i}]`;
+    if (!item || typeof item !== 'object') {
+      fail(`${where}: 객체가 아닙니다.`);
+      return;
+    }
+    for (const key of WORD_REQUIRED) {
+      const value = item[key];
+      if (typeof value !== 'string' || value.trim() === '') {
+        fail(`${where} (${item.slug ?? '?'}): 필수 필드 ${key}가 비어 있습니다.`);
+      }
+    }
+    if (typeof item.slug === 'string' && !SLUG_RE.test(item.slug)) {
+      fail(`${where}: slug '${item.slug}'가 규칙(영문 소문자·숫자·하이픈)에 맞지 않습니다.`);
+    }
+    if (typeof item.kana === 'string' && !KANA_RE.test(item.kana)) {
+      fail(`${where} (${item.slug}): kana '${item.kana}'에 가나가 아닌 글자가 있습니다.`);
+    }
+    if (typeof item.date === 'string' && !isRealDate(item.date)) {
+      fail(`${where} (${item.slug}): date '${item.date}'는 실제 날짜(YYYY-MM-DD)가 아닙니다.`);
+    }
+    if (seenSlug.has(item.slug)) fail(`단어 slug 중복: '${item.slug}'`);
+    else seenSlug.add(item.slug);
+    if (seenWord.has(item.word)) fail(`단어 중복: '${item.word}'`);
+    else seenWord.add(item.word);
+  });
+
+  const slugs = words.map((item) => item.slug);
+  if (slugs.join('\u0000') !== [...slugs].sort().join('\u0000')) {
+    warn('data/words.js: 항목이 slug 알파벳순이 아닙니다 (node scripts/sort.mjs 를 돌리세요).');
+  }
+
+  const dir = path.join(ROOT, 'jp', 'words');
+  const files = fs.existsSync(dir)
+    ? fs.readdirSync(dir).filter((n) => n.endsWith('.html')).map((n) => n.replace(/\.html$/, ''))
+    : [];
+  for (const slug of files) {
+    if (!seenSlug.has(slug)) fail(`jp/words/${slug}.html 파일은 있는데 data/words.js에 항목이 없습니다.`);
+  }
+  for (const slug of seenSlug) {
+    if (!files.includes(slug)) fail(`data/words.js의 '${slug}' 항목에 해당하는 jp/words/${slug}.html이 없습니다.`);
+  }
+
+  for (const item of words) {
+    const file = path.join(dir, `${item.slug}.html`);
+    if (!fs.existsSync(file)) continue;
+    const html = fs.readFileSync(file, 'utf8');
+    const where = `jp/words/${item.slug}.html`;
+
+    const bodySlug = html.match(/<body[^>]*\bdata-slug="([^"]*)"/);
+    if (!bodySlug) fail(`${where}: <body data-slug="...">가 없습니다.`);
+    else if (bodySlug[1] !== item.slug) {
+      fail(`${where}: data-slug가 '${bodySlug[1]}'인데 파일명은 '${item.slug}'입니다.`);
+    }
+
+    const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    if (!h1) fail(`${where}: <h1>이 없습니다.`);
+    else if (textOf(h1[1]) !== item.word) {
+      fail(`${where}: <h1> 텍스트 '${textOf(h1[1])}'가 word '${item.word}'와 다릅니다.`);
+    }
+
+    const kana = html.match(/<p class="word-kana">([^<]*)<\/p>/);
+    if (!kana) fail(`${where}: 읽는 법(.word-kana) 줄이 없습니다.`);
+    else if (kana[1].trim() !== item.kana) {
+      fail(`${where}: 읽는 법 '${kana[1].trim()}'가 kana '${item.kana}'와 다릅니다.`);
+    }
+
+    const dates = [...html.matchAll(/<time[^>]*\bdatetime="([^"]*)"/g)].map((m) => m[1]);
+    if (!dates.includes(item.date)) {
+      fail(`${where}: <time datetime="${item.date}">가 없습니다.`);
+    }
+
+    for (const id of WORD_IDS) {
+      if (!new RegExp(`\\bid="${id}"`).test(html)) {
+        fail(`${where}: 필수 id '${id}'가 없습니다.`);
+      }
+    }
+  }
+}
+
 /* ── 실행 ─────────────────────────────────────────── */
 const concepts = loadConcepts();
 checkData(concepts);
 checkPairs(concepts);
 concepts.forEach(checkDetail);
-htmlFiles().forEach(checkHtml);
 checkCategories(concepts);
+
+const words = loadWords();
+checkWords(words);
+
+htmlFiles().forEach(checkHtml);
 
 for (const message of warnings) console.log(`경고  ${message}`);
 
@@ -221,4 +318,4 @@ if (problems.length) {
   process.exit(1);
 }
 
-console.log(`통과: 개념 ${concepts.length}건, HTML ${htmlFiles().length}개 검사 완료${warnings.length ? ` (경고 ${warnings.length}건)` : ''}`);
+console.log(`통과: 개념 ${concepts.length}건, 단어 ${words.length}건, HTML ${htmlFiles().length}개 검사 완료${warnings.length ? ` (경고 ${warnings.length}건)` : ''}`);
