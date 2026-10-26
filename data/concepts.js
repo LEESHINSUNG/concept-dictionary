@@ -209,6 +209,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'ids',
+    title: 'IDS',
+    sub: '침입 탐지 시스템 · Intrusion Detection System · 侵入検知システム',
+    summary: '침입으로 보이는 움직임을 알아채 알려 주는 시스템',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'ietf',
     title: 'IETF',
     sub: '아이이티에프 · Internet Engineering Task Force',

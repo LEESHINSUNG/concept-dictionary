@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IDS — 기억해봐요</title>
+  <meta name="description" content="IDS는 침입으로 보이는 움직임을 알아채 알려 주는 시스템이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ids">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>IDS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">IDS</h1>
+      <p class="reading">침입 탐지 시스템 · Intrusion Detection System · 侵入検知システム</p>
+      <p class="define">IDS는 <mark>침입으로 보이는 움직임을 알아채 알려 주는 시스템</mark>이에요. 막는 게 아니라 <strong>지켜보고 알리는 쪽</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건물의 <strong>CCTV와 경비실</strong>을 떠올려 보세요. 출입문 자물쇠는 사람을 막지만, CCTV는 막지 않아요. 대신 <strong>이상한 움직임이 보이면 경비실에 알려요.</strong> 문이 멀쩡히 잠겨 있어도 누가 담을 넘으면 그건 CCTV가 잡죠.</p>
+      <p>IDS가 그 CCTV예요. 방화벽이 "들어올 수 있냐 없냐"를 문 앞에서 가른다면, IDS는 <strong>이미 들어온 움직임 중에 수상한 것</strong>을 찾아요. 알아채는 방법은 크게 둘이에요. <strong>알려진 공격의 생김새와 맞춰 보거나</strong>, <strong>평소와 다른 패턴을 찾거나</strong>. 앞은 정확하지만 처음 보는 공격은 놓치고, 뒤는 새 공격도 잡지만 헛경보가 많아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">알아채고 알리기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">하지 않는 일</p>
+          <p class="fact__value">막기 (그건 IPS)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">찾는 방법</p>
+          <p class="fact__value">알려진 수법 · 평소와 다름</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">오가는 통신·기록</p>
+          <p class="node__note">그대로 흘러가요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">복사해서 보기<span class="arrow__note">길을 막지 않아요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">IDS</p>
+          <p class="node__note">수상한 것을 가려내요</p>
+          <p>
+            <span class="chip-mono">수법 대조</span>
+            <span class="chip-mono">평소와 비교</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">알림<span class="arrow__note">사람이 판단해요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">담당자</p>
+          <p class="node__note">확인하고 조치해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>IDS는 통신 한가운데 끼어들지 않아요. <strong>흐름을 복사해서 옆에서 들여다봐요.</strong> 그래서 IDS가 멈춰도 서비스는 멀쩡해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>수상한 게 보이면 경보를 올려요. <strong>판단과 조치는 사람 몫</strong>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 <strong>경보를 누가 보느냐</strong>가 전부예요. 아무도 안 보는 IDS는 꺼져 있는 것과 같아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 헛경보와 놓침</p>
+        <p>IDS의 영원한 숙제예요. 민감하게 맞추면 <strong>멀쩡한 일에도 경보가 쏟아져</strong> 사람들이 무시하게 돼요. 느슨하게 맞추면 <strong>진짜 공격을 놓치고요.</strong> 그래서 운영은 설치보다 조율이 훨씬 어려워요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 두 갈래로 나뉘어요</p>
+        <p>어디서 보느냐에 따라 이름이 달라져요. 네트워크를 흐르는 통신을 보면 <strong>NIDS</strong>, 서버 한 대 안을 들여다보면 <strong>HIDS</strong>예요. 둘은 보는 자리가 달라서 보통 함께 씁니다.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 기록이 있어야 보여요</p>
+        <p>IDS가 보는 재료는 결국 통신과 기록이에요. <a href="audit-trail.html">감사 증적</a>이 제대로 남지 않으면 <strong>볼 것이 없어</strong> 탐지도 되지 않아요. 사고가 난 뒤 되짚을 때도 마찬가지고요.</p>
+      </div>
+
+      <p class="callout">막는 쪽과 보는 쪽은 역할이 달라요. <strong>막으면 서비스가 끊길 위험</strong>이 있고, <strong>보기만 하면 당하고 나서 알게 될 위험</strong>이 있어요. 그래서 중요한 길목에는 둘을 함께 둬요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">막지는 않아요. 알아채고 알려요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
