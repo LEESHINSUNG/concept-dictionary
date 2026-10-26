@@ -121,6 +121,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'cve',
+    title: 'CVE',
+    sub: '공통 취약점 식별자 · Common Vulnerabilities and Exposures · 共通脆弱性識別子',
+    summary: '취약점 하나하나에 전 세계가 함께 쓰는 번호를 붙이는 체계',
+    category: '보안',
+    date: '2026-10-27'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',

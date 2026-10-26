@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CVE — 기억해봐요</title>
+  <meta name="description" content="CVE는 취약점 하나하나에 전 세계가 함께 쓰는 번호를 붙이는 체계예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="cve">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>CVE</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">취약점</span>
+      </div>
+      <h1 class="title">CVE</h1>
+      <p class="reading">공통 취약점 식별자 · Common Vulnerabilities and Exposures · 共通脆弱性識別子</p>
+      <p class="define">CVE는 <mark>취약점 하나하나에 전 세계가 함께 쓰는 번호를 붙이는 체계</mark>예요. <strong>같은 구멍을 같은 이름으로 부르자</strong>는 아주 단순한 약속이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 보안 › 취약점</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>감기약을 사는데 가게마다 이름이 다르다고 해 볼게요. 한쪽은 "코감기약", 한쪽은 "감기정". 같은 약인지 아닌지 알 수가 없죠. 그래서 약에는 <strong>어디서나 통하는 고유 번호</strong>가 붙어 있어요.</p>
+      <p>취약점도 똑같았어요. 보안 회사마다 제 나름의 이름을 붙이니 <strong>"우리가 막은 그 구멍과 네가 말하는 구멍이 같은 거냐"</strong>를 매번 확인해야 했죠. CVE는 그걸 끝낸 체계예요. 구멍 하나에 번호 하나. <strong>CVE는 번호만 줄 뿐</strong> 얼마나 위험한지는 말해 주지 않아요. 그건 <strong>CVSS</strong>가 따로 맡아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">취약점에 공통 번호 붙이기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">번호 모양</p>
+          <p class="fact__value fact__value--mono">CVE-연도-일련번호</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">하지 않는 일</p>
+          <p class="fact__value">위험도 매기기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">취약점 발견</p>
+          <p class="node__note">연구자 · 제조사 · 사용자</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">신고<span class="arrow__note">번호 발급 기관에</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">CVE 번호 발급</p>
+          <p class="node__note">구멍 하나에 번호 하나</p>
+          <p><span class="chip-mono">CVE-2026-12345</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">같은 번호로<span class="arrow__note">모두가 같은 말</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">공유</p>
+          <p class="node__note">패치·공지·점검 도구</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>번호는 아무나 붙이지 않아요. <strong>번호를 줄 권한을 받은 기관</strong>들이 있고, 큰 소프트웨어 회사는 자기 제품에 대해 직접 번호를 발급하기도 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>번호는 <code>CVE-연도-일련번호</code> 모양이에요. 연도는 발견한 해가 아니라 <strong>번호를 받은 해</strong>예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>이후 모든 공지와 도구가 그 번호를 씁니다. <strong>"CVE-2026-12345 패치했나요?"</strong> 한마디로 대화가 끝나요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 점검 도구가 말하는 언어</p>
+        <p>서버를 훑어 "이 버전에는 <code>CVE-…</code> 세 개가 해당됩니다"라고 알려 주는 도구들이 있어요. 전부 CVE 번호를 기준으로 맞춰 보는 거예요. <strong>번호가 공통이라 도구를 바꿔도 결과를 이어서 쓸 수 있어요.</strong></p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 번호가 있다고 다 급한 건 아니에요</p>
+        <p>CVE가 수만 개씩 쌓이지만 <strong>우리 환경과 상관없는 것이 대부분</strong>이에요. 쓰지 않는 기능이거나, 외부에서 닿을 수 없는 자리이기도 하고요. 그래서 번호만 보고 다 고치려 들면 끝이 없어요. <strong>위험도와 우리 상황을 함께 봐야</strong> 해요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 번호가 없는 구멍</p>
+        <p>아직 아무도 모르는 취약점에는 번호가 없어요. <a href="zero-day.html">제로데이</a>가 그런 상태죠. 번호가 붙었다는 건 <strong>적어도 세상에 알려졌고 고칠 길이 생겼다는 뜻</strong>이기도 해요.</p>
+      </div>
+
+      <p class="callout">CVE는 <strong>이름표일 뿐</strong>이에요. 그래서 "CVE 번호가 있다 = 위험하다"가 아니라, <strong>"이제 같은 말로 이야기할 수 있다"</strong>로 읽어야 해요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">같은 구멍을, 같은 이름으로.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 보안 › 취약점</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
