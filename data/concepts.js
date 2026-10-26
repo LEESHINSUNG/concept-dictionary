@@ -153,6 +153,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'ev-certificate',
+    title: 'EV 인증서',
+    sub: '확장 검증 인증서 · Extended Validation certificate · EV証明書',
+    summary: '운영 주체가 실재하는 법인인지까지 확인하고 내주는 인증서',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'file-descriptor',
     title: '파일 디스크립터',
     sub: '파일 기술자 · file descriptor · ファイルディスクリプタ',

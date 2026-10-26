@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EV 인증서 — 기억해봐요</title>
+  <meta name="description" content="EV 인증서는 도메인뿐 아니라 운영 주체가 실재하는 법인인지까지 확인하고 내주는 인증서예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ev-certificate">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>EV 인증서</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">인증서</span>
+      </div>
+      <h1 class="title">EV 인증서</h1>
+      <p class="reading">확장 검증 인증서 · Extended Validation certificate · EV証明書</p>
+      <p class="define">EV 인증서는 <mark>도메인 주인인지뿐 아니라 운영하는 곳이 실재하는 법인인지까지 확인하고 내주는 인증서</mark>예요. <strong>심사가 가장 까다로운 등급</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 인증서</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>신분 확인에도 급이 있죠. <strong>문자로 받은 번호만 넣으면 되는 확인</strong>과, <strong>등본과 사업자등록증을 내고 담당자와 통화까지 하는 확인</strong>은 다른 일이에요. 인증서도 똑같아요.</p>
+      <p>가장 흔한 <strong>DV</strong>는 "이 도메인 진짜 네 거 맞아?"만 봐요. 자동으로, 몇 분이면 끝나죠. <strong>EV</strong>는 거기서 더 들어가 <strong>법인 등기, 실제 주소, 담당자 확인</strong>까지 거쳐요. 그래서 비싸고 오래 걸려요. 중요한 건 <strong>통신을 지키는 힘은 똑같다</strong>는 점이에요. 암호화는 어느 쪽이든 같고, 달라지는 건 <strong>"이 사이트를 누가 운영하는가"를 얼마나 확인했느냐</strong>뿐이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">확인하는 것</p>
+          <p class="fact__value">도메인 + 법인 실재 여부</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">같은 것</p>
+          <p class="fact__value">암호화 세기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">다른 등급</p>
+          <p class="fact__value fact__value--mono">DV · OV · EV</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">회사가 신청</p>
+          <p class="node__note">등기부·사업자 서류 제출</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">사람이 심사<span class="arrow__note">자동으로 안 돼요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">인증 기관</p>
+          <p class="node__note">법인이 실재하는지 확인해요</p>
+          <p><span class="chip-mono">EV 심사</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">서명해서 발급<span class="arrow__note">기관의 비밀키로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">인증서</p>
+          <p class="node__note">회사 이름이 담겨 있어요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>인증서는 <strong>"이 공개키는 이 사이트의 것이 맞다"</strong>를 믿을 수 있는 기관이 보증해 주는 문서예요. 보증은 <a href="digital-signature.html">전자서명</a>으로 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>EV는 그 보증 전에 <strong>법인 등기와 실제 운영 주체</strong>까지 확인해요. 서류와 사람 손을 거치니 며칠씩 걸려요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>발급된 인증서 안에는 <strong>회사의 공식 이름</strong>이 들어가요. 브라우저에서 자물쇠를 눌러 인증서를 열어 보면 그 이름을 확인할 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 초록색 주소창은 사라졌어요</p>
+        <p>예전에는 EV 인증서를 쓰면 주소창에 <strong>회사 이름이 초록색으로</strong> 떴어요. 그런데 그 표시를 사람들이 거의 보지 않고, <strong>비슷한 이름으로 법인을 만들어 흉내</strong> 낼 수도 있다는 게 드러났죠. 그래서 지금 주요 브라우저들은 그 눈에 띄는 표시를 없앴어요. <strong>인증서를 열어 봐야 이름이 보여요.</strong></p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 자물쇠가 "안전한 사이트"는 아니에요</p>
+        <p>흔한 오해예요. 자물쇠는 <strong>"오가는 내용이 암호화됐다"</strong>는 뜻이지 <strong>"이 사이트가 착하다"</strong>는 뜻이 아니에요. 요즘은 DV 인증서를 무료로 몇 분 만에 받을 수 있어서 <strong>가짜 사이트에도 자물쇠가 달려 있어요.</strong> 자물쇠가 아니라 주소를 봐야 해요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 그래도 쓰는 이유</p>
+        <p>표시가 사라졌어도 금융기관처럼 <strong>운영 주체를 분명히 밝혀야 하는 곳</strong>에서는 여전히 써요. 감사나 규정에서 요구하기도 하고, <strong>발급 과정에서 실재 법인임이 확인된다는 사실 자체</strong>가 의미를 갖기도 하니까요.</p>
+      </div>
+
+      <p class="callout">정리하면 DV·OV·EV는 <strong>자물쇠의 세기 차이가 아니라 신원 확인의 깊이 차이</strong>예요. 통신 보호는 셋 다 똑같습니다.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">암호가 아니라, 신원 확인이 깊은 거예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 인증서</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
