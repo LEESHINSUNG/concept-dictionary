@@ -153,6 +153,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'file-descriptor',
+    title: '파일 디스크립터',
+    sub: 'file descriptor · 파일 기술자',
+    summary: '열어 둔 통로마다 운영체제가 붙여 주는 번호표',
+    category: '운영체제',
+    date: '2026-10-26'
+  },
+  {
     slug: 'fishbone-diagram',
     title: '특성요인도',
     sub: 'fishbone diagram · 이시카와 다이어그램',

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>파일 디스크립터 — 기억해봐요</title>
+  <meta name="description" content="파일 디스크립터는 열어 둔 통로에 운영체제가 붙여 주는 번호표예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 0·1·2 예약 번호 표 */
+    .fds { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+    .fd {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .fd__no {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 10px;
+      font-family: var(--mono);
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .fd__name { flex: 1 1 110px; font-size: 16px; font-weight: 700; }
+    .fd__eg { flex: 0 1 auto; font-size: 14px; color: var(--muted); text-align: right; }
+    @media (max-width: 479px) {
+      .fd { flex-wrap: wrap; gap: 8px 12px; }
+      .fd__eg { flex: 1 1 100%; text-align: left; }
+    }
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="file-descriptor">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>파일 디스크립터</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">입출력</span>
+      </div>
+      <h1 class="title">파일 디스크립터</h1>
+      <p class="reading">file descriptor · 파일 기술자 · FD</p>
+      <p class="define">파일 디스크립터는 <mark>열어 둔 통로마다 운영체제가 붙여 주는 번호표</mark>예요. 0·1·2는 <strong>미리 자리가 정해져</strong> 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 운영체제 › 입출력</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>호텔에서 손님에게 <strong>객실 번호</strong>를 주죠. 체크인한 뒤로 직원들은 이름 대신 "302호 손님"이라고 불러요. 손님이 누구든, 짐이 얼마나 많든 상관없어요. <strong>번호 하나로 다 통하니까요.</strong> 체크아웃하면 그 번호는 비고, 다음 손님이 받아요.</p>
+      <p>프로그램이 무언가를 열면 운영체제가 그 번호를 하나 내줘요. 신기한 건 <strong>무엇을 열든 똑같다</strong>는 점이에요. 파일이든, 네트워크 연결이든, 키보드든 전부 번호표 하나로 바뀌어요. 그래서 프로그램은 <strong>"3번에 써라"</strong>라고만 하면 되고, 그게 파일인지 인터넷 너머의 서버인지는 몰라도 돼요. 유닉스의 <strong>"모든 것은 파일처럼 다룬다"</strong>는 생각이 여기서 나와요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">정체</p>
+          <p class="fact__value">작은 정수 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">받는 때</p>
+          <p class="fact__value">파일·연결을 열 때</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">돌려주는 때</p>
+          <p class="fact__value">닫을 때 (재사용됨)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">열기</p>
+          <p class="node__note">파일 · 연결 · 장치</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">번호 발급<span class="arrow__note">빈 번호 중 가장 작은 것</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">파일 디스크립터</p>
+          <p class="node__note">무엇을 열었든 번호 하나로</p>
+          <p><span class="chip-mono">3</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">번호로 읽고 쓰기<span class="arrow__note">정체는 몰라도 돼요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">닫기</p>
+          <p class="node__note">번호가 반납돼요</p>
+        </div>
+      </div>
+
+      <p style="margin: 22px 0 0; color: var(--muted); font-size: 15px;">프로그램이 시작될 때 0·1·2는 이미 열려 있어요.</p>
+
+      <div class="fds">
+        <div class="fd">
+          <span class="fd__no" aria-hidden="true">0</span>
+          <span class="fd__name">표준입력</span>
+          <span class="fd__eg">키보드에서 들어오는 길</span>
+        </div>
+        <div class="fd">
+          <span class="fd__no" aria-hidden="true">1</span>
+          <span class="fd__name"><a href="stdout.html">표준출력</a></span>
+          <span class="fd__eg">결과가 나가는 길</span>
+        </div>
+        <div class="fd">
+          <span class="fd__no" aria-hidden="true">2</span>
+          <span class="fd__name"><a href="stderr.html">표준에러</a></span>
+          <span class="fd__eg">오류가 나가는 길</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>프로그램이 시작되면 셸이 <strong>0·1·2를 미리 열어 줘요.</strong> 그래서 아무 준비 없이도 바로 화면에 찍고 키보드를 읽을 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그 뒤에 파일을 열면 <strong>비어 있는 가장 작은 번호</strong>가 나와요. 보통 3번부터죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>닫으면 번호가 반납돼 <strong>다음에 여는 것이 그 번호를 받아요.</strong> 그래서 번호는 "그 파일의 이름"이 아니라 <strong>지금 이 프로그램 안에서만 통하는 자리표</strong>예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>셸에서 쓰던 <code>2&gt;</code>의 2가 바로 이 번호예요. 번호를 직접 열어 쓸 수도 있어요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> exec 3&gt; note.txt     <span class="c-comment"># 3번을 파일에 연결해 열어 둬요</span>
+<span class="c-prompt">$</span> echo <span class="c-string">"첫 줄"</span> &gt;&amp;3      <span class="c-comment"># 3번으로 내보내요</span>
+<span class="c-prompt">$</span> exec 3&gt;&amp;-            <span class="c-comment"># 3번을 닫아요</span>
+<span class="c-prompt">$</span> cat note.txt
+첫 줄</code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">"Too many open files"</p>
+        <p>흔히 만나는 오류예요. <strong>열기만 하고 닫지 않아 번호가 바닥난</strong> 상태죠. 한 프로그램이 쓸 수 있는 번호에는 상한이 있거든요. 파일을 다루는 코드에서 <strong>닫는 것을 잊지 말라</strong>고 하는 이유가 이거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">번호는 프로그램마다 따로예요</p>
+        <p>내 프로그램의 3번과 옆 프로그램의 3번은 <strong>전혀 다른 것</strong>을 가리켜요. 호텔 방 번호가 호텔마다 따로인 것과 같아요. 그래서 번호를 다른 프로그램에 그냥 넘겨 줄 수는 없어요.</p>
+      </div>
+
+      <p class="callout">셸에서 <code>&gt;</code>나 <code>2&gt;</code>가 하는 일은 결국 <strong>"이 번호가 가리키는 곳을 바꿔치기"</strong>예요. 프로그램은 여전히 1번·2번에 쓸 뿐인데, 그 번호 뒤가 화면에서 파일로 바뀐 거죠.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">열어 둔 통로마다 붙는, 번호표.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 운영체제 › 입출력</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
