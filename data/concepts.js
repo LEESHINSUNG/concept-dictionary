@@ -385,6 +385,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'stdout',
+    title: '표준출력',
+    sub: 'stdout · standard output',
+    summary: '프로그램이 결과를 내보내는 기본 통로',
+    category: '운영체제',
+    date: '2026-10-26'
+  },
+  {
     slug: 'symmetric-key',
     title: '공통키',
     sub: '대칭키 · symmetric key',

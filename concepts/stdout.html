@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>표준출력 — 기억해봐요</title>
+  <meta name="description" content="표준출력은 프로그램이 결과를 내보내는 기본 통로예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="stdout">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>표준출력</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">입출력</span>
+      </div>
+      <h1 class="title">표준출력</h1>
+      <p class="reading">stdout · standard output</p>
+      <p class="define">표준출력은 <mark>프로그램이 결과를 내보내는 기본 통로</mark>예요. 보통 화면으로 이어져 있지만, <strong>밖에서 다른 곳으로 갈아 끼울 수 있어요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 운영체제 › 입출력</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>공장의 <strong>출고구</strong>를 떠올려 보세요. 완성품을 거기 올려놓으면 끝이에요. 그 뒤에 트럭에 실리는지 창고로 가는지는 <strong>공장이 알 바가 아니죠.</strong> 그래서 출고구 뒤를 바꿔도 공장 안은 한 줄도 고칠 필요가 없어요.</p>
+      <p>프로그램도 똑같아요. 결과를 <strong>"표준출력"이라는 자리에 내놓을 뿐</strong>이고, 그게 어디로 흘러갈지는 밖에서 정해요. 기본값이 화면이라 평소엔 화면에 찍히는 것처럼 보이지만, 명령 한 글자만 붙이면 그대로 <strong>파일에 쌓이거나 다음 프로그램의 입구로</strong> 들어가요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">번호</p>
+          <p class="fact__value fact__value--mono">1</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">기본 연결</p>
+          <p class="fact__value">터미널 화면</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">바꾸는 법</p>
+          <p class="fact__value fact__value--mono">&gt; 파일 · | 명령</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">프로그램</p>
+          <p class="node__note">결과를 내놓기만 해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">내보내기<span class="arrow__note">어디로 갈지는 몰라요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">표준출력</p>
+          <p class="node__note">1번 통로</p>
+          <p><span class="chip-mono">갈아 끼울 수 있음</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">연결된 곳으로<span class="arrow__note">밖에서 정해요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">화면 · 파일 · 다음 명령</p>
+          <p class="node__note">셋 다 프로그램은 모르는 일</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>프로그램은 <strong>"1번으로 내보내라"</strong>고만 해요. 상대가 화면인지 파일인지 묻지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그 1번이 무엇과 이어져 있는지는 <strong>프로그램을 실행하는 쪽</strong>이 정해요. 셸에서 <code>&gt;</code>를 쓰면 파일로, <code>|</code>를 쓰면 다음 명령의 입구로 이어 줘요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>덕분에 작은 명령들을 <strong>레고처럼 이어 붙일 수 있어요.</strong> 유닉스 계열에서 명령 하나하나가 단순한 이유가 이거예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>같은 명령인데 뒤에 뭘 붙이느냐에 따라 결과가 어디로 가는지 달라져요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> echo <span class="c-string">"안녕"</span>
+안녕                      <span class="c-comment"># 기본값: 화면으로</span>
+
+<span class="c-prompt">$</span> echo <span class="c-string">"안녕"</span> &gt; out.txt      <span class="c-comment"># 파일로 흘려보내요</span>
+<span class="c-prompt">$</span> cat out.txt
+안녕
+
+<span class="c-prompt">$</span> echo <span class="c-string">"안녕"</span> | wc -c        <span class="c-comment"># 다음 명령의 입구로</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">왜 화면에 아무것도 안 뜰까</p>
+        <p><code>&gt; out.txt</code>를 붙인 줄에서는 화면에 아무것도 나오지 않아요. <strong>길이 화면에서 파일로 갈아 끼워졌기 때문</strong>이에요. <code>echo</code>는 평소와 똑같이 일했을 뿐인데 말이죠. <code>&gt;&gt;</code>를 쓰면 덮어쓰는 대신 뒤에 이어 붙여요.</p>
+      </div>
+
+      <p class="callout">오류 메시지는 이 통로로 나오지 않아요. 그건 <strong>2번</strong>이라는 다른 길로 따로 나가거든요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">내놓기만 해요. 어디로 갈지는 밖에서.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 운영체제 › 입출력</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
