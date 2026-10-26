@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EUC 통제 감사 — 기억해봐요</title>
+  <meta name="description" content="EUC 통제 감사는 현업이 직접 만든 엑셀과 도구를 관리 대상으로 올려 점검하는 일이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="euc-control">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>EUC 통제 감사</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">내부 통제</span>
+      </div>
+      <h1 class="title">EUC 통제 감사</h1>
+      <p class="reading">End User Computing control · EUC統制</p>
+      <p class="define">EUC 통제 감사는 <mark>현업이 직접 만들어 쓰는 엑셀과 도구를 관리 대상으로 올려 점검하는 일</mark>이에요. <strong>보이지 않던 도구를 보이게 만드는 것</strong>이 출발점이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 업무 시스템 › 내부 통제</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사의 엘리베이터는 정기 점검을 받죠. 그런데 창고 구석에서 <strong>누군가 직접 만들어 쓰는 사다리</strong>는 점검표에 없어요. 매일 그걸로 높은 선반에 올라가는데도요. <strong>공식 설비가 아니니까 목록에도 없는</strong> 거예요.</p>
+      <p><strong>EUC</strong>는 End User Computing, 곧 <strong>IT 부서가 아니라 현업이 직접 만들어 쓰는 것</strong>을 말해요. <a href="spreadsheet.html">스프레드시트</a>가 대표적이죠. 문제는 그 파일이 <strong>결산 숫자나 고객 명단처럼 중요한 일</strong>을 떠받치고 있는데도, 공식 시스템에 걸리는 점검이 하나도 적용되지 않는다는 점이에요. EUC 통제 감사는 그 틈을 메우는 일이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">EUC 뜻</p>
+          <p class="fact__value">현업이 직접 만든 도구</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">문제</p>
+          <p class="fact__value">중요한데 점검 대상이 아님</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">첫걸음</p>
+          <p class="fact__value">어디에 무엇이 있는지 찾기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">흩어진 파일들</p>
+          <p class="node__note">누가 만들었는지도 몰라요</p>
+          <p><span class="chip-mono">최종_최종2.xlsx</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">찾아서 목록화<span class="arrow__note">일단 드러내요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">EUC 통제</p>
+          <p class="node__note">중요한 것만 골라 관리해요</p>
+          <p>
+            <span class="chip-mono">책임자</span>
+            <span class="chip-mono">변경 이력</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">점검<span class="arrow__note">정기적으로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">설명할 수 있는 상태</p>
+          <p class="node__note">누가 언제 무엇을 바꿨는지</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>찾아내는 것이 먼저</strong>예요. 대부분의 회사는 어떤 파일이 어떤 업무를 떠받치는지 목록조차 없어요. 각 팀에 물어 적어 내려가는 데서 시작해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>찾았다고 다 관리하지는 않아요. <strong>틀리면 돈이나 신뢰가 걸리는 것</strong>부터 골라요. 전부 통제하려 들면 현업이 숨겨 버려서 오히려 안 보이게 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>고른 것에는 <strong>책임자, 보관 위치, 접근 권한, 변경 이력, 백업</strong>을 붙여요. 공식 시스템이 당연히 갖춘 것들을 뒤늦게 달아 주는 셈이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 수식 한 줄이 결산을 흔들어요</p>
+        <p>합계 범위가 한 줄 모자라게 잡혀 있었는데 <strong>숫자가 그럴듯해서 아무도 몰랐어요.</strong> 몇 달 뒤 외부 감사에서 드러나죠. 사람이 나빠서가 아니라 <strong>검토하는 절차가 없었기 때문</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 만든 사람이 퇴사했어요</p>
+        <p>파일은 남아 있는데 <strong>왜 그렇게 계산했는지 아는 사람이 없어요.</strong> 고치지도 못하고 버리지도 못한 채 계속 돌리게 되죠. 책임자를 정해 두고 설명을 남기게 하는 이유예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 왜 감사에서 꼭 물을까</p>
+        <p>중요한 숫자가 <strong>아무도 손댄 기록이 없는 파일</strong>에서 나온다면, 그 숫자를 믿을 근거가 없어요. <a href="audit-trail.html">감사 증적</a>이 필요한 이유와 같아요. <a href="fraud-triangle.html">부정 트라이앵글 이론</a>으로 보면, 혼자 만들고 혼자 고치는 상태는 <strong>'기회'가 활짝 열린 자리</strong>이기도 해요.</p>
+      </div>
+
+      <p class="callout">목표는 엑셀을 못 쓰게 하는 게 아니에요. <strong>빠르게 만들 수 있다는 장점은 그대로 두되, 중요한 것만 보이는 곳으로 올려 두는 것</strong>이에요. <a href="safeguard.html">세이프가드</a>는 지킬 수 있는 만큼만 걸어야 한다는 원칙이 여기서도 그대로예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">보이지 않는 도구를, 보이게 만드는 일.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 업무 시스템 › 내부 통제</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

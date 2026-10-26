@@ -185,6 +185,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'euc-control',
+    title: 'EUC 통제 감사',
+    sub: 'End User Computing control · EUC統制',
+    summary: '현업이 직접 만든 엑셀·도구를 관리 대상으로 올려 점검하는 일',
+    category: '업무 시스템',
+    date: '2026-10-27'
+  },
+  {
     slug: 'ev-certificate',
     title: 'EV 인증서',
     sub: '확장 검증 인증서 · Extended Validation certificate · EV証明書',
