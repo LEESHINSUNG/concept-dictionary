@@ -49,6 +49,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'captcha',
+    title: 'CAPTCHA',
+    sub: '캡차 · 사람과 컴퓨터를 가려내는 자동 시험',
+    summary: '사람인지 프로그램인지 가려내려고 내는 시험',
+    category: '보안',
+    date: '2026-10-26'
+  },
+  {
     slug: 'client',
     title: '클라이언트',
     sub: 'client · クライアント',

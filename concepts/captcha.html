@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CAPTCHA — 기억해봐요</title>
+  <meta name="description" content="CAPTCHA는 사람인지 프로그램인지 가려내려고 내는 시험이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="captcha">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>CAPTCHA</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">인증</span>
+      </div>
+      <h1 class="title">CAPTCHA</h1>
+      <p class="reading">캡차 · 사람과 컴퓨터를 가려내는 자동 시험</p>
+      <p class="define">CAPTCHA는 <mark>지금 조작하는 쪽이 사람인지 프로그램인지 가려내려고 내는 시험</mark>이에요. <strong>사람은 쉽고 기계는 어려운 문제</strong>를 고르는 게 핵심이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-26">2026-10-26</time></span>
+        <span>카테고리 보안 › 인증</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>콘서트 티켓을 파는데 <strong>한 사람이 수천 장을 쓸어 가면</strong> 곤란하죠. 그래서 "직접 와서 줄을 서세요" 같은 조건을 걸어요. <strong>사람이라면 번거롭지만 할 수 있고, 대신 한 번에 수천 명을 줄 세울 수는 없는</strong> 조건이요.</p>
+      <p>CAPTCHA가 그 줄서기예요. 비밀번호처럼 <strong>"네가 누구냐"</strong>를 묻는 게 아니라 <strong>"네가 사람이냐"</strong>를 물어요. 회원가입, 댓글, 티켓 예매처럼 <strong>기계가 끝없이 반복하면 곤란한 자리</strong>에 세워 둬요. 이름을 풀면 '사람과 컴퓨터를 가려내는, 완전히 자동화된 공개 시험'이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">묻는 것</p>
+          <p class="fact__value">누구냐가 아니라 사람이냐</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">세우는 자리</p>
+          <p class="fact__value">가입 · 댓글 · 예매</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">조건</p>
+          <p class="fact__value">사람은 쉽고 기계는 어려울 것</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">요청</p>
+          <p class="node__note">가입 · 글쓰기 · 예매</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">시험 내기<span class="arrow__note">매번 다른 문제로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">CAPTCHA</p>
+          <p class="node__note">사람인지 가려내요</p>
+          <p>
+            <span class="chip-mono">문제</span>
+            <span class="chip-mono">행동 관찰</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">통과한 것만<span class="arrow__note">아니면 되돌려 보내요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">처리</p>
+          <p class="node__note">사람의 요청으로 받아들여요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>문제는 <strong>매번 새로 만들어야</strong> 해요. 같은 문제가 반복되면 답을 외워 버리면 그만이니까요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>옛날에는 <strong>찌그러진 글자 읽기</strong>가 흔했어요. 기계가 글자를 잘 못 읽던 시절의 이야기예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>요즘은 문제를 풀게 하는 대신 <strong>마우스가 움직인 모양, 눌린 속도, 평소 행동</strong>을 보고 조용히 판단하는 쪽이 늘었어요. 그래서 체크 한 번으로 넘어가는 경우가 많아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 기계가 사람보다 잘 읽게 됐어요</p>
+        <p>글자 읽기 문제는 이제 <strong>기계가 사람보다 더 잘 풀어요.</strong> 그래서 문제를 더 어렵게 만들었더니 <strong>사람이 못 푸는</strong> 일이 벌어졌죠. 이 방식이 한계에 부딪힌 이유예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 막지 못하는 길</p>
+        <p>공격자는 문제를 풀지 않고 <strong>사람에게 돈을 주고 대신 풀게</strong> 할 수도 있어요. 그러면 CAPTCHA는 그대로 통과돼요. 그래서 CAPTCHA는 <strong>완전히 막는 장치가 아니라 비용을 올리는 장치</strong>로 봐야 해요. 공짜로 무한정 하던 일을 돈 드는 일로 바꾸는 거죠.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 누군가에겐 벽이 돼요</p>
+        <p>눈이 잘 보이지 않는 사람에게 그림 문제는 <strong>넘을 수 없는 벽</strong>이에요. 그래서 소리로 듣는 대안을 함께 두도록 권해요. <strong>보안을 올리려다 쓸 수 없게 만들면 안 된다</strong>는 <a href="safeguard.html">세이프가드</a>의 원칙이 여기서도 그대로예요.</p>
+      </div>
+
+      <p class="callout">가입이나 로그인에서 <strong>늘</strong> 시험을 내면 사람들이 지쳐요. 그래서 요즘은 수상할 때만 시험을 내는 쪽으로 가요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">누구냐가 아니라, 사람이냐를 물어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-26 · 카테고리 보안 › 인증</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
