@@ -393,6 +393,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'ppp',
+    title: 'PPP',
+    sub: '점대점 프로토콜 · Point-to-Point Protocol',
+    summary: '두 지점을 선 하나로 직접 이을 때 쓰는 규약',
+    category: '네트워크',
+    date: '2026-10-27'
+  },
+  {
     slug: 'protocol',
     title: '프로토콜',
     sub: '통신 규약 · protocol · プロトコル',

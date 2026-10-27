@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PPP — 기억해봐요</title>
+  <meta name="description" content="PPP는 두 지점을 선 하나로 직접 이을 때 쓰는 규약이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ppp">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>PPP</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">전송 규격</span>
+      </div>
+      <h1 class="title">PPP</h1>
+      <p class="reading">점대점 프로토콜 · Point-to-Point Protocol</p>
+      <p class="define">PPP는 <mark>두 지점을 선 하나로 직접 이을 때 쓰는 규약</mark>이에요. 여럿이 나눠 쓰는 <a href="lan.html">LAN</a>과 달리 <strong>딱 둘만 마주 보는</strong> 상황을 다뤄요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 네트워크 › 전송 규격</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>교실에서 여럿이 이야기하려면 <strong>누가 말할 차례인지</strong>를 정해야 하죠. 그런데 둘이서 전화로 이야기한다면 그런 규칙이 필요 없어요. <strong>상대가 한 명뿐</strong>이니까요.</p>
+      <p>PPP가 그 전화 통화예요. <a href="ethernet.html">Ethernet</a>이 여럿이 한 망을 나눠 쓰는 상황을 다룬다면, PPP는 <strong>두 지점이 선 하나로 마주 본 상황</strong>을 다뤄요. 그래서 <strong>주소로 상대를 찾는 일이 없어요.</strong> 보낼 곳은 어차피 하나니까요. 대신 다른 일을 해요. <strong>상대가 누구인지 확인하고(인증), 양쪽 설정을 맞추고, 통신이 살아 있는지 확인</strong>하는 일이요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">다루는 상황</p>
+          <p class="fact__value">두 지점을 직접 연결</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">인증 · 설정 맞춤 · 상태 확인</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰이는 곳</p>
+          <p class="fact__value">인터넷 가입 회선 · 전용선</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">내 쪽 장비</p>
+          <p class="node__note">아이디와 비밀번호를 가지고 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">연결 맺기<span class="arrow__note">설정부터 맞춰요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">PPP</p>
+          <p class="node__note">확인하고 길을 열어요</p>
+          <p>
+            <span class="chip-mono">인증</span>
+            <span class="chip-mono">IP 배정</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">통신 시작<span class="arrow__note">상대는 하나뿐</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">통신사 장비</p>
+          <p class="node__note">여기서 인터넷으로 이어져요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>양쪽 설정을 맞춰요.</strong> 한 번에 보낼 크기, 쓸 기능 같은 것을 주고받아 합의해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>다음은 <strong>인증</strong>이에요. 아이디와 비밀번호로 "이 회선을 쓸 자격이 있는지"를 확인해요. 인터넷에 가입할 때 받은 그 계정이 여기 쓰여요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>통과하면 <strong>쓸 IP 주소를 받아</strong> 통신이 시작돼요. 연결이 살아 있는지도 주기적으로 확인하고요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 공유기에 적는 그 아이디</p>
+        <p>인터넷을 새로 신청하면 아이디와 비밀번호를 받아 공유기에 입력하죠. 그 방식이 <strong>PPPoE</strong>, 이름 그대로 <strong>이더넷 위에서 돌리는 PPP</strong>예요. 랜선으로 들어오지만 <strong>통신사와 우리 집은 둘만 마주 본 사이</strong>라 PPP의 인증이 그대로 쓰이는 거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 왜 인증이 들어 있을까</p>
+        <p>LAN 안에서는 누가 들어왔는지 따지지 않아요. 하지만 통신사 입장에서는 <strong>요금을 내는 가입자인지</strong> 확인해야 하죠. <strong>둘만 마주 보는 회선이라 그 자리에서 확인할 수 있다</strong>는 게 PPP의 특징이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 오래됐지만 남아 있어요</p>
+        <p>전화선으로 인터넷을 쓰던 시절에 만들어진 규약이에요. 그 시절 모습은 사라졌지만 <strong>인증과 주소 배정이라는 뼈대</strong>가 쓸모 있어서, 지금도 가입 회선과 일부 <a href="vpn.html">VPN</a> 방식 안에 남아 있어요.</p>
+      </div>
+
+      <p class="callout">시험에서는 <strong>"둘만 마주 보는 연결"</strong>이라는 점과 <strong>인증 기능이 있다</strong>는 점이 자주 나와요. Ethernet과 비교해 기억하면 헷갈리지 않아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">상대가 하나뿐일 때의 규칙.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 네트워크 › 전송 규격</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
