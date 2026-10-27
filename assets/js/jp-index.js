@@ -133,13 +133,6 @@
     var meta = document.createElement('span');
     meta.className = 'card__meta';
 
-    if (W.isNew(item)) {
-      var badge = document.createElement('span');
-      badge.className = 'chip chip--new';
-      badge.textContent = 'NEW';
-      meta.appendChild(badge);
-    }
-
     if (item.level) {
       var level = document.createElement('span');
       level.className = 'chip chip--level';
@@ -164,6 +157,15 @@
 
     link.appendChild(main);
     link.appendChild(meta);
+
+    if (W.isNew(item)) {
+      link.className += ' card--new';
+      var badge = document.createElement('span');
+      badge.className = 'chip chip--new';
+      badge.textContent = 'NEW';
+      link.appendChild(badge);
+    }
+
     return link;
   }
 

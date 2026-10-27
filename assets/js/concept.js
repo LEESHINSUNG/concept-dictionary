@@ -12,12 +12,12 @@
 
   // 최근에 추가된 개념이면 칩 줄 맨 앞에 NEW
   if (C.isNew(item)) {
-    var chips = document.querySelector('#head .chips');
-    if (chips) {
+    var head = document.getElementById('head');
+    if (head) {
       var badge = document.createElement('span');
       badge.className = 'chip chip--new';
       badge.textContent = 'NEW';
-      chips.insertBefore(badge, chips.firstChild);
+      head.appendChild(badge);
     }
   }
 
