@@ -553,6 +553,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'statement-of-applicability',
+    title: '적용 선언서',
+    sub: 'Statement of Applicability (SoA) · 適用宣言書',
+    summary: '보안 대책을 무엇을 쓰고 무엇을 뺐는지 이유까지 밝힌 문서',
+    category: '보안',
+    date: '2026-10-27'
+  },
+  {
     slug: 'stderr',
     title: '표준에러',
     sub: 'stderr · standard error · 標準エラー出力',
