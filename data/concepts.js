@@ -625,6 +625,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'wbs',
+    title: 'WBS',
+    sub: '작업 분해 구조 · Work Breakdown Structure · 作業分解構成図',
+    summary: '큰 일을 다룰 수 있는 크기로 쪼개 나무 모양으로 늘어놓은 것',
+    category: '업무 시스템',
+    date: '2026-10-27'
+  },
+  {
     slug: 'wpa2',
     title: 'WPA2',
     sub: '더블유피에이 투 · Wi-Fi Protected Access 2',
