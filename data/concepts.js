@@ -497,6 +497,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'ssh',
+    title: 'SSH',
+    sub: '시큐어 셸 · Secure Shell',
+    summary: '멀리 있는 서버에 암호화된 통로로 접속하는 방식',
+    category: '네트워크',
+    date: '2026-10-27'
+  },
+  {
     slug: 'ssid',
     title: 'SSID',
     sub: '에스에스아이디 · Service Set Identifier',

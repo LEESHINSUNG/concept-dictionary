@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SSH — 기억해봐요</title>
+  <meta name="description" content="SSH는 멀리 있는 서버에 암호화된 통로로 접속해 명령을 내리는 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ssh">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SSH</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">보안</span>
+      </div>
+      <h1 class="title">SSH</h1>
+      <p class="reading">시큐어 셸 · Secure Shell</p>
+      <p class="define">SSH는 <mark>멀리 있는 서버에 암호화된 통로로 접속해 명령을 내리는 방식</mark>이에요. 서버를 다루는 사람에게는 <strong>가장 자주 쓰는 문</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 네트워크 › 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>멀리 있는 공장을 운영한다고 해 볼게요. 직접 갈 수는 없으니 <strong>전용 회선으로 지시를 보내</strong> 기계를 움직이죠. 그 회선이 도청되면 안 되고, 반대쪽이 진짜 우리 공장인지도 확인해야 해요.</p>
+      <p>SSH가 그 회선이에요. 이름의 <strong>셸(Shell)</strong>은 명령을 받아 주는 창구를 뜻해요. 내 컴퓨터에서 친 명령이 <strong>암호화된 채로 날아가</strong> 저쪽 서버에서 실행되고, 결과가 돌아와요. 예전에는 비밀번호가 그대로 흘러가는 방식(Telnet)을 썼는데, SSH가 그걸 완전히 밀어냈어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">원격 접속 · 파일 전송</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">기본 포트</p>
+          <p class="fact__value fact__value--mono">22</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">권하는 인증</p>
+          <p class="fact__value">비밀번호보다 열쇠</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">내 컴퓨터</p>
+          <p class="node__note">비밀키를 가지고 있어요</p>
+          <p><span class="chip-mono">id_ed25519</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">암호화된 통로<span class="arrow__note">도청해도 못 읽어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">SSH</p>
+          <p class="node__note">서로를 확인하고 통로를 만들어요</p>
+          <p><span class="chip-mono">22번 포트</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">명령 전달<span class="arrow__note">결과는 되돌아와요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">서버</p>
+          <p class="node__note">공개키로 나를 확인해요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>접속하면 <strong>서버가 먼저 자기 지문을 보여 줘요.</strong> 처음 접속할 때 "이 호스트를 믿겠냐"고 묻는 게 그거예요. 다음부터는 지문이 바뀌면 경고해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이어서 <strong>내가 누구인지</strong>를 증명해요. 비밀번호를 쓸 수도 있지만, 보통은 <a href="public-private-key.html">공개키-비밀키</a>를 써요. 공개키를 서버에 미리 올려 두면 비밀번호 없이 들어갈 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>통로가 열리면 그 안에서 명령이 오가요. 같은 통로로 <strong>파일을 주고받거나</strong>(scp·sftp) <strong>다른 통신을 실어 보낼</strong> 수도 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>열쇠를 만들고 서버에 올리는 것까지가 보통의 첫 설정이에요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> ssh-keygen -t ed25519        <span class="c-comment"># 열쇠 한 쌍을 만들어요</span>
+<span class="c-prompt">$</span> ssh-copy-id user@서버주소     <span class="c-comment"># 공개키만 서버에 올려요</span>
+<span class="c-prompt">$</span> ssh user@서버주소            <span class="c-comment"># 이제 비밀번호 없이 들어가요</span></code></pre>
+      </div>
+
+      <div class="case">
+        <p class="case__title">왜 비밀번호보다 열쇠일까</p>
+        <p>22번 포트는 <strong>늘 두들겨 맞는 문</strong>이에요. 전 세계에서 비밀번호를 끝없이 넣어 보는 시도가 들어오죠. 열쇠 방식으로 바꾸고 <strong>비밀번호 로그인을 아예 꺼 두면</strong> 그 시도 자체가 무의미해져요. GitHub에 올리는 그 공개키도 같은 원리예요.</p>
+      </div>
+
+      <p class="callout">SSH는 <a href="tls.html">TLS</a>와 목적이 비슷하지만 자리가 달라요. TLS가 <strong>웹을 비롯한 온갖 통신</strong>을 감싸는 층이라면, SSH는 <strong>서버에 들어가 일하는 것</strong>에 맞춰진 도구예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">멀리 있는 서버로 난, 잠긴 문.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 네트워크 › 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
