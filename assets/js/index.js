@@ -142,6 +142,13 @@
     var meta = document.createElement('span');
     meta.className = 'card__meta';
 
+    if (C.isNew(item)) {
+      var badge = document.createElement('span');
+      badge.className = 'chip chip--new';
+      badge.textContent = 'NEW';
+      meta.appendChild(badge);
+    }
+
     var chip = document.createElement('span');
     chip.className = 'chip';
     chip.textContent = item.category;

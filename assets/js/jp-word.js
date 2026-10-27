@@ -10,6 +10,17 @@
   var row = W.rowOf(item.kana);
   var indexHref = '../index.html#' + new URLSearchParams({ tab: row }).toString();
 
+  // 최근에 추가된 단어면 칩 줄 맨 앞에 NEW
+  if (W.isNew(item)) {
+    var chips = document.querySelector('#head .chips');
+    if (chips) {
+      var badge = document.createElement('span');
+      badge.className = 'chip chip--new';
+      badge.textContent = 'NEW';
+      chips.insertBefore(badge, chips.firstChild);
+    }
+  }
+
   var rowSlot = document.querySelector('[data-row]');
   if (rowSlot) rowSlot.textContent = row;
 

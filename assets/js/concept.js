@@ -10,6 +10,17 @@
   var group = C.groupOf(item.title);
   var indexHref = '../index.html#' + new URLSearchParams({ tab: group }).toString();
 
+  // 최근에 추가된 개념이면 칩 줄 맨 앞에 NEW
+  if (C.isNew(item)) {
+    var chips = document.querySelector('#head .chips');
+    if (chips) {
+      var badge = document.createElement('span');
+      badge.className = 'chip chip--new';
+      badge.textContent = 'NEW';
+      chips.insertBefore(badge, chips.firstChild);
+    }
+  }
+
   // 빵부스러기의 그룹 이름 (JS가 꺼져 있으면 빈 칸으로 남습니다)
   var groupSlot = document.querySelector('[data-group]');
   if (groupSlot) groupSlot.textContent = group;

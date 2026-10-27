@@ -71,6 +71,21 @@
     return out.sort(function (a, b) { return a.localeCompare(b, 'ko'); });
   }
 
+  // 가장 최근 작성일. 그 날짜의 단어에 NEW가 붙습니다.
+  var latest = null;
+  function latestDate() {
+    if (latest === null) {
+      latest = all().reduce(function (max, item) {
+        return item && item.date > max ? item.date : max;
+      }, '');
+    }
+    return latest;
+  }
+
+  function isNew(item) {
+    return !!item && !!item.date && item.date === latestDate();
+  }
+
   function find(slug) {
     var list = all();
     for (var i = 0; i < list.length; i += 1) {
@@ -99,6 +114,8 @@
     sorted: sorted,
     all: all,
     partsOfSpeech: partsOfSpeech,
+    latestDate: latestDate,
+    isNew: isNew,
     find: find,
     neighbors: neighbors
   };
