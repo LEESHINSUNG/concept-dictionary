@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IPsec — 기억해봐요</title>
+  <meta name="description" content="IPsec은 IP 패킷 자체를 암호로 감싸는 규약이에요. VPN의 바탕으로 많이 쓰여요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ipsec">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>IPsec</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">보안</span>
+      </div>
+      <h1 class="title">IPsec</h1>
+      <p class="reading">아이피섹 · IP Security</p>
+      <p class="define">IPsec은 <mark>오가는 IP 패킷 자체를 암호로 감싸는 규약</mark>이에요. <a href="vpn.html">VPN</a>으로 회사망을 잇는 자리에 많이 쓰여요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 네트워크 › 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>택배를 보호하는 방법은 둘이에요. <strong>물건 하나하나를 포장</strong>하거나, <strong>트럭을 통째로 봉인</strong>하거나. 앞이 <a href="tls.html">TLS</a>라면 IPsec은 뒤쪽이에요.</p>
+      <p>TLS는 앱이 "나는 암호를 쓰겠다"고 정해야 적용돼요. 그런데 IPsec은 <a href="osi-model.html">OSI 참조 모델</a>로 더 아래, <strong>IP 계층</strong>에서 일해요. 그래서 <strong>그 위에서 도는 앱은 아무것도 몰라도 돼요.</strong> 설정만 해 두면 그 길로 지나는 모든 통신이 자동으로 감싸져요. 회사 본사와 지사를 통째로 잇는 자리에 알맞은 이유예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">일하는 층</p>
+          <p class="fact__value">IP (3계층)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">덮는 범위</p>
+          <p class="fact__value">그 길의 모든 통신</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">두 가지 방식</p>
+          <p class="fact__value">터널 모드 · 전송 모드</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">원래 패킷</p>
+          <p class="node__note">앱은 평소대로 보내요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">통째로 감싸기<span class="arrow__note">새 봉투에 넣어요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">IPsec</p>
+          <p class="node__note">암호화하고 변조 검사를 붙여요</p>
+          <p>
+            <span class="chip-mono">암호화</span>
+            <span class="chip-mono">무결성</span>
+          </p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">전송<span class="arrow__note">중간에선 겉만 보여요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">반대쪽 장비</p>
+          <p class="node__note">풀어서 원래 패킷을 꺼내요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 양쪽이 서로를 확인하고 <strong>이번에 쓸 열쇠와 규칙을 맞춰요.</strong> 이 협상 과정을 IKE라고 불러요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>터널 모드</strong>는 원래 <a href="packet.html">패킷</a>을 통째로 감싸 새 주소를 붙여요. 본사와 지사를 잇는 VPN이 이 방식이에요. <strong>전송 모드</strong>는 알맹이만 암호화하고 원래 주소는 그대로 둬요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>중간의 장비들은 <strong>겉봉만 보고 넘겨요.</strong> 안에 무엇이 들었는지, 진짜 목적지가 어디인지는 반대쪽에서만 알 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 거점끼리 잇기</p>
+        <p>서울 본사와 부산 지사의 <a href="lan.html">LAN</a>을 하나처럼 쓰고 싶을 때, 양쪽 라우터에 IPsec 터널을 세워요. 그러면 <strong>직원들은 아무 설정 없이</strong> 평소처럼 쓰는데 통신은 전부 암호화돼요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · TLS와 나눠 쓰는 자리</p>
+        <p>웹사이트 하나를 지키는 데 IPsec을 쓰지는 않아요. <strong>불특정 다수가 찾아오는 곳</strong>에는 TLS가 맞죠. 반대로 <strong>정해진 두 거점을 통째로</strong> 잇는 데는 IPsec이 편해요. 고르는 기준은 <strong>"누가 접속하는지 미리 아는가"</strong>예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 설정이 까다로워요</p>
+        <p>양쪽 장비가 <strong>암호 방식·열쇠 수명·주소 범위를 한 글자도 어긋나지 않게</strong> 맞춰야 해요. 하나라도 다르면 터널이 서지 않고, 로그만으로는 어디가 다른지 알기 어려워요. 현장에서 IPsec이 어렵다고 하는 건 대개 이 맞춤 과정 때문이에요.</p>
+      </div>
+
+      <p class="callout">기억할 한 가지는 <strong>자리</strong>예요. IPsec은 아래층에서 길 전체를 덮고, TLS는 위층에서 통신 하나하나를 덮어요. 그래서 둘을 겹쳐 쓰는 것도 이상한 일이 아니에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">앱은 몰라도 돼요. 길이 통째로 잠겨요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 네트워크 › 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

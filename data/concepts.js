@@ -297,6 +297,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'ipsec',
+    title: 'IPsec',
+    sub: '아이피섹 · IP Security',
+    summary: 'IP 패킷 자체를 암호로 감싸는 규약. VPN의 바탕',
+    category: '네트워크',
+    date: '2026-10-27'
+  },
+  {
     slug: 'javascript',
     title: 'JavaScript',
     sub: '자바스크립트 · JS',
