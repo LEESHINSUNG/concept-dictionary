@@ -25,6 +25,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'audit-working-papers',
+    title: '감사 조서',
+    sub: 'audit working papers · 監査調書',
+    summary: '감사인이 무엇을 보고 어떻게 판단했는지 남긴 기록',
+    category: '업무 시스템',
+    date: '2026-10-27'
+  },
+  {
     slug: 'botnet',
     title: '봇넷',
     sub: 'botnet · ボットネット',
