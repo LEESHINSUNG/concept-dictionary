@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DNS 캐시 포이즈닝 — 기억해봐요</title>
+  <meta name="description" content="DNS 캐시 포이즈닝은 주소록에 가짜 답을 심어 엉뚱한 서버로 보내는 공격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="dns-cache-poisoning">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>DNS 캐시 포이즈닝</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">DNS 캐시 포이즈닝</h1>
+      <p class="reading">DNS cache poisoning · DNSキャッシュポイズニング</p>
+      <p class="define">DNS 캐시 포이즈닝은 <mark>주소록에 가짜 답을 심어 엉뚱한 서버로 보내는 공격</mark>이에요. 주소를 바르게 쳤는데도 <strong>가짜 사이트에 닿게</strong> 돼요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>전화번호부에서 은행 번호를 찾아 거는데, <strong>누군가 그 책의 한 줄을 몰래 고쳐 놨다</strong>고 해 볼게요. 나는 바르게 찾아 걸었는데 연결된 곳은 사기꾼이에요. <strong>내가 뭘 잘못한 게 아니라 주소록이 오염된</strong> 거죠.</p>
+      <p>인터넷의 그 전화번호부가 <strong>DNS</strong>예요. 우리가 <code>example.com</code>이라고 치면 그걸 실제 IP 주소로 바꿔 주죠. 그런데 매번 멀리 물어보면 느리니까 <strong>가까운 DNS 서버가 답을 잠시 보관(캐시)</strong>해요. 이 공격은 <strong>그 보관함에 가짜 답을 밀어 넣는</strong> 거예요. 한 번 심어 두면 그 서버를 쓰는 <strong>모든 사람이</strong> 가짜 주소로 가요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">노리는 곳</p>
+          <p class="fact__value">DNS 서버의 보관함</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">결과</p>
+          <p class="fact__value">바른 주소 → 가짜 서버</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">막는 법</p>
+          <p class="fact__value fact__value--mono">DNSSEC · 무작위화</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">DNS 서버가 질문</p>
+          <p class="node__note">"example.com이 어디죠?"</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">가짜 답 먼저<span class="arrow__note">진짜보다 빠르게</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">오염된 보관함</p>
+          <p class="node__note">가짜 IP가 저장돼요</p>
+          <p><span class="chip-mono">일정 시간 유지</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">그대로 안내<span class="arrow__note">모든 이용자에게</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">가짜 서버</p>
+          <p class="node__note">주소창은 멀쩡해 보여요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>DNS 서버가 모르는 주소를 물으러 나가는 <strong>그 순간</strong>이 틈이에요. 공격자는 진짜 답이 오기 전에 <strong>가짜 답을 먼저 들이밀어요.</strong></span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>받아들여지면 <strong>정해진 시간 동안 보관함에 남아요.</strong> 그동안 그 서버에 묻는 사람은 전부 가짜 주소를 받아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>이용자 쪽에서는 알아차리기 어려워요. <strong>주소는 바르게 쳤고 오타도 없으니까요.</strong></span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 왜 가짜 답이 먹힐까</p>
+        <p>DNS는 빠르려고 <strong>가벼운 방식</strong>으로 묻고 답해요. 답이 진짜인지 확인하는 장치가 원래는 약했죠. 그래서 <strong>질문 번호와 포트를 맞히면</strong> 가짜 답을 끼워 넣을 수 있었어요. 지금은 그 값들을 <strong>무작위로 흩뿌려</strong> 맞히기 어렵게 만들어 뒀어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 자물쇠가 막아 주기도 해요</p>
+        <p>가짜 서버로 가더라도 <a href="tls.html">TLS</a> 인증서는 흉내 내기 어려워요. 진짜 도메인의 인증서가 없으니 <strong>브라우저가 경고를 띄우죠.</strong> 그 경고를 무시하고 넘어가면 그때 당하는 거예요. <strong>경고를 그냥 지나치지 않는 것</strong>이 실제로 큰 방어예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 근본 대책은 서명</p>
+        <p>답에 <a href="digital-signature.html">전자서명</a>을 붙여 <strong>"이 답은 진짜 주인이 준 것"</strong>임을 확인하게 만든 것이 <strong>DNSSEC</strong>이에요. 서명이 맞지 않으면 버리니 가짜를 심을 수 없어요. 다만 도메인 쪽에서 설정해야 해서 아직 전부 쓰이지는 않아요.</p>
+      </div>
+
+      <p class="callout">이 공격이 무서운 이유는 <strong>이용자가 할 수 있는 게 거의 없다</strong>는 점이에요. 내 기기가 아니라 <strong>중간의 주소록</strong>이 오염된 것이라, 막는 일은 DNS를 운영하는 쪽의 몫이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">주소는 맞았는데, 주소록이 거짓말을 해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

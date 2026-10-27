@@ -161,6 +161,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'dns-cache-poisoning',
+    title: 'DNS 캐시 포이즈닝',
+    sub: 'DNS cache poisoning · DNSキャッシュポイズニング',
+    summary: '주소록에 가짜 답을 심어 엉뚱한 서버로 보내는 공격',
+    category: '보안',
+    date: '2026-10-27'
+  },
+  {
     slug: 'ecc',
     title: '타원곡선 암호',
     sub: 'ECC · Elliptic Curve Cryptography · 楕円曲線暗号',
