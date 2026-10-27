@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TLS — 기억해봐요</title>
+  <meta name="description" content="TLS는 인터넷 통신을 암호로 감싸는 지금의 표준이에요. 주소창의 자물쇠 뒤에서 일해요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="tls">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>TLS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">보안</span>
+      </div>
+      <h1 class="title">TLS</h1>
+      <p class="reading">전송 계층 보안 · Transport Layer Security</p>
+      <p class="define">TLS는 <mark>인터넷 통신을 암호로 감싸는 지금의 표준</mark>이에요. 주소창의 <strong>자물쇠 뒤에서 일하는 것</strong>이 바로 이거예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 네트워크 › 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>처음 가는 가게에서 카드를 내밀 때 두 가지를 확인하죠. <strong>여기가 진짜 그 가게가 맞는지</strong>, 그리고 <strong>내 카드 정보가 옆 사람에게 새지 않는지</strong>. TLS가 인터넷에서 그 두 가지를 해 줘요.</p>
+      <p><a href="ssl.html">SSL</a>의 뒤를 이어 만들어졌고, 이제는 웹뿐 아니라 메일·앱·API까지 <strong>거의 모든 통신</strong>이 TLS 위에서 오가요. 재미있는 건 <strong>혼자 다 하지 않는다</strong>는 점이에요. 신원 확인은 인증서가, 열쇠를 안전하게 나누는 일은 공개키 암호가, 실제 암호화는 빠른 공통키가 맡아요. <strong>TLS는 그 순서를 짜 주는 규약</strong>이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">현재 판</p>
+          <p class="fact__value fact__value--mono">TLS 1.3</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보장하는 것</p>
+          <p class="fact__value">신원 확인 · 내용 보호 · 변조 감지</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">금지된 판</p>
+          <p class="fact__value fact__value--mono">1.0 · 1.1</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">서버 확인</p>
+          <p class="node__note">인증서를 보여 줘요</p>
+          <p><span class="chip-mono">너 진짜 맞아?</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">열쇠 나누기<span class="arrow__note">공개키 방식으로</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">이번 연결용 열쇠</p>
+          <p class="node__note">한 번 쓰고 버려요</p>
+          <p><span class="chip-mono">공통키</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">본 통신<span class="arrow__note">빠르게</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">암호화된 대화</p>
+          <p class="node__note">중간에선 못 읽어요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>서버가 먼저 <a href="ev-certificate.html">인증서</a>를 내밀어요. 브라우저는 그게 믿을 만한 기관의 <a href="digital-signature.html">전자서명</a>이 붙은 것인지 확인해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그다음 <a href="public-private-key.html">공개키-비밀키</a> 방식으로 <strong>이번 연결에만 쓸 열쇠</strong>를 안전하게 나눠 가져요. 공개키 방식은 느려서 여기까지만 써요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>실제 대화는 빠른 <a href="symmetric-key.html">공통키</a>로 암호화해요. 보통 <a href="aes.html">AES</a>를 쓰고요. <strong>느린 방식으로 열쇠를 나누고, 빠른 방식으로 대화한다</strong>가 핵심이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 버전 정리</p>
+        <p><strong>1.0과 1.1은 2021년 3월 RFC 8996으로 금지</strong>됐어요. 낡은 암호만 쓸 수 있다는 게 이유였죠. <strong>1.2</strong>는 지금도 널리 쓰이고, <strong>1.3</strong>이 최신이에요. 서버 설정에서는 보통 <strong>1.2 이상만 허용</strong>하도록 맞춰요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 1.3이 빨라진 이유</p>
+        <p>예전에는 연결을 맺기 전에 <strong>오가는 인사가 여러 번</strong> 필요했어요. 1.3은 그 왕복을 줄이고, 낡고 위험한 선택지를 아예 <strong>목록에서 빼</strong> 버렸어요. 고를 수 없으면 잘못 고를 일도 없으니까요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · HTTPS의 S가 이것</p>
+        <p><code>HTTP</code>에 TLS를 입힌 것이 <code>HTTPS</code>예요. <a href="protocol.html">프로토콜</a> 자체가 바뀐 게 아니라 <strong>그 아래에 암호 층이 한 겹 깔린</strong> 거죠. 그래서 <a href="cookie.html">쿠키</a>에 <code>Secure</code>를 붙이면 "TLS로 연결됐을 때만 보내라"는 뜻이 돼요.</p>
+      </div>
+
+      <p class="callout">TLS가 지켜 주는 건 <strong>오가는 길</strong>이에요. 도착한 서버가 내 정보를 어떻게 다루는지는 별개고요. 자물쇠가 떴다고 그 사이트를 믿어도 된다는 뜻은 아니에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">자물쇠 뒤에서 일하는 것.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 네트워크 › 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

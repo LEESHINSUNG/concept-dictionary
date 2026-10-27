@@ -537,6 +537,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'tls',
+    title: 'TLS',
+    sub: '전송 계층 보안 · Transport Layer Security',
+    summary: '인터넷 통신을 암호로 감싸는 지금의 표준',
+    category: '네트워크',
+    date: '2026-10-27'
+  },
+  {
     slug: 'typescript',
     title: 'TypeScript',
     sub: '타입스크립트 · TS',
