@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SSL — 기억해봐요</title>
+  <meta name="description" content="SSL은 인터넷 통신을 암호로 감싸던 초기 규약이에요. 지금은 모두 금지되고 TLS가 그 자리를 이어받았어요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ssl">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SSL</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">보안</span>
+      </div>
+      <h1 class="title">SSL</h1>
+      <p class="reading">보안 소켓 계층 · Secure Sockets Layer</p>
+      <p class="define">SSL은 <mark>인터넷으로 오가는 내용을 암호로 감싸던 초기 규약</mark>이에요. 지금은 <strong>모든 판이 쓰지 못하게 금지</strong>됐고, 이름만 관습처럼 남아 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-27">2026-10-27</time></span>
+        <span>카테고리 네트워크 › 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>엽서를 부치면 거쳐 가는 우체국마다 내용을 읽을 수 있죠. <strong>봉투에 넣어 봉하면</strong> 그제야 받는 사람만 읽게 돼요. SSL이 인터넷에 그 봉투를 가져온 규약이에요.</p>
+      <p>웹이 막 퍼지던 시절, 카드 번호를 그냥 흘려보낼 수는 없으니 만들어졌어요. 그런데 <strong>구조적인 약점이 잇따라 드러나면서</strong> 판을 올려도 계속 문제가 생겼죠. 결국 이름을 바꿔 새로 만든 것이 <strong>TLS</strong>예요. <strong>지금 "SSL을 쓴다"는 말은 사실상 TLS를 쓴다는 뜻</strong>이에요. 이름만 옛것으로 부르고 있는 거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하던 일</p>
+          <p class="fact__value">통신을 암호로 감싸기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">지금 상태</p>
+          <p class="fact__value">모든 판 사용 금지</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">이어받은 것</p>
+          <p class="fact__value">TLS</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">SSL 2.0 · 3.0</p>
+          <p class="node__note">웹 초창기의 봉투</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">약점 발견<span class="arrow__note">고쳐도 또 나와요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">이름을 바꿔 새로</p>
+          <p class="node__note">구조부터 다시 만들어요</p>
+          <p><span class="chip-mono">SSL → TLS</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">표준으로 금지<span class="arrow__note">쓰면 안 돼요</span></span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">이름만 남음</p>
+          <p class="node__note">'SSL 인증서'라는 말은 계속 써요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>SSL 2.0은 금방 문제가 드러났고, 3.0도 뒤이어 <strong>설계 자체의 약점</strong>이 밝혀졌어요. 바꿔 끼울 수 있는 부분이 아니라 뼈대가 문제였죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 <strong>이름을 TLS로 바꾸고 새로</strong> 만들었어요. TLS 1.0이 사실상 SSL 3.1인 셈이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>2015년 6월 <strong>RFC 7568</strong>이 SSL 3.0을 쓰지 못하게 못 박았어요. <strong>지금 SSL은 전부 금지</strong>예요. 설정에서 <code>SSLv3</code>가 켜져 있다면 꺼야 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 그런데 왜 아직도 'SSL 인증서'라고 할까</p>
+        <p>파는 쪽도 사는 쪽도 그렇게 불러서예요. <strong>실제로 받는 것은 TLS에서 쓰는 인증서</strong>인데 이름만 굳어 버린 거죠. <code>openssl</code>이라는 도구 이름도 마찬가지예요. 이름을 보고 "아직 SSL을 쓰나?" 할 필요는 없어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 설정에서 만나면</p>
+        <p>웹 서버 설정에 <code>SSLProtocol</code> 같은 항목이 있어도, 거기 적는 값은 보통 <strong>TLS 버전</strong>이에요. 옛 이름의 항목에 새 값을 넣는 셈이죠. 이런 어긋남이 <strong>옛 이름이 남아 생기는 혼란</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 암호도 늙어요</p>
+        <p>SSL이 사라진 과정은 <a href="crypto-compromise.html">암호 알고리즘의 위태화</a>의 교과서 같은 사례예요. 처음에는 충분했지만 <strong>공격 연구가 쌓이면서 더는 안전하다고 할 수 없게</strong> 된 거죠. <a href="rc4.html">RC4</a>가 걸어간 길과 같아요.</p>
+      </div>
+
+      <p class="callout">정리하면 <strong>SSL은 역사 속 이름</strong>이에요. 실무에서 설정할 일은 없고, <strong>옛 문서나 제품 이름에서 만나면 TLS로 바꿔 읽으면</strong> 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">이름만 남고, 일은 TLS가 해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-27 · 카테고리 네트워크 › 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

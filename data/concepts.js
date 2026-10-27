@@ -505,6 +505,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'ssl',
+    title: 'SSL',
+    sub: '보안 소켓 계층 · Secure Sockets Layer',
+    summary: '통신을 암호로 감싸던 초기 규약. 지금은 모두 금지됨',
+    category: '네트워크',
+    date: '2026-10-27'
+  },
+  {
     slug: 'stderr',
     title: '표준에러',
     sub: 'stderr · standard error · 標準エラー出力',
