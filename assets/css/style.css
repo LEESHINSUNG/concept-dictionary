@@ -193,6 +193,18 @@ mark {
   font-weight: 700;
 }
 
+/* 최근 추가한 것만 거르는 토글 — 켜면 NEW 배지와 같은 색이 됩니다. */
+.pills--flags { margin-bottom: 18px; }
+.pill--new-filter { font-size: 15px; }
+.pill__tag { font-family: var(--mono); font-weight: 700; letter-spacing: 0.06em; }
+.pill--new-filter:hover { border-color: var(--new-line); color: var(--new-line); }
+.pill--new-filter[aria-pressed='true'] {
+  background: var(--new-bg);
+  border-color: var(--new-line);
+  color: #FFFFFF;
+}
+.pill--new-filter[aria-pressed='true']:hover { color: #FFFFFF; }
+
 .result {
   margin: 4px 0 20px;
   color: var(--muted);

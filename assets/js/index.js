@@ -13,11 +13,12 @@
     search: document.getElementById('search'),
     cats: document.getElementById('cats'),
     tabs: document.getElementById('tabs'),
+    flags: document.getElementById('flags'),
     result: document.getElementById('result'),
     list: document.getElementById('list')
   };
 
-  var state = { tab: null, cat: ALL_CAT, q: '' };
+  var state = { tab: null, cat: ALL_CAT, q: '', onlyNew: false };
 
   // ── 상태 ↔ URL 해시 ──────────────────────────────
   function readHash() {
@@ -29,6 +30,7 @@
     if (tab && TABS.indexOf(tab) !== -1) state.tab = tab;
     if (cat) state.cat = cat;
     if (q) state.q = q;
+    if (params.get('new') === '1') state.onlyNew = true;
   }
 
   function writeHash() {
@@ -36,6 +38,7 @@
     if (state.q) params.set('q', state.q);
     if (state.tab) params.set('tab', state.tab);
     if (state.cat !== ALL_CAT) params.set('cat', state.cat);
+    if (state.onlyNew) params.set('new', '1');
     var text = params.toString();
     history.replaceState(null, '', text ? '#' + text : location.pathname + location.search);
   }
@@ -46,6 +49,15 @@
     return list.filter(function (item) { return item.category === state.cat; });
   }
 
+  // 최근 추가한 것만 남기기
+  function byNew(list) {
+    if (!state.onlyNew) return list;
+    return list.filter(function (item) { return C.isNew(item); });
+  }
+
+  // 지금 걸린 조건(카테고리 · NEW)을 통과한 개념들
+  function pool() { return byNew(byCategory(C.all())); }
+
   function matches(item, needle) {
     var hay = [item.title, item.sub, item.summary, item.category]
       .filter(Boolean).join(' ').toLowerCase();
@@ -53,7 +65,7 @@
   }
 
   function visible() {
-    var list = byCategory(C.all());
+    var list = pool();
     var needle = state.q.trim().toLowerCase();
     if (needle) {
       // 검색 중에는 탭을 무시하고 전체에서 찾습니다.
@@ -67,13 +79,34 @@
   function tabCounts() {
     var counts = {};
     TABS.forEach(function (g) { counts[g] = 0; });
-    var list = byCategory(C.all());
+    var list = pool();
     list.forEach(function (item) {
       var g = C.groupOf(item.title);
       counts[g] = (counts[g] || 0) + 1;
     });
     counts[ALL_TAB] = list.length;
     return counts;
+  }
+
+  function renderFlags() {
+    var count = C.all().filter(function (item) { return C.isNew(item); }).length;
+    el.flags.textContent = '';
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'pill pill--new-filter';
+    var tag = document.createElement('span');
+    tag.className = 'pill__tag';
+    tag.textContent = 'NEW';
+    button.appendChild(tag);
+    button.appendChild(document.createTextNode('만 보기'));
+    button.setAttribute('aria-pressed', String(state.onlyNew));
+    button.setAttribute('aria-label', '최근 추가한 개념 ' + count + '개만 보기');
+    button.addEventListener('click', function () {
+      state.onlyNew = !state.onlyNew;
+      if (!state.q && !tabCounts()[state.tab]) state.tab = ALL_TAB;
+      render();
+    });
+    el.flags.appendChild(button);
   }
 
   function renderCats() {
@@ -200,13 +233,15 @@
 
   function renderResult(count) {
     var needle = state.q.trim();
-    el.result.textContent = needle
+    var body = needle
       ? '‘' + needle + '’ 검색 결과 ' + count + '개'
       : '‘' + state.tab + '’ 개념 ' + count + '개';
+    el.result.textContent = (state.onlyNew ? '최근 추가 · ' : '') + body;
   }
 
   function render() {
     var items = visible();
+    renderFlags();
     renderCats();
     renderTabs();
     renderResult(items.length);

@@ -12,11 +12,12 @@
     search: document.getElementById('search'),
     pos: document.getElementById('pos'),
     tabs: document.getElementById('tabs'),
+    flags: document.getElementById('flags'),
     result: document.getElementById('result'),
     list: document.getElementById('list')
   };
 
-  var state = { tab: ALL_TAB, pos: ALL_POS, q: '' };
+  var state = { tab: ALL_TAB, pos: ALL_POS, q: '', onlyNew: false };
 
   function readHash() {
     var params = new URLSearchParams(location.hash.replace(/^#/, ''));
@@ -26,6 +27,7 @@
     if (tab && TABS.indexOf(tab) !== -1) state.tab = tab;
     if (pos) state.pos = pos;
     if (q) state.q = q;
+    if (params.get('new') === '1') state.onlyNew = true;
   }
 
   function writeHash() {
@@ -33,6 +35,7 @@
     if (state.q) params.set('q', state.q);
     if (state.tab !== ALL_TAB) params.set('tab', state.tab);
     if (state.pos !== ALL_POS) params.set('pos', state.pos);
+    if (state.onlyNew) params.set('new', '1');
     var text = params.toString();
     history.replaceState(null, '', text ? '#' + text : location.pathname + location.search);
   }
@@ -42,6 +45,15 @@
     return list.filter(function (item) { return item.pos === state.pos; });
   }
 
+  // 최근 추가한 것만 남기기
+  function byNew(list) {
+    if (!state.onlyNew) return list;
+    return list.filter(function (item) { return W.isNew(item); });
+  }
+
+  // 지금 걸린 조건(품사 · NEW)을 통과한 단어들
+  function pool() { return byNew(byPos(W.all())); }
+
   function matches(item, needle) {
     var hay = [item.word, item.kana, item.meaning, item.pos, item.level]
       .filter(Boolean).join(' ').toLowerCase();
@@ -49,7 +61,7 @@
   }
 
   function visible() {
-    var list = byPos(W.all());
+    var list = pool();
     var needle = state.q.trim().toLowerCase();
     if (needle) {
       return W.sorted(list.filter(function (item) { return matches(item, needle); }));
@@ -61,13 +73,34 @@
   function tabCounts() {
     var counts = {};
     TABS.forEach(function (t) { counts[t] = 0; });
-    var list = byPos(W.all());
+    var list = pool();
     list.forEach(function (item) {
       var r = W.rowOf(item.kana);
       counts[r] = (counts[r] || 0) + 1;
     });
     counts[ALL_TAB] = list.length;
     return counts;
+  }
+
+  function renderFlags() {
+    var count = W.all().filter(function (item) { return W.isNew(item); }).length;
+    el.flags.textContent = '';
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'pill pill--new-filter';
+    var tag = document.createElement('span');
+    tag.className = 'pill__tag';
+    tag.textContent = 'NEW';
+    button.appendChild(tag);
+    button.appendChild(document.createTextNode('만 보기'));
+    button.setAttribute('aria-pressed', String(state.onlyNew));
+    button.setAttribute('aria-label', '최근 추가한 단어 ' + count + '개만 보기');
+    button.addEventListener('click', function () {
+      state.onlyNew = !state.onlyNew;
+      if (!state.q && !tabCounts()[state.tab]) state.tab = ALL_TAB;
+      render();
+    });
+    el.flags.appendChild(button);
   }
 
   function renderPos() {
@@ -198,12 +231,14 @@
 
   function render() {
     var items = visible();
+    renderFlags();
     renderPos();
     renderTabs();
     var needle = state.q.trim();
-    el.result.textContent = needle
+    var body = needle
       ? '‘' + needle + '’ 검색 결과 ' + items.length + '개'
       : '‘' + state.tab + '’ 단어 ' + items.length + '개';
+    el.result.textContent = (state.onlyNew ? '최근 추가 · ' : '') + body;
     renderList(items);
     writeHash();
   }
