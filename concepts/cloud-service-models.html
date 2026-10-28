@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>클라우드 서비스 모델 — 기억해봐요</title>
+  <meta name="description" content="IaaS·PaaS·SaaS·DaaS는 어디까지를 남이 맡아 주느냐로 갈려요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 누가 어디까지 맡는가 */
+    .svc { display: flex; flex-direction: column; gap: 10px; }
+    .svc__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .svc__row--accent { border: 2px solid var(--accent); }
+    .svc__name { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .svc__note { margin-top: 2px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .svc__bar { display: flex; gap: 4px; margin-top: 10px; }
+    .svc__seg { flex: 1 1 0; min-width: 0; padding: 9px 2px; text-align: center; font-size: 12px; line-height: 1.3; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--muted); }
+    .svc__seg--them { background: var(--panel); border-color: var(--panel); color: #D8E4F8; font-weight: 700; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 14px; color: var(--muted); }
+    .legend__key { display: inline-flex; align-items: center; gap: 7px; }
+    .legend__box { width: 15px; height: 15px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); }
+    .legend__box--them { background: var(--panel); border-color: var(--panel); }
+  </style>
+</head>
+<body data-slug="cloud-service-models">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>클라우드 서비스 모델</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">클라우드</span>
+      </div>
+      <h1 class="title">클라우드 서비스 모델</h1>
+      <p class="reading">IaaS · PaaS · SaaS · DaaS</p>
+      <p class="define">네 가지는 하는 일이 다른 게 아니라, <mark>어디까지를 사업자가 맡아 주느냐</mark>가 달라요. <strong>내가 손댈 수 있는 범위와, 내가 책임질 범위가 함께 움직여요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 네트워크 › 클라우드</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>밥을 먹는 방법을 떠올려 보세요. <strong>부엌을 빌려</strong> 재료부터 사다 직접 하면 내 마음대로지만 할 일이 많아요. <strong>재료와 불이 갖춰진 주방</strong>을 빌리면 요리만 하면 되고, <strong>식당</strong>에 가면 나오는 걸 먹기만 하면 되죠. 대신 간을 바꿀 수는 없어요.</p>
+      <p>클라우드도 똑같아요. 어디까지 차려져 있는 걸 받느냐에 따라 이름이 달라져요. 뒤로 갈수록 <strong>손이 덜 가고, 대신 바꿀 수 있는 것도 줄어들어요.</strong> 어느 쪽이 좋다가 아니라, <strong>무엇을 직접 쥐고 있어야 하는지</strong>로 고르는 거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">가르는 기준</p>
+          <p class="fact__value">사업자가 어디까지 맡는가</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">as a Service</p>
+          <p class="fact__value fact__value--mono">~를 서비스로 빌려줌</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">맞바꾸는 것</p>
+          <p class="fact__value">편함 ↔ 내 마음대로</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">같은 네 칸을 누가 맡는지만 바뀌어요.</p>
+
+      <div class="svc" role="img" aria-label="직접 구축은 하드웨어부터 앱까지 모두 내가 맡고, IaaS는 하드웨어만 사업자가, PaaS는 하드웨어와 OS와 실행환경까지 사업자가, SaaS와 DaaS는 앱까지 전부 사업자가 맡습니다.">
+        <div class="svc__row">
+          <p class="svc__name">직접 구축 (온프레미스)</p>
+          <p class="svc__note">장비를 사서 우리 건물에 놓고 쓰는 방식이에요.</p>
+          <div class="svc__bar">
+            <span class="svc__seg">하드웨어</span>
+            <span class="svc__seg">OS</span>
+            <span class="svc__seg">실행환경</span>
+            <span class="svc__seg">앱</span>
+          </div>
+        </div>
+        <div class="svc__row svc__row--accent">
+          <p class="svc__name">IaaS — Infrastructure as a Service</p>
+          <p class="svc__note">서버·저장소·네트워크만 빌려요. OS부터는 내가 깔고 내가 지켜요.</p>
+          <div class="svc__bar">
+            <span class="svc__seg svc__seg--them">하드웨어</span>
+            <span class="svc__seg">OS</span>
+            <span class="svc__seg">실행환경</span>
+            <span class="svc__seg">앱</span>
+          </div>
+        </div>
+        <div class="svc__row svc__row--accent">
+          <p class="svc__name">PaaS — Platform as a Service</p>
+          <p class="svc__note">프로그램이 돌아갈 바탕까지 차려져 있어요. 내 코드만 올리면 돼요.</p>
+          <div class="svc__bar">
+            <span class="svc__seg svc__seg--them">하드웨어</span>
+            <span class="svc__seg svc__seg--them">OS</span>
+            <span class="svc__seg svc__seg--them">실행환경</span>
+            <span class="svc__seg">앱</span>
+          </div>
+        </div>
+        <div class="svc__row svc__row--accent">
+          <p class="svc__name">SaaS — Software as a Service</p>
+          <p class="svc__note">완성된 프로그램을 쓰기만 해요. 설치도 갱신도 사업자 몫이에요.</p>
+          <div class="svc__bar">
+            <span class="svc__seg svc__seg--them">하드웨어</span>
+            <span class="svc__seg svc__seg--them">OS</span>
+            <span class="svc__seg svc__seg--them">실행환경</span>
+            <span class="svc__seg svc__seg--them">앱</span>
+          </div>
+        </div>
+        <div class="svc__row svc__row--accent">
+          <p class="svc__name">DaaS — Desktop as a Service</p>
+          <p class="svc__note">앱 하나가 아니라 <strong>바탕화면 전체</strong>를 받아 써요. 내 PC에는 화면만 와요.</p>
+          <div class="svc__bar">
+            <span class="svc__seg svc__seg--them">하드웨어</span>
+            <span class="svc__seg svc__seg--them">OS</span>
+            <span class="svc__seg svc__seg--them">실행환경</span>
+            <span class="svc__seg svc__seg--them">앱</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span class="legend__key"><span class="legend__box"></span>내가 맡는 칸</span>
+        <span class="legend__key"><span class="legend__box legend__box--them"></span>사업자가 맡는 칸</span>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>위에서 아래로 갈수록 <strong>어두운 칸이 늘어나요.</strong> 사업자가 맡는 범위가 넓어진다는 뜻이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>어두운 칸은 <strong>내가 손댈 수 없는 칸</strong>이기도 해요. PaaS에서 OS 설정을 바꾸고 싶어도 길이 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>DaaS는 칸을 더 덮는 게 아니라 <strong>덮는 대상이 달라요.</strong> 하나의 프로그램이 아니라 사람이 쓰는 <a href="client.html">클라이언트</a> 환경 자체를 <a href="server.html">서버</a>에서 보내 줘요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 같은 회사 서비스인데 이름이 다르다</p>
+        <p>클라우드 사업자가 내놓는 <strong>가상 서버</strong>를 빌리면 IaaS, 그 위에서 <strong>코드를 올리면 알아서 돌려주는</strong> 서비스를 쓰면 PaaS예요. 웹에서 쓰는 <a href="spreadsheet.html">스프레드시트</a>처럼 <strong>완성된 프로그램</strong>이면 SaaS고요. 같은 회사가 세 가지를 다 팔아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 책임도 함께 옮겨 간다</p>
+        <p>IaaS에서 OS에 보안 수정을 안 해 뚫리면 <strong>그건 내 책임</strong>이에요. 사업자는 하드웨어까지만 맡았으니까요. 반대로 SaaS에서 프로그램에 구멍이 나면 고치는 건 사업자 몫이에요. <strong>어두운 칸 = 사업자 책임</strong>으로 읽으면 경계가 분명해져요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · DaaS를 쓰는 이유</p>
+        <p>노트북을 잃어버려도 <strong>안에 자료가 없어요.</strong> 자료는 모두 저쪽 <a href="server.html">서버</a>에 있고 내 쪽에는 화면만 왔다 가니까요. 재택근무나 외주 인력에게 환경을 줄 때 많이 쓰는 이유가 이거예요.</p>
+      </div>
+
+      <p class="callout">이름 끝의 <strong>aaS</strong>는 모두 "as a Service", 곧 <strong>사서 갖지 않고 빌려 쓴다</strong>는 말이에요. 앞 글자만 보면 무엇을 빌리는지 알 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">어디까지 남이 맡느냐가, 곧 어디까지 내 책임이냐예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 네트워크 › 클라우드</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

@@ -81,6 +81,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'cloud-service-models',
+    title: '클라우드 서비스 모델',
+    sub: 'IaaS · PaaS · SaaS · DaaS',
+    summary: '어디까지를 사업자가 맡느냐로 갈리는 네 가지',
+    category: '네트워크',
+    date: '2026-10-29'
+  },
+  {
     slug: 'control-chart',
     title: '관리도',
     sub: 'control chart · 管理図',
