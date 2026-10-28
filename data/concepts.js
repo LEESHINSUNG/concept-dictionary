@@ -505,6 +505,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'rpo',
+    title: 'RPO',
+    sub: '목표 복구 시점 · Recovery Point Objective · 目標復旧時点',
+    summary: '사고 때 어디까지의 자료를 포기할지 정한 목표',
+    category: '보안',
+    date: '2026-10-29'
+  },
+  {
     slug: 'rsa',
     title: 'RSA',
     sub: '알에스에이 · Rivest-Shamir-Adleman',

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RPO — 기억해봐요</title>
+  <meta name="description" content="RPO는 되살렸을 때 어디까지의 자료를 포기할 수 있는지 미리 정해 둔 목표예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 장애 시점을 가운데 두고 보는 시간 띠 */
+    .bcp { display: flex; align-items: stretch; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .bcp__zone { padding: 16px 6px; text-align: center; font-size: 13px; line-height: 1.4; }
+    .bcp__zone--safe { flex: 3 1 0; background: var(--chip-bg); color: var(--chip-ink); font-weight: 700; }
+    .bcp__zone--lost { flex: 2 1 0; background: var(--panel); color: #D8E4F8; font-weight: 700; }
+    .bcp__zone--after { flex: 2 1 0; background: var(--bg); color: var(--muted); }
+    .bcp__pin { flex: 0 0 5px; background: var(--new-bg); }
+    .bcp__mark { display: flex; margin-top: 6px; }
+    .bcp__lab { padding: 7px 4px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 2px solid var(--line-strong); }
+    .bcp__lab--safe { flex: 3 1 0; }
+    .bcp__lab--lost { flex: 2 1 0; color: var(--accent); border-top-color: var(--accent); font-weight: 700; }
+    .bcp__lab--pin { flex: 0 0 5px; border-top: 0; }
+    .bcp__lab--after { flex: 2 1 0; }
+    @media (max-width: 479px) {
+      .bcp__zone { font-size: 11px; padding: 14px 3px; }
+      .bcp__lab { font-size: 10px; }
+    }
+    .formula { margin-top: 18px; padding: 18px 14px; text-align: center; background: var(--panel); border-radius: 12px; color: var(--code-ink); font-family: var(--mono); font-size: 15px; line-height: 1.9; }
+    .formula b { color: var(--code-prompt); }
+    @media (max-width: 479px) { .formula { font-size: 13px; } }
+    .case code, .callout code, .step code, .define code { font-family: var(--mono); font-size: 0.92em; padding: 1px 5px; background: var(--chip-bg); color: var(--chip-ink); border-radius: 5px; }
+  </style>
+</head>
+<body data-slug="rpo">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>RPO</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">사업 연속성</span>
+      </div>
+      <h1 class="title">RPO</h1>
+      <p class="reading">목표 복구 시점 · Recovery Point Objective · 目標復旧時点</p>
+      <p class="define">사고가 났을 때 <mark>어디까지의 자료를 포기할 수 있는가</mark>를 미리 정해 둔 목표예요. <strong>잃어도 되는 시간의 길이</strong>라고 읽으면 돼요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 보안 › 사업 연속성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>글을 쓰다 컴퓨터가 꺼졌다고 해 볼게요. 다시 켜면 <strong>마지막으로 저장한 데까지만</strong> 남아 있죠. 10분 전에 저장했으면 <strong>10분 치가 날아간</strong> 거예요.</p>
+      <p>RPO는 그 "날아가도 괜찮은 분량"을 미리 정해 두는 거예요. <strong>"최악의 경우라도 1시간 치까지만 잃겠다"</strong>고 정하면 RPO가 1시간이에요. 이게 정해지면 할 일이 따라 나와요. <strong>1시간 치만 잃으려면 적어도 1시간마다 백업해야</strong> 하니까요. 그래서 RPO는 바람이 아니라 <strong>백업을 얼마나 자주 할지를 정하는 숫자</strong>예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">묻는 것</p>
+          <p class="fact__value">자료를 얼마나 잃어도 되나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 방향</p>
+          <p class="fact__value">사고 시점의 <strong>과거</strong> 쪽</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">정하면 따라오는 것</p>
+          <p class="fact__value fact__value--mono">백업 주기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">주황색 선이 사고가 난 순간이에요.</p>
+
+      <div class="bcp" role="img" aria-label="마지막 백업까지는 안전하고, 마지막 백업부터 사고 시점까지의 구간이 RPO로 잃게 되는 자료입니다.">
+        <span class="bcp__zone bcp__zone--safe">마지막 백업까지<br>안전해요</span>
+        <span class="bcp__zone bcp__zone--lost">이 사이 자료는<br>잃어요</span>
+        <span class="bcp__pin" aria-hidden="true"></span>
+        <span class="bcp__zone bcp__zone--after">사고 발생</span>
+      </div>
+      <div class="bcp__mark">
+        <span class="bcp__lab bcp__lab--safe"></span>
+        <span class="bcp__lab bcp__lab--lost">← RPO →</span>
+        <span class="bcp__lab bcp__lab--pin" aria-hidden="true"></span>
+        <span class="bcp__lab bcp__lab--after"></span>
+      </div>
+
+      <div class="formula">
+        백업 주기 <b>≤</b> RPO
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>되살릴 수 있는 가장 최근 지점은 <strong>마지막 백업</strong>이에요. 그 뒤에 쌓인 것은 어디에도 없으니 돌아오지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 <strong>어두운 칸의 길이가 잃는 분량</strong>이에요. 백업을 자주 하면 이 칸이 짧아지고, 드물게 하면 길어져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>RPO는 <strong>그 칸의 최대 허용 길이</strong>를 미리 못 박아 두는 거예요. 정해진 숫자가 백업 장비와 비용을 결정해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 업무마다 다르게 정한다</p>
+        <p>은행 송금 기록은 <strong>한 건도 잃을 수 없어서</strong> RPO를 0에 가깝게 잡아요. 대신 돈이 많이 들어요. 사내 게시판이라면 <strong>하루 치를 잃어도 다시 쓸 수 있으니</strong> RPO를 24시간으로 두고 하루 한 번 백업해도 되고요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 0으로 만들려면</p>
+        <p>RPO를 0으로 하려면 <strong>쓰는 순간 다른 곳에도 똑같이 쓰는</strong> 구조가 필요해요. 한쪽이 멀쩡하면 하나도 안 잃죠. 다만 그만큼 장비와 회선을 두 벌씩 유지해야 해서, <strong>목표를 조이는 만큼 돈이 올라가요.</strong></p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 짝이 되는 목표</p>
+        <p>RPO는 <strong>자료를 얼마나 잃는가</strong>만 말해요. 그러면 "언제까지 다시 켤 것인가"는 누가 말할까요? 그건 사고 시점의 <strong>반대쪽</strong>, 곧 앞으로 흐르는 시간을 보는 목표가 맡아요. 두 목표는 늘 함께 정해요.</p>
+      </div>
+
+      <p class="callout">헷갈리면 <strong>P를 Point(지점)</strong>로 기억하세요. <strong>"어느 시점으로 돌아갈 것인가"</strong>를 묻는 값이라 과거 쪽을 봐요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">얼마까지 잃어도 되는가. 그만큼 자주 백업해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 보안 › 사업 연속성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
