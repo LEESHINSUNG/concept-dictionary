@@ -521,6 +521,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'rto',
+    title: 'RTO',
+    sub: '목표 복구 시간 · Recovery Time Objective · 目標復旧時間',
+    summary: '멈춘 뒤 언제까지 돌려놓을지 정한 목표',
+    category: '보안',
+    date: '2026-10-29'
+  },
+  {
     slug: 'safeguard',
     title: '세이프가드',
     sub: '보호 대책 · safeguard · セーフガード',

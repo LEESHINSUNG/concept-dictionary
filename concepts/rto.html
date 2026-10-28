@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RTO — 기억해봐요</title>
+  <meta name="description" content="RTO는 멈춘 뒤 언제까지 다시 돌려놓을 것인지 미리 정해 둔 목표 시간이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .bcp { display: flex; align-items: stretch; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .bcp__zone { padding: 16px 6px; text-align: center; font-size: 13px; line-height: 1.4; word-break: keep-all; }
+    .bcp__zone--before { flex: 2 1 0; background: var(--bg); color: var(--muted); }
+    .bcp__zone--down { flex: 3 1 0; background: var(--panel); color: #D8E4F8; font-weight: 700; }
+    .bcp__zone--back { flex: 2 1 0; background: var(--chip-bg); color: var(--chip-ink); font-weight: 700; }
+    .bcp__pin { flex: 0 0 5px; background: var(--new-bg); }
+    .bcp__mark { display: flex; margin-top: 6px; }
+    .bcp__lab { padding: 7px 4px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 2px solid var(--line-strong); }
+    .bcp__lab--before { flex: 2 1 0; }
+    .bcp__lab--pin { flex: 0 0 5px; border-top: 0; }
+    .bcp__lab--down { flex: 3 1 0; color: var(--accent); border-top-color: var(--accent); font-weight: 700; }
+    .bcp__lab--back { flex: 2 1 0; }
+    @media (max-width: 479px) {
+      .bcp__zone { font-size: 11px; padding: 14px 3px; }
+      .bcp__lab { font-size: 10px; }
+    }
+    .formula { margin-top: 18px; padding: 18px 14px; text-align: center; background: var(--panel); border-radius: 12px; color: var(--code-ink); font-family: var(--mono); font-size: 15px; line-height: 1.9; }
+    .formula b { color: var(--code-prompt); }
+    @media (max-width: 479px) { .formula { font-size: 13px; } }
+    .case code, .callout code, .step code, .define code { font-family: var(--mono); font-size: 0.92em; padding: 1px 5px; background: var(--chip-bg); color: var(--chip-ink); border-radius: 5px; }
+  </style>
+</head>
+<body data-slug="rto">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>RTO</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">사업 연속성</span>
+      </div>
+      <h1 class="title">RTO</h1>
+      <p class="reading">목표 복구 시간 · Recovery Time Objective · 目標復旧時間</p>
+      <p class="define">멈춘 뒤 <mark>언제까지 다시 돌려놓을 것인가</mark>를 미리 정해 둔 목표예요. <strong>멈춰 있어도 되는 시간의 한도</strong>라고 읽으면 돼요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 보안 › 사업 연속성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>식당의 냉장고가 멈췄다고 해 볼게요. <strong>두 시간 안에 고치면</strong> 재료가 버티지만, <strong>하루가 지나면</strong> 다 버려야 해요. 그러면 "두 시간 안에는 반드시 고친다"가 이 가게의 선이 되죠.</p>
+      <p>RTO가 그 선이에요. 업무가 멈췄을 때 <strong>여기까지는 견딜 수 있다</strong>는 시간을 미리 못 박아 두는 거예요. 이 숫자가 정해지면 준비할 것이 따라 나와요. 네 시간이면 사람이 와서 고칠 여유가 있지만, <strong>10분이면 평소에 예비 장비를 켜 두고 있어야</strong> 하니까요. RTO는 <strong>얼마를 쓸지를 정하는 숫자</strong>이기도 해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">묻는 것</p>
+          <p class="fact__value">언제까지 돌아와야 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 방향</p>
+          <p class="fact__value">사고 시점의 <strong>미래</strong> 쪽</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">정하면 따라오는 것</p>
+          <p class="fact__value fact__value--mono">예비 설비 · 인력</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">주황색 선이 사고가 난 순간이에요. <a href="rpo.html">RPO</a>가 왼쪽을 봤다면, RTO는 <strong>오른쪽</strong>을 봐요.</p>
+
+      <div class="bcp" role="img" aria-label="사고 시점부터 다시 돌아오기까지의 멈춘 구간이 RTO이고, 그 뒤가 복구된 상태입니다.">
+        <span class="bcp__zone bcp__zone--before">평소대로</span>
+        <span class="bcp__pin" aria-hidden="true"></span>
+        <span class="bcp__zone bcp__zone--down">멈춰 있는 동안</span>
+        <span class="bcp__zone bcp__zone--back">다시 돌아감</span>
+      </div>
+      <div class="bcp__mark">
+        <span class="bcp__lab bcp__lab--before"></span>
+        <span class="bcp__lab bcp__lab--pin" aria-hidden="true"></span>
+        <span class="bcp__lab bcp__lab--down">← RTO →</span>
+        <span class="bcp__lab bcp__lab--back"></span>
+      </div>
+
+      <div class="formula">
+        실제 복구 시간 <b>≤</b> RTO
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>세는 시작점은 <strong>사고가 난 순간</strong>이에요. 알아채기까지 걸린 시간도 여기 들어가요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>끝점은 수리가 끝난 때가 아니라 <strong>업무를 다시 할 수 있게 된 때</strong>예요. 장비는 켜졌는데 자료가 아직 안 올라왔다면 아직 끝이 아니에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>RTO를 짧게 잡을수록 <strong>미리 준비해 둘 것이 늘어나요.</strong> 그래서 모든 업무에 똑같이 짧은 RTO를 매기면 비용이 감당되지 않아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 둘을 함께 정해 보기</p>
+        <p>온라인 주문 시스템에 <strong>RTO 2시간, <a href="rpo.html">RPO</a> 15분</strong>을 매겼다고 해 볼게요. "2시간 안에 다시 주문을 받을 수 있어야 하고, 되살렸을 때 <strong>최대 15분 치 주문만</strong> 잃는다"는 뜻이에요. 그러려면 백업을 <strong>15분마다</strong> 돌려야 하고요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · MTTR와 무엇이 다른가</p>
+        <p><a href="mttr.html">MTTR</a>는 <strong>지금까지 평균 얼마나 걸렸는가</strong>, 곧 지나간 실적이에요. RTO는 <strong>앞으로 얼마 안에 하겠다는 약속</strong>이고요. MTTR가 RTO보다 길다면 <strong>약속을 못 지키고 있다</strong>는 뜻이라, 사람을 더 넣거나 절차를 고쳐야 해요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 업무마다 줄을 세운다</p>
+        <p>모든 업무를 동시에 살릴 수는 없어요. 그래서 <strong>멈췄을 때 가장 아픈 업무부터</strong> 짧은 RTO를 주고 순서를 매겨요. 급여 계산은 한 달에 한 번이니 RTO가 길어도 되고, 결제는 분 단위로 아프니 짧아야 하죠. <strong>줄 세우기 자체가 준비의 절반</strong>이에요.</p>
+      </div>
+
+      <p class="callout">헷갈리면 <strong>T를 Time(시간)</strong>으로 기억하세요. <strong>"얼마나 걸려도 되는가"</strong>를 묻는 값이라 앞으로 흐르는 쪽을 봐요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">언제까지 돌아와야 하는가. 그만큼 미리 갖춰 둬요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 보안 › 사업 연속성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
