@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WAF — 기억해봐요</title>
+  <meta name="description" content="WAF는 웹 서버 앞에 서서 요청의 내용까지 읽어 보고 걸러내는 방화벽이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="waf">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>WAF</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">웹 보안</span>
+      </div>
+      <h1 class="title">WAF</h1>
+      <p class="reading">웹 애플리케이션 방화벽 · Web Application Firewall</p>
+      <p class="define">웹 서버 앞에 서서 <mark>요청의 내용까지 읽어 보고 걸러내는 방화벽</mark>이에요. <strong>어디서 왔는지가 아니라, 무엇을 들고 왔는지를 봐요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 보안 › 웹 보안</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건물 입구의 경비는 보통 <strong>"어느 문으로 들어오느냐"</strong>를 봐요. 뒷문은 막고 정문만 열어 두는 식이죠. 그런데 정문으로 멀쩡히 들어오면서 <strong>가방 안에 위험한 걸 넣어 오는</strong> 사람은 못 잡아요.</p>
+      <p>그래서 가방을 열어 보는 <strong>검색대</strong>를 따로 두죠. WAF가 그 검색대예요. 일반 방화벽이 <a href="packet.html">패킷</a>의 겉면(주소와 포트)을 보고 막는다면, WAF는 <strong>HTTP 요청 안에 적힌 글자</strong>까지 읽어서 "이건 공격 모양이다" 싶으면 막아요. 그래서 <strong>정문으로 들어오는 공격</strong>에 대응할 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">HTTP 요청의 내용</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">서는 자리</p>
+          <p class="fact__value">이용자와 웹 서버 사이</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">막는 것</p>
+          <p class="fact__value fact__value--mono">XSS · SQL 주입 등</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">이용자</p>
+          <p class="node__note">누구든 보낼 수 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">요청을 보내요</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">WAF</p>
+          <p class="node__note">요청의 내용을 규칙과 맞춰 봐요</p>
+          <p><span class="chip-mono">통과 · 차단 · 기록</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">걸러서 넘겨요</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">웹 서버</p>
+          <p class="node__note">통과한 요청만 받아요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>요청이 <a href="server.html">서버</a>에 닿기 <strong>전에</strong> WAF를 먼저 지나요. 웹 서버 앞에 두거나, 통신 경로 중간의 서비스로 끼워 넣어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>주소·입력칸·쿠키 같은 <strong>요청의 각 부분을 규칙과 맞춰 봐요.</strong> "여기에 스크립트 태그가 들어 있다" 같은 모양을 찾는 거예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>걸리면 <strong>막고 기록을 남겨요.</strong> 처음에는 막지 않고 기록만 하는 모드로 돌려 보며, 멀쩡한 요청이 걸리지 않는지 확인하는 게 보통이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 입력칸에 스크립트를 넣는 공격</p>
+        <p>검색창에 글 대신 <strong>화면에서 실행될 코드</strong>를 적어 넣는 <a href="xss.html">XSS</a> 공격이 있어요. 일반 방화벽에게는 그냥 평범한 웹 요청이라 그대로 지나가요. WAF는 그 글자 안에서 <strong>태그 모양</strong>을 알아보고 막을 수 있어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 고치지 못하는 프로그램을 당장 지켜야 할 때</p>
+        <p>구멍이 발견됐는데 고친 버전이 아직 없거나, 고치려면 멈춰야 하는 경우가 있어요. 이때 WAF에 <strong>그 공격 모양만 막는 규칙</strong>을 넣어 시간을 벌어요. 임시 처방이라 <strong>근본 수리를 대신하지는 못해요.</strong></p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · IPS와 무엇이 다른가</p>
+        <p><a href="ips.html">IPS</a>는 네트워크 전체를 넓게 보며 알려진 공격을 막아요. WAF는 <strong>웹 하나만</strong> 깊이 들여다봐요. 범위는 좁고 깊이는 깊은 쪽이라, 둘은 겹치는 게 아니라 <strong>층이 다른 장치</strong>예요.</p>
+      </div>
+
+      <p class="callout">WAF를 켜면 <strong>멀쩡한 요청까지 막히는 일</strong>이 생겨요. 규칙을 조이면 막히는 게 늘고, 풀면 공격이 지나가요. 쓰는 일의 절반은 <strong>그 눈금을 맞추는 일</strong>이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">문을 보는 게 아니라, 가방을 열어 봐요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 보안 › 웹 보안</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

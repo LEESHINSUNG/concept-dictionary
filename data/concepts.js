@@ -625,6 +625,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'waf',
+    title: 'WAF',
+    sub: '웹 애플리케이션 방화벽 · Web Application Firewall',
+    summary: 'HTTP 요청의 내용까지 읽어 걸러내는 방화벽',
+    category: '보안',
+    date: '2026-10-29'
+  },
+  {
     slug: 'wan',
     title: 'WAN',
     sub: '완 · Wide Area Network',
