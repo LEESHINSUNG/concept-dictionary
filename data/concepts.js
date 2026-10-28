@@ -137,6 +137,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'csr',
+    title: '기업의 사회적 책임',
+    sub: 'CSR · Corporate Social Responsibility · 企業の社会的責任',
+    summary: '이익만이 아니라 둘레에 미치는 영향까지 책임지는 것',
+    category: '업무 시스템',
+    date: '2026-10-29'
+  },
+  {
     slug: 'css',
     title: 'CSS',
     sub: '씨에스에스 · Cascading Style Sheets',
