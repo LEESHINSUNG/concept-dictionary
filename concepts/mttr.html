@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MTTR — 기억해봐요</title>
+  <meta name="description" content="MTTR는 고장 난 뒤 다시 돌아오기까지 평균 얼마나 걸리는지를 나타내는 값이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .tl { display: flex; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .tl__seg { padding: 16px 4px; text-align: center; font-size: 13px; line-height: 1.35; }
+    .tl__seg--up { flex: 4 1 0; background: var(--chip-bg); color: var(--chip-ink); font-weight: 700; }
+    .tl__seg--down { flex: 1 1 0; background: var(--panel); color: #D8E4F8; font-weight: 700; }
+    .tl__mark { display: flex; margin-top: 6px; }
+    .tl__span { padding: 7px 4px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 2px solid var(--line-strong); }
+    .tl__span--up { flex: 4 1 0; }
+    .tl__span--down { flex: 1 1 0; color: var(--accent); border-top-color: var(--accent); }
+    @media (max-width: 479px) {
+      .tl__seg { font-size: 11px; padding: 14px 2px; }
+      .tl__span { font-size: 10px; }
+    }
+    .formula { margin-top: 18px; padding: 18px 14px; text-align: center; background: var(--panel); border-radius: 12px; color: var(--code-ink); font-family: var(--mono); font-size: 15px; line-height: 1.9; }
+    .formula b { color: var(--code-prompt); }
+    @media (max-width: 479px) { .formula { font-size: 13px; } }
+    .case code, .callout code, .step code, .define code { font-family: var(--mono); font-size: 0.92em; padding: 1px 5px; background: var(--chip-bg); color: var(--chip-ink); border-radius: 5px; }
+  </style>
+</head>
+<body data-slug="mttr">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>MTTR</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">신뢰성</span>
+      </div>
+      <h1 class="title">MTTR</h1>
+      <p class="reading">평균 복구 시간 · Mean Time To Repair · 平均修復時間</p>
+      <p class="define">고장 난 뒤 <mark>다시 돌아오기까지 평균 얼마나 걸리는가</mark>를 나타내는 값이에요. <strong>작을수록 빨리 복구되는 거예요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 품질관리 › 신뢰성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>엘리베이터가 멈췄을 때 사람들이 궁금해하는 건 하나예요. <strong>"언제 다시 돼요?"</strong> 고장이 났다는 사실보다, <strong>멈춰 있는 시간</strong>이 더 아프니까요.</p>
+      <p>MTTR는 그 멈춰 있는 시간의 평균이에요. 고장을 알아채고, 사람이 오고, 원인을 찾고, 고치고, 다시 켜기까지 — <strong>그 전부가 들어가요.</strong> 그래서 부품을 갈아 끼우는 시간만 짧다고 MTTR가 작아지지 않아요. <strong>알아채는 데 두 시간이 걸렸다면 그 두 시간도 MTTR예요.</strong></p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">재는 것</p>
+          <p class="fact__value">멈춰 있던 시간</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">포함되는 것</p>
+          <p class="fact__value">알아챔 · 출동 · 수리 · 재가동</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">작을수록</p>
+          <p class="fact__value">빨리 돌아와요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;"><a href="mtbf.html">MTBF</a>와 같은 띠를 보되, 이번에는 <strong>어두운 칸</strong>을 재요.</p>
+
+      <div class="tl" role="img" aria-label="가동 구간과 정지 구간이 번갈아 나오고, 정지 구간의 길이가 MTTR입니다.">
+        <span class="tl__seg tl__seg--up">가동</span>
+        <span class="tl__seg tl__seg--down">정지</span>
+        <span class="tl__seg tl__seg--up">가동</span>
+        <span class="tl__seg tl__seg--down">정지</span>
+      </div>
+      <div class="tl__mark">
+        <span class="tl__span tl__span--up"></span>
+        <span class="tl__span tl__span--down">MTTR</span>
+        <span class="tl__span tl__span--up"></span>
+        <span class="tl__span tl__span--down">MTTR</span>
+      </div>
+
+      <div class="formula">
+        MTTR = <b>멈춰 있던 시간의 합</b> ÷ <b>고장 횟수</b><br>
+        가용률 = <b>MTBF</b> ÷ ( <b>MTBF</b> + <b>MTTR</b> )
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>어두운 칸은 <strong>고장이 난 순간부터 다시 돌아간 순간까지</strong>예요. 수리공이 도착하기 전에 흘려보낸 시간도 여기 들어가요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>밝은 칸을 재면 <a href="mtbf.html">MTBF</a>, 어두운 칸을 재면 MTTR예요. <strong>같은 띠를 어느 쪽에서 보느냐의 차이</strong>예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>둘을 합치면 <strong>가용률</strong>이 나와요. 밝은 칸이 전체에서 차지하는 비율이라, <strong>"전체 시간 중 몇 할이나 쓸 수 있었나"</strong>를 뜻해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 가용률까지 내 보기</p>
+        <p><a href="mtbf.html">MTBF</a>가 <strong>245시간</strong>이고 MTTR가 <strong>5시간</strong>이라고 해 볼게요. 가용률은 <code>245 ÷ (245 + 5) = 0.98</code>, 곧 <strong>98%</strong>예요. 100시간 중 2시간은 못 쓴다는 뜻이고요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 어느 쪽을 줄이는 게 쉬운가</p>
+        <p>고장을 덜 나게 만드는 건 돈이 많이 들어요. 반면 <strong>예비 부품을 미리 두거나, 알림을 빨리 받거나, 복구 절차를 적어 두는</strong> 일은 비교적 싸게 MTTR를 줄여요. 그래서 현장에서는 <strong>MTTR 쪽을 먼저 손보는</strong> 경우가 많아요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 목표와 실적은 다르다</p>
+        <p>MTTR는 <strong>지나간 일을 모아 낸 평균</strong>, 곧 실적이에요. 반면 "이만큼 안에는 복구한다"고 미리 정해 두는 <strong>약속</strong>은 따로 있어요. 실적이 약속을 넘기고 있다면, 사람을 더 넣든 절차를 바꾸든 손을 봐야 한다는 신호예요.</p>
+      </div>
+
+      <p class="callout">TTR의 R을 <strong>Repair(수리)</strong>로 보면 고치는 시간만, <strong>Recovery(복구)</strong>로 보면 알아채고 돌아오기까지 전부예요. 문서마다 범위가 다를 수 있으니 <strong>무엇부터 무엇까지를 쟀는지</strong> 먼저 확인하는 게 좋아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">멈춰 있던 시간의 평균. 짧을수록 좋아요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 품질관리 › 신뢰성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>

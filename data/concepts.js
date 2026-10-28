@@ -377,6 +377,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'mttr',
+    title: 'MTTR',
+    sub: '평균 복구 시간 · Mean Time To Repair · 平均修復時間',
+    summary: '고장 뒤 다시 돌아오기까지 걸리는 평균 시간',
+    category: '품질관리',
+    date: '2026-10-29'
+  },
+  {
     slug: 'nextjs',
     title: 'Next.js',
     sub: '넥스트 제이에스',
