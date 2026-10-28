@@ -369,6 +369,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'mtbf',
+    title: 'MTBF',
+    sub: '평균 고장 간격 · Mean Time Between Failures · 平均故障間隔',
+    summary: '고장과 고장 사이에 평균 얼마나 버티는가',
+    category: '품질관리',
+    date: '2026-10-29'
+  },
+  {
     slug: 'nextjs',
     title: 'Next.js',
     sub: '넥스트 제이에스',
