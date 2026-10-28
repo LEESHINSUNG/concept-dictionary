@@ -479,13 +479,15 @@ mark {
   color: #FFFFFF;
 }
 
-.node__title { font-size: 18px; font-weight: 700; line-height: 1.4; }
+.node__title { font-size: 18px; font-weight: 700; line-height: 1.4; word-break: keep-all; }
 
 .node__note {
   margin-top: 6px;
   font-size: 14px;
   line-height: 1.5;
   color: var(--muted);
+  /* 한국어는 띄어쓰기에서만 줄을 바꿔야 읽기 편해요. */
+  word-break: keep-all;
 }
 .node--accent .node__note { color: #D8E4F8; }
 
@@ -536,6 +538,7 @@ mark {
   color: var(--accent);
   text-align: center;
   line-height: 1.4;
+  word-break: keep-all;
 }
 
 .arrow__note {
@@ -546,9 +549,11 @@ mark {
 }
 
 @media (min-width: 720px) {
-  .flow { flex-direction: row; align-items: stretch; gap: 0; }
-  .node { flex: 1 1 200px; }
-  .arrow { flex: 0 0 104px; flex-direction: column; gap: 6px; align-self: center; padding: 0 4px; }
+  /* 가로 흐름. 줄이 넘어가도 위아래가 붙지 않도록 row-gap을 둡니다. */
+  .flow { flex-direction: row; align-items: stretch; column-gap: 0; row-gap: 16px; }
+  /* 기준 너비를 좁게 잡아, 태블릿 폭에서도 세 칸이 한 줄에 들어갑니다. */
+  .node { flex: 1 1 120px; min-width: 0; }
+  .arrow { flex: 0 1 92px; min-width: 72px; flex-direction: column; gap: 6px; align-self: center; padding: 0 4px; }
   .arrow__line { width: 100%; height: 2px; }
   .arrow__line::after {
     left: auto; bottom: auto;
