@@ -489,6 +489,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'risk-acceptance',
+    title: '위험 수용',
+    sub: 'risk acceptance · リスク受容',
+    summary: '알면서도 손대지 않기로 정하는 위험 대응',
+    category: '보안',
+    date: '2026-10-29'
+  },
+  {
     slug: 'risk-based-authentication',
     title: '위험 기반 인증',
     sub: 'Risk-Based Authentication (RBA) · リスクベース認証',

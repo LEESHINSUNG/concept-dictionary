@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>위험 수용 — 기억해봐요</title>
+  <meta name="description" content="위험 수용은 위험을 알면서도 더 손대지 않고 그대로 안고 가기로 정하는 것이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* 네 가지 대응 */
+    .opt { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .opt__item { flex: 1 1 150px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
+    .opt__item--on { background: var(--chip-bg); border-color: var(--accent); }
+    .opt__name { font-size: 16px; font-weight: 700; word-break: keep-all; }
+    .opt__item--on .opt__name { color: var(--chip-ink); }
+    .opt__desc { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--muted); word-break: keep-all; }
+    .case code, .callout code, .step code, .define code { font-family: var(--mono); font-size: 0.92em; padding: 1px 5px; background: var(--chip-bg); color: var(--chip-ink); border-radius: 5px; }
+  </style>
+</head>
+<body data-slug="risk-acceptance">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>위험 수용</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">위험 관리</span>
+      </div>
+      <h1 class="title">위험 수용</h1>
+      <p class="reading">risk acceptance · リスク受容</p>
+      <p class="define">위험을 알면서도 <mark>더 손대지 않고 그대로 안고 가기로 정하는 것</mark>이에요. <strong>그냥 놔두는 게 아니라, 놔두기로 정하는 거예요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 보안 › 위험 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>비 올 확률 20%인 날, 우산을 안 들고 나갔다고 해 볼게요. 두 경우가 있어요. <strong>일기예보를 보고 "그 정도면 맞지 뭐" 하고 나간 것</strong>과, <strong>아예 생각도 안 하고 나간 것</strong>. 결과는 같아도 전혀 다른 일이에요.</p>
+      <p>앞쪽이 위험 수용이에요. 들여다봤고, 얼마나 나쁜지 가늠했고, <strong>그래도 감당할 만하다고 판단해서</strong> 손대지 않기로 한 거예요. 뒤쪽은 그냥 방치고요. 그래서 위험 수용은 <strong>아무것도 안 하는 것처럼 보이지만 엄연한 대응</strong>이에요. 누가 정했는지, 왜 괜찮다고 봤는지가 <strong>기록으로 남아야</strong> 수용이라고 부를 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">알고, 정하고, 적어 둠</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">정하는 사람</p>
+          <p class="fact__value">책임질 수 있는 사람</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">방치와 다른 점</p>
+          <p class="fact__value">근거와 기록이 있어요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">위험을 재요</p>
+          <p class="node__note">일어날 만한가, 터지면 얼마나 아픈가</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">기준과 견줘요</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">선을 넘었나</p>
+          <p class="node__note">미리 정해 둔 허용선과 비교해요</p>
+          <p><span class="chip-mono">기준</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">선 아래면</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">수용</p>
+          <p class="node__note">그대로 두고, 정했다는 사실을 남겨요</p>
+        </div>
+      </div>
+
+      <div class="opt">
+        <div class="opt__item">
+          <p class="opt__name">회피</p>
+          <p class="opt__desc">그 일을 아예 안 해요</p>
+        </div>
+        <div class="opt__item">
+          <p class="opt__name">저감</p>
+          <p class="opt__desc">대책을 넣어 줄여요</p>
+        </div>
+        <div class="opt__item">
+          <p class="opt__name">이전</p>
+          <p class="opt__desc">보험이나 위탁으로 넘겨요</p>
+        </div>
+        <div class="opt__item opt__item--on">
+          <p class="opt__name">수용</p>
+          <p class="opt__desc">그대로 안고 가요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>허용선을 미리 정해 둬야</strong> 해요. 선이 없으면 "괜찮다"가 그때그때 사람 마음대로가 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>잰 값이 선 아래면 수용, 위면 <strong>회피·저감·이전</strong> 중에서 골라요. 네 가지 중 하나를 고르는 것이지, 수용이 "고르지 않음"은 아니에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>수용한 위험은 <strong>목록에 남겨 두고 때가 되면 다시 봐요.</strong> 상황이 바뀌면 같은 위험도 선을 넘을 수 있으니까요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 고치는 값이 손해보다 클 때</p>
+        <p>사내에서만 쓰는 오래된 도구에 구멍이 있는데, 고치려면 시스템을 새로 짜야 한다고 해 볼게요. <a href="cvss.html">CVSS</a> 점수가 높아도 <strong>밖에서 닿을 수 없는 자리</strong>라면 실제 위험은 작아요. 이럴 때 "접근을 사내로 제한한 채 수용"하고 <strong>그 판단을 적어 두는</strong> 거예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 대책을 넣고도 남는 것</p>
+        <p><a href="safeguard.html">세이프가드</a>를 아무리 넣어도 위험이 0이 되지는 않아요. 남은 몫을 <strong>잔여 위험</strong>이라고 하고, 이건 결국 수용하게 돼요. 그래서 수용은 <strong>마지막에 한 번쯤 꼭 거치는 칸</strong>이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 기록이 남는 곳</p>
+        <p>어떤 대책을 넣고 어떤 것을 뺐는지는 <a href="statement-of-applicability.html">적용 선언서</a> 같은 문서에 모여요. "이건 안 넣었다"에 <strong>이유가 적혀 있으면 수용</strong>, 빈칸이면 그냥 누락이에요. 감사에서 갈리는 지점이 바로 여기예요.</p>
+      </div>
+
+      <p class="callout">수용했다고 잊어도 되는 건 아니에요. <strong>언제 다시 볼지</strong>까지 함께 정해 두는 게 보통이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">모르고 두는 것과, 알고 두는 것은 달라요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 보안 › 위험 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/concept.js"></script>
+</body>
+</html>
