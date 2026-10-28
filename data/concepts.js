@@ -73,6 +73,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'cidr',
+    title: 'CIDR 표기',
+    sub: '사이더 표기 · Classless Inter-Domain Routing notation',
+    summary: '주소 뒤 슬래시 숫자로 네트워크 몫을 적는 방식',
+    category: '네트워크',
+    date: '2026-10-29'
+  },
+  {
     slug: 'client',
     title: '클라이언트',
     sub: 'client · クライアント',
