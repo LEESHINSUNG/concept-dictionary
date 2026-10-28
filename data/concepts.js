@@ -105,6 +105,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'control-total-check',
+    title: '컨트롤 토털 체크',
+    sub: '합계 대조 검사 · control total check · コントロールトータルチェック',
+    summary: '미리 낸 합계와 넣은 뒤의 합계를 맞춰 보는 검사',
+    category: '업무 시스템',
+    date: '2026-10-29'
+  },
+  {
     slug: 'cookie',
     title: '쿠키',
     sub: 'cookie · クッキー',
