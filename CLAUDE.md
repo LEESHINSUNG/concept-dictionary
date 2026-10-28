@@ -19,7 +19,7 @@
 4. `concepts/_template.html`을 복사해 `concepts/<slug>.html` 작성 (구조·id는 템플릿을 따른다).
 5. `data/concepts.js`에 항목 추가. 작성일은 `TZ=Asia/Tokyo date +%F`. 넣은 뒤 `node scripts/sort.mjs`를 돌리면 slug 알파벳순으로 알아서 정리된다.
 6. 기존 개념 페이지 본문에 이번 개념이 언급된 곳이 있는지 `grep`으로 찾아, 있으면 링크를 건다 (문장은 바꾸지 않고 링크만 추가. 이번 커밋에 함께 넣는다).
-7. `node scripts/check.mjs` 통과 확인. 실패하면 고친다. 정렬 경고가 나오면 `node scripts/sort.mjs`를 돌린다.
+7. `node scripts/stamp.mjs` → `node scripts/check.mjs` 통과 확인. 실패하면 고친다. 정렬 경고가 나오면 `node scripts/sort.mjs`를 돌린다.
 8. `git add`는 이번에 만든·바꾼 파일만. 커밋 메시지: `concept: add <title>` (수정 `concept: update <title>`, 삭제 `concept: remove <title>`).
 9. `git push origin main`. 이후 `gh run list --limit 1`로 배포 상태를 확인할 수 있으면 확인.
 10. 사용자에게 보고: 한 줄 결과 + 주소 `https://<계정>.github.io/<저장소>/concepts/<slug>.html` (반영까지 1~2분).
@@ -30,7 +30,7 @@
 2. slug는 **로마자 읽기**로 정한다 (順序 → `junjo`, 随時 → `zuiji`). 충돌 시 `-2`.
 3. `jp/_template.html`을 복사해 `jp/words/<slug>.html` 작성. 구조와 id(`head kanji example near summary pager`)는 바꾸지 않는다.
 4. `data/words.js`에 항목 추가 — `slug, word, kana, meaning, pos, date` 필수. `level`(N1 등)은 확실할 때만.
-5. `node scripts/sort.mjs` → `node scripts/check.mjs` 통과 확인.
+5. `node scripts/sort.mjs` → `node scripts/stamp.mjs` → `node scripts/check.mjs` 통과 확인.
 6. 커밋 메시지: `word: add <단어>` (수정 `word: update`, 삭제 `word: remove`). push는 마지막에 1번.
 
 ## 일본어 단어 작성 규칙
@@ -69,8 +69,13 @@
   - 아직 사전에 없는 개념은 링크하지 않는다. 억지로 끼워 넣지 말고, 자연스럽게 언급될 때만 건다.
   - **링크는 양방향으로 본다.** 새 개념을 추가하면 기존 개념 페이지도 훑어서, 그 개념을 이미 언급하고 있는 문장에 링크를 건다. 문장을 새로 쓰거나 내용을 바꾸지는 않는다.
 
+## 공통 CSS·JS를 고쳤으면
+**반드시 `node scripts/stamp.mjs`를 돌린다.** 주소가 그대로면 브라우저가 전에 받아 둔 옛 파일을 계속 쓴다.
+이 스크립트가 `assets/` 아래 파일의 내용 지문을 `style.css?v=1a2b3c4d`처럼 붙여 주고, 내용이 바뀌면 값도 바뀐다.
+바뀐 게 없으면 아무것도 안 하므로 매번 돌려도 된다. (`data/`는 대상이 아니다 — HTML도 함께 캐시되므로 붙여도 얻는 게 없다.)
+
 ## 건드리지 않는 것
-- 공통 CSS/JS, 사이트 구조. (기존 개념 페이지는 링크를 걸기 위해서라면 고쳐도 된다 — 내용은 바꾸지 않는다.)
+- 공통 CSS/JS, 사이트 구조. 고쳤다면 위의 `stamp.mjs`를 잊지 않는다. (기존 개념 페이지는 링크를 걸기 위해서라면 고쳐도 된다 — 내용은 바꾸지 않는다.)
 - 비밀값(토큰 등)은 어떤 파일에도 쓰지 않는다.
 
 ## 로컬 미리보기(요청 시에만)
