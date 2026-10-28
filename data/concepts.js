@@ -505,6 +505,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'risk-management-process',
+    title: '위험관리 프로세스',
+    sub: 'risk management process · リスクマネジメントプロセス (JIS Q 31000:2019)',
+    summary: '위험을 다루는 일을 정해진 차례로 돌리는 틀',
+    category: '보안',
+    date: '2026-10-29'
+  },
+  {
     slug: 'router',
     title: '라우터',
     sub: 'router · ルータ',
