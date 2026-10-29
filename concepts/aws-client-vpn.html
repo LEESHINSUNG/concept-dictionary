@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AWS Client VPN — 기억해봐요</title>
+  <meta name="description" content="AWS Client VPN은 직원 한 사람 한 사람이 자기 기기에서 AWS 안의 사설 네트워크로 안전하게 들어가게 해 주는, AWS가 운영하는 VPN 서비스예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    /* 설정 다섯 단계 */
+    .setup { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .setup__row { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .setup__no { flex: 0 0 auto; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); padding-top: 2px; }
+    .setup__body { flex: 1 1 auto; min-width: 0; }
+    .setup__body p { margin: 0; font-size: 15px; word-break: keep-all; }
+    .setup__body p + p { margin-top: 3px; color: var(--muted); font-size: 14px; }
+    .case code, .callout code, .step code, .define code, .setup code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="aws-client-vpn">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>AWS Client VPN</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">클라우드</span>
+      </div>
+      <h1 class="title">AWS Client VPN</h1>
+      <p class="reading">에이더블유에스 클라이언트 VPN · 원격 접속 VPN · Amazon Web Services</p>
+      <p class="define">AWS Client VPN은 <mark>직원 한 사람 한 사람이 자기 기기에서 AWS 안의 사설 네트워크로 안전하게 들어가게 해 주는 VPN 서비스</mark>예요. <strong>VPN 서버를 AWS가 대신 운영해 줘요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 네트워크 › 클라우드</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사가 AWS에 서버를 두면, 보통 그 서버들은 <strong>VPC</strong>라는 회사 전용 네트워크 안에 숨겨 둬요. 인터넷에서 아무나 들어오지 못하게요. 그런데 재택근무하는 직원은 그 안에 들어가야 하죠.</p>
+      <p>그래서 <a href="vpn.html">VPN</a>으로 암호화된 통로를 뚫어요. 예전엔 VPN 서버를 <strong>직접 세우고 관리</strong>해야 했는데, AWS Client VPN은 그 서버를 AWS가 맡아 줘요. 회사는 <strong>"누가, 어디까지 들어올 수 있는지"</strong>만 정하면 돼요. 직원은 노트북에 VPN 앱을 깔고 버튼만 누르면 되고요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">종류</p>
+          <p class="fact__value">원격 접속(사람 단위) VPN</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">연결 앱</p>
+          <p class="fact__value">AWS 제공 앱 · OpenVPN 계열 앱</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">신원 확인</p>
+          <p class="fact__value">인증서 · Active Directory · SAML</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">직원 노트북</p>
+          <p class="node__note">집·카페에서 VPN 앱으로 접속</p>
+          <p><span class="chip-mono">10.100.0.5</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">암호화해 보낸다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">Client VPN 엔드포인트</p>
+          <p class="node__note">AWS가 운영하는 입구. 신원과 권한을 확인해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">들여보낸다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">VPC 안 서버</p>
+          <p class="node__note">인터넷에 드러나지 않은 사내 시스템</p>
+          <p><span class="chip-mono">10.0.1.20</span></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>접속한 기기는 미리 정한 <strong>클라이언트 주소 범위</strong>에서 주소를 하나 받아요. 이 범위는 <a href="cidr.html">CIDR 표기</a>로 <code>/22</code>부터 <code>/12</code> 사이 크기로 잡아야 하고, VPC 주소와 <strong>겹치면 안 돼요.</strong> 만든 뒤에는 바꿀 수 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>엔드포인트는 VPC의 <strong>서브넷</strong>(대상 네트워크)에 연결해야 비로소 접속을 받아요. 연결 전에는 대기 상태예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>들어온 뒤에도 <strong>인가 규칙</strong>이 "이 그룹은 이 네트워크까지"를 정해요. 방화벽처럼 동작해서, 규칙이 없으면 접속은 돼도 아무 데도 못 가요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <p>관리자가 처음 설정하는 순서예요. 대부분 AWS 콘솔 화면에서 해요.</p>
+
+      <div class="setup">
+        <div class="setup__row">
+          <span class="setup__no">1</span>
+          <div class="setup__body"><p><strong>신원 확인 방식 정하기</strong></p><p>서버·사용자 인증서를 주고받거나(상호 인증), 사내 Active Directory, 또는 SAML 로그인(사내 계정으로 한 번에 로그인)을 써요.</p></div>
+        </div>
+        <div class="setup__row">
+          <span class="setup__no">2</span>
+          <div class="setup__body"><p><strong>엔드포인트 만들기</strong></p><p>클라이언트 주소 범위를 정해요. 예: <code>10.100.0.0/22</code></p></div>
+        </div>
+        <div class="setup__row">
+          <span class="setup__no">3</span>
+          <div class="setup__body"><p><strong>서브넷에 연결하기</strong></p><p>이게 끝나야 접속을 받기 시작해요.</p></div>
+        </div>
+        <div class="setup__row">
+          <span class="setup__no">4</span>
+          <div class="setup__body"><p><strong>인가 규칙·경로 넣기</strong></p><p>"개발팀은 <code>10.0.0.0/16</code>까지"처럼 범위를 정해요.</p></div>
+        </div>
+        <div class="setup__row">
+          <span class="setup__no">5</span>
+          <div class="setup__body"><p><strong>설정 파일 나눠 주기</strong></p><p>콘솔에서 내려받은 설정 파일을 직원의 VPN 앱에 넣으면 끝이에요.</p></div>
+        </div>
+      </div>
+
+      <div class="case" style="margin-top: 18px;">
+        <p class="case__title">스플릿 터널 · 모든 길을 터널로 보낼까</p>
+        <p>기본은 직원 기기의 <strong>모든 통신</strong>이 터널로 가요. 스플릿 터널을 켜면 <strong>AWS로 가는 통신만</strong> 터널을 타고, 유튜브 같은 나머지 인터넷은 원래 길로 가요. 터널이 덜 붐비는 대신, 회사가 그 나머지 통신은 볼 수 없게 돼요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">Site-to-Site VPN과 무엇이 다를까</p>
+        <p>AWS에는 <strong>사무실 네트워크 전체</strong>를 VPC와 이어 주는 Site-to-Site VPN도 있어요. 이쪽은 사무실 <a href="router.html">라우터</a>가 <a href="ipsec.html">IPsec</a>으로 붙는 <strong>건물 단위</strong> 연결이고, Client VPN은 <strong>사람 단위</strong> 연결이에요. 사무실에 출근하는 팀이면 앞쪽, 흩어져 일하는 팀이면 뒤쪽이 맞아요.</p>
+      </div>
+
+      <p class="callout">요금은 <strong>엔드포인트를 서브넷에 연결해 둔 시간</strong>과 <strong>사람들이 접속해 있던 시간</strong>을 더해 붙어요. 아무도 안 쓰는 동안에도 연결해 둔 시간 요금은 나가니, 테스트용이라면 다 쓴 뒤 연결을 풀어 두세요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">VPN 서버는 AWS가, 누가 어디까지는 우리가.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 네트워크 › 클라우드</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

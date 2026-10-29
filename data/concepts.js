@@ -33,6 +33,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'aws-client-vpn',
+    title: 'AWS Client VPN',
+    sub: '에이더블유에스 클라이언트 VPN · 원격 접속 VPN · Amazon Web Services',
+    summary: '직원이 자기 기기에서 AWS 안 사설망으로 들어가는 관리형 VPN',
+    category: '네트워크',
+    date: '2026-10-29'
+  },
+  {
     slug: 'background',
     title: '백그라운드',
     sub: '백그라운드 실행 · background · 포그라운드 · foreground',
