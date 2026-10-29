@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>로직 트리 — 기억해봐요</title>
+  <meta name="description" content="로직 트리는 큰 문제를 MECE하게 쪼개 나무 모양으로 펼친 것이에요. 왜?를 거듭 물어 진짜 원인을 찾는 Why 트리로 많이 써요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .tree { display: flex; flex-direction: column; gap: 8px; }
+    .tree__row { position: relative; padding: 11px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .tree__row--l1 { border: 2px solid var(--accent); background: var(--chip-bg); font-weight: 700; }
+    .tree__row--l2 { margin-left: 22px; font-weight: 700; }
+    .tree__row--l3 { margin-left: 46px; background: var(--bg); }
+    .tree__row--l2::before, .tree__row--l3::before { content: ''; position: absolute; left: -14px; top: 50%; width: 10px; border-top: 2px solid var(--line-strong); }
+    .tree__kind { display: block; margin-bottom: 2px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .tree__note { display: block; margin-top: 3px; font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.5; }
+    .tree__tag { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .tree__tag--yes { background: var(--accent); color: #FFFFFF; }
+    .tree__tag--no { border: 1px solid var(--line-strong); color: var(--muted); }
+    .tree__row--cut { opacity: 0.6; border-style: dashed; }
+    .tree__row--cut .tree__text { text-decoration: line-through; }
+    .tree__row--hit { border: 2px solid var(--accent); }
+    @media (max-width: 479px) {
+      .tree__row--l2 { margin-left: 14px; }
+      .tree__row--l3 { margin-left: 28px; }
+      .tree__row--l2::before, .tree__row--l3::before { left: -10px; width: 7px; }
+    }
+    .types { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .types__item { flex: 1 1 180px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .types__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .types__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .types__q { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .types__eg { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="logic-tree">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>로직 트리</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">생각 정리법</span>
+      </div>
+      <h1 class="title">로직 트리</h1>
+      <p class="reading">로직트리 · Why 트리 · logic tree · 논리 나무</p>
+      <p class="define">로직 트리는 <mark>큰 문제를 겹침·빠짐 없이 쪼개 나무 모양으로 펼친 것</mark>이에요. 특히 "왜?"를 거듭 물어 <strong>진짜 원인을 찾는 Why 트리</strong>로 많이 써요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-30">2026-10-30</time></span>
+        <span>카테고리 업무 시스템 › 생각 정리법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>"매출이 떨어졌다"는 너무 커서 어디부터 손대야 할지 모르겠어요. 그래서 <strong>"왜?"</strong>를 물어요. 손님이 줄었거나, 한 사람이 쓰는 돈이 줄었거나, 둘 중 하나예요. 손님은 왜 줄었지? 새 손님이 안 오거나, 단골이 떠났거나.</p>
+      <p>이렇게 가지를 쳐 내려가면, 맨 끝에는 <strong>직접 확인하고 손쓸 수 있는 원인</strong>이 나와요. 이 나무가 로직 트리예요. 가지를 나눌 때마다 <a href="mece.html">MECE</a>, 곧 겹치지 않고 빠짐없이를 지키는 게 핵심이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">모양</p>
+          <p class="fact__value">한 문제에서 갈라지는 나무</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">규칙</p>
+          <p class="fact__value">같은 층의 가지는 MECE</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">종류</p>
+          <p class="fact__value">What · Why · How</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">역 앞 카페의 매출이 떨어진 이유를 Why 트리로 찾아봤어요.</p>
+      <div class="tree" role="img" aria-label="Why 트리 예시. 매출이 떨어졌다 아래에 손님 수가 줄었다와 한 사람이 쓰는 돈이 줄었다가 있고, 손님 수 아래에 새 손님 감소와 단골 이탈, 쓰는 돈 아래에 디저트 주문 감소와 싼 메뉴로 이동이 있습니다. 확인해 보니 단골 이탈이 원인이었습니다.">
+        <div class="tree__row tree__row--l1"><span class="tree__kind">문제</span><span class="tree__text">매출이 떨어졌다 — 왜?</span></div>
+        <div class="tree__row tree__row--l2"><span class="tree__text">손님 수가 줄었다</span></div>
+        <div class="tree__row tree__row--l3"><span class="tree__text">새 손님이 줄었다</span><span class="tree__note">확인: 지나가는 사람 수는 그대로</span></div>
+        <div class="tree__row tree__row--l3 tree__row--hit"><span class="tree__text">단골이 떠났다</span><span class="tree__note">확인: 스탬프 카드 재방문이 절반으로</span><span class="tree__tag tree__tag--yes">원인!</span></div>
+        <div class="tree__row tree__row--l2"><span class="tree__text">한 사람이 쓰는 돈이 줄었다</span></div>
+        <div class="tree__row tree__row--l3"><span class="tree__text">디저트 주문이 줄었다</span><span class="tree__note">확인: 디저트 판매 수는 그대로</span></div>
+        <div class="tree__row tree__row--l3"><span class="tree__text">싼 메뉴로 옮겨 갔다</span><span class="tree__note">확인: 메뉴별 판매 비율도 그대로</span></div>
+      </div>
+
+      <div class="types">
+        <div class="types__item">
+          <p class="types__name">What 트리</p>
+          <p class="types__q">무엇으로 이루어졌나?</p>
+          <p class="types__eg">매출 = 손님 수 × 한 사람이 쓰는 돈. 구조를 보여 줘요.</p>
+        </div>
+        <div class="types__item types__item--on">
+          <p class="types__name">Why 트리</p>
+          <p class="types__q">왜 그렇게 됐나?</p>
+          <p class="types__eg">위 그림처럼 원인을 좁혀 가요.</p>
+        </div>
+        <div class="types__item">
+          <p class="types__name">How 트리</p>
+          <p class="types__q">어떻게 하면 될까?</p>
+          <p class="types__eg">해결책을 쪼개요. <a href="issue-tree.html">이슈 트리</a>로 이어져요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>맨 위(또는 왼쪽)에 <strong>문제 하나</strong>를 놓아요. "매출이 떨어졌다"처럼 사실로 적어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>"왜?"를 물어 가지를 나눠요. 가지가 <strong>겹치면</strong> 같은 원인을 두 번 쫓고, <strong>빠지면</strong> 진짜 원인을 놓쳐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>데이터로 <strong>확인할 수 있는 크기</strong>까지 내려가면 멈추고, 가지마다 맞는지 확인해요. 위 그림에선 "단골이 떠났다"만 남았어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 특성요인도와 비교</p>
+        <p><a href="fishbone-diagram.html">특성요인도</a>도 원인을 찾지만, 원인을 사람·기계·재료·방법 같은 <strong>정해진 묶음</strong>으로 펼쳐 놓는 그림이에요. Why 트리는 층층이 내려가며 "왜?"를 <strong>좁혀 가는</strong> 데 강해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · WBS도 같은 모양</p>
+        <p>프로젝트의 일을 쪼갠 <a href="wbs.html">WBS</a>는 "무엇으로 이루어졌나"를 묻는 <strong>What 트리</strong>의 한 형태예요. 나무를 그리는 규칙(겹치지 않게, 빠짐없이)은 똑같아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 원인을 찾았다면 다음은 How</p>
+        <p>"단골이 떠났다"를 찾았으면 이제 <strong>"어떻게 되돌릴까?"</strong>로 넘어가요. 해결책을 질문과 가설로 쪼개는 <a href="issue-tree.html">이슈 트리</a>(How 트리)가 그 일을 맡아요.</p>
+      </div>
+      <p class="callout">"왜?"를 다섯 번 묻는 도요타의 <strong>5 Whys</strong>(なぜなぜ分析)와 닮았어요. 다른 점은 로직 트리는 한 줄로 파고들지 않고, 층마다 <strong>가능한 가지를 모두</strong> 펼쳐 놓은 뒤 데이터로 골라낸다는 거예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">"왜?"를 가지로 펼쳐, 손쓸 수 있는 원인까지.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-30 · 카테고리 업무 시스템 › 생각 정리법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

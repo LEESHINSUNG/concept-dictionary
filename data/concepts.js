@@ -449,6 +449,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'logic-tree',
+    title: '로직 트리',
+    sub: '로직트리 · Why 트리 · logic tree · 논리 나무',
+    summary: '문제를 MECE하게 쪼개 원인을 찾아가는 나무 (Why 트리)',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'mece',
     title: 'MECE',
     sub: '미시 · 중복 없이 누락 없이 · Mutually Exclusive and Collectively Exhaustive · 漏れなくダブりなく',
