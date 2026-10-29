@@ -33,6 +33,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'background',
+    title: '백그라운드',
+    sub: '백그라운드 실행 · background · 포그라운드 · foreground',
+    summary: '프로그램을 뒤에서 돌게 맡기고 바로 다른 일을 하는 실행 방식',
+    category: '운영체제',
+    date: '2026-10-29'
+  },
+  {
     slug: 'botnet',
     title: '봇넷',
     sub: 'botnet · ボットネット',
