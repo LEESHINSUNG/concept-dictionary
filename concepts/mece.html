@@ -10,7 +10,6 @@
   <style>
     /* 전체 막대 하나를 어떻게 나눴는지 세 가지로 비교 */
     .mece { display: grid; grid-template-columns: 1fr; gap: 14px; }
-    @media (min-width: 720px) { .mece { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .mece__card { padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
     .mece__card--ok { border: 2px solid var(--accent); background: var(--chip-bg); }
     .mece__verdict { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--new-bg); margin: 0 0 4px; }
@@ -87,13 +86,14 @@
       <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">회색 막대가 <strong>고객 전체</strong>예요. 세 가지 방식으로 나눠 봤어요.</p>
 
       <div class="mece">
-        <div class="mece__card" role="img" aria-label="겹치는 나누기. 학생과 20대로 나누면 20대 학생이 두 칸에 모두 들어갑니다.">
-          <p class="mece__verdict">✕ 겹친다</p>
+        <div class="mece__card" role="img" aria-label="겹치는 나누기. 학생과 20대로 나누면 20대 학생이 두 칸에 모두 들어가고, 30대 직장인 같은 사람은 어디에도 들어가지 않습니다.">
+          <p class="mece__verdict">✕ 겹치고 빠진다</p>
           <p class="mece__name">학생 / 20대</p>
           <div class="mece__bar" aria-hidden="true">
-            <span class="mece__seg mece__seg--a" style="left: 0; width: 34%;">학생</span>
-            <span class="mece__seg mece__seg--both" style="left: 34%; width: 22%;">둘 다</span>
-            <span class="mece__seg mece__seg--b" style="left: 56%; width: 44%;">20대</span>
+            <span class="mece__seg mece__seg--a" style="left: 0; width: 30%;">학생</span>
+            <span class="mece__seg mece__seg--both" style="left: 30%; width: 18%;">둘 다</span>
+            <span class="mece__seg mece__seg--b" style="left: 48%; width: 24%;">20대</span>
+            <span class="mece__seg mece__seg--gap" style="left: 72%; width: 28%;">빈 곳</span>
           </div>
           <p class="mece__note">대학생은 두 칸에 다 들어가 <strong>두 번 세어져요.</strong> 30대 직장인은 어디에도 없고요.</p>
         </div>
