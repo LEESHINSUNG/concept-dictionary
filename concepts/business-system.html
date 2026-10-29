@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>비즈니스 시스템 — 기억해봐요</title>
+  <meta name="description" content="비즈니스 시스템은 상품이 만들어져 손님에게 닿기까지의 일을 기능별로 줄 세워, 어디서 이기고 어디를 맡길지 보는 틀이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .chain { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; counter-reset: link; }
+    @media (min-width: 720px) { .chain { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .chain__item { position: relative; padding: 12px 12px 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .chain__item--win { border: 2px solid var(--accent); background: var(--chip-bg); }
+    .chain__item--out { border-style: dashed; background: var(--bg); }
+    .chain__no { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); }
+    .chain__name { margin: 2px 0 4px; font-size: 16px; font-weight: 700; }
+    .chain__eg { margin: 0; font-size: 14px; color: var(--muted); word-break: keep-all; line-height: 1.5; }
+    .chain__tag { display: inline-block; margin-top: 8px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .chain__item--win .chain__tag { background: var(--accent); color: #FFFFFF; }
+    .chain__item--out .chain__tag { border: 1px dashed var(--line-strong); color: var(--muted); }
+    .chain__dir { margin: 10px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="business-system">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>비즈니스 시스템</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">경영 전략</span>
+      </div>
+      <h1 class="title">비즈니스 시스템</h1>
+      <p class="reading">비지니스 시스템 · 사업 시스템 · business system</p>
+      <p class="define">비즈니스 시스템은 <mark>상품이 만들어져 손님에게 닿기까지의 일을 기능별로 줄 세워, 어디서 이기고 어디를 맡길지 보는 틀</mark>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-30">2026-10-30</time></span>
+        <span>카테고리 업무 시스템 › 경영 전략</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>카페에서 커피 한 잔이 나오기까지를 떠올려 봐요. <strong>메뉴 정하기 → 원두 사 오기 → 볶고 내리기 → 알리기 → 팔기 → 단골 챙기기</strong>. 칸마다 돈과 손이 들고, 잘하는 칸도 못하는 칸도 있어요.</p>
+      <p>작은 가게가 모든 칸을 다 잘할 수는 없어요. 그래서 일을 이렇게 <strong>한 줄로 세워 놓고</strong>, 강한 칸에는 힘을 몰고 평범한 칸은 남에게 맡기거나 줄여요. 이걸 정리하는 틀이 비즈니스 시스템이에요. 경영 컨설팅 회사 맥킨지가 쓰던 틀로 소개되는 경우가 많아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">일의 흐름 (기능의 사슬)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">묻는 것</p>
+          <p class="fact__value">어느 칸에서 차별화할까</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">가까운 개념</p>
+          <p class="fact__value">가치 사슬 (포터)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">역 앞 카페의 일을 왼쪽 위부터 순서대로 세웠어요.</p>
+      <div class="chain" role="img" aria-label="카페의 비즈니스 시스템. 1 개발, 2 조달은 남에게 맡기고, 3 생산은 우리 강점이라 키우고, 4 마케팅, 5 판매, 6 서비스 순서로 이어집니다.">
+        <div class="chain__item">
+          <span class="chain__no">1</span>
+          <p class="chain__name">개발</p>
+          <p class="chain__eg">메뉴와 원두 배합 정하기</p>
+        </div>
+        <div class="chain__item chain__item--out">
+          <span class="chain__no">2</span>
+          <p class="chain__name">조달</p>
+          <p class="chain__eg">생두 사 오기. 수입상에 맡겨요</p>
+          <span class="chain__tag">남에게 맡긴다</span>
+        </div>
+        <div class="chain__item chain__item--win">
+          <span class="chain__no">3</span>
+          <p class="chain__name">생산</p>
+          <p class="chain__eg">매일 아침 직접 볶고 내리기</p>
+          <span class="chain__tag">우리 강점 · 키운다</span>
+        </div>
+        <div class="chain__item">
+          <span class="chain__no">4</span>
+          <p class="chain__name">마케팅</p>
+          <p class="chain__eg">SNS와 역 앞 전단</p>
+        </div>
+        <div class="chain__item">
+          <span class="chain__no">5</span>
+          <p class="chain__name">판매</p>
+          <p class="chain__eg">가게 카운터와 미리 주문 앱</p>
+        </div>
+        <div class="chain__item">
+          <span class="chain__no">6</span>
+          <p class="chain__name">서비스</p>
+          <p class="chain__eg">스탬프, 단골 이름 기억하기</p>
+        </div>
+      </div>
+      <p class="chain__dir">1 → 6 순서로 일이 흘러 손님에게 닿아요</p>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>사업을 <strong>기능 단위로</strong> 순서대로 세워요. 위는 흔한 예일 뿐, 업종마다 칸은 달라요. 소프트웨어라면 "생산" 대신 "개발·운영"이 크겠죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>칸마다 <strong>비용이 얼마나 드는지</strong>, <strong>경쟁사와 무엇이 다른지</strong> 적어요. 차이가 없는 칸은 손님이 알아주지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>강한 칸은 더 키우고, 평범한 칸은 <strong>외부에 맡기거나</strong>(아웃소싱) 다른 회사와 손잡아요. 칸의 모양을 바꾸면 아예 새로운 사업 방식이 나오기도 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 칸을 바꿔서 이기기</p>
+        <p>가구를 완성품 대신 <strong>납작한 상자</strong>에 담아 팔고 조립을 손님에게 맡기면, 생산·배송 칸의 비용이 크게 줄어요. 경쟁사와 같은 칸을 <strong>다른 방식으로 채우는 것</strong>도 전략이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 가치 사슬과 무엇이 다를까</p>
+        <p>경영학자 마이클 포터의 <strong>가치 사슬</strong>은 주된 활동에 더해 인사·기술 개발 같은 <strong>지원 활동</strong>까지 나눠, 이익이 어디서 생기는지 따져요. 비즈니스 시스템은 주된 흐름을 단순하게 세우고, <strong>공급사·손님과 어떻게 이어지는지</strong>까지 넓게 보는 데 많이 써요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 3C와 함께</p>
+        <p><a href="3c-analysis.html">3C 분석</a>의 "자사" 칸을 볼 때 비즈니스 시스템으로 쪼개 보면, 우리가 <strong>정확히 어느 일을</strong> 잘하는지가 보여요. "커피를 잘한다"가 "볶는 걸 잘한다"로 또렷해지는 거예요.</p>
+      </div>
+      <p class="callout">IT 쪽에서 "비즈니스 시스템"이라고 하면 판매·구매·회계처럼 회사 업무를 돌리는 <strong>정보 시스템</strong>을 가리키기도 해요(<a href="erp.html">ERP</a>가 대표적이에요). 경영 전략 이야기인지, 시스템 이야기인지 앞뒤를 보고 판단하면 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">일을 한 줄로 세우고, 이길 칸에 힘을 몬다.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-30 · 카테고리 업무 시스템 › 경영 전략</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

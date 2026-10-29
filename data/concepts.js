@@ -89,6 +89,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'business-system',
+    title: '비즈니스 시스템',
+    sub: '비지니스 시스템 · 사업 시스템 · business system',
+    summary: '일을 기능별로 줄 세워 어디서 이기고 어디를 맡길지 보는 틀',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'c2-server',
     title: 'C&C 서버',
     sub: 'Command and Control (C2) · C&Cサーバ',
