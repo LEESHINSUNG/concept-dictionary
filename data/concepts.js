@@ -561,6 +561,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'rust',
+    title: 'Rust',
+    sub: '러스트 · Rust programming language',
+    summary: '빠르면서도 메모리 실수를 컴파일할 때 막아 주는 언어',
+    category: '프로그래밍 언어',
+    date: '2026-10-29'
+  },
+  {
     slug: 'safeguard',
     title: '세이프가드',
     sub: '보호 대책 · safeguard · セーフガード',
