@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>세그먼트 — 기억해봐요</title>
+  <meta name="description" content="세그먼트는 큰 네트워크를 라우터로 나눈 한 구역이에요. 같은 구역 안에서는 바로 통하고, 다른 구역으로 가려면 라우터를 거쳐요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .case code, .callout code, .step code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="segment">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>세그먼트</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">네트워크 설계</span>
+      </div>
+      <h1 class="title">세그먼트</h1>
+      <p class="reading">segment · 네트워크 세그먼트 · TCP 세그먼트</p>
+      <p class="define">세그먼트는 <mark>큰 네트워크를 나눈 한 구역</mark>이에요. <strong>같은 구역 안에서는 바로 통하고, 다른 구역으로 가려면 <a href="router.html">라우터</a>를 거쳐요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 네트워크 › 네트워크 설계</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>아파트 한 동을 떠올려 봐요. <strong>같은 층</strong> 사람끼리는 복도에서 바로 말을 걸 수 있어요. 다른 층에 가려면 <strong>엘리베이터</strong>를 타야 하고, 엘리베이터에 카드키를 달면 아무 층에나 못 가게 막을 수도 있죠.</p>
+      <p>네트워크에서 그 "층"이 세그먼트예요. 회사 네트워크를 사무실, 서버실, 손님용 와이파이처럼 <strong>여러 세그먼트로 나누고</strong>, 그 사이를 라우터(엘리베이터)가 이어요. 흔히 <strong>같은 네트워크 주소를 쓰는 범위</strong>, 곧 라우터로 갈라진 한 구역을 세그먼트라고 불러요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">같은 세그먼트</p>
+          <p class="fact__value">라우터 없이 바로 통신</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">다른 세그먼트</p>
+          <p class="fact__value">반드시 라우터를 거침</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">나누는 이유</p>
+          <p class="fact__value">보안 · 혼잡 줄이기 · 관리</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">사무실 PC가 서버실의 서버에 접속하는 길이에요.</p>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">사무실 세그먼트</p>
+          <p class="node__note">직원 PC들이 모인 구역</p>
+          <p><span class="chip-mono">192.168.1.0/24</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">나간다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">라우터</p>
+          <p class="node__note">구역 사이의 유일한 길. 규칙으로 막을 수도 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">들어간다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">서버 세그먼트</p>
+          <p class="node__note">중요한 서버만 모은 구역</p>
+          <p><span class="chip-mono">192.168.2.0/24</span></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>같은 세그먼트 안에서는 스위치를 통해 <strong>바로</strong> 주고받아요. "누구 있어요?" 하고 모두에게 외치는 방송(브로드캐스트)도 <strong>이 구역 안까지만</strong> 퍼져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>주소의 앞부분(네트워크 부분)이 다르면 다른 세그먼트예요. 이때 PC는 <a href="packet.html">패킷</a>을 <strong>라우터에 맡겨요.</strong> 구역의 크기는 <a href="cidr.html">CIDR 표기</a>의 <code>/24</code> 같은 숫자로 정해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>모든 통신이 라우터를 지나니, 여기에 <strong>"사무실 → 서버는 웹만 허용"</strong> 같은 규칙을 걸 수 있어요. 나누는 것만으로 지킬 지점이 생기는 거예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>내 컴퓨터가 어느 세그먼트에 있는지 확인해 봐요. macOS 터미널 기준이에요(와이파이가 <code>en0</code>일 때).</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> ipconfig getifaddr en0
+<span class="c-comment"># 내 IP 주소가 나와요. 예: 192.168.1.23</span>
+<span class="c-prompt">$</span> ipconfig getoption en0 subnet_mask
+<span class="c-comment"># 서브넷 마스크가 나와요. 예: 255.255.255.0</span></code></pre>
+      </div>
+
+      <p class="callout">마스크가 <code>255.255.255.0</code>(= <code>/24</code>)이면 <strong>앞 세 칸이 나와 같은 기기들</strong>이 같은 세그먼트예요. 윈도우에서는 <code>ipconfig</code> 한 줄로 둘 다 볼 수 있어요. 값은 집과 회사마다 달라요.</p>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 보안을 위해 나누기</p>
+        <p>모든 기기를 한 세그먼트에 두면, PC 한 대가 악성코드에 걸렸을 때 <strong>서버까지 막힘없이</strong> 퍼질 수 있어요. 손님 와이파이, 사무실, 서버를 나눠 두면 퍼지는 길이 라우터 하나로 좁아져요. 인터넷에 공개할 웹 서버만 따로 두는 구역을 <strong>DMZ</strong>라고 부르고요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 같은 말, 다른 뜻 ① TCP 세그먼트</p>
+        <p><a href="osi-model.html">OSI 참조 모델</a>의 4계층에서는 TCP가 데이터를 잘라 번호를 붙인 <strong>한 조각</strong>을 세그먼트라고 불러요. 이 조각이 3계층으로 내려가면 패킷이 되고요. "큰 것을 나눈 한 부분"이라는 뜻은 같지만, 나누는 대상이 <strong>네트워크가 아니라 데이터</strong>예요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 같은 말, 다른 뜻 ② 고객 세그먼트</p>
+        <p>마케팅에서는 고객을 나이·지역·구매 습관 같은 기준으로 나눈 <strong>한 무리</strong>를 세그먼트라고 해요. 이때는 <a href="mece.html">MECE</a>하게, 곧 겹치지도 빠지지도 않게 나누는 게 중요해요.</p>
+      </div>
+
+      <p class="callout">옛 <a href="ethernet.html">Ethernet</a>에서는 리피터로 이어진 <strong>케이블 한 구간</strong>을 세그먼트라고 부르기도 했어요(<a href="csma-cd.html">CSMA/CD</a>로 충돌을 피하던 범위). 문서에서 이 말을 만나면 <strong>무엇을 나눈 한 조각인지</strong> 앞뒤를 보고 판단하면 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">나눈 한 구역. 구역을 건너려면 라우터를 지나요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 네트워크 › 네트워크 설계</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

@@ -593,6 +593,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'segment',
+    title: '세그먼트',
+    sub: 'segment · 네트워크 세그먼트 · TCP 세그먼트',
+    summary: '큰 네트워크를 라우터로 나눈 한 구역 (TCP에서는 데이터 한 조각)',
+    category: '네트워크',
+    date: '2026-10-29'
+  },
+  {
     slug: 'server',
     title: '서버',
     sub: 'server · サーバ',
