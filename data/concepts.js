@@ -1,6 +1,14 @@
 /* 개념 목록. 항목은 slug 알파벳순으로 유지합니다 (화면 정렬은 common.js가 처리). */
 window.CONCEPTS = [
   {
+    slug: '3c-analysis',
+    title: '3C 분석',
+    sub: '삼씨 분석 · 3C analysis · Customer · Competitor · Company · 3C分析',
+    summary: '고객·경쟁사·자사를 살펴 우리가 이길 자리를 찾는 방법',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'aes',
     title: 'AES',
     sub: '에이이에스 · Advanced Encryption Standard',

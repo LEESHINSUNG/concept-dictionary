@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>3C 분석 — 기억해봐요</title>
+  <meta name="description" content="3C 분석은 고객·경쟁사·자사 세 방향을 차례로 살펴 우리가 이길 자리를 찾는 방법이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cards { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .cards__item { padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .cards__en { margin: 0; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); }
+    .cards__name { margin: 2px 0 6px; font-size: 17px; font-weight: 700; }
+    .cards__q { margin: 0; font-size: 15px; word-break: keep-all; }
+    .cards__eg { margin: 6px 0 0; font-size: 14px; color: var(--muted); word-break: keep-all; }
+    .goal { margin-top: 12px; padding: 14px 16px; border-radius: 12px; background: var(--accent); color: #FFFFFF; word-break: keep-all; }
+    .goal__label { margin: 0 0 4px; font-size: 13px; font-weight: 700; opacity: 0.85; }
+    .goal p:last-child { margin: 0; font-size: 16px; font-weight: 700; }
+    @media (min-width: 720px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="3c-analysis">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>3C 분석</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">경영 전략</span>
+      </div>
+      <h1 class="title">3C 분석</h1>
+      <p class="reading">삼씨 분석 · 3C analysis · Customer · Competitor · Company · 3C分析</p>
+      <p class="define">3C 분석은 <mark>고객(Customer)·경쟁사(Competitor)·자사(Company) 세 방향을 차례로 살펴, 우리가 이길 자리를 찾는 방법</mark>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-30">2026-10-30</time></span>
+        <span>카테고리 업무 시스템 › 경영 전략</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네에 카페를 연다고 해 봐요. 먼저 물어야 할 게 세 가지예요. <strong>손님은 누구고 무엇을 원하지?</strong> <strong>근처 카페들은 뭘 잘하고 뭘 못하지?</strong> <strong>그럼 우리는 뭘 잘하지?</strong></p>
+      <p>세 답이 겹치는 곳, 곧 <strong>손님은 원하는데 경쟁사는 못 해 주고 우리는 할 수 있는 것</strong>이 우리가 이길 자리예요. 3C 분석은 이 세 질문을 빠뜨리지 않게 해 주는 틀이에요. 1980년대 초 맥킨지 일본 지사의 오마에 겐이치가 정리한 것으로 알려져 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">세 방향</p>
+          <p class="fact__value">고객 · 경쟁사 · 자사</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">찾는 것</p>
+          <p class="fact__value">우리가 이길 자리</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 때</p>
+          <p class="fact__value">전략을 세우기 전 현황 파악</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">역 앞에 작은 카페를 여는 경우로 채워 봤어요.</p>
+      <div class="cards">
+        <div class="cards__item">
+          <p class="cards__en">Customer</p>
+          <p class="cards__name">고객</p>
+          <p class="cards__q">누가, 무엇을 원하나?</p>
+          <p class="cards__eg">역 앞 직장인. 출근길에 <strong>빨리</strong>, 그래도 <strong>맛있는</strong> 커피를 원해요.</p>
+        </div>
+        <div class="cards__item">
+          <p class="cards__en">Competitor</p>
+          <p class="cards__name">경쟁사</p>
+          <p class="cards__q">남들은 무엇을 잘하고, 무엇을 못하나?</p>
+          <p class="cards__eg">큰 체인점은 빠르지만 맛이 평범해요. 근처 개인 카페는 맛있지만 느려요.</p>
+        </div>
+        <div class="cards__item">
+          <p class="cards__en">Company</p>
+          <p class="cards__name">자사</p>
+          <p class="cards__q">우리는 무엇을 잘하나?</p>
+          <p class="cards__eg">사장님이 바리스타 출신이고, 원두를 직접 골라요. 가게는 작아요.</p>
+        </div>
+      </div>
+      <div class="goal">
+        <p class="goal__label">세 답이 겹치는 곳</p>
+        <p>"5분 안에 나오는, 체인점보다 맛있는 출근길 커피"</p>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>고객부터</strong> 봐요. 시장이 얼마나 크고, 손님이 무엇을 바라는지예요. 손님이 원하지 않으면 아무리 잘해도 강점이 아니에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>다음은 <strong>경쟁사</strong>예요. 손님의 바람을 누가 얼마나 채워 주고 있는지, 어디가 비어 있는지 봐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>마지막으로 <strong>자사</strong>의 강점과 약점을 봐요. 세 답이 겹치는 곳을 <strong>성공 요인</strong>(KSF, Key Success Factor)이라고 불러요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 순서가 중요한 이유</p>
+        <p>자사부터 보면 "우리가 잘하는 것"에 갇히기 쉬워요. 커피 맛에 자신 있어도, 역 앞 손님에게 중요한 게 <strong>속도</strong>라면 맛만으론 이기기 어려워요. 그래서 <strong>밖(고객·경쟁)에서 안(자사)으로</strong> 봐요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 다음 단계</p>
+        <p>이길 자리를 찾았다면, 이제 무엇을 얼마에 어디서 어떻게 알릴지 정해야 해요. 그 일은 <a href="4p.html">4P</a>가 맡아요. 3C가 <strong>어디서 싸울지</strong>, 4P가 <strong>어떻게 싸울지</strong>예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 빠짐없이 보기</p>
+        <p>시장에는 결국 사는 사람, 파는 경쟁자, 그리고 우리가 있어요. 3C는 이 셋을 <a href="mece.html">MECE</a>하게 나눈 거예요. 자사를 더 잘게 보고 싶으면 <a href="business-system.html">비즈니스 시스템</a>으로 일의 흐름을 쪼개 봐요.</p>
+      </div>
+      <p class="callout">3C는 <strong>지금 상황</strong>을 정리하는 틀이에요. "손님이 빠른 걸 원한다"고 짐작하기보다, 출근 시간에 가게 앞을 지나는 사람과 테이크아웃 비율을 <strong>직접 세어 숫자로</strong> 뒷받침하면 훨씬 설득력이 커져요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">손님이 원하고, 남은 못 하고, 우리는 할 수 있는 곳.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-30 · 카테고리 업무 시스템 › 경영 전략</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
