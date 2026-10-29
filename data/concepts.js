@@ -409,6 +409,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'issue-tree',
+    title: '이슈 트리',
+    sub: '이슈트리 · How 트리 · 가설 트리 · issue tree · hypothesis tree',
+    summary: '질문을 쪼개 가지마다 가설을 세우고 검증하는 나무 (How 트리)',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'javascript',
     title: 'JavaScript',
     sub: '자바스크립트 · JS',

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>이슈 트리 — 기억해봐요</title>
+  <meta name="description" content="이슈 트리는 꼭 답해야 할 질문을 하위 질문으로 쪼개고, 가지마다 가설을 세워 검증해 나가는 나무예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .tree { display: flex; flex-direction: column; gap: 8px; }
+    .tree__row { position: relative; padding: 11px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .tree__row--l1 { border: 2px solid var(--accent); background: var(--chip-bg); font-weight: 700; }
+    .tree__row--l2 { margin-left: 22px; font-weight: 700; }
+    .tree__row--l3 { margin-left: 46px; background: var(--bg); }
+    .tree__row--l2::before, .tree__row--l3::before { content: ''; position: absolute; left: -14px; top: 50%; width: 10px; border-top: 2px solid var(--line-strong); }
+    .tree__kind { display: block; margin-bottom: 2px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .tree__note { display: block; margin-top: 3px; font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.5; }
+    .tree__tag { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .tree__tag--yes { background: var(--accent); color: #FFFFFF; }
+    .tree__tag--no { border: 1px solid var(--line-strong); color: var(--muted); }
+    .tree__row--cut { opacity: 0.6; border-style: dashed; }
+    .tree__row--cut .tree__text { text-decoration: line-through; }
+    .tree__row--hit { border: 2px solid var(--accent); }
+    @media (max-width: 479px) {
+      .tree__row--l2 { margin-left: 14px; }
+      .tree__row--l3 { margin-left: 28px; }
+      .tree__row--l2::before, .tree__row--l3::before { left: -10px; width: 7px; }
+    }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="issue-tree">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>이슈 트리</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">생각 정리법</span>
+      </div>
+      <h1 class="title">이슈 트리</h1>
+      <p class="reading">이슈트리 · How 트리 · 가설 트리 · issue tree · hypothesis tree</p>
+      <p class="define">이슈 트리는 <mark>꼭 답해야 할 질문(이슈)을 하위 질문으로 쪼개고, 가지마다 가설을 세워 검증해 나가는 나무</mark>예요. "어떻게 하면?"을 푸는 <strong>How 트리</strong>로 많이 써요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-30">2026-10-30</time></span>
+        <span>카테고리 업무 시스템 › 생각 정리법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>카페 사장님의 고민은 <strong>"어떻게 하면 1년 안에 매출을 1.2배로 올릴까?"</strong>예요. 떠오르는 아이디어를 다 해 보기엔 시간도 돈도 모자라요.</p>
+      <p>그래서 질문을 쪼개요. <strong>손님 수를 늘릴 수 있나? 한 사람이 쓰는 돈을 늘릴 수 있나?</strong> 그리고 가지마다 "아마 이럴 거야"라는 <strong>가설</strong>을 먼저 붙인 뒤, 작은 실험이나 데이터로 맞는지 확인해요. 틀린 가지는 잘라 내고, 맞은 가지에 힘을 몰아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">맨 위</p>
+          <p class="fact__value">답해야 할 질문 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">가지</p>
+          <p class="fact__value">하위 질문 + 가설</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">끝</p>
+          <p class="fact__value">검증해서 남기거나 자르기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">카페의 질문을 쪼개고, 가설마다 확인한 결과예요. (결과는 이해를 돕는 예시예요.)</p>
+      <div class="tree" role="img" aria-label="이슈 트리 예시. 어떻게 하면 매출을 1.2배로 올릴까 아래에 손님 수를 늘릴 수 있나와 한 사람이 쓰는 돈을 늘릴 수 있나가 있습니다. 직장인이 가게를 모른다는 가설은 맞아 남겼고, 아침 7시 개점 가설은 효과가 작아 잘랐고, 커피와 빵 세트 가설은 맞아 남겼습니다.">
+        <div class="tree__row tree__row--l1"><span class="tree__kind">이슈</span><span class="tree__text">어떻게 하면 1년 안에 매출을 1.2배로 올릴까?</span></div>
+        <div class="tree__row tree__row--l2"><span class="tree__text">손님 수를 늘릴 수 있나?</span></div>
+        <div class="tree__row tree__row--l3 tree__row--hit"><span class="tree__kind">가설</span><span class="tree__text">근처 직장인이 우리 가게를 모른다</span><span class="tree__note">검증: 주변 회사 직원에게 짧은 설문</span><span class="tree__tag tree__tag--yes">✓ 맞음 · 남긴다</span></div>
+        <div class="tree__row tree__row--l3 tree__row--cut"><span class="tree__kind">가설</span><span class="tree__text">아침 7시에 열면 출근 손님이 온다</span><span class="tree__note">검증: 2주 동안 일찍 열어 보기</span><span class="tree__tag tree__tag--no">✕ 효과 작음 · 자른다</span></div>
+        <div class="tree__row tree__row--l2"><span class="tree__text">한 사람이 쓰는 돈을 늘릴 수 있나?</span></div>
+        <div class="tree__row tree__row--l3 tree__row--hit"><span class="tree__kind">가설</span><span class="tree__text">커피와 빵을 함께 사고 싶어 한다</span><span class="tree__note">검증: 2주 동안 세트 시범 판매</span><span class="tree__tag tree__tag--yes">✓ 맞음 · 남긴다</span></div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>이슈</strong>는 구체적으로 적어요. "매출 올리기"보다 "1년 안에 1.2배로"처럼, 답했는지 아닌지 알 수 있게요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>하위 질문을 <a href="mece.html">MECE</a>하게 나누고, 지금 아는 것으로 <strong>가장 그럴듯한 답(가설)</strong>을 먼저 붙여요. 모든 걸 조사하고 나서 생각하는 게 아니라, 가설부터 세우는 게 핵심이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>가설마다 <strong>무엇을 확인하면 맞고 틀린지</strong> 정해 검증해요. 틀린 가지는 자르고, 필요하면 새 가설을 세워요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 로직 트리와 무엇이 다를까</p>
+        <p><a href="logic-tree.html">로직 트리</a>의 Why 트리가 <strong>이미 일어난 일의 원인</strong>을 거슬러 찾는다면, 이슈 트리는 <strong>앞으로 무엇을 할지</strong> 정하려고 질문과 가설을 쪼개요. 둘 다 겹침·빠짐 없는 나무라는 점은 같아서, 원인을 Why 트리로 찾고 해결책을 이슈 트리로 짜는 식으로 이어 써요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 가설이 틀려도 괜찮아요</p>
+        <p>"아침 7시 개점"이 틀렸다는 게 확인되면 그 가지를 지울 수 있으니, 오히려 <strong>한 걸음 나간 것</strong>이에요. 정말 무서운 건 가설 없이 데이터를 모으다가 시간을 다 쓰는 거예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 실행으로 잇기</p>
+        <p>남은 가지는 실제 계획으로 바꿔요. "세트를 원한다"는 가설이 맞았다면, 세트 구성·값·파는 곳·알리는 법을 <a href="4p.html">4P</a>로 채우면 돼요.</p>
+      </div>
+      <p class="callout">책과 회사마다 이름 쓰임이 조금씩 달라요. 이슈 트리, 가설 트리, How 트리를 거의 같은 뜻으로 쓰기도 하고 나눠 부르기도 해요. 이름보다 <strong>"질문을 쪼갠다 + 가설로 확인한다"</strong> 두 가지를 기억하면 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">질문을 쪼개고, 가설로 확인하고, 틀린 가지는 자른다.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-30 · 카테고리 업무 시스템 › 생각 정리법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
