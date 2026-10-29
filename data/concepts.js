@@ -217,6 +217,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'docker',
+    title: 'Docker',
+    sub: '도커 · 컨테이너 · container',
+    summary: '프로그램을 환경째 상자에 담아 어디서나 똑같이 돌리는 도구',
+    category: '운영체제',
+    date: '2026-10-29'
+  },
+  {
     slug: 'ecc',
     title: '타원곡선 암호',
     sub: 'ECC · Elliptic Curve Cryptography · 楕円曲線暗号',

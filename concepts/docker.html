@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Docker — 기억해봐요</title>
+  <meta name="description" content="Docker는 프로그램을 실행에 필요한 것과 함께 컨테이너라는 상자에 담아, 어느 컴퓨터에서나 똑같이 돌게 해 주는 도구예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    /* 가상 머신 vs 컨테이너: 아래에서 위로 쌓은 층 */
+    .vs { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    .vs__col { flex: 1 1 240px; min-width: 0; padding: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; }
+    .vs__col--ct { background: var(--chip-bg); border-color: var(--accent); }
+    .vs__name { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
+    .vs__stack { display: flex; flex-direction: column; gap: 6px; }
+    .vs__apps { display: flex; gap: 6px; }
+    .vs__box { flex: 1 1 0; min-width: 0; padding: 8px 4px; text-align: center; font-size: 13px; line-height: 1.35; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; word-break: keep-all; }
+    .vs__box--os { background: var(--panel); border-color: var(--panel); color: #D8E4F8; font-weight: 700; }
+    .vs__box--base { background: var(--line-strong); border-color: var(--line-strong); font-weight: 700; }
+    .vs__note { margin: 10px 0 0; font-size: 14px; color: var(--muted); word-break: keep-all; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="docker">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>Docker</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">컨테이너</span>
+      </div>
+      <h1 class="title">Docker</h1>
+      <p class="reading">도커 · 컨테이너 · container</p>
+      <p class="define">Docker는 <mark>프로그램을 실행에 필요한 것과 함께 '컨테이너'라는 상자에 담아, 어느 컴퓨터에서나 똑같이 돌게 해 주는 도구</mark>예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 운영체제 › 컨테이너</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>개발자들이 가장 많이 하는 말 중 하나가 <strong>"제 컴퓨터에선 되는데요?"</strong>예요. 내 노트북엔 Python 3.12가, 서버엔 3.9가 깔려 있는 식으로 <strong>환경이 조금씩 달라서</strong> 생기는 문제예요.</p>
+      <p>Docker는 이걸 <strong>밀키트</strong>처럼 풀어요. 재료(라이브러리), 양념(설정), 조리법(실행 명령)을 한 상자에 담아 두면, 어느 부엌에서 끓여도 같은 맛이 나죠. 그 상자의 설계도를 <strong>이미지</strong>, 실제로 끓고 있는 한 그릇을 <strong>컨테이너</strong>라고 불러요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">이미지</p>
+          <p class="fact__value">상자의 설계도 (읽기 전용)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">컨테이너</p>
+          <p class="fact__value">이미지로 띄운 실행 중인 상자</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">공개</p>
+          <p class="fact__value">2013년 · 오픈소스</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">Dockerfile</p>
+          <p class="node__note">무엇을 깔고 무엇을 실행할지 적은 조리법</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">굽는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">이미지</p>
+          <p class="node__note">실행에 필요한 것을 모두 담은 꾸러미</p>
+          <p><span class="chip-mono">docker build</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">띄운다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">컨테이너</p>
+          <p class="node__note">같은 이미지로 몇 개든 띄울 수 있어요</p>
+          <p><span class="chip-mono">docker run</span></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>Dockerfile</strong>에 "어떤 리눅스 위에, 무엇을 설치하고, 무엇을 실행할지"를 적어요. 사람이 읽을 수 있는 짧은 글이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이걸 구우면 <strong>이미지</strong>가 나와요. 이미지는 Docker Hub 같은 저장소에 올려 팀원·서버와 <strong>그대로 나눠</strong> 쓸 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>이미지를 실행하면 <strong>컨테이너</strong>가 돼요. 컨테이너끼리는 파일과 프로세스가 서로 안 보이게 칸막이가 쳐져 있어요.</span></p>
+      </div>
+
+      <div class="vs" role="img" aria-label="가상 머신과 컨테이너 비교. 가상 머신은 앱마다 운영체제를 통째로 하나씩 올리고, 컨테이너는 하나의 리눅스 커널을 함께 쓰며 앱과 필요한 라이브러리만 담습니다.">
+        <div class="vs__col" aria-hidden="true">
+          <p class="vs__name">가상 머신</p>
+          <div class="vs__stack">
+            <div class="vs__apps"><span class="vs__box">앱 A</span><span class="vs__box">앱 B</span></div>
+            <div class="vs__apps"><span class="vs__box vs__box--os">OS 통째</span><span class="vs__box vs__box--os">OS 통째</span></div>
+            <span class="vs__box vs__box--base">하이퍼바이저 · 컴퓨터</span>
+          </div>
+          <p class="vs__note">앱마다 운영체제를 하나씩 올려요. 무겁고, 켜는 데 오래 걸려요.</p>
+        </div>
+        <div class="vs__col vs__col--ct" aria-hidden="true">
+          <p class="vs__name">컨테이너</p>
+          <div class="vs__stack">
+            <div class="vs__apps"><span class="vs__box">앱 A</span><span class="vs__box">앱 B</span></div>
+            <div class="vs__apps"><span class="vs__box">라이브러리</span><span class="vs__box">라이브러리</span></div>
+            <span class="vs__box vs__box--os">리눅스 커널 하나를 함께 씀</span>
+          </div>
+          <p class="vs__note">운영체제의 심장은 나눠 쓰고, 필요한 것만 담아요. 가볍고 금방 떠요.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>Docker Desktop을 설치한 뒤 터미널에서 해 봐요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> docker run hello-world
+<span class="c-comment"># 처음엔 이미지를 내려받고, 인사말이 찍혀요</span>
+Hello from Docker!
+<span class="c-prompt">$</span> docker run -d -p 8080:80 nginx
+<span class="c-comment"># 웹 서버를 뒤에서 띄워요. 브라우저로 localhost:8080 을 열어 보세요</span>
+<span class="c-prompt">$</span> docker ps
+<span class="c-comment"># 지금 도는 컨테이너 목록과 ID가 나와요</span>
+<span class="c-prompt">$</span> docker stop 컨테이너ID</code></pre>
+      </div>
+
+      <p class="callout"><code>-d</code>는 컨테이너를 <a href="background.html">백그라운드</a>로 돌리라는 뜻이고, <code>-p 8080:80</code>은 "내 컴퓨터의 8080번 문으로 오면 컨테이너의 80번 문으로 넘겨라"는 뜻이에요. 웹 <a href="server.html">서버</a>를 설치한 적이 없는데도 몇 초 만에 떠요.</p>
+
+      <div class="case">
+        <p class="case__title">왜 리눅스 이야기가 나올까</p>
+        <p>컨테이너의 칸막이는 <a href="linux.html">리눅스</a> 커널의 기능으로 만들어요. 그래서 맥과 윈도우의 Docker Desktop은 <strong>안쪽에 작은 리눅스 가상 머신을 하나 띄우고</strong> 그 위에서 컨테이너를 돌려요. 서버는 원래 리눅스라 바로 돌고요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">어디에 쓰나</p>
+        <p>신입이 첫날 <strong>개발 환경을 한 줄로</strong> 갖출 수 있고, 테스트한 이미지를 <strong>그대로 서버에 올려</strong> "여기선 되는데 저기선 안 돼요"를 줄여요. 클라우드에서도 컨테이너 단위로 앱을 올리는 방식이 흔해요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">조심할 점</p>
+        <p>컨테이너는 커널을 함께 쓰기 때문에, 칸막이가 가상 머신보다 <strong>얇아요.</strong> 남이 올린 이미지는 출처를 확인하고, 이미지 속 프로그램도 <a href="cve.html">CVE</a>가 나오면 새로 구워야 해요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">환경째 상자에 담아, 어디서나 똑같이.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 운영체제 › 컨테이너</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
