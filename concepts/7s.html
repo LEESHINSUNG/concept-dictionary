@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>7S — 기억해봐요</title>
+  <meta name="description" content="7S는 조직을 S로 시작하는 일곱 요소로 나눠, 서로 잘 맞물려 있는지 점검하는 틀이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .s7 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .s7__cell { min-width: 0; padding: 12px 10px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); text-align: center; word-break: keep-all; }
+    .s7__cell--hard { border: 2px solid var(--accent); }
+    .s7__cell--soft { border: 2px solid #C2410C; }
+    .s7__cell--core { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+    .s7__cell--legend { background: transparent; border: 1px dashed var(--line-strong); text-align: left; font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .s7__en { margin: 0; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--muted); overflow-wrap: anywhere; }
+    .s7__cell--core .s7__en { color: #D8E4F8; }
+    .s7__name { margin: 2px 0 4px; font-size: 16px; font-weight: 700; }
+    .s7__eg { margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
+    .s7__cell--core .s7__eg { color: #FFFFFF; }
+    .s7__key { font-weight: 700; }
+    .s7__key--hard { color: var(--accent); }
+    .s7__key--soft { color: #C2410C; }
+    @media (max-width: 479px) {
+      .s7 { gap: 6px; }
+      .s7__cell { padding: 10px 6px; }
+      .s7__name { font-size: 14px; }
+      .s7__eg { font-size: 12px; }
+    }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="7s">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>7S</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">조직 관리</span>
+      </div>
+      <h1 class="title">7S</h1>
+      <p class="reading">세븐 에스 · 맥킨지 7S · McKinsey 7S framework</p>
+      <p class="define">7S는 <mark>조직을 S로 시작하는 일곱 요소로 나눠, 서로 잘 맞물려 있는지 점검하는 틀</mark>이에요. <strong>하나만 바꾸면 나머지가 버텨서 변화가 실패하기 쉬워요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-30">2026-10-30</time></span>
+        <span>카테고리 업무 시스템 › 조직 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네 카페가 가게를 다섯 곳으로 늘리기로 했어요. 그런데 사장님이 <strong>모든 걸 혼자 정하는 방식</strong>도, <strong>레시피가 사장님 머릿속에만 있는 상태</strong>도 그대로라면 어떨까요? 전략만 바뀌고 나머지는 옛날 그대로라 금방 삐걱대요.</p>
+      <p>7S는 조직을 <strong>일곱 개의 톱니바퀴</strong>로 봐요. 한 톱니를 돌리면 다른 톱니도 함께 돌려야 해요. 1980년 맥킨지의 톰 피터스, 로버트 워터먼 등이 발표한 틀이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하드 S · 3개</p>
+          <p class="fact__value">전략 · 구조 · 시스템</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">소프트 S · 4개</p>
+          <p class="fact__value">공유 가치 · 스타일 · 인재 · 스킬</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">한가운데</p>
+          <p class="fact__value">공유 가치</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">카페가 다섯 곳으로 늘어날 때 일곱 칸을 맞춘 모습이에요.</p>
+      <div class="s7" role="img" aria-label="7S 그림. 위 줄은 하드 S인 전략, 구조, 시스템. 가운데 줄은 스타일, 한가운데 공유 가치, 인재. 아래 줄 가운데는 스킬입니다. 스타일, 인재, 스킬, 공유 가치는 소프트 S입니다.">
+        <div class="s7__cell s7__cell--hard">
+          <p class="s7__en">Strategy</p>
+          <p class="s7__name">전략</p>
+          <p class="s7__eg">다섯 곳으로 늘리기</p>
+        </div>
+        <div class="s7__cell s7__cell--hard">
+          <p class="s7__en">Structure</p>
+          <p class="s7__name">구조</p>
+          <p class="s7__eg">가게마다 점장, 본점이 지원</p>
+        </div>
+        <div class="s7__cell s7__cell--hard">
+          <p class="s7__en">Systems</p>
+          <p class="s7__name">시스템</p>
+          <p class="s7__eg">레시피·발주를 문서와 앱으로</p>
+        </div>
+        <div class="s7__cell s7__cell--soft">
+          <p class="s7__en">Style</p>
+          <p class="s7__name">스타일</p>
+          <p class="s7__eg">사장님 혼자 → 점장에게 맡기기</p>
+        </div>
+        <div class="s7__cell s7__cell--core">
+          <p class="s7__en">Shared Values</p>
+          <p class="s7__name">공유 가치</p>
+          <p class="s7__eg">"아침을 기분 좋게"</p>
+        </div>
+        <div class="s7__cell s7__cell--soft">
+          <p class="s7__en">Staff</p>
+          <p class="s7__name">인재</p>
+          <p class="s7__eg">점장 후보를 뽑고 키우기</p>
+        </div>
+        <div class="s7__cell s7__cell--legend" aria-hidden="true"><span class="s7__key s7__key--hard">파란 테</span> 하드 S<br>글로 적고, 비교적 빨리 바꿔요</div>
+        <div class="s7__cell s7__cell--soft">
+          <p class="s7__en">Skills</p>
+          <p class="s7__name">스킬</p>
+          <p class="s7__eg">어느 가게든 같은 맛을 내는 솜씨</p>
+        </div>
+        <div class="s7__cell s7__cell--legend" aria-hidden="true"><span class="s7__key s7__key--soft">주황 테</span> 소프트 S<br>사람·문화라 천천히 바뀌어요</div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>하드 S</strong>(전략·구조·시스템)는 문서로 적을 수 있고, 마음먹으면 비교적 빨리 바꿀 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>소프트 S</strong>(스타일·인재·스킬)는 사람과 문화라 바뀌는 데 오래 걸려요. 변화가 실패하는 이유는 대개 여기 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>한가운데의 <strong>공유 가치</strong>가 나머지 여섯을 묶어요. 일곱 칸이 같은 방향을 가리키는지 하나씩 맞춰 보는 게 7S의 쓰임새예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 시스템만 바꾼 경우</p>
+        <p>회사가 새 <a href="erp.html">ERP</a>를 들였는데 결재 문화(스타일)와 직원들의 사용 능력(스킬)은 그대로라, 결국 <a href="spreadsheet.html">스프레드시트</a>로 돌아가는 일이 흔해요. 하드 S 하나만 바꾸면 소프트 S가 원래대로 끌어당겨요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 두 회사를 합칠 때</p>
+        <p>합병 전에 두 회사의 7S를 나란히 놓고 비교하면 어디서 부딪힐지 미리 보여요. 조직도(구조)는 하루 만에 합칠 수 있어도, <strong>공유 가치와 스타일이 다르면</strong> 오래 삐걱대요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 3C와 보는 곳이 달라요</p>
+        <p><a href="3c-analysis.html">3C 분석</a>이 <strong>밖</strong>(고객·경쟁)을 보며 전략을 세운다면, 7S는 그 전략을 실행할 <strong>안</strong>(조직)이 준비됐는지 봐요. 둘을 이어 쓰면 "옳은 전략인데 실행이 안 되는" 일을 줄여요.</p>
+      </div>
+      <p class="callout">처음 발표할 때 한가운데 칸은 공유 가치가 아니라 <strong>상위 목표</strong>(Superordinate Goals)라고 불렀어요. S로 시작하는 낱말로 맞추자는 아이디어는 함께 연구하던 두 교수(앤서니 에이토스, 리처드 파스칼)가 냈다고 전해져요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">일곱 톱니가 함께 돌아야 조직이 움직여요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-30 · 카테고리 업무 시스템 › 조직 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

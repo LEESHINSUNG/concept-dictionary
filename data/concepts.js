@@ -17,6 +17,14 @@ window.CONCEPTS = [
     date: '2026-10-30'
   },
   {
+    slug: '7s',
+    title: '7S',
+    sub: '세븐 에스 · 맥킨지 7S · McKinsey 7S framework',
+    summary: '조직의 일곱 요소가 서로 맞물려 있는지 점검하는 틀',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'aes',
     title: 'AES',
     sub: '에이이에스 · Advanced Encryption Standard',
