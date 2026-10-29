@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MECE — 기억해봐요</title>
+  <meta name="description" content="MECE는 무언가를 나눌 때 겹치는 것도 없고 빠지는 것도 없게 나누자는 원칙이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    /* 전체 막대 하나를 어떻게 나눴는지 세 가지로 비교 */
+    .mece { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 720px) { .mece { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .mece__card { padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .mece__card--ok { border: 2px solid var(--accent); background: var(--chip-bg); }
+    .mece__verdict { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--new-bg); margin: 0 0 4px; }
+    .mece__card--ok .mece__verdict { color: var(--accent); }
+    .mece__name { font-size: 16px; font-weight: 700; margin: 0 0 12px; word-break: keep-all; }
+    .mece__bar { position: relative; height: 46px; border: 2px solid var(--line-strong); border-radius: 8px; background: var(--bg); overflow: hidden; }
+    .mece__seg { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #FFFFFF; text-align: center; line-height: 1.2; padding: 0 2px; }
+    .mece__seg--a { background: #1F5FD0; }
+    .mece__seg--b { background: #0F766E; }
+    .mece__seg--c { background: #6D28D9; }
+    .mece__seg--both { background: repeating-linear-gradient(45deg, #C2410C 0 6px, #EA580C 6px 12px); }
+    .mece__seg--gap { color: var(--new-bg); background: transparent; border-left: 2px dashed var(--new-bg); }
+    .mece__seg + .mece__seg:not(.mece__seg--both):not(.mece__seg--gap) { border-left: 2px solid var(--surface); }
+    .mece__note { margin: 10px 0 0; font-size: 14px; color: var(--muted); word-break: keep-all; }
+    .case code, .callout code, .step code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="mece">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>MECE</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">생각 정리법</span>
+      </div>
+      <h1 class="title">MECE</h1>
+      <p class="reading">미시 · 중복 없이 누락 없이 · Mutually Exclusive and Collectively Exhaustive · 漏れなくダブりなく</p>
+      <p class="define">MECE는 무언가를 나눌 때 <mark>겹치는 것도 없고, 빠지는 것도 없게</mark> 나누자는 원칙이에요. <strong>나눈 조각을 다 모으면 정확히 전체가 되어야 해요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 업무 시스템 › 생각 정리법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>피자를 여덟 조각으로 자른다고 해 봐요. 칼질이 엉망이면 <strong>두 조각에 같은 부분이 붙어 있거나</strong>(겹침), <strong>어느 조각에도 안 들어간 부분이 남아요</strong>(빠짐). 잘 자른 피자는 조각을 다시 맞추면 <strong>딱 한 판</strong>이 돼요.</p>
+      <p>MECE는 생각을 그렇게 자르자는 말이에요. 앞의 두 낱말 <strong>Mutually Exclusive</strong>는 "서로 겹치지 않는다", 뒤의 두 낱말 <strong>Collectively Exhaustive</strong>는 "모으면 빠짐없다"는 뜻이에요. 문제의 원인을 찾거나, 고객을 나누거나, 보고서 목차를 짤 때 이 기준으로 점검해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">ME · 겹치지 않게</p>
+          <p class="fact__value">한 항목은 한 칸에만</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">CE · 빠짐없이</p>
+          <p class="fact__value">다 모으면 정확히 전체</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">얻는 것</p>
+          <p class="fact__value">두 번 세지도, 놓치지도 않음</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">회색 막대가 <strong>고객 전체</strong>예요. 세 가지 방식으로 나눠 봤어요.</p>
+
+      <div class="mece">
+        <div class="mece__card" role="img" aria-label="겹치는 나누기. 학생과 20대로 나누면 20대 학생이 두 칸에 모두 들어갑니다.">
+          <p class="mece__verdict">✕ 겹친다</p>
+          <p class="mece__name">학생 / 20대</p>
+          <div class="mece__bar" aria-hidden="true">
+            <span class="mece__seg mece__seg--a" style="left: 0; width: 34%;">학생</span>
+            <span class="mece__seg mece__seg--both" style="left: 34%; width: 22%;">둘 다</span>
+            <span class="mece__seg mece__seg--b" style="left: 56%; width: 44%;">20대</span>
+          </div>
+          <p class="mece__note">대학생은 두 칸에 다 들어가 <strong>두 번 세어져요.</strong> 30대 직장인은 어디에도 없고요.</p>
+        </div>
+
+        <div class="mece__card" role="img" aria-label="빠지는 나누기. 10대, 20대, 30대로만 나누면 40대 이상이 어느 칸에도 없습니다.">
+          <p class="mece__verdict">✕ 빠진다</p>
+          <p class="mece__name">10대 / 20대 / 30대</p>
+          <div class="mece__bar" aria-hidden="true">
+            <span class="mece__seg mece__seg--a" style="left: 0; width: 22%;">10대</span>
+            <span class="mece__seg mece__seg--b" style="left: 22%; width: 22%;">20대</span>
+            <span class="mece__seg mece__seg--c" style="left: 44%; width: 22%;">30대</span>
+            <span class="mece__seg mece__seg--gap" style="left: 66%; width: 34%;">빈 곳</span>
+          </div>
+          <p class="mece__note">겹치진 않지만 <strong>40대 이상이 통째로 빠졌어요.</strong></p>
+        </div>
+
+        <div class="mece__card mece__card--ok" role="img" aria-label="MECE한 나누기. 20세 미만, 20부터 39세, 40세 이상으로 나누면 겹침도 빈 곳도 없습니다.">
+          <p class="mece__verdict">○ MECE</p>
+          <p class="mece__name">20세 미만 / 20~39세 / 40세 이상</p>
+          <div class="mece__bar" aria-hidden="true">
+            <span class="mece__seg mece__seg--a" style="left: 0; width: 30%;">~19</span>
+            <span class="mece__seg mece__seg--b" style="left: 30%; width: 34%;">20~39</span>
+            <span class="mece__seg mece__seg--c" style="left: 64%; width: 36%;">40~</span>
+          </div>
+          <p class="mece__note">누구나 <strong>정확히 한 칸</strong>에 들어가요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>나누는 기준을 하나</strong>로 정해요. "학생/20대"처럼 직업과 나이를 섞으면 거의 반드시 겹쳐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>나눈 뒤 <strong>"이 둘에 동시에 들어가는 게 있나?"</strong>를 물어요. 있으면 경계를 다시 그어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>마지막으로 <strong>"어디에도 안 들어가는 게 있나?"</strong>를 물어요. 끝 칸을 <code>40세 이상</code>처럼 열어 두거나 <code>기타</code> 칸을 두면 빈 곳이 막혀요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 1 · 매출이 떨어진 이유 찾기</p>
+        <p>"광고가 약해서, 경쟁사 때문에, 경기가 나빠서…"처럼 떠오르는 대로 늘어놓으면 겹치고 빠져요. 대신 <strong>매출 = 손님 수 × 한 사람이 쓰는 돈</strong>으로 나누면 MECE예요. 매출이 줄었다면 둘 중 적어도 하나는 줄었을 테니, 어느 쪽인지부터 보면 돼요. 이렇게 큰 질문을 MECE로 계속 쪼개 나무처럼 그린 것을 <strong>로직 트리</strong>라고 해요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 2 · 일을 쪼갤 때</p>
+        <p><a href="wbs.html">WBS</a>의 규칙 "쪼갠 것을 다 합치면 전체가 되어야 한다"가 바로 <strong>빠짐없이</strong>예요. 두 칸에 같은 일이 들어가면 두 사람이 같은 일을 하게 되니, <strong>겹치지 않게</strong>도 함께 지켜야 해요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">상황 3 · 원인을 빠짐없이 훑기</p>
+        <p><a href="fishbone-diagram.html">특성요인도</a>에서 원인을 사람·기계·재료·방법처럼 <strong>미리 정한 칸</strong>으로 나눠 보는 것도 같은 생각이에요. 칸을 먼저 정해 두면 한쪽만 파고들다 다른 쪽을 놓치는 일이 줄어요.</p>
+      </div>
+
+      <p class="callout">1960년대 후반 맥킨지의 바버라 민토가 보고서 쓰는 법을 정리하며 퍼뜨린 말로 알려져 있어요. 일본 현장에서는 <strong>「モレなくダブりなく」</strong>(빠짐없이 겹침없이)라고 많이 불러요. 다만 현실의 문제는 칼같이 나뉘지 않을 때도 많아요. MECE는 <strong>완벽하게 지킬 규칙이라기보다 점검표</strong>로 쓰는 게 좋아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">겹치지 않게, 빠짐없이. 모으면 딱 전체.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 업무 시스템 › 생각 정리법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

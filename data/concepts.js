@@ -385,6 +385,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'mece',
+    title: 'MECE',
+    sub: '미시 · 중복 없이 누락 없이 · Mutually Exclusive and Collectively Exhaustive · 漏れなくダブりなく',
+    summary: '겹치지 않게, 빠짐없이 나누자는 생각 정리 원칙',
+    category: '업무 시스템',
+    date: '2026-10-29'
+  },
+  {
     slug: 'mtbf',
     title: 'MTBF',
     sub: '평균 고장 간격 · Mean Time Between Failures · 平均故障間隔',
