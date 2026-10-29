@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>원격 코드 실행 — 기억해봐요</title>
+  <meta name="description" content="원격 코드 실행(RCE)은 멀리 있는 공격자가 남의 서버에서 자기가 원하는 명령을 돌릴 수 있게 되는 취약점이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .case code, .callout code, .step code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="rce">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>원격 코드 실행</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">취약점</span>
+      </div>
+      <h1 class="title">원격 코드 실행</h1>
+      <p class="reading">Remote Code Execution (RCE) · リモートコード実行</p>
+      <p class="define">원격 코드 실행은 <mark>멀리 있는 공격자가 남의 서버에서 자기가 원하는 명령을 돌릴 수 있게 되는 것</mark>이에요. <strong>취약점 가운데 가장 무거운 축에 들어요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 보안 › 취약점</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>식당 주문서에 "김치찌개 하나"라고 적어야 하는데, 누군가 <strong>"김치찌개 하나, 그리고 금고 열어 줘"</strong>라고 적었다고 해 봐요. 주방이 주문서를 의심 없이 그대로 따르면 금고가 열려요.</p>
+      <p>서버도 똑같아요. 밖에서 들어온 값을 <strong>데이터로만 다뤄야</strong> 하는데, 실수로 그 값을 <strong>명령으로 실행</strong>해 버리는 틈이 있으면 공격자는 서버 앞에 앉은 것처럼 무엇이든 시킬 수 있어요. 이게 RCE예요. "원격"은 <strong>공격자가 그 컴퓨터에 손대지 않고 네트워크 너머에서</strong> 한다는 뜻이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">공격자 위치</p>
+          <p class="fact__value">네트워크 너머 (원격)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">얻는 것</p>
+          <p class="fact__value">서버에서 아무 명령이나 실행</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">뿌리 원인</p>
+          <p class="fact__value">입력을 명령으로 착각</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">입력칸·요청 속에 명령을 숨겨요</p>
+          <p><span class="chip-mono">; 명령</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">보낸다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">취약한 서버</p>
+          <p class="node__note">받은 값을 명령으로 착각해 실행해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">빼앗긴다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">공격자의 발판</p>
+          <p class="node__note">정보 빼내기, 악성코드 심기, 다른 서버로 건너가기</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공격자는 검색창, 파일 업로드, 요청 헤더처럼 <strong>서버가 받아 주는 곳</strong>에 평범한 값 대신 명령을 섞어 보내요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>서버 프로그램에 틈이 있으면 그 값이 <strong>서버의 권한으로 실행</strong>돼요. 로그인도, 사용자의 클릭도 필요 없는 경우가 많아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>한 번 실행이 되면 공격자는 서버를 <strong>자기 것처럼</strong> 써요. 그래서 RCE 취약점은 <a href="cvss.html">CVSS</a> 점수가 최고 수준으로 매겨지는 일이 흔해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>RCE가 생기는 가장 흔한 길은 <strong>명령 주입</strong>이에요. 내 컴퓨터 터미널에서, 해가 없는 <code>echo</code>로 원리만 살펴볼게요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-comment"># 누군가 이름 칸에 이렇게 적었다고 해요</span>
+<span class="c-prompt">$</span> name=<span class="c-string">'철수; echo 해킹됨'</span>
+<span class="c-comment"># 위험: 입력을 명령 문장에 그대로 끼워 셸에 넘겨요</span>
+<span class="c-prompt">$</span> sh -c <span class="c-string">"echo 안녕 $name"</span>
+안녕 철수
+해킹됨
+<span class="c-comment"># 안전: 입력은 끝까지 글자로만 다뤄요</span>
+<span class="c-prompt">$</span> printf <span class="c-string">'%s\n'</span> <span class="c-string">"안녕 $name"</span>
+안녕 철수; echo 해킹됨</code></pre>
+      </div>
+
+      <p class="callout">위험한 쪽에서는 <code>;</code> 뒤가 <strong>새 명령으로 실행</strong>됐어요. 여기선 <code>echo</code>였지만, 실제 공격에서는 이 자리에 파일을 지우거나 악성코드를 내려받는 명령이 들어가요. 안전한 쪽은 같은 입력을 <strong>그냥 글자로 찍었을 뿐</strong>이에요.</p>
+
+      <div class="case">
+        <p class="case__title">실제 사례 · Log4Shell</p>
+        <p>2021년 12월, 자바 프로그램이 널리 쓰는 기록 도구 Log4j에서 RCE가 발견됐어요(<a href="cve.html">CVE</a>-2021-44228). <strong>로그에 특정 문자열이 남기만 해도</strong> 원격에서 코드가 실행됐고, CVSS 점수는 만점인 <strong>10.0</strong>이었어요. 공개 직후부터 실제 공격이 쏟아졌어요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">뚫린 다음에 벌어지는 일</p>
+        <p>공격자는 빼앗은 서버에 악성코드를 심어 <a href="botnet.html">봇넷</a>의 일원으로 만들고, <a href="c2-server.html">C&amp;C 서버</a>에서 명령을 받게 해요. 패치가 나오기 전에 노리면 <a href="zero-day.html">제로데이</a> 공격이 되고요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">막는 방법</p>
+        <p><strong>입력은 명령에 끼워 넣지 않기</strong>가 첫째예요. 그다음은 <strong>패치를 빨리 적용</strong>하고, 서버 프로그램은 <strong>꼭 필요한 권한만</strong> 갖고 돌게 해요. <a href="waf.html">WAF</a>나 <a href="ips.html">IPS</a>는 알려진 공격 문자열을 앞단에서 걸러 시간을 벌어 줘요.</p>
+      </div>
+
+      <p class="callout"><a href="xss.html">XSS</a>도 "남의 코드가 실행되는" 공격이지만, 실행되는 곳이 <strong>방문자의 브라우저</strong>예요. RCE는 <strong>서버 자체</strong>에서 실행되므로 피해 범위가 훨씬 넓어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">들어온 값이 명령이 되는 순간, 서버는 남의 것이 돼요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 보안 › 취약점</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

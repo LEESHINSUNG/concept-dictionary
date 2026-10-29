@@ -497,6 +497,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'rce',
+    title: '원격 코드 실행',
+    sub: 'Remote Code Execution (RCE) · リモートコード実行',
+    summary: '멀리 있는 공격자가 남의 서버에서 명령을 돌리게 되는 취약점',
+    category: '보안',
+    date: '2026-10-29'
+  },
+  {
     slug: 'react',
     title: 'React',
     sub: '리액트',
