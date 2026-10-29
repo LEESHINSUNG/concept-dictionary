@@ -9,6 +9,14 @@ window.CONCEPTS = [
     date: '2026-10-30'
   },
   {
+    slug: '4p',
+    title: '4P',
+    sub: '포피 · 마케팅 믹스 · marketing mix · Product · Price · Place · Promotion',
+    summary: '제품·가격·유통·판촉을 한 방향으로 맞추는 마케팅의 기본 틀',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'aes',
     title: 'AES',
     sub: '에이이에스 · Advanced Encryption Standard',
