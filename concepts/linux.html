@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>리눅스 — 기억해봐요</title>
+  <meta name="description" content="리눅스는 누구나 공짜로 쓰고 고칠 수 있는 운영체제의 핵심(커널)이에요. 서버, 안드로이드, 슈퍼컴퓨터가 이 위에서 돌아요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    /* 커널 하나 위에 여러 배포판 */
+    .distro { margin-top: 18px; padding: 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; }
+    .distro__label { margin: 0 0 10px; font-size: 14px; font-weight: 700; color: var(--muted); }
+    .distro__row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .distro__item { flex: 1 1 130px; min-width: 0; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; word-break: keep-all; }
+    .distro__item strong { display: block; font-size: 15px; }
+    .distro__kernel { margin-top: 8px; padding: 12px; text-align: center; font-weight: 700; color: #FFFFFF; background: var(--accent); border-radius: 10px; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="linux">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>리눅스</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">오픈소스</span>
+      </div>
+      <h1 class="title">리눅스</h1>
+      <p class="reading">Linux · 리눅스 커널 · Linux kernel</p>
+      <p class="define">리눅스는 <mark>누구나 공짜로 쓰고, 고치고, 나눠 줄 수 있는 운영체제</mark>예요. 엄밀히는 그 한가운데 있는 <strong>커널</strong>의 이름이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-29">2026-10-29</time></span>
+        <span>카테고리 운영체제 › 오픈소스</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>운영체제는 <strong>프로그램과 기계 사이의 관리인</strong>이에요. 프로그램이 "파일 좀 열어 줘", "화면에 찍어 줘"라고 부탁하면, 관리인이 하드웨어를 대신 움직여 줘요. 이 관리인의 핵심을 <strong>커널</strong>이라고 불러요.</p>
+      <p>윈도우와 macOS는 회사가 만든 관리인이에요. 리눅스는 1991년 핀란드 대학생 <strong>리누스 토르발스</strong>가 취미로 만들어 공개한 관리인이고, 지금은 전 세계 개발자와 회사들이 함께 고쳐 나가요. 설계도(소스 코드)가 모두 공개돼 있어서 누구나 가져다 <strong>자기 용도에 맞게</strong> 쓸 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">시작</p>
+          <p class="fact__value">1991년 · 리누스 토르발스</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">값</p>
+          <p class="fact__value">무료 · 소스 공개 (GPL)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">주로 도는 곳</p>
+          <p class="fact__value">서버 · 안드로이드 · 슈퍼컴퓨터</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">프로그램</p>
+          <p class="node__note">브라우저, 웹 서버, 내가 만든 코드</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">부탁한다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">리눅스 커널</p>
+          <p class="node__note">메모리·파일·네트워크·CPU 시간을 나눠 줘요</p>
+          <p><span class="chip-mono">시스템 콜</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">움직인다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">하드웨어</p>
+          <p class="node__note">CPU, 메모리, 디스크, 랜카드</p>
+        </div>
+      </div>
+
+      <div class="distro" role="img" aria-label="하나의 리눅스 커널 위에 우분투, 데비안, 페도라, 레드햇 엔터프라이즈 리눅스 같은 배포판이 올라갑니다.">
+        <p class="distro__label">커널은 하나, 완성품(배포판)은 여럿</p>
+        <div class="distro__row" aria-hidden="true">
+          <span class="distro__item"><strong>Ubuntu</strong>입문·개발용으로 가장 흔해요</span>
+          <span class="distro__item"><strong>Debian</strong>오래 안정적으로 돌리는 서버</span>
+          <span class="distro__item"><strong>Fedora</strong>새 기능을 먼저 담아요</span>
+          <span class="distro__item"><strong>Red Hat Enterprise Linux</strong>기업 지원이 붙은 유료판</span>
+        </div>
+        <p class="distro__kernel" aria-hidden="true">리눅스 커널</p>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>프로그램은 하드웨어를 직접 만지지 못해요. 대신 커널에 <strong>시스템 콜</strong>이라는 정해진 부탁을 보내요. 파일을 열면 커널이 <a href="file-descriptor.html">파일 디스크립터</a>라는 번호표를 돌려주는 식이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>커널은 여러 프로그램이 <strong>CPU와 메모리를 번갈아 나눠 쓰게</strong> 조율해요. 한 프로그램이 죽어도 다른 프로그램이 멀쩡한 이유예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>커널만으로는 쓸 수 없어서, 여기에 명령어 도구·설치 관리자·화면 등을 묶은 <strong>배포판</strong>을 설치해요. 우리가 "리눅스 깔았다"고 할 때는 보통 배포판을 말해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>지금 쓰는 운영체제의 커널 이름을 물어봐요. 맥과 리눅스 터미널 모두에서 돼요.</p>
+
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> uname -s
+<span class="c-comment"># 리눅스면 Linux, 맥이면 Darwin 이 나와요</span>
+<span class="c-prompt">$</span> cat /etc/os-release
+<span class="c-comment"># 리눅스에서만 돼요. 배포판 이름과 버전이 나와요</span></code></pre>
+      </div>
+
+      <p class="callout">맥에서 <code>Darwin</code>이 나오는 건 macOS가 <strong>리눅스가 아니기 때문</strong>이에요. 다만 둘 다 오래된 운영체제 유닉스(Unix)의 방식을 따라서 <code>ls</code>, <code>cd</code>, <code>cat</code> 같은 명령이 거의 같아요. 맥에서 리눅스를 바로 써 보고 싶다면 Docker로 작은 리눅스를 띄우는 방법이 가장 간단해요.</p>
+
+      <div class="case">
+        <p class="case__title">어디서 쓰이나 ① 서버와 클라우드</p>
+        <p>웹사이트 뒤의 <a href="server.html">서버</a>는 대부분 리눅스예요. 무료라 대수가 늘어도 비용이 안 늘고, 화면 없이 원격으로 관리하기 좋아서예요. 서버에 접속할 땐 보통 <a href="ssh.html">SSH</a>를 써요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">어디서 쓰이나 ② 주머니 속과 슈퍼컴퓨터</p>
+        <p><strong>안드로이드</strong> 스마트폰은 리눅스 커널 위에서 돌아요. 화면과 앱은 구글이 따로 만들었지만, 바닥의 관리인은 리눅스예요. 세계에서 가장 빠른 컴퓨터 500대 목록(TOP500)은 2017년 11월부터 <strong>전부</strong> 리눅스 계열이에요.</p>
+      </div>
+
+      <div class="case">
+        <p class="case__title">계속 자라는 커널</p>
+        <p>커널은 수천 명이 함께 고치고, 몇 달마다 새 버전이 나와요. 2022년 12월에 나온 6.1부터는 C 말고 <a href="rust.html">Rust</a>로 쓴 코드도 넣을 수 있게 됐어요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">모두가 함께 만드는, 공짜 운영체제의 심장.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-29 · 카테고리 운영체제 › 오픈소스</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

@@ -393,6 +393,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'linux',
+    title: '리눅스',
+    sub: 'Linux · 리눅스 커널 · Linux kernel',
+    summary: '누구나 공짜로 쓰고 고칠 수 있는 운영체제의 심장(커널)',
+    category: '운영체제',
+    date: '2026-10-29'
+  },
+  {
     slug: 'mece',
     title: 'MECE',
     sub: '미시 · 중복 없이 누락 없이 · Mutually Exclusive and Collectively Exhaustive · 漏れなくダブりなく',
