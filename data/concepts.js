@@ -249,6 +249,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'django-orm',
+    title: 'Django ORM',
+    sub: '장고 ORM · 객체 관계 매핑 · Object-Relational Mapping · QuerySet · 마이그레이션 · N+1',
+    summary: '파이썬 클래스와 메서드로 데이터베이스 표를 다루게 해 주는 Django의 번역기',
+    category: 'Python',
+    date: '2026-10-30'
+  },
+  {
     slug: 'dns-cache-poisoning',
     title: 'DNS 캐시 포이즈닝',
     sub: 'DNS cache poisoning · DNSキャッシュポイズニング',

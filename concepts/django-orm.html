@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Django ORM — 기억해봐요</title>
+  <meta name="description" content="Django ORM은 파이썬 코드를 SQL로 바꿔 데이터베이스와 대화해 주는 번역기예요. 표는 클래스로, 줄은 객체로 다뤄요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .toc { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0 0 8px; padding: 0; list-style: none; }
+    .toc a { display: inline-block; padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; text-decoration: none; }
+    .toc a:hover { border-color: var(--accent); color: var(--accent); }
+    .toc b { margin-right: 4px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .topic { display: flex; align-items: baseline; gap: 10px; margin: 36px 0 12px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 19px; font-weight: 900; line-height: 1.4; word-break: keep-all; scroll-margin-top: 16px; }
+    .topic__no { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--accent); }
+    #example .code { margin-top: 14px; }
+    #example .callout { margin-top: 14px; }
+    .habits { margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .habits li { padding: 12px 14px 12px 40px; position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font-size: 15px; line-height: 1.6; word-break: keep-all; }
+    .habits li::before { content: '✓'; position: absolute; left: 14px; top: 12px; font-weight: 900; color: var(--accent); }
+    .mapping { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px 10px; align-items: center; margin-top: 14px; }
+    .mapping__cell { padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 14px; text-align: center; word-break: keep-all; }
+    .mapping__cell--db { background: var(--bg); font-family: var(--mono); font-size: 13px; }
+    .mapping__eq { color: var(--muted); font-weight: 700; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="django-orm">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>Django ORM</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">데이터베이스</span>
+      </div>
+      <h1 class="title">Django ORM</h1>
+      <p class="reading">장고 ORM · 객체 관계 매핑 · Object-Relational Mapping · QuerySet · 마이그레이션</p>
+      <p class="define">Django ORM은 <mark>파이썬 코드를 SQL로 바꿔 데이터베이스와 대화해 주는 번역기</mark>예요. 표는 <strong>클래스</strong>로, 줄 하나는 <strong>객체</strong>로 다뤄요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-10-30">2026-10-30</time></span>
+        <span>카테고리 Python › 데이터베이스</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>카페 사장님이 창고 담당자에게 "5천 원 넘는 메뉴 재고 좀 알려 줘요"라고 <strong>말로</strong> 부탁해요. 담당자는 그 말을 창고 장부의 형식으로 바꿔 찾아본 뒤, 결과를 정리해 돌려줘요. 사장님은 장부 쓰는 법을 몰라도 돼요.</p>
+      <p>Django ORM이 그 담당자예요. 우리는 <code>Menu.objects.filter(price__gt=5000)</code>처럼 <strong>파이썬으로</strong> 말하고, ORM이 이걸 데이터베이스의 말인 <strong>SQL</strong>로 바꿔 물어본 뒤, 결과를 <strong>파이썬 객체</strong>로 담아 줘요. ORM은 Object-Relational Mapping, 곧 객체와 표를 짝지어 준다는 뜻이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">표(테이블)</p>
+          <p class="fact__value">모델 클래스</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">줄(행) 하나</p>
+          <p class="fact__value">모델 객체 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">질문</p>
+          <p class="fact__value">QuerySet (게으르게 실행)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">파이썬 코드</p>
+          <p class="node__note">조건을 메서드로 이어 붙여요</p>
+          <p><span class="chip-mono">filter(price__gte=4500)</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">쌓는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">QuerySet</p>
+          <p class="node__note">꺼낼 때 SQL로 번역해요</p>
+          <p><span class="chip-mono">WHERE price &gt;= 4500</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">묻는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">데이터베이스</p>
+          <p class="node__note">맞는 줄을 골라 돌려주면 객체에 담아요</p>
+          <p><span class="chip-mono">cafe_menu</span></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><code>filter()</code>를 불러도 바로 DB에 가지 않아요. QuerySet이라는 <strong>주문서</strong>에 조건만 쌓아 둬요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><code>for</code>로 돌거나 <code>list()</code>로 꺼내는 순간, 주문서가 <strong>SQL 한 문장</strong>으로 번역돼 DB에 가요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>DB가 돌려준 줄들을 <code>Menu</code> 객체에 하나씩 담아 줘요. 그래서 <code>menu.price</code>처럼 <strong>점으로</strong> 값을 읽어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>역 앞 카페의 <strong>메뉴판</strong>을 데이터베이스에 넣고 꺼내 보며, 핵심 열 가지를 순서대로 볼게요. 코드는 <code>python manage.py shell</code>에서 그대로 쳐 볼 수 있어요.</p>
+      <ul class="toc" aria-label="이 섹션의 순서">
+        <li><a href="#orm-model"><b>01</b>모델</a></li>
+        <li><a href="#orm-migration"><b>02</b>마이그레이션</a></li>
+        <li><a href="#orm-queryset"><b>03</b>Manager와 QuerySet</a></li>
+        <li><a href="#orm-crud"><b>04</b>기본 CRUD</a></li>
+        <li><a href="#orm-filter"><b>05</b>룩업·Q·F</a></li>
+        <li><a href="#orm-relation"><b>06</b>관계</a></li>
+        <li><a href="#orm-n1"><b>07</b>N+1 문제</a></li>
+        <li><a href="#orm-transaction"><b>08</b>트랜잭션</a></li>
+        <li><a href="#orm-aggregate"><b>09</b>집계</a></li>
+        <li><a href="#orm-debug"><b>10</b>디버깅 습관</a></li>
+      </ul>
+      <h3 class="topic" id="orm-model"><span class="topic__no">01</span>모델 = 테이블</h3>
+      <p>클래스 하나가 <strong>표 하나</strong>, 필드 하나가 <strong>열 하나</strong>예요. 줄마다 붙는 번호 <code>id</code>는 Django가 알아서 만들어 줘요.</p>
+      <div class="code">
+        <p class="code__head">cafe/models.py</p>
+        <pre><code><span class="c-keyword">from</span> django.db <span class="c-keyword">import</span> models
+
+<span class="c-keyword">class</span> Category(models.Model):
+    name = models.CharField(max_length=50)
+
+<span class="c-keyword">class</span> Menu(models.Model):
+    name = models.CharField(max_length=50)    <span class="c-comment"># 글자 칸</span>
+    price = models.IntegerField()             <span class="c-comment"># 숫자 칸</span>
+    stock = models.IntegerField(default=0)    <span class="c-comment"># 비워 두면 0</span>
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name=<span class="c-string">"menus"</span>)</code></pre>
+      </div>
+      <div class="mapping" role="img" aria-label="파이썬 쪽과 데이터베이스 쪽의 짝. 모델 클래스는 표, 필드는 열, 객체 하나는 줄 하나, QuerySet은 SELECT 문에 해당합니다.">
+        <span class="mapping__cell">모델 클래스 <code>Menu</code></span><span class="mapping__eq" aria-hidden="true">=</span><span class="mapping__cell mapping__cell--db">표 cafe_menu</span>
+        <span class="mapping__cell">필드 <code>price</code></span><span class="mapping__eq" aria-hidden="true">=</span><span class="mapping__cell mapping__cell--db">열 price</span>
+        <span class="mapping__cell">객체 하나 <code>latte</code></span><span class="mapping__eq" aria-hidden="true">=</span><span class="mapping__cell mapping__cell--db">줄(행) 하나</span>
+        <span class="mapping__cell">QuerySet</span><span class="mapping__eq" aria-hidden="true">=</span><span class="mapping__cell mapping__cell--db">SELECT … 문</span>
+      </div>
+      <p class="callout">표 이름은 <code>앱 이름_모델 이름</code>으로 정해져요. 위 코드라면 <code>cafe_menu</code>예요.</p>
+      <h3 class="topic" id="orm-migration"><span class="topic__no">02</span>마이그레이션 — 모델 변경을 DB에 옮기기</h3>
+      <p>모델을 고쳐도 데이터베이스는 저절로 바뀌지 않아요. 먼저 바뀐 점을 <strong>변경 설계도</strong> 파일로 적고(<code>makemigrations</code>), 그 설계도대로 표를 고쳐요(<code>migrate</code>). 설계도 파일은 git에 함께 올려서 팀원 DB도 같은 모양으로 맞춰요.</p>
+      <div class="code">
+        <p class="code__head">터미널</p>
+        <pre><code><span class="c-prompt">$</span> python manage.py makemigrations  <span class="c-comment"># 모델 변화 → 설계도 파일</span>
+Migrations for 'cafe':
+  cafe/migrations/0001_initial.py
+    + Create model Category
+    + Create model Menu
+<span class="c-prompt">$</span> python manage.py sqlmigrate cafe 0001  <span class="c-comment"># 실제로 돌 SQL 미리 보기</span>
+<span class="c-prompt">$</span> python manage.py migrate  <span class="c-comment"># 설계도대로 표를 만들거나 고쳐요</span>
+<span class="c-prompt">$</span> python manage.py showmigrations  <span class="c-comment"># 어디까지 적용됐나</span></code></pre>
+      </div>
+      <p class="callout">이미 다른 사람과 나눠 쓴 마이그레이션 파일은 고치지 말고, <strong>새 파일을 하나 더</strong> 만들어 바꾸는 게 안전해요.</p>
+      <h3 class="topic" id="orm-queryset"><span class="topic__no">03</span>Manager와 QuerySet — 게으른 주문서</h3>
+      <p><code>Menu.objects</code>가 <strong>Manager</strong>예요. 표로 들어가는 창구죠. 여기서 <code>all()</code>, <code>filter()</code>를 부르면 <strong>QuerySet</strong>이 나와요. QuerySet은 조건을 이어 붙일 수 있고, <strong>정말 필요할 때까지 DB에 가지 않아요.</strong></p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code>qs = Menu.objects.filter(price__gte=4500)   <span class="c-comment"># 아직 DB에 안 가요</span>
+qs = qs.order_by(<span class="c-string">"-price"</span>)                  <span class="c-comment"># 조건을 더 쌓을 뿐</span>
+<span class="c-keyword">print</span>(qs.query)                             <span class="c-comment"># 만들어질 SQL 보기</span>
+<span class="c-keyword">for</span> menu <span class="c-keyword">in</span> qs:                             <span class="c-comment"># 여기서 처음 DB에 가요</span>
+    <span class="c-keyword">print</span>(menu.name, menu.price)</code></pre>
+      </div>
+      <p class="callout"><code>for</code>로 돌거나 <code>list()</code>, <code>len()</code>을 부를 때 비로소 SQL이 날아가요. 한 번 꺼낸 QuerySet은 결과를 기억해 두지만, <code>filter()</code>를 새로 붙이면 <strong>새 QuerySet</strong>이라 다시 DB에 가요.</p>
+      <h3 class="topic" id="orm-crud"><span class="topic__no">04</span>기본 CRUD — 만들고, 읽고, 고치고, 지우기</h3>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code>coffee = Category.objects.create(name=<span class="c-string">"커피"</span>)                       <span class="c-comment"># C 만들기</span>
+latte = Menu.objects.create(name=<span class="c-string">"라떼"</span>, price=5000, category=coffee)
+latte = Menu.objects.get(name=<span class="c-string">"라떼"</span>)          <span class="c-comment"># R 딱 한 줄</span>
+cheap = Menu.objects.filter(price__lt=5000)   <span class="c-comment"># R 여러 줄 (없으면 빈 묶음)</span>
+latte.price = 5500
+latte.save()                                  <span class="c-comment"># U 한 줄 고치기</span>
+Menu.objects.filter(stock=0).update(stock=10) <span class="c-comment"># U 여러 줄을 한 번에</span>
+latte.delete()                                <span class="c-comment"># D 지우기</span></code></pre>
+      </div>
+      <p class="callout"><code>get()</code>은 맞는 줄이 <strong>없으면</strong> <code>DoesNotExist</code>, <strong>둘 이상이면</strong> <code>MultipleObjectsReturned</code> 오류를 내요. 없을 수도 있으면 <code>filter()</code>를 쓰세요. QuerySet의 <code>update()</code>는 SQL 한 번으로 끝내는 대신 각 객체의 <code>save()</code>를 부르지 않아요.</p>
+      <h3 class="topic" id="orm-filter"><span class="topic__no">05</span>조건 쓰기 — 룩업, Q, F</h3>
+      <p><strong>룩업</strong>은 <code>필드__조건</code>처럼 밑줄 두 개로 조건을 붙이는 문법이에요(<code>gte</code> 이상, <code>lt</code> 미만, <code>contains</code> 포함, <code>in</code> 목록 중 하나 등). <code>filter()</code>에 여러 개를 쉼표로 쓰면 "그리고"예요. "또는"과 "아니다"는 <strong>Q</strong>로, 다른 칸 값을 쓰거나 DB 안에서 계산할 땐 <strong>F</strong>로 써요.</p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code><span class="c-keyword">from</span> django.db.models <span class="c-keyword">import</span> Q, F
+
+Menu.objects.filter(price__gte=5000, stock__gt=0)       <span class="c-comment"># 그리고</span>
+Menu.objects.filter(name__contains=<span class="c-string">"케이크"</span>)              <span class="c-comment"># 글자 포함</span>
+Menu.objects.filter(category__name=<span class="c-string">"커피"</span>)               <span class="c-comment"># 관계를 건너 조건</span>
+Menu.objects.filter(Q(price__lt=4500) | Q(stock=0))      <span class="c-comment"># 또는</span>
+Menu.objects.filter(~Q(category__name=<span class="c-string">"커피"</span>))           <span class="c-comment"># 아니다</span>
+Menu.objects.update(price=F(<span class="c-string">"price"</span>) + 500)             <span class="c-comment"># DB 안에서 계산</span></code></pre>
+      </div>
+      <p class="callout"><code>F</code>가 중요한 이유: <code>menu.stock -= 1</code> 후 <code>save()</code>는 값을 파이썬으로 가져와 빼고 다시 써요. 두 사람이 동시에 하면 한 번만 빠질 수 있어요. <code>F("stock") - 1</code>은 <strong>DB가 직접 빼므로</strong> 이 틈이 없어요.</p>
+      <h3 class="topic" id="orm-relation"><span class="topic__no">06</span>관계 — ForeignKey, ManyToMany, 거꾸로 건너기</h3>
+      <p><strong>ForeignKey</strong>는 "여러 메뉴가 한 분류에 속한다"(다대일)예요. <code>on_delete</code>는 꼭 정해야 하고, <code>CASCADE</code>면 분류를 지울 때 그 메뉴들도 함께 지워져요. <strong>ManyToManyField</strong>는 "메뉴 하나에 태그 여럿, 태그 하나에 메뉴 여럿"(다대다)이에요. 둘을 잇는 중간 표는 Django가 만들어 줘요.</p>
+      <div class="code">
+        <p class="code__head">cafe/models.py (추가)</p>
+        <pre><code><span class="c-keyword">class</span> Tag(models.Model):
+    name = models.CharField(max_length=30)
+
+<span class="c-keyword">class</span> Menu(models.Model):
+    <span class="c-comment"># ...앞의 칸들은 그대로</span>
+    tags = models.ManyToManyField(Tag, blank=True)    <span class="c-comment"># 중간 표 cafe_menu_tags</span></code></pre>
+      </div>
+      <p>관계는 <strong>양쪽에서</strong> 건널 수 있어요. 메뉴에서 분류로 가는 게 정방향, 분류에서 메뉴들로 가는 게 <strong>역방향</strong>이에요. 역방향 이름은 <code>related_name</code>으로 정하고, 안 정하면 <code>모델 이름_set</code>이 돼요.</p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code>latte.category.name              <span class="c-comment"># 정방향: 메뉴 → 분류</span>
+coffee.menus.all()               <span class="c-comment"># 역방향: 분류 → 메뉴들 (related_name="menus")</span>
+hot = Tag.objects.create(name=<span class="c-string">"따뜻한"</span>)
+latte.tags.add(hot)              <span class="c-comment"># 다대다 잇기 (remove, set, clear도 있어요)</span>
+hot.menu_set.all()               <span class="c-comment"># related_name이 없으면 menu_set</span>
+Category.objects.filter(menus__price__gte=6000).distinct()  <span class="c-comment"># 역방향으로 건너 조건</span></code></pre>
+      </div>
+      <p class="callout">역방향으로 건너 조건을 걸면 JOIN 때문에 <strong>같은 분류가 여러 번</strong> 나올 수 있어요. 한 번씩만 보려면 <code>distinct()</code>를 붙여요.</p>
+      <h3 class="topic" id="orm-n1"><span class="topic__no">07</span>성능 — N+1 문제</h3>
+      <p>메뉴 목록을 꺼내 1번, 그다음 메뉴마다 분류를 물으러 1번씩 더 가요. 메뉴가 N개면 <strong>1 + N번</strong>이에요. 코드는 멀쩡해 보여서 더 무서워요. 미리 같이 꺼내 오라고 알려 주면 해결돼요.</p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code><span class="c-keyword">for</span> menu <span class="c-keyword">in</span> Menu.objects.all():                        <span class="c-comment"># 1번</span>
+    <span class="c-keyword">print</span>(menu.name, menu.category.name)               <span class="c-comment"># 메뉴마다 1번씩 더 → N+1</span>
+
+<span class="c-keyword">for</span> menu <span class="c-keyword">in</span> Menu.objects.select_related(<span class="c-string">"category"</span>):   <span class="c-comment"># JOIN으로 한 번에</span>
+    <span class="c-keyword">print</span>(menu.name, menu.category.name)
+
+<span class="c-keyword">for</span> menu <span class="c-keyword">in</span> Menu.objects.prefetch_related(<span class="c-string">"tags"</span>):     <span class="c-comment"># 메뉴 1번 + 태그 1번</span>
+    <span class="c-keyword">print</span>(menu.name, [t.name <span class="c-keyword">for</span> t <span class="c-keyword">in</span> menu.tags.all()])</code></pre>
+      </div>
+      <p class="callout">메뉴 3개로 세어 보니 쿼리가 <strong>4번 → 1번 → 2번</strong>이었어요. <code>select_related</code>는 정방향 ForeignKey·OneToOne을 <strong>JOIN</strong>으로, <code>prefetch_related</code>는 다대다·역방향을 <strong>따로 한 번 더 물어 파이썬에서 짝지어</strong> 가져와요.</p>
+      <h3 class="topic" id="orm-transaction"><span class="topic__no">08</span>트랜잭션 — 다 되거나, 다 안 되거나</h3>
+      <p>"재고 빼기"와 "결제"는 <strong>함께 성공하거나 함께 취소</strong>돼야 해요. 재고만 빠지고 결제가 실패하면 안 되죠. <code>transaction.atomic()</code> 블록 안에서 오류가 나면 그 안의 변경이 <strong>모두 되돌려져요</strong>(롤백).</p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code><span class="c-keyword">from</span> django.db <span class="c-keyword">import</span> transaction
+<span class="c-keyword">from</span> django.db.models <span class="c-keyword">import</span> F
+
+<span class="c-keyword">with</span> transaction.atomic():                                         <span class="c-comment"># 여기부터 한 묶음</span>
+    Menu.objects.filter(pk=latte.pk).update(stock=F(<span class="c-string">"stock"</span>) - 1)
+    pay(order)                                                     <span class="c-comment"># 결제 함수(예시)에서 오류가 나면…</span>
+<span class="c-comment"># …재고 빼기도 함께 취소돼요</span></code></pre>
+      </div>
+      <p class="callout">같은 줄을 여러 사람이 동시에 고칠 수 있다면 <code>atomic()</code> 안에서 <code>select_for_update()</code>로 그 줄을 잠가요. 데이터베이스 설정에서 <code>ATOMIC_REQUESTS</code>를 켜면 요청 하나를 통째로 한 묶음으로 처리해요.</p>
+      <h3 class="topic" id="orm-aggregate"><span class="topic__no">09</span>집계 — 전체를 하나로, 줄마다 하나씩</h3>
+      <p><code>aggregate()</code>는 표 전체를 <strong>숫자 하나</strong>로 줄여 딕셔너리로 돌려줘요. <code>annotate()</code>는 <strong>줄마다</strong> 계산한 값을 붙여 줘요. SQL의 <code>GROUP BY</code>에 해당해요.</p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code><span class="c-keyword">from</span> django.db.models <span class="c-keyword">import</span> Avg, Count, Sum
+
+Menu.objects.aggregate(Avg(<span class="c-string">"price"</span>), total=Sum(<span class="c-string">"stock"</span>))
+<span class="c-comment"># 결과는 딕셔너리: {'price__avg': ..., 'total': ...}</span>
+
+<span class="c-keyword">for</span> c <span class="c-keyword">in</span> Category.objects.annotate(n=Count(<span class="c-string">"menus"</span>)):
+    <span class="c-keyword">print</span>(c.name, c.n)            <span class="c-comment"># 분류마다 메뉴가 몇 개인지</span></code></pre>
+      </div>
+      <p class="callout">이름을 안 주면 <code>필드__함수</code>(예: <code>price__avg</code>)가 키가 돼요. 개수만 필요할 때 <code>len(qs)</code> 대신 <code>qs.count()</code>를 쓰면 줄을 다 꺼내 오지 않아요.</p>
+      <h3 class="topic" id="orm-debug"><span class="topic__no">10</span>디버깅 습관</h3>
+      <p>ORM 덕분에 SQL을 몰라도 되지만, <strong>실제로 날아가는 SQL은 보면서</strong> 쓰는 게 좋아요.</p>
+      <div class="code">
+        <p class="code__head">python manage.py shell</p>
+        <pre><code><span class="c-keyword">print</span>(qs.query)                  <span class="c-comment"># 만들어질 SQL</span>
+<span class="c-keyword">print</span>(qs.explain())              <span class="c-comment"># DB가 어떻게 찾는지 (인덱스를 쓰나)</span>
+
+<span class="c-keyword">from</span> django.db <span class="c-keyword">import</span> connection
+<span class="c-keyword">print</span>(len(connection.queries))   <span class="c-comment"># 지금까지 날린 쿼리 수 (DEBUG=True일 때만)</span></code></pre>
+      </div>
+      <ul class="habits">
+        <li>화면이 느리면 코드보다 먼저 <strong>쿼리 수</strong>를 세요. django-debug-toolbar를 쓰면 페이지마다 보여 줘요.</li>
+        <li>반복문 안에서 점(<code>.</code>)으로 관계를 건너고 있다면 <strong>N+1</strong>을 의심해요.</li>
+        <li>있는지만 볼 땐 <code>exists()</code>, 개수만 볼 땐 <code>count()</code>. 단, 어차피 데이터를 쓸 거라면 한 번 꺼내 쓰는 게 더 빨라요.</li>
+        <li>테스트에 <code>assertNumQueries</code>로 쿼리 수를 박아 두면, N+1이 다시 생겼을 때 바로 알아요.</li>
+        <li>새 조건은 <code>python manage.py shell</code>에서 먼저 쳐 보고 <code>qs.query</code>를 확인한 뒤 코드에 옮겨요.</li>
+      </ul>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">표는 클래스로, 질문은 QuerySet으로. 날아가는 SQL은 꼭 확인해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-10-30 · 카테고리 Python › 데이터베이스</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
