@@ -833,6 +833,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'what-tree',
+    title: '요소 분해 트리',
+    sub: '요소분해 트리 · What 트리 · element breakdown tree · 要素分解ツリー',
+    summary: '큰 덩어리를 무엇으로 이루어졌나로 쪼개 구조를 보는 나무 (What 트리)',
+    category: '업무 시스템',
+    date: '2026-10-30'
+  },
+  {
     slug: 'wpa2',
     title: 'WPA2',
     sub: '더블유피에이 투 · Wi-Fi Protected Access 2',
