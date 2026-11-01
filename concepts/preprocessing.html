@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>전처리 — 기억해봐요</title>
+  <meta name="description" content="전처리는 본 작업에 들어가기 전에 데이터를 쓸 수 있는 모양으로 다듬는 단계예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="preprocessing">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>전처리</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">데이터 분석</span>
+      </div>
+      <h1 class="title">전처리</h1>
+      <p class="reading">데이터 전처리 · preprocessing · data cleaning · 前処理</p>
+      <p class="define">전처리는 <mark>본 작업에 들어가기 전에 데이터를 쓸 수 있는 모양으로 다듬는 단계</mark>예요. <strong>다듬지 않은 재료로는 결과도 믿을 수 없어요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-01">2026-11-01</time></span>
+        <span>카테고리 Python › 데이터 분석</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>장을 봐 온 재료를 바로 냄비에 넣지는 않죠. <strong>씻고, 상한 것을 골라내고, 껍질을 벗기고, 같은 크기로 썰어요.</strong> 이 손질이 끝나야 요리를 시작할 수 있어요.</p>
+      <p>데이터도 똑같아요. 모아 온 데이터에는 <strong>빈 칸, 중복된 줄, 띄어쓰기가 제멋대로인 글자, 숫자인 척하는 글자</strong>가 섞여 있어요. 이걸 그대로 평균 내면 숫자는 나오지만 틀린 숫자예요. 본 작업(분석·학습·보고) 앞에서 데이터를 다듬는 일, 그게 전처리예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 때</p>
+          <p class="fact__value">본 작업 바로 앞</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">다루는 것</p>
+          <p class="fact__value">모아 온 날것 데이터</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">목표</p>
+          <p class="fact__value">본 작업이 기대하는 모양</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">모아 온 데이터</p>
+          <p class="node__note">빈 칸·중복·제멋대로인 글자가 섞여 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">건넨다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">전처리</p>
+          <p class="node__note">골라내고 채우고 모양을 맞춰요</p>
+          <p><span class="chip-mono">DataFrame</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">넘긴다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">본 작업</p>
+          <p class="node__note">분석·학습·보고를 시작해요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="전처리가 하는 대표적인 일 네 가지">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>빠진 값 채우기</p>
+          <p class="jobs__note">비어 있는 칸을 채우거나, 그 줄을 빼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>중복 지우기</p>
+          <p class="jobs__note">같은 줄이 두 번 들어온 것을 하나로 만들어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>모양 맞추기</p>
+          <p class="jobs__note">앞뒤 공백을 없애고, 글자를 숫자·날짜로 바꿔요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>단위 맞추기</p>
+          <p class="jobs__note">원과 달러, 그램과 킬로그램처럼 섞인 단위를 하나로 모아요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>어디가 더러운지</strong>부터 봐요. 몇 줄인지, 빈 칸이 몇 개인지, 각 칸이 숫자인지 글자인지 세어 보는 게 시작이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>다듬는 규칙은 <strong>코드로 남겨요.</strong> 손으로 고치면 다음 달에 새 데이터가 왔을 때 또 같은 일을 해야 하고, 무엇을 고쳤는지도 남지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>다듬은 뒤 <strong>다시 세어 봐요.</strong> 줄 수가 얼마나 줄었는지, 빈 칸이 0이 됐는지 확인하고 넘겨요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>카페 판매 기록 <strong>sales_raw.csv</strong>를 <a href="pandas.html">pandas</a>로 다듬어 볼게요. 빈 금액 한 칸, 똑같은 줄 하나, 앞에 공백이 붙은 메뉴 이름이 섞여 있어요.</p>
+      <div class="code">
+        <p class="code__head">sales_raw.csv</p>
+        <pre><code>날짜,메뉴,금액,잔
+2026-10-01,라떼, 5000 ,2
+2026-10-01,라떼, 5000 ,2
+2026-10-02,아메리카노,4000,1
+2026-10-02,  라떼,,3
+2026-10-03,치즈케이크,6500,1</code></pre>
+      </div>
+      <div class="code">
+        <p class="code__head">main.py</p>
+        <pre><code><span class="c-keyword">import</span> pandas <span class="c-keyword">as</span> pd
+
+df = pd.read_csv(<span class="c-string">"sales_raw.csv"</span>)
+<span class="c-keyword">print</span>(df.shape)                      <span class="c-comment"># 몇 줄 몇 칸인지</span>
+<span class="c-keyword">print</span>(df.isna().sum())               <span class="c-comment"># 칸마다 빈 값이 몇 개인지</span>
+
+df = df.drop_duplicates()                                  <span class="c-comment"># 중복 줄 지우기</span>
+df[<span class="c-string">"메뉴"</span>] = df[<span class="c-string">"메뉴"</span>].str.strip()                          <span class="c-comment"># 앞뒤 공백 없애기</span>
+df[<span class="c-string">"금액"</span>] = pd.to_numeric(df[<span class="c-string">"금액"</span>].astype(str).str.strip(), errors=<span class="c-string">"coerce"</span>)  <span class="c-comment"># → 숫자</span>
+df[<span class="c-string">"금액"</span>] = df[<span class="c-string">"금액"</span>].fillna(df.groupby(<span class="c-string">"메뉴"</span>)[<span class="c-string">"금액"</span>].transform(<span class="c-string">"median"</span>))
+df[<span class="c-string">"날짜"</span>] = pd.to_datetime(df[<span class="c-string">"날짜"</span>])                      <span class="c-comment"># 글자 → 날짜</span>
+
+<span class="c-keyword">print</span>(df.shape)
+<span class="c-keyword">print</span>(df[<span class="c-string">"금액"</span>].mean())             <span class="c-comment"># 이제야 믿을 수 있는 평균</span></code></pre>
+      </div>
+      <p class="callout">돌려 보면 <strong>5줄 4칸 → 4줄 4칸</strong>이 되고, 빈 금액 한 칸은 같은 메뉴(라떼)의 중앙값 5000으로 채워져요. 평균은 5125.0이 나와요. <code>errors="coerce"</code>는 숫자로 못 바꾸는 값을 오류 대신 빈 값으로 두라는 뜻이에요.</p>
+      <div class="case">
+        <p class="case__title">상황 1 · 빼느냐 채우느냐</p>
+        <p>빈 칸을 만나면 <strong>그 줄을 빼는 것</strong>과 <strong>값을 채우는 것</strong> 중에 골라야 해요. 줄이 아까우면 채우고, 채운 값이 결과를 흔들 것 같으면 빼요. 어느 쪽이든 <strong>무엇을 어떻게 했는지 적어 두는 것</strong>이 중요해요. 나중에 숫자가 이상할 때 여기부터 되짚게 되거든요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 이름은 같지만 다른 전처리</p>
+        <p><a href="css.html">CSS</a>를 편하게 쓰게 해 주는 Sass 같은 도구를 <strong>CSS 전처리기</strong>라고 불러요. C 언어에도 <code>#include</code>를 처리하는 <strong>전처리기</strong>가 있고요. 데이터가 아니라 <strong>코드</strong>를 본 작업(컴파일·브라우저) 앞에서 다듬는다는 점에서, 이름이 붙은 이유는 같아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 전처리는 한 번으로 끝나지 않아요</p>
+        <p>분석하다 보면 "이 값은 빼야겠다" 같은 게 또 보여요. 그때마다 전처리 코드를 고쳐 <strong>처음부터 다시 돌려요.</strong> 그래서 전처리와 본 작업을 한 파일에 섞어 쓰기보다, <strong>다듬기 따로 쓰기 따로</strong> 나눠 두는 편이 편해요. 전처리에 드는 시간이 본 작업보다 긴 경우도 흔해요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">다듬지 않은 재료로는, 믿을 수 있는 결과가 안 나와요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-01 · 카테고리 Python › 데이터 분석</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

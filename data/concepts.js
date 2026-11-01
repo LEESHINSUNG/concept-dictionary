@@ -561,6 +561,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'preprocessing',
+    title: '전처리',
+    sub: '데이터 전처리 · preprocessing · data cleaning · 前処理',
+    summary: '본 작업에 들어가기 전에 데이터를 쓸 수 있는 모양으로 다듬는 단계',
+    category: 'Python',
+    date: '2026-11-01'
+  },
+  {
     slug: 'protocol',
     title: '프로토콜',
     sub: '통신 규약 · protocol · プロトコル',
