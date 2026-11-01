@@ -553,6 +553,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'postprocessing',
+    title: '후처리',
+    sub: '후처리 · postprocessing · 後処理 · 뒷정리',
+    summary: '본 작업이 내놓은 결과를 받는 쪽이 쓸 수 있는 모양으로 다듬는 단계',
+    category: 'Python',
+    date: '2026-11-01'
+  },
+  {
     slug: 'ppp',
     title: 'PPP',
     sub: '점대점 프로토콜 · Point-to-Point Protocol',

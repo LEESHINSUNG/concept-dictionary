@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>후처리 — 기억해봐요</title>
+  <meta name="description" content="후처리는 본 작업이 내놓은 결과를 받는 쪽이 쓸 수 있는 모양으로 다듬는 단계예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="postprocessing">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>후처리</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">데이터 분석</span>
+      </div>
+      <h1 class="title">후처리</h1>
+      <p class="reading">후처리 · postprocessing · 後処理</p>
+      <p class="define">후처리는 <mark>본 작업이 내놓은 결과를 받는 쪽이 쓸 수 있는 모양으로 다듬는 단계</mark>예요. <strong>결과가 나왔다고 일이 끝난 건 아니에요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-01">2026-11-01</time></span>
+        <span>카테고리 Python › 데이터 분석</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>요리가 다 됐다고 냄비째 식탁에 올리지는 않죠. <strong>접시에 덜고, 먹기 좋게 식히고, 고명을 올려</strong> 내요. 맛은 이미 정해졌지만, 이 마무리가 있어야 먹을 수 있어요.</p>
+      <p>데이터도 그래요. 계산이 끝나면 <code>0.9231…</code> 같은 숫자 뭉치가 남는데, 이걸 그대로 보고서에 붙일 수는 없어요. <strong>기준에 못 미치는 것을 걸러내고, 반올림하고, 보기 좋은 모양으로 바꿔</strong> 사람이나 다음 시스템에 넘겨요. 이 마무리가 후처리예요. <a href="preprocessing.html">전처리</a>의 짝이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 때</p>
+          <p class="fact__value">본 작업 바로 뒤</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">다루는 것</p>
+          <p class="fact__value">본 작업이 내놓은 결과</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">목표</p>
+          <p class="fact__value">받는 쪽이 기대하는 모양</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">본 작업</p>
+          <p class="node__note">분석·학습이 끝나 숫자가 나왔어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">건넨다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">후처리</p>
+          <p class="node__note">거르고 다듬고 보기 좋게 바꿔요</p>
+          <p><span class="chip-mono">0.9231 → 92%</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">넘긴다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 쪽</p>
+          <p class="node__note">사람이 읽거나 다음 시스템이 받아요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="후처리가 하는 대표적인 일 네 가지">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>걸러내기</p>
+          <p class="jobs__note">기준(임계값)에 못 미치는 결과를 빼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>다듬기</p>
+          <p class="jobs__note">반올림하고, 자릿수와 순서를 맞춰요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>보기 좋게</p>
+          <p class="jobs__note">0.92를 92%로, 1250000을 1,250,000원으로 바꿔요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>내보내기</p>
+          <p class="jobs__note">파일·표·화면 등 받는 쪽이 읽는 형태로 저장해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>받는 쪽이 무엇을 기대하는지</strong> 정해요. 사람이 읽을 보고서인지, 다른 프로그램이 받을 파일인지에 따라 다듬는 방향이 달라져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>거르기를 먼저, 꾸미기를 나중에</strong> 해요. 숫자를 "92%" 같은 글자로 바꾸고 나면 더는 크기를 비교하거나 계산할 수 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>본 작업의 결과는 <strong>건드리지 않고 따로 남겨 둬요.</strong> 꾸민 것만 남기면, 나중에 기준을 바꾸고 싶을 때 처음부터 다시 돌려야 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">직접 해보기</h2>
+      </div>
+      <p>추천 점수가 나왔다고 해 볼게요. 0.7 넘는 것만 골라, 사람이 읽는 모양으로 바꿔 내보내요.</p>
+      <div class="code">
+        <p class="code__head">main.py</p>
+        <pre><code><span class="c-keyword">import</span> pandas <span class="c-keyword">as</span> pd
+
+scores = pd.DataFrame({<span class="c-string">"메뉴"</span>: [<span class="c-string">"라떼"</span>, <span class="c-string">"아메리카노"</span>, <span class="c-string">"치즈케이크"</span>, <span class="c-string">"녹차"</span>],
+                       <span class="c-string">"추천점수"</span>: [0.92, 0.71, 0.48, 0.355]})
+
+top = scores[scores[<span class="c-string">"추천점수"</span>] &gt;= 0.7].copy()        <span class="c-comment"># 1. 거르기</span>
+top = top.sort_values(<span class="c-string">"추천점수"</span>, ascending=False)     <span class="c-comment"># 2. 줄 세우기</span>
+top[<span class="c-string">"추천점수"</span>] = (top[<span class="c-string">"추천점수"</span>] * 100).round().astype(int).astype(str) + <span class="c-string">"%"</span>
+<span class="c-keyword">print</span>(top.to_string(index=False))                     <span class="c-comment"># 3. 보기 좋게</span></code></pre>
+      </div>
+      <div class="code">
+        <p class="code__head">출력</p>
+        <pre><code>   메뉴 추천점수
+   라떼  92%
+아메리카노  71%</code></pre>
+      </div>
+      <div class="code">
+        <p class="code__head">main.py (이어서)</p>
+        <pre><code>sales = pd.DataFrame({<span class="c-string">"메뉴"</span>: [<span class="c-string">"라떼"</span>, <span class="c-string">"아메리카노"</span>], <span class="c-string">"합계"</span>: [1250000, 480000]})
+sales[<span class="c-string">"합계"</span>] = sales[<span class="c-string">"합계"</span>].map(lambda v: f<span class="c-string">"{v:,}원"</span>)   <span class="c-comment"># 1,250,000원</span>
+sales.to_csv(<span class="c-string">"report.csv"</span>, index=False, encoding=<span class="c-string">"utf-8-sig"</span>)   <span class="c-comment"># 4. 내보내기</span></code></pre>
+      </div>
+      <p class="callout"><code>utf-8-sig</code>는 엑셀에서 한글이 깨지지 않게 표시를 붙여 저장하라는 뜻이에요. 받는 쪽이 엑셀이라면 이것도 후처리의 일부예요.</p>
+      <div class="case">
+        <p class="case__title">상황 1 · 후처리로 덮으면 안 되는 것</p>
+        <p>결과가 이상할 때 후처리에서 <strong>이상한 값만 빼 버리고</strong> 넘기고 싶어져요. 하지만 그건 본 작업이나 <a href="preprocessing.html">전처리</a>가 틀렸다는 신호인 경우가 많아요. 후처리는 <strong>모양을 바꾸는 자리</strong>지, 틀린 것을 가리는 자리가 아니에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 뒷정리라는 뜻으로도 써요</p>
+        <p>프로그램에서 "후처리"라고 하면 <strong>쓰고 난 것을 정리하는 일</strong>을 가리키기도 해요. 열어 둔 파일 닫기, 임시 파일 지우기, 연결 끊기 같은 것들이죠. 파이썬의 <code>with</code> 블록이나 <code>finally</code>가 이 일을 맡아, 도중에 오류가 나도 정리는 하게 해 줘요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 그림과 영상에서도 같은 말</p>
+        <p>게임이나 영상에서 다 그린 화면에 빛 번짐·흐림 같은 효과를 얹는 것도 <strong>후처리(post-processing)</strong>라고 해요. 본 작업이 끝난 결과물에 마지막 손질을 더한다는 점에서 뜻이 같아요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">결과가 나온 뒤, 받는 쪽이 쓸 수 있는 모양으로.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-01 · 카테고리 Python › 데이터 분석</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
