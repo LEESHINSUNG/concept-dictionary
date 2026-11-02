@@ -25,6 +25,14 @@ window.CONCEPTS = [
     date: '2026-10-30'
   },
   {
+    slug: 'ack-nack',
+    title: 'ACK/NACK',
+    sub: '애크 · 낵 · 확인 응답 · 긍정 응답 · 부정 응답 · acknowledgement · negative acknowledgement · 再送',
+    summary: '받았다·못 받았다를 알려 주는 짧은 응답 신호',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'aes',
     title: 'AES',
     sub: '에이이에스 · Advanced Encryption Standard',
