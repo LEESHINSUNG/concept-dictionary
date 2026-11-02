@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>프록시 서버 — 기억해봐요</title>
+  <meta name="description" content="프록시 서버는 클라이언트와 서버 사이에서 통신을 대신 주고받아 주는 중계 서버예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="proxy-server">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>프록시 서버</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">중계</span>
+      </div>
+      <h1 class="title">프록시 서버</h1>
+      <p class="reading">프록시 · 대리 서버 · proxy server · プロキシサーバ</p>
+      <p class="define">프록시 서버는 <mark>사이에 서서 통신을 대신 주고받아 주는 서버</mark>예요. <strong>대신 다녀와 주니, 거기서 보고 거르고 저장할 수 있어요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 중계</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사에서 물건을 살 때 직원이 각자 사지 않고 <strong>구매 담당</strong>을 통하죠. 담당자가 대신 주문하니 기록이 남고, 사면 안 되는 건 걸러지고, 같은 걸 여러 명이 찾으면 미리 받아 둔 걸 내주기도 해요.</p>
+      <p>프록시 서버가 그 구매 담당이에요. 프록시(proxy)는 <strong>대리</strong>라는 뜻이에요. <a href="client.html">클라이언트</a>가 직접 바깥에 나가지 않고 프록시에게 부탁하면, 프록시가 대신 받아다 줘요. 밖에서 보면 <strong>프록시가 요청한 것</strong>처럼 보이고요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">서는 자리</p>
+          <p class="fact__value">클라이언트와 서버 사이</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">두 방향</p>
+          <p class="fact__value">포워드 · 리버스</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">덤으로 얻는 것</p>
+          <p class="fact__value">기록 · 차단 · 캐시</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">누구를 대신하느냐에 따라 이름과 쓰임이 갈려요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">클라이언트</p>
+          <p class="node__note">바깥에 직접 나가지 않아요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">부탁한다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">프록시 서버</p>
+          <p class="node__note">대신 다녀오면서 보고, 거르고, 저장해요</p>
+          <p><span class="chip-mono">대리</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">대신 요청</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">바깥 서버</p>
+          <p class="node__note">프록시가 손님인 줄 알아요</p>
+        </div>
+      </div>
+      <div class="trio" role="list" aria-label="두 가지 프록시">
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">포워드 프록시</p>
+          <p class="trio__key"><strong>손님</strong>을 대신해요</p>
+          <p class="trio__note">사내망에서 바깥으로 나갈 때 거치는 쪽. 보통 "프록시"라고 하면 이쪽이에요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">리버스 프록시</p>
+          <p class="trio__key"><strong>서버</strong>를 대신해요</p>
+          <p class="trio__note">바깥 요청을 먼저 받아 뒤쪽 서버로 넘겨요. <a href="load-balancing.html">로드 밸런싱</a>이나 암호 처리를 여기서 맡아요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">투명 프록시</p>
+          <p class="trio__key">모르게 거쳐요</p>
+          <p class="trio__note">설정하지 않아도 통신이 자동으로 지나가게 해 둔 것이에요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="사이에 서면 할 수 있는 일">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>기록</p>
+          <p class="jobs__note">누가 언제 어디에 접속했는지 남아요. 사고가 났을 때 되짚을 수 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>차단</p>
+          <p class="jobs__note">업무와 무관한 곳, 위험한 곳을 막아요. 바이러스 검사도 여기서 함께 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>캐시</p>
+          <p class="jobs__note">여러 사람이 찾는 자료를 받아 두고 내줘요. 바깥으로 나가는 양이 줄어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>숨기기</p>
+          <p class="jobs__note">바깥에서는 안쪽 기기의 주소가 보이지 않아요. 프록시 주소만 남아요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>모든 통신이 한곳을 지나니 <strong>관리하기 편하지만</strong>, 그만큼 그 한 대가 멈추면 다 같이 멈춰요. 회사에서 프록시를 이중으로 두는 이유예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>암호화된 통신은 중간에서 들여다볼 수 없어요. 굳이 검사하려면 프록시가 <strong>통신을 한 번 풀었다 다시 잠그는</strong> 방식을 쓰는데, 사실상 중간자가 되는 거라 회사 기기에서만 동의를 받고 써요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>캐시는 편하지만 <strong>오래된 내용을 내줄 위험</strong>이 있어요. 그래서 원본이 바뀌었는지 묻고 받아 오는 규칙을 함께 써요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · VPN과 뭐가 다른가요</p>
+        <p>둘 다 "대신 나가 준다"처럼 보이지만, <a href="vpn.html">VPN</a>은 <strong>기기의 모든 통신</strong>을 암호로 감싼 길로 보내요. 프록시는 보통 <strong>정해진 앱·정해진 통신</strong>만 거쳐 가고, 그 자체로 암호화를 해 주지는 않아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 리버스 프록시가 흔해진 이유</p>
+        <p>바깥에 서버를 그대로 내놓는 대신 리버스 프록시를 앞에 세우면, 거기서 <a href="tls.html">TLS</a>를 처리하고, 요청을 나눠 보내고, 수상한 요청을 거를 수 있어요. <a href="waf.html">WAF</a>도 이 자리에 함께 놓는 경우가 많아요. <a href="dmz.html">DMZ</a>의 맨 앞자리라고 보면 돼요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 나쁜 쪽으로도 써요</p>
+        <p>공격자도 자기 주소를 가리려고 프록시를 거쳐요. 아무나 쓸 수 있게 열려 있는 프록시(오픈 프록시)는 <a href="stepping-stone-attack.html">경유지 공격</a>의 발판이 되기 쉬워요. 그래서 사내 프록시는 <strong>안쪽에서만</strong> 쓸 수 있게 닫아 둬야 해요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">사이에 서서 대신 다녀와요. 그 자리에서 보고, 거르고, 저장해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 중계</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

@@ -625,6 +625,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'proxy-server',
+    title: '프록시 서버',
+    sub: '프록시 · 대리 서버 · proxy server · reverse proxy · プロキシサーバ',
+    summary: '클라이언트와 서버 사이에서 통신을 대신 주고받아 주는 중계 서버',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'public-private-key',
     title: '공개키-비밀키',
     sub: '비대칭키 · public key / private key · 公開鍵・秘密鍵',
