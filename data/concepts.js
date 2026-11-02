@@ -649,6 +649,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'rfid',
+    title: 'RFID',
+    sub: '알에프아이디 · Radio Frequency Identification · 무선 주파수 인식 · 전자 태그 · NFC',
+    summary: '전파로 태그에 든 번호를 닿지 않고 읽는 기술',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'risk-acceptance',
     title: '위험 수용',
     sub: 'risk acceptance · リスク受容',

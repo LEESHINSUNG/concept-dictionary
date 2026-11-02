@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RFID — 기억해봐요</title>
+  <meta name="description" content="RFID는 전파로 태그에 적힌 번호를 비접촉으로 읽는 기술이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="rfid">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>RFID</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">무선</span>
+      </div>
+      <h1 class="title">RFID</h1>
+      <p class="reading">알에프아이디 · Radio Frequency Identification · 무선 주파수 인식</p>
+      <p class="define">RFID는 <mark>전파로 태그에 든 번호를 닿지 않고 읽는 기술</mark>이에요. <strong>태그 대부분은 건전지 없이, 리더가 쏜 전파로 깨어나요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 무선</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>옷가게에서 옷을 바구니째 올려놨을 뿐인데 계산대 화면에 <strong>다섯 벌이 한꺼번에</strong> 뜨는 걸 본 적 있을 거예요. 바코드처럼 한 장씩 보여 주지 않았는데도요.</p>
+      <p>옷에 붙은 종이 라벨 안에 <strong>아주 얇은 안테나와 칩</strong>이 들어 있어서 그래요. 계산대가 전파를 쏘면 라벨이 그 전파에서 전기를 얻어 깨어나 자기 번호를 답해요. 건전지도, 빛도, 닿을 필요도 없어요. 교통카드와 출입증도 같은 원리예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">읽는 방법</p>
+          <p class="fact__value">전파 (닿지 않아도 돼요)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">태그 전원</p>
+          <p class="fact__value">대개 없음 — 전파로 깨어나요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">한 번에</p>
+          <p class="fact__value">여러 개를 동시에</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">태그에는 보통 <strong>번호 하나</strong>만 들어 있어요. 나머지는 시스템이 알고 있어요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">리더가 전파를 쏜다</p>
+          <p class="node__note">읽는 장치가 둘레에 전파를 뿌려요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">깨운다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">태그가 답한다</p>
+          <p class="node__note">그 전파로 전기를 얻어 자기 번호를 실어 보내요</p>
+          <p><span class="chip-mono">ID</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">번호</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">시스템이 조회한다</p>
+          <p class="node__note">번호로 "무엇인지"를 데이터베이스에서 찾아요</p>
+        </div>
+      </div>
+      <div class="trio" role="list" aria-label="주파수에 따라 쓰임이 갈려요">
+        <div class="trio__item">
+          <p class="trio__name">LF · 125~150kHz</p>
+          <p class="trio__key">아주 가까이</p>
+          <p class="trio__note">몇 cm. 금속과 물의 방해를 덜 받아 가축·자동차 열쇠에 써요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">HF · 13.56MHz</p>
+          <p class="trio__key">수 cm~1m 정도</p>
+          <p class="trio__note">교통카드·출입증. 휴대폰의 <strong>NFC</strong>가 이 대역의 한 갈래예요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">UHF · 860~960MHz</p>
+          <p class="trio__key">수 m</p>
+          <p class="trio__note">멀리서 여러 개를 한꺼번에. 물류와 매장 재고에 써요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="태그의 두 가지">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>패시브 태그</p>
+          <p class="jobs__note">건전지가 없어요. 리더의 전파로만 움직여서 싸고 얇고 수명이 길어요. 대신 거리가 짧아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>액티브 태그</p>
+          <p class="jobs__note">건전지를 넣어 스스로 신호를 보내요. 훨씬 멀리 가지만 비싸고 건전지를 갈아야 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>바코드와 가장 큰 차이는 <strong>보이지 않아도 읽힌다</strong>는 점이에요. 상자 안이나 주머니 속에 있어도 되고, 방향을 맞출 필요도 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>여러 개를 거의 동시에</strong> 읽어요. 태그들이 조금씩 시간을 어긋나게 답하도록 정해 둔 규칙 덕분이에요. 재고 조사가 몇 시간에서 몇 분으로 줄어드는 이유예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>읽기만 하는 게 아니라 <strong>쓸 수도</strong> 있어요. 공정을 지날 때마다 상태를 적어 넣는 식으로 써요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 읽히는 걸 내가 모를 수 있어요</p>
+        <p>닿지 않아도 읽힌다는 장점은 그대로 약점이기도 해요. 가방 속 카드가 <strong>주인 모르게</strong> 읽힐 수 있거든요. 그래서 전파를 막는 지갑을 쓰거나, 쓰지 않을 때는 응답하지 않도록 만든 카드를 써요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 번호만 있다면 베끼면 그만</p>
+        <p>태그가 늘 같은 번호만 답한다면, 그 답을 녹음해 그대로 따라 하면 돼요. 그래서 요즘 출입증·교통카드는 <strong>매번 달라지는 값</strong>을 주고받는 방식(상호 인증)을 써요. 단순 복제를 막기 위해서예요. 오래된 저가 태그는 여전히 베끼기 쉬워요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · NFC와 뭐가 다른가요</p>
+        <p>NFC는 RFID의 HF 대역에서 갈라져 나온 규격이에요. 거리를 <strong>아주 짧게</strong>(보통 몇 cm) 제한하고, 한쪽이 읽고 한쪽이 답하는 관계를 넘어 <strong>양쪽이 주고받을 수</strong> 있게 했어요. 휴대폰으로 결제하거나 두 기기를 맞대어 정보를 보내는 게 그래서 가능해요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">닿지 않고, 보이지 않아도, 여러 개를 한 번에 읽어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 무선</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
