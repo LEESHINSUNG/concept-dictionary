@@ -97,6 +97,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'brute-force-attack',
+    title: '무차별 대입 공격',
+    sub: '브루트 포스 · 무차별 대입 · 전수 조사 · brute force attack · ブルートフォース攻撃',
+    summary: '맞을 때까지 가능한 값을 모두 넣어 보는 공격',
+    category: '보안',
+    date: '2026-11-02'
+  },
+  {
     slug: 'business-system',
     title: '비즈니스 시스템',
     sub: '비지니스 시스템 · 사업 시스템 · business system',

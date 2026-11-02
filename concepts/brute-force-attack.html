@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>무차별 대입 공격 — 기억해봐요</title>
+  <meta name="description" content="무차별 대입 공격은 맞을 때까지 가능한 값을 모두 넣어 보는 공격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="brute-force-attack">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>무차별 대입 공격</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">무차별 대입 공격</h1>
+      <p class="reading">브루트 포스 · 전수 조사 공격 · brute force attack · ブルートフォース攻撃</p>
+      <p class="define">무차별 대입 공격은 <mark>맞을 때까지 가능한 값을 하나씩 모두 넣어 보는 공격</mark>이에요. <strong>머리를 쓰지 않는 대신, 기다리면 반드시 맞아요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>자전거 번호 자물쇠를 잃어버렸을 때 <strong>0000부터 9999까지</strong> 돌려 보면 언젠가는 열려요. 똑똑한 방법은 아니지만 확실하죠. 네 자리라면 1만 번이면 끝나니까요.</p>
+      <p>무차별 대입 공격이 딱 그거예요. 사람 손으로는 1만 번도 힘들지만 컴퓨터는 지치지 않아요. 그래서 이 공격을 막는 방법은 "못 맞히게"가 아니라 <strong>"끝까지 돌리기에는 너무 오래 걸리게"</strong>와 <strong>"많이 못 해 보게"</strong> 두 가지예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">방법</p>
+          <p class="fact__value">가능한 값을 전부</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">이기는 쪽</p>
+          <p class="fact__value">경우의 수가 큰 쪽</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표 대책</p>
+          <p class="fact__value">잠금 · 지연 · 2단계 인증</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">비밀번호를 한 글자 늘리거나 쓰는 글자를 넓히면 경우의 수가 이렇게 달라져요.</p>
+      <div class="trio" role="list" aria-label="비밀번호 길이와 경우의 수">
+        <div class="trio__item trio__item--off">
+          <p class="trio__name">4자리 · 숫자</p>
+          <p class="trio__key">10,000가지</p>
+          <p class="trio__note">사람이 하루 종일 돌려도 끝낼 수 있는 양이에요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">6자리 · 영소문자</p>
+          <p class="trio__key">약 3억 가지</p>
+          <p class="trio__note">정확히는 308,915,776가지. 컴퓨터에게는 아직 짧아요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">8자리 · 영문+숫자</p>
+          <p class="trio__key">약 218조 가지</p>
+          <p class="trio__note">같은 속도라면 그만큼 더 오래 걸려요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="이름이 다른 사촌들">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>사전 공격</p>
+          <p class="jobs__note">아무거나가 아니라 <strong>자주 쓰는 비밀번호 목록</strong>부터 넣어 봐요. 훨씬 빨리 맞아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>패스워드 스프레이</p>
+          <p class="jobs__note">한 계정에 여러 비밀번호가 아니라, <strong>흔한 비밀번호 하나를 여러 계정에</strong> 넣어 봐요. 계정 잠금을 피하려는 수예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>크리덴셜 스터핑</p>
+          <p class="jobs__note">다른 사이트에서 유출된 <strong>아이디·비밀번호 쌍</strong>을 그대로 넣어 봐요. 같은 비밀번호를 돌려쓰면 바로 뚫려요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공격자는 로그인 화면에 직접 넣어 보기도 하고, <strong>훔쳐 온 비밀번호 목록</strong>을 자기 컴퓨터에서 돌려 보기도 해요. 뒤쪽은 횟수 제한이 없어서 훨씬 빨라요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 서비스 쪽은 비밀번호를 그냥 두지 않고 <a href="hash.html">해시</a>로 바꿔 저장하고, <strong>일부러 느린 방식</strong>을 써요. 한 번 계산이 느리면 수십억 번 돌리는 쪽이 훨씬 괴로워지거든요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>로그인 화면 쪽에서는 <strong>몇 번 틀리면 잠그기</strong>, <strong>틀릴수록 기다리게 하기</strong>, <a href="captcha.html">CAPTCHA</a>, 2단계 인증으로 시도 횟수 자체를 줄여요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 길이가 복잡함을 이겨요</p>
+        <p><code>P@s5!</code>처럼 짧고 복잡한 것보다, 긴 문장형 비밀번호가 대개 더 안전해요. 기호를 섞는 것보다 <strong>길이를 늘리는 쪽</strong>이 경우의 수를 훨씬 크게 키우거든요. 외우기도 더 쉽고요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 잠금에도 부작용이 있어요</p>
+        <p>"5번 틀리면 30분 잠금"은 효과적이지만, 공격자가 남의 계정을 <strong>일부러 잠가 버리는</strong> 데 쓸 수도 있어요. 그래서 요즘은 무조건 잠그기보다 <strong>점점 느리게 하기</strong>나 평소와 다른 접속일 때만 더 묻는 <a href="risk-based-authentication.html">위험 기반 인증</a>을 섞어 써요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 비밀번호만의 이야기가 아니에요</p>
+        <p>무차별 대입은 <strong>맞힐 때까지 넣어 보는 방식 전부</strong>를 가리켜요. 암호 키를 전부 시도해 보는 것, 숨겨진 관리자 주소를 단어 목록으로 찾아보는 것도 같은 방식이에요. <a href="symmetric-key.html">대칭키</a> 같은 암호 기술이 키 길이를 길게 잡는 이유도 여기에 있어요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">머리가 아니라 시간으로 푸는 공격이라, 시간을 비싸게 만들면 돼요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
