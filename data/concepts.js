@@ -737,6 +737,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'social-engineering',
+    title: '소셜 엔지니어링',
+    sub: '사회공학 · 사회공학적 기법 · social engineering · ソーシャルエンジニアリング',
+    summary: '기계가 아니라 사람을 속여 정보나 권한을 얻어 내는 수법',
+    category: '보안',
+    date: '2026-11-02'
+  },
+  {
     slug: 'spf',
     title: 'SPF',
     sub: '에스피에프 · Sender Policy Framework',

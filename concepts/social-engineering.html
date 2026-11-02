@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>소셜 엔지니어링 — 기억해봐요</title>
+  <meta name="description" content="소셜 엔지니어링은 기계가 아니라 사람을 속여서 정보나 권한을 얻어 내는 수법이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="social-engineering">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>소셜 엔지니어링</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">소셜 엔지니어링</h1>
+      <p class="reading">사회공학 · social engineering · ソーシャルエンジニアリング</p>
+      <p class="define">소셜 엔지니어링은 <mark>기계가 아니라 사람을 속여 정보나 권한을 얻어 내는 수법</mark>이에요. <strong>가장 뚫기 쉬운 곳이 사람이라는 데서 출발해요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>아무리 두꺼운 금고라도, 경비원에게 전화해 "본사 점검팀인데요, 지금 비밀번호 좀 불러 주세요"로 열 수 있다면 금고의 두께는 의미가 없어요.</p>
+      <p>소셜 엔지니어링이 그 전화예요. 암호를 깨지 않고, <strong>아는 사람에게 묻습니다.</strong> 사람은 돕고 싶어 하고, 급하면 확인 절차를 건너뛰고, 권위 있어 보이는 말을 잘 믿어요. 공격자는 바로 그 성질을 써요. 기술이 아니라 <strong>상황</strong>을 만드는 게 핵심이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">노리는 곳</p>
+          <p class="fact__value">사람의 습관과 선의</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">필요한 것</p>
+          <p class="fact__value">그럴듯한 상황</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">막는 법</p>
+          <p class="fact__value">개인의 각오보다 절차</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">비밀번호를 "알아내는" 과정이에요. 깨는 게 아니에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">사람을 고른다</p>
+          <p class="node__note">권한은 있고, 확인할 틈은 없는 자리를 찾아요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">신뢰를 만든다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">믿게 만든다</p>
+          <p class="node__note">사칭·급함·권위로 의심할 틈을 없애요</p>
+          <p><span class="chip-mono">사람이 문</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">얻어 낸다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">정보·권한</p>
+          <p class="node__note">비밀번호, 출입, 송금 승인으로 이어져요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="자주 쓰이는 수법">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>사칭 전화</p>
+          <p class="jobs__note">전산팀·거래처·임원을 사칭해요. "지금 급한데요"가 자주 따라붙어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>피싱 메일</p>
+          <p class="jobs__note">진짜처럼 만든 메일로 가짜 로그인 화면에 비밀번호를 치게 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>어깨너머 훔쳐보기</p>
+          <p class="jobs__note">카페나 사무실에서 화면과 손가락을 그냥 봐요. 숄더 해킹이라고도 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>쓰레기통 뒤지기</p>
+          <p class="jobs__note">버린 서류와 메모에서 조직도·내선번호·계정 이름을 모아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>05</span>뒤따라 들어가기</p>
+          <p class="jobs__note">짐을 든 척하며 출입증 없이 문을 같이 통과해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>재료를 모아요.</strong> 회사 소개 페이지, 조직도, SNS에 올린 사원증 사진까지 다 쓸모가 있어요. 아는 이름이 많을수록 전화가 진짜처럼 들려요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그다음 <strong>의심할 틈을 없애요.</strong> "지금 바로", "임원 지시", "확인 안 되면 시스템이 멈춰요" 같은 말로 확인 절차를 건너뛰게 만들어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>마지막으로 <strong>작은 것부터 얻어요.</strong> 내선번호 하나, 담당자 이름 하나가 다음 전화의 신뢰가 되고, 그렇게 한 단계씩 올라가요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 비밀번호를 길게 해도 안 통해요</p>
+        <p><a href="brute-force-attack.html">무차별 대입 공격</a>은 비밀번호를 길게 만들면 막을 수 있어요. 하지만 사용자가 직접 불러 주면 길이는 의미가 없죠. 그래서 기술적 대책과 <strong>사람 쪽 대책은 따로</strong> 세워야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 각오가 아니라 절차로</p>
+        <p>"조심하자"로는 막기 어려워요. <strong>되걸기 확인</strong>(전화를 끊고 사내 번호로 다시 걸기), 비밀번호는 누구에게도 말하지 않는다는 규정, 서류 파쇄, 출입증 공유 금지처럼 <strong>지키기만 하면 되는 규칙</strong>으로 바꿔 두는 편이 훨씬 튼튼해요. 거절해도 불이익이 없다는 분위기도 대책의 일부예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 기술과 섞여서 와요</p>
+        <p>메일로 믿게 만든 뒤 <a href="trojan-horse.html">트로이 목마</a>를 실행시키거나, 전화로 2단계 인증 번호를 불러 달라고 해 <a href="risk-based-authentication.html">위험 기반 인증</a>을 통과하기도 해요. 요즘 사고는 대개 <strong>사람 속이기 + 기술</strong>의 조합이에요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">자물쇠를 깨지 않고, 열쇠를 가진 사람에게 물어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
