@@ -401,6 +401,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'hot-standby',
+    title: '핫 스탠바이 방식',
+    sub: '핫 스탠바이 · hot standby · ホットスタンバイ方式 · 이중화 · 현용계 · 대기계 · 페일오버',
+    summary: '예비 장비를 켜 둔 채 대기시켰다가 장애 시 곧바로 넘기는 이중화 방식',
+    category: '품질관리',
+    date: '2026-11-02'
+  },
+  {
     slug: 'html',
     title: 'HTML',
     sub: '에이치티엠엘 · HyperText Markup Language',

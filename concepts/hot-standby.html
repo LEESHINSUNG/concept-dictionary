@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>핫 스탠바이 방식 — 기억해봐요</title>
+  <meta name="description" content="핫 스탠바이는 예비 장비를 켜 둔 채 대기시켜 두었다가 장애가 나면 곧바로 넘기는 이중화 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="hot-standby">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>핫 스탠바이 방식</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">신뢰성</span>
+      </div>
+      <h1 class="title">핫 스탠바이 방식</h1>
+      <p class="reading">핫 스탠바이 · hot standby · ホットスタンバイ方式 · 이중화</p>
+      <p class="define">핫 스탠바이는 <mark>예비 장비를 켜 둔 채 대기시켰다가 장애가 나면 곧바로 넘기는 방식</mark>이에요. <strong>멈추는 시간을 가장 짧게 만드는 대신, 돈이 두 배로 들어요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 품질관리 › 신뢰성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>공연장에 마이크가 하나뿐이면 고장 났을 때 공연이 멈추죠. 그래서 무대 뒤에 <strong>똑같은 마이크를 켜 둔 채</strong> 대기시켜요. 문제가 생기면 몇 초 만에 바꿔 꽂으면 돼요. 창고에 넣어 둔 새 마이크를 꺼내 포장을 뜯고 건전지를 넣는 것과는 속도가 다르죠.</p>
+      <p>핫 스탠바이가 그 <strong>켜 둔 예비</strong>예요. 지금 일하는 쪽을 일본 현장에서는 <strong>現用系(げんようけい)</strong>, 기다리는 쪽을 <strong>待機系(たいきけい)</strong>라고 불러요. 우리말로는 운용계와 대기계예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">예비 장비</p>
+          <p class="fact__value">켜 둔 채 대기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">넘어가는 시간</p>
+          <p class="fact__value">짧아요 (초 단위)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대가</p>
+          <p class="fact__value">쓰지 않는 장비 값</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">예비를 얼마나 준비된 상태로 두느냐에 따라 셋으로 나눠요.</p>
+      <div class="trio" role="list" aria-label="콜드 · 웜 · 핫">
+        <div class="trio__item">
+          <p class="trio__name">콜드 스탠바이</p>
+          <p class="trio__key">꺼 둬요</p>
+          <p class="trio__note">예비 장비를 꺼 두거나 아예 창고에 둬요. 가장 싸지만 복구에 시간이 한참 걸려요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">웜 스탠바이</p>
+          <p class="trio__key">켜 두되 준비만</p>
+          <p class="trio__note">전원은 켜져 있지만 데이터나 프로그램은 그때 맞춰야 해요. 중간쯤이에요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">핫 스탠바이</p>
+          <p class="trio__key">언제든 받을 수 있게</p>
+          <p class="trio__note">같은 데이터를 계속 맞춰 두고 기다려요. 넘어가는 데 걸리는 시간이 가장 짧아요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="핫 스탠바이가 갖춰야 하는 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>데이터 맞추기</p>
+          <p class="jobs__note">운용계의 변경을 대기계에 계속 복사해 둬요. 안 맞으면 넘어가도 쓸 수 없어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>살았는지 확인</p>
+          <p class="jobs__note">서로 짧은 신호를 주고받아요. 이 신호가 끊기면 장애로 판단해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>자동 전환</p>
+          <p class="jobs__note">사람이 손대기 전에 시스템이 알아서 넘겨요. 이것을 페일오버라고 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>되돌리기</p>
+          <p class="jobs__note">고친 뒤 원래 쪽으로 되돌리는 절차도 정해 둬야 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>장애를 <strong>없애는</strong> 방식이 아니에요. 고장은 그대로 나되, <strong>멈춰 있는 시간을 줄이는</strong> 방식이에요. <a href="rasis.html">RASIS</a>로 말하면 보수성을 높여 가용성을 끌어올리는 쪽이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>가장 조심할 것은 <strong>양쪽이 서로 살아 있다고 착각하는 상태</strong>예요. 연결만 끊겼을 뿐인데 대기계가 "운용계가 죽었다"고 판단해 둘 다 일하기 시작하면, 데이터가 서로 어긋나요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 <strong>정기적으로 전환 훈련</strong>을 해요. 몇 년 동안 한 번도 넘겨 본 적 없는 대기계는, 정작 필요할 때 안 넘어가는 경우가 많거든요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 듀얼 시스템과는 달라요</p>
+        <p>두 대가 <strong>늘 같은 일을 동시에</strong> 하면서 결과를 맞춰 보는 방식도 있어요(듀얼 시스템). 가장 안전하지만 가장 비싸요. 핫 스탠바이는 <strong>한 대만 일하고 한 대는 기다리는</strong> 쪽이라, 기다리는 장비가 노는 대신 값이 덜 들어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 노는 게 아까우면</p>
+        <p>대기계를 놀리기 아까워 <strong>읽기 전용 일</strong>만 맡기거나, 아예 두 대 모두 일하게 하고 <a href="load-balancing.html">로드 밸런싱</a>으로 나누기도 해요. 다만 한 대가 죽었을 때 남은 한 대가 전부를 감당할 수 있어야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 어디까지 갖출지 정하려면</p>
+        <p>"몇 분 안에 돌아와야 하는가"(<a href="rto.html">RTO</a>)와 "얼마만큼의 데이터까지 잃어도 되는가"(<a href="rpo.html">RPO</a>)를 먼저 정해요. 몇 시간쯤 멈춰도 되는 시스템에 핫 스탠바이를 갖추는 건 과한 지출이에요. 멈추면 큰일 나는 것부터 골라서 써요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">켜 둔 예비를 옆에 두는 값으로, 멈추는 시간을 사요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 품질관리 › 신뢰성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
