@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DHCP — 기억해봐요</title>
+  <meta name="description" content="DHCP는 네트워크에 새로 들어온 기기에게 IP 주소와 설정을 자동으로 빌려주는 규약이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="dhcp">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>DHCP</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">주소 할당</span>
+      </div>
+      <h1 class="title">DHCP</h1>
+      <p class="reading">디에이치시피 · Dynamic Host Configuration Protocol · 동적 호스트 구성 프로토콜</p>
+      <p class="define">DHCP는 <mark>네트워크에 들어온 기기에게 IP 주소와 설정을 자동으로 빌려주는 규약</mark>이에요. <strong>주는 게 아니라 기간을 정해 빌려줘요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 주소 할당</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>공유 사무실에 처음 가면 자리를 직접 고르지 않죠. 안내 데스크에 물으면 <strong>"오늘은 12번 자리 쓰세요"</strong> 하고 빈자리를 하나 내줘요. 돌아갈 때 반납하면 다음 사람이 그 자리를 써요.</p>
+      <p>DHCP가 그 안내 데스크예요. 카페 와이파이에 연결하면 몇 초 만에 인터넷이 되죠. 그사이에 내 기기가 <strong>"주소 하나 주세요"</strong>라고 묻고, 공유기가 남는 <a href="cidr.html">IP 주소</a>를 하나 빌려준 거예요. 없다면 사람마다 주소를 직접 적어 넣어야 하고, 둘이 같은 주소를 쓰면 통신이 엉켜요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">주는 것</p>
+          <p class="fact__value">주소 · 게이트웨이 · DNS</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">방식</p>
+          <p class="fact__value">기간을 정해 빌려줌</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">주고받는 횟수</p>
+          <p class="fact__value">네 번 (DORA)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">주소를 받기까지 네 번 주고받아요. 머리글자를 따 <strong>DORA</strong>라고 불러요.</p>
+      <div class="seq" role="img" aria-label="DHCP가 주소를 빌려주는 네 단계">
+        <div class="seq__row">
+          <span class="seq__dir">① 기기 ──▶ 모두</span>
+          <span class="seq__msg">Discover — "주소 주시는 분 계세요?"</span>
+          <span class="seq__note">아직 주소가 없어서 특정 상대에게 보낼 수 없어요. 같은 망 전체에 소리쳐요.</span>
+        </div>
+        <div class="seq__row seq__row--back">
+          <span class="seq__dir">② 서버 ──▶ 기기</span>
+          <span class="seq__msg">Offer — "이 주소 어떠세요?"</span>
+          <span class="seq__note">빈 주소 하나를 골라 빌려줄 기간과 함께 제안해요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">③ 기기 ──▶ 모두</span>
+          <span class="seq__msg">Request — "그걸로 할게요"</span>
+          <span class="seq__note">다시 전체에 대고 말해요. 제안했던 다른 서버들이 "쓰지 않는구나" 하고 주소를 거둬들이게요.</span>
+        </div>
+        <div class="seq__row seq__row--back">
+          <span class="seq__dir">④ 서버 ──▶ 기기</span>
+          <span class="seq__msg">Ack — "네, 쓰세요"</span>
+          <span class="seq__note">이때 확정돼요. 함께 게이트웨이와 DNS 주소도 받아요.</span>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="주소와 함께 받는 것들">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>IP 주소</p>
+          <p class="jobs__note">이 망에서 나를 가리키는 번호예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>서브넷 마스크</p>
+          <p class="jobs__note">어디까지가 같은 동네인지 알려 줘요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>기본 게이트웨이</p>
+          <p class="jobs__note">동네 밖으로 나갈 때 거치는 <a href="router.html">라우터</a>의 주소예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>DNS 서버</p>
+          <p class="jobs__note">이름을 주소로 바꿔 줄 곳이에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>빌려주는 기간을 <strong>임대 기간(lease)</strong>이라고 해요. 보통 절반쯤 지나면 기기가 알아서 "더 쓸게요" 하고 연장해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>기기를 껐다 켜면 대개 <strong>쓰던 주소를 다시</strong> 받아요. 서버가 누가 어떤 주소를 썼는지 기억하고 있거든요. 다만 보장되지는 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>서버가 늘 같은 기기에 같은 주소를 주도록 묶어 둘 수도 있어요. 프린터나 서버처럼 <strong>주소가 바뀌면 곤란한 것</strong>에 이렇게 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 왜 ③을 또 전체에 보낼까</p>
+        <p>서버가 둘 이상일 수 있기 때문이에요. 둘 다 주소를 제안했는데 기기가 한쪽에만 답하면, 다른 서버는 <strong>그 주소를 계속 잡아 두게</strong> 돼요. 그래서 "저는 이걸로 정했어요"를 모두에게 들리게 말해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 주소가 169.254로 시작한다면</p>
+        <p>윈도에서 인터넷이 안 될 때 <code>169.254.x.x</code> 주소가 보이면, <strong>DHCP 서버의 답을 못 받아</strong> 기기가 스스로 아무 주소나 붙인 상태예요. 공유기가 꺼졌거나, 랜선이 빠졌거나, 주소를 다 빌려줘 남은 게 없을 때 생겨요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 편한 만큼 노려지기도 해요</p>
+        <p>"제가 DHCP 서버예요" 하고 거짓으로 답하는 가짜 서버를 두면, 기기들이 <strong>공격자가 알려 준 게이트웨이</strong>로 통신을 내보내게 돼요. 통신을 가운데서 들여다보는 셈이죠. 그래서 회사 망에서는 스위치 쪽에서 <strong>정해진 포트에서 온 DHCP 응답만</strong> 통과시키도록 막아 둬요.</p>
+      </div>
+      <p class="callout">DHCP는 <a href="protocol.html">프로토콜</a> 가운데 UDP를 쓰고, 서버는 67번, 기기는 68번 포트를 써요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">자리를 정해 주는 안내 데스크예요. 주는 게 아니라 빌려줘요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 주소 할당</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

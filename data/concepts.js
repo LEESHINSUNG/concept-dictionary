@@ -241,6 +241,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'dhcp',
+    title: 'DHCP',
+    sub: '디에이치시피 · Dynamic Host Configuration Protocol · 동적 호스트 구성 프로토콜 · IP 자동 할당',
+    summary: '네트워크에 들어온 기기에게 IP 주소와 설정을 자동으로 빌려주는 규약',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'digital-forensics',
     title: '디지털 포렌식',
     sub: 'digital forensics · デジタルフォレンジック',
