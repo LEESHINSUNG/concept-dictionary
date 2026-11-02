@@ -17,6 +17,14 @@ window.WORDS = [
     date: '2026-10-27'
   },
   {
+    slug: 'genyoukei',
+    word: '現用系',
+    kana: 'げんようけい',
+    meaning: '운용계 — 둘로 갖춘 설비 가운데 지금 실제로 돌고 있는 쪽',
+    pos: '명사',
+    date: '2026-11-02'
+  },
+  {
     slug: 'gokenchi',
     word: '誤検知',
     kana: 'ごけんち',
