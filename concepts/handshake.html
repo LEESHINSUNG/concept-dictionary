@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>핸드셰이크 — 기억해봐요</title>
+  <meta name="description" content="핸드셰이크는 본론을 주고받기 전에 서로 조건을 맞추고 준비됐는지 확인하는 인사 절차예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="handshake">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>핸드셰이크</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">프로토콜</span>
+      </div>
+      <h1 class="title">핸드셰이크</h1>
+      <p class="reading">핸드쉐이크 · 악수 · handshake · TLS 핸드셰이크</p>
+      <p class="define">핸드셰이크는 <mark>본론을 주고받기 전에 조건을 맞추고 준비됐는지 확인하는 인사 절차</mark>예요. <strong>이 인사가 끝나야 진짜 대화가 시작돼요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 프로토콜</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>국제 전화를 걸면 본론부터 꺼내지 않죠. "여보세요, 들리세요?" "네, 들려요." "영어로 할까요, 한국어로 할까요?" <strong>들리는지, 무슨 말로 할지</strong>를 먼저 맞춰요. 이게 끝나야 용건을 말하죠.</p>
+      <p>컴퓨터끼리도 똑같이 해요. 서로 쓸 수 있는 방식이 다르고, 상대가 진짜 그 상대인지도 확인해야 하거든요. 이 <strong>인사 단계</strong>가 핸드셰이크예요. 악수한다는 뜻 그대로예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 때</p>
+          <p class="fact__value">본 통신 바로 앞</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">맞추는 것</p>
+          <p class="fact__value">방식 · 신원 · 준비 상태</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">끝나면</p>
+          <p class="fact__value">같은 약속 위에서 대화</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">https:// 로 접속할 때 일어나는 <a href="tls.html">TLS</a> 핸드셰이크예요.</p>
+      <div class="seq" role="img" aria-label="TLS 핸드셰이크의 흐름">
+        <div class="seq__row">
+          <span class="seq__dir">① 브라우저 ──▶ 서버</span>
+          <span class="seq__msg">ClientHello — "저는 이런 방식들을 쓸 수 있어요"</span>
+          <span class="seq__note">쓸 수 있는 암호 방식 목록과 아무 숫자(난수)를 보내요.</span>
+        </div>
+        <div class="seq__row seq__row--back">
+          <span class="seq__dir">② 서버 ──▶ 브라우저</span>
+          <span class="seq__msg">ServerHello + 인증서 — "이 방식으로 하죠. 제 신분증이에요"</span>
+          <span class="seq__note">방식을 하나 고르고, 자기가 진짜 그 사이트임을 증명할 <a href="digital-signature.html">전자서명</a>이 담긴 인증서를 보내요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">③ 양쪽</span>
+          <span class="seq__msg">인증서 확인 · 열쇠 만들기</span>
+          <span class="seq__note">브라우저가 인증서를 검사하고, 둘만 아는 암호 열쇠를 함께 만들어 내요.</span>
+        </div>
+        <div class="seq__row seq__row--back">
+          <span class="seq__dir">④ 양쪽</span>
+          <span class="seq__msg">Finished — "여기부터 암호로 갑니다"</span>
+          <span class="seq__note">같은 열쇠를 갖게 됐는지 서로 확인해요. 이다음부터 오가는 내용은 <a href="symmetric-key.html">대칭키</a>로 잠겨요.</span>
+        </div>
+      </div>
+      <div class="trio" role="list" aria-label="핸드셰이크는 여기저기에 있어요">
+        <div class="trio__item">
+          <p class="trio__name">TCP</p>
+          <p class="trio__key">3-way 핸드셰이크</p>
+          <p class="trio__note">SYN → SYN+ACK → ACK 세 번으로 "서로 들린다"를 확인하고 연결을 열어요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">TLS</p>
+          <p class="trio__key">암호 핸드셰이크</p>
+          <p class="trio__note">방식을 고르고 신분을 확인하고 열쇠를 만들어요. 위 그림이 이거예요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name"><a href="ppp.html">PPP</a></p>
+          <p class="trio__key">연결 핸드셰이크</p>
+          <p class="trio__note">회선을 열 때 조건을 맞추고, 필요하면 아이디·비밀번호 확인까지 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>먼저 <strong>할 수 있는 것을 알려요.</strong> 한쪽이 아는 방식을 상대가 모르면 말이 안 통하니, 목록을 주고 그중에서 고르게 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>다음은 <strong>신원 확인</strong>이에요. 자물쇠를 잘 걸어도 상대가 가짜면 소용없어요. 인증서로 "이 주소의 진짜 주인"임을 확인해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>마지막으로 <strong>준비됐는지 서로 확인</strong>해요. 한쪽만 암호로 바꿔 말하기 시작하면 상대는 알아듣지 못하니까요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 인사에도 시간이 들어요</p>
+        <p>핸드셰이크는 주고받는 횟수만큼 기다림이 생겨요. 지구 반대편 서버라면 한 번 오가는 데만 꽤 걸리죠. 그래서 TLS는 1.2에서 두 번 오가던 인사를 <strong>1.3에서 한 번</strong>으로 줄였어요. 접속이 빨라진 이유 중 하나예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 했던 인사는 아껴요</p>
+        <p>같은 서버에 다시 들어갈 때마다 전부 다시 하면 낭비겠죠. 그래서 앞서 만든 정보를 <strong>잠시 기억해 두고 짧게</strong> 끝내는 방법(세션 재개)이 있어요. 다만 지름길에는 대가가 따라서, 아주 짧게 끝내는 방식은 <strong>같은 요청이 재사용될 위험</strong> 때문에 쓰는 곳을 가려요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 인사가 깨지면</p>
+        <p>브라우저에서 보는 <strong>"안전하지 않은 연결"</strong> 경고는 대개 이 단계에서 나와요. 인증서 기간이 지났거나, 주소와 인증서의 이름이 다르거나, 서버가 너무 낡은 방식만 고집할 때예요. 본문을 받기도 전에 멈추는 거예요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">본론 전에 "무슨 말로, 누구와" 를 맞추는 인사예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 프로토콜</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

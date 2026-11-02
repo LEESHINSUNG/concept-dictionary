@@ -361,6 +361,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'handshake',
+    title: '핸드셰이크',
+    sub: '핸드쉐이크 · 악수 · handshake · TLS 핸드셰이크 · 3-way handshake',
+    summary: '본론 전에 방식과 신원을 맞추고 준비를 확인하는 인사 절차',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'hash',
     title: '해시',
     sub: '해시 함수 · hash · ハッシュ',
