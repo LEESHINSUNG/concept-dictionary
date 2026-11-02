@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CIO — 기억해봐요</title>
+  <meta name="description" content="CIO는 조직의 정보와 IT를 경영의 눈으로 책임지는 임원이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="cio">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>CIO</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">조직</span>
+      </div>
+      <h1 class="title">CIO</h1>
+      <p class="reading">씨아이오 · 최고정보책임자 · Chief Information Officer · 最高情報責任者</p>
+      <p class="define">CIO는 <mark>조직의 정보와 IT를 경영의 눈으로 책임지는 임원</mark>이에요. <strong>기술을 잘 아는 사람이 아니라, 기술로 사업을 결정하는 자리예요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 업무 시스템 › 조직</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사에 돈을 총괄하는 사람(CFO)이 있듯, <strong>정보와 IT를 총괄하는 사람</strong>이 CIO예요. Chief Information Officer, 우리말로 최고정보책임자예요.</p>
+      <p>전산실장과 헷갈리기 쉬운데, 보는 곳이 달라요. 전산실장은 <strong>"시스템을 잘 돌리는 것"</strong>을 맡고, CIO는 <strong>"어디에 얼마를 써서 회사를 어떻게 바꿀 것인가"</strong>를 맡아요. 그래서 기술 부서의 우두머리라기보다 <strong>경영진의 한 사람</strong>이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">무엇의 책임자</p>
+          <p class="fact__value">정보와 IT 전반</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 눈</p>
+          <p class="fact__value">기술보다 경영</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">짝이 되는 자리</p>
+          <p class="fact__value">CEO · CFO · CTO · CISO</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">CIO는 두 세계를 잇는 자리예요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">경영 쪽</p>
+          <p class="node__note">사업 목표와 예산이 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">무엇이 필요한가</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">CIO</p>
+          <p class="node__note">둘을 잇고, 무엇을 할지 정해요</p>
+          <p><span class="chip-mono">다리</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">무엇을 만들까</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">IT 쪽</p>
+          <p class="node__note">시스템과 사람이 있어요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="CIO가 실제로 하는 일">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>정보화 전략</p>
+          <p class="jobs__note">사업 계획에 맞춰 "앞으로 3년간 무엇을 만들고 무엇을 접을지"를 정해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>투자 판단</p>
+          <p class="jobs__note">한정된 예산을 어디에 쓸지 고르고, 쓴 만큼 효과가 났는지 따져요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>위험 관리</p>
+          <p class="jobs__note">사고·유출·장애에 대비하는 체계를 세워요. <a href="risk-management-process.html">위험관리 프로세스</a>가 그 틀이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>데이터 관리</p>
+          <p class="jobs__note">여기저기 흩어진 데이터를 쓸 수 있게 정리하고, 쓰는 규칙을 정해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>CIO가 생긴 이유는 IT가 <strong>비용에서 경쟁력으로</strong> 바뀌었기 때문이에요. 시스템을 어떻게 짜느냐가 사업의 속도를 정하게 되면서, 경영 회의에 들어갈 자리가 필요해졌어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 CIO의 성과는 <strong>시스템이 안 멈췄다</strong>가 아니라 <strong>사업이 얼마나 나아졌다</strong>로 재요. 비용을 줄였는가, 일하는 속도가 빨라졌는가, 새로 할 수 있게 된 일이 있는가로요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>현장 용어를 경영의 말로, 경영의 요구를 현장의 말로 <strong>번역하는 일</strong>이 많아요. 양쪽을 다 아는 사람이 드물어서 이 자리가 어려워요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="trio" role="list" aria-label="비슷한 자리들">
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">CIO</p>
+          <p class="trio__key">정보·IT 전반</p>
+          <p class="trio__note">무엇에 투자해 회사를 어떻게 바꿀지. 안쪽을 봐요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">CTO</p>
+          <p class="trio__key">기술</p>
+          <p class="trio__note">어떤 기술로 제품을 만들지. 제품·개발 쪽을 봐요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">CISO</p>
+          <p class="trio__key">보안</p>
+          <p class="trio__note">정보를 어떻게 지킬지. 사고에 책임을 져요.</p>
+        </div>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · CIO와 CISO를 나누는 이유</p>
+        <p>보안을 CIO 아래에 두면 <strong>이해가 부딪혀요.</strong> "빨리 싸게 만들자"와 "위험하니 미루자"를 한 사람이 다 결정하게 되거든요. 그래서 규모가 커지면 보안 책임자(CISO)를 따로 두고, 보고 라인도 나누는 곳이 많아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 공공과 큰 조직에서</p>
+        <p>정부와 공공기관에도 정보화를 총괄하는 책임자를 두는 경우가 많아요. 부처마다 흩어진 시스템과 데이터를 <strong>한 방향으로 맞추는</strong> 일을 하죠. 일본에서는 最高情報責任者라고 적어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 자격이 아니라 역할이에요</p>
+        <p>CIO는 자격증이나 정해진 경로가 있는 자리가 아니에요. 회사 규모에 따라 전산실장이 겸하기도 하고, 아예 없는 곳도 많아요. 중요한 건 직함보다 <strong>IT 투자를 경영 판단으로 결정하는 사람이 있느냐</strong>예요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">기술을 아는 자리가 아니라, 기술로 경영을 결정하는 자리예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 업무 시스템 › 조직</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

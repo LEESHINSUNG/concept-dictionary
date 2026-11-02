@@ -137,6 +137,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'cio',
+    title: 'CIO',
+    sub: '씨아이오 · 최고정보책임자 · Chief Information Officer · 最高情報責任者 · 정보화 책임자',
+    summary: '조직의 정보와 IT를 경영의 눈으로 책임지는 임원',
+    category: '업무 시스템',
+    date: '2026-11-02'
+  },
+  {
     slug: 'client',
     title: '클라이언트',
     sub: 'client · クライアント',
