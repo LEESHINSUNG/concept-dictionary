@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>경유지 공격 — 기억해봐요</title>
+  <meta name="description" content="경유지 공격은 남의 컴퓨터를 먼저 뚫어 그것을 발판 삼아 진짜 표적을 치는 공격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="stepping-stone-attack">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>경유지 공격</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">경유지 공격</h1>
+      <p class="reading">발판 공격 · 스테핑스톤 · stepping-stone attack · 踏み台攻撃</p>
+      <p class="define">경유지 공격은 <mark>먼저 뚫어 둔 남의 컴퓨터를 발판 삼아 진짜 표적을 치는 방식</mark>이에요. <strong>표적이 보는 공격자는, 아무 상관 없는 누군가예요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>누군가 장난 전화를 걸 때 자기 휴대폰으로 걸지 않죠. 남의 집 전화를 빌려 걸면, 받는 쪽에 찍히는 번호는 <strong>그 집</strong>이에요. 추적도 그 집에서 멈추고, 애먼 사람이 먼저 의심받아요.</p>
+      <p>공격도 그렇게 해요. 관리가 허술한 서버나 가정용 공유기를 먼저 뚫어 두고, 거기서 진짜 표적을 공격해요. 일본에서 <strong>발판</strong>을 뜻하는 <strong>踏み台</strong>라고 부르는 게 이 자리예요. 중요한 건, <strong>내 컴퓨터가 그 발판이 될 수 있다</strong>는 거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">발판이 되는 것</p>
+          <p class="fact__value">관리 안 되는 서버·공유기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">공격자가 얻는 것</p>
+          <p class="fact__value">신분 가리기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">발판 주인은</p>
+          <p class="fact__value">가해자로 보여요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">표적의 기록에는 가운데 칸의 주소만 남아요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">자기 주소는 드러내지 않아요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">먼저 뚫는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">경유지</p>
+          <p class="node__note">뚫린 남의 서버·공유기·PC예요</p>
+          <p><span class="chip-mono">추적이 여기서 끊겨요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">여기서 공격</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">진짜 표적</p>
+          <p class="node__note">기록에는 경유지 주소만 남아요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="왜 굳이 거쳐서 올까요">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>출처 가리기</p>
+          <p class="jobs__note">추적하면 발판 주인이 먼저 나와요. 여러 나라를 거치면 더 어려워져요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>차단 피하기</p>
+          <p class="jobs__note">나라·대역으로 막아 둔 곳도, 그 안쪽 주소에서 오면 통과돼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>안에서 밖으로</p>
+          <p class="jobs__note">내부망에 발판을 하나 두면, 밖에서는 못 닿던 서버까지 손이 닿아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>힘 모으기</p>
+          <p class="jobs__note">발판을 수없이 모으면 <a href="botnet.html">봇넷</a>이 되고, <a href="ddos.html">DDoS</a> 같은 공격에 쓰여요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>공격자는 <strong>가장 허술한 곳</strong>부터 찾아요. 기본 비밀번호 그대로인 공유기, 업데이트가 멈춘 서버, 아무나 쓸 수 있게 열려 있는 중계 서버 같은 것들이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>발판을 잡으면 거기에 <strong>조용히 머물러요.</strong> <a href="rootkit.html">루트킷</a>으로 흔적을 덮고, 필요할 때만 깨워 쓰기도 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>공격이 드러나면 조사는 <strong>표적 → 경유지</strong> 순서로 거슬러 올라가요. 경유지에 기록이 남아 있지 않으면 거기서 길이 끊겨요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 나도 모르게 가해자가 돼요</p>
+        <p>발판이 된 쪽에는 <strong>공격한 기록</strong>이 남아요. 다른 회사에서 차단당하거나, 메일이 스팸으로 분류되거나, 조사 요청을 받기도 해요. "우리는 훔쳐 갈 데이터도 없는데" 하며 관리를 미루면, 데이터가 아니라 <strong>자리</strong>를 노리는 공격에 당해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 발판이 되지 않으려면</p>
+        <p>기본 비밀번호 바꾸기, 쓰지 않는 서비스 끄기, 업데이트, 아무에게나 메일을 중계해 주지 않도록 설정하기가 기본이에요. 특히 <strong>나가는 통신</strong>도 봐 두면 좋아요. 들어오는 것만 보면, 이미 발판이 된 뒤의 움직임은 놓치거든요. <a href="ids.html">IDS</a>와 기록(로그)을 <strong>따로 보관</strong>하는 것도 중요해요. 발판에 남은 기록은 지워지기 쉬우니까요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 비슷한 말들</p>
+        <p>여러 대를 줄줄이 거치면 <strong>다단계 경유</strong>가 돼요. 공격자가 안쪽 깊숙이 들어가려고 뚫은 컴퓨터를 차례로 넘어가는 것은 <strong>측면 이동</strong>이라고 불러요. 바깥에서 들어오는 길을 가리는 것과, 안에서 옆으로 번지는 것 — 방향은 다르지만 수법은 닮았어요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">공격은 남의 자리를 빌려 와요. 그 자리가 내 서버일 수 있어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

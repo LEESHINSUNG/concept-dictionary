@@ -817,6 +817,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'stepping-stone-attack',
+    title: '경유지 공격',
+    sub: '발판 공격 · 스테핑스톤 공격 · stepping-stone attack · 踏み台攻撃',
+    summary: '먼저 뚫어 둔 남의 컴퓨터를 발판 삼아 진짜 표적을 치는 공격',
+    category: '보안',
+    date: '2026-11-02'
+  },
+  {
     slug: 'symmetric-key',
     title: '공통키',
     sub: '대칭키 · symmetric key · 共通鍵',
