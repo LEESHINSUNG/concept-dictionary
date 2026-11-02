@@ -65,6 +65,14 @@ window.WORDS = [
     date: '2026-10-29'
   },
   {
+    slug: 'kirihanasu',
+    word: '切り離す',
+    kana: 'きりはなす',
+    meaning: '떼어 내다 — 붙어 있던 것을 잘라서 따로 떨어뜨리다',
+    pos: '동사 (5단)',
+    date: '2026-11-02'
+  },
+  {
     slug: 'mourasei',
     word: '網羅性',
     kana: 'もうらせい',
