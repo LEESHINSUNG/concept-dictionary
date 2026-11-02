@@ -273,6 +273,14 @@ window.CONCEPTS = [
     date: '2026-10-30'
   },
   {
+    slug: 'dmz',
+    title: 'DMZ',
+    sub: '디엠지 · 비무장지대 · DeMilitarized Zone · 완충 구간 · 경계 네트워크',
+    summary: '바깥에 보여 줄 서버만 모아 두는 인터넷과 내부망 사이의 중간 구역',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'dns-cache-poisoning',
     title: 'DNS 캐시 포이즈닝',
     sub: 'DNS cache poisoning · DNSキャッシュポイズニング',

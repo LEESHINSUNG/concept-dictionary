@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DMZ — 기억해봐요</title>
+  <meta name="description" content="DMZ는 바깥에 보여 줘야 하는 서버만 따로 모아 두는, 바깥과 내부망 사이의 중간 구역이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .zone { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .zone__band { padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); word-break: keep-all; }
+    .zone__band--out { background: var(--bg); }
+    .zone__band--dmz { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .zone__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .zone__name span { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); margin-right: 6px; }
+    .zone__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .zone__wall { display: flex; align-items: center; gap: 8px; padding: 0 2px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); }
+    .zone__wall::before, .zone__wall::after { content: ''; flex: 1 1 auto; border-top: 2px dashed var(--line-strong); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="dmz">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>DMZ</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">망 구성</span>
+      </div>
+      <h1 class="title">DMZ</h1>
+      <p class="reading">디엠지 · 비무장지대 · DeMilitarized Zone · 완충 구간</p>
+      <p class="define">DMZ는 <mark>바깥에 보여 줘야 하는 서버만 따로 모아 두는 중간 구역</mark>이에요. <strong>여기가 뚫려도 내부망까지는 바로 가지 못하게 해요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 망 구성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>집에 택배를 받을 때 현관문을 활짝 열어 두지는 않죠. 대신 <strong>현관 앞 무인 택배함</strong>에 넣게 해요. 기사님은 택배함까지만 올 수 있고, 거실에는 못 들어와요. 택배함을 누가 털어도 <strong>집 안은 그대로</strong>고요.</p>
+      <p>DMZ가 그 택배함 자리예요. 홈페이지나 메일 서버처럼 <strong>바깥 사람이 꼭 닿아야 하는 것</strong>들을 사내망 안에 두면, 그 서버 하나만 뚫려도 안쪽 전체가 위험해져요. 그래서 바깥도 안쪽도 아닌 <strong>중간 구역</strong>을 만들어 거기에 세워 둬요. 원래는 군사분계선 사이의 비무장지대를 가리키는 말이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">두는 것</p>
+          <p class="fact__value">바깥에 보여 줄 서버</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">위치</p>
+          <p class="fact__value">인터넷과 내부망 사이</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">핵심 규칙</p>
+          <p class="fact__value">DMZ → 내부망은 막아요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">위에서 아래로 인터넷 · DMZ · 내부망이에요. 점선이 <a href="waf.html">방화벽</a>이 가르는 자리예요.</p>
+      <div class="zone" role="img" aria-label="인터넷과 내부망 사이에 DMZ가 놓인 구조">
+        <div class="zone__band zone__band--out">
+          <p class="zone__name"><span>밖</span>인터넷</p>
+          <p class="zone__note">누구나 있는 곳이에요. 손님도 공격자도 여기서 와요.</p>
+        </div>
+        <div class="zone__wall" aria-hidden="true">방화벽 — 정해진 문만 열어 둬요</div>
+        <div class="zone__band zone__band--dmz">
+          <p class="zone__name"><span>DMZ</span>공개 서버 구역</p>
+          <p class="zone__note">웹 서버, 메일 서버, DNS 서버처럼 <strong>바깥이 닿아야 하는 것들</strong>만 둬요.</p>
+        </div>
+        <div class="zone__wall" aria-hidden="true">방화벽 — 안쪽으로 가는 길은 거의 닫아요</div>
+        <div class="zone__band zone__band--">
+          <p class="zone__name"><span>안</span>내부망</p>
+          <p class="zone__note">직원 PC, 사내 데이터베이스, 인사·회계 시스템이 있는 곳이에요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="통행 규칙은 방향마다 달라요">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>인터넷 → DMZ</p>
+          <p class="jobs__note">열어 둬요. 다만 쓰는 문(포트)만요. 웹이면 443번 정도예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>DMZ → 내부망</p>
+          <p class="jobs__note"><strong>원칙적으로 막아요.</strong> 꼭 필요하면 "이 서버에서 저 데이터베이스로"처럼 좁게 한 줄만 열어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>내부망 → DMZ</p>
+          <p class="jobs__note">관리 목적으로 열어 둬요. 설정을 바꾸거나 파일을 올릴 때 쓰죠.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>인터넷 → 내부망</p>
+          <p class="jobs__note">막아요. 밖에서 일해야 하면 <a href="vpn.html">VPN</a>으로 들어오게 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>DMZ를 두는 이유는 뚫리는 걸 막기 위해서가 아니라, <strong>뚫린 다음을 대비</strong>하기 위해서예요. 공개 서버는 언제든 표적이 되니까요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 가장 중요한 규칙은 <strong>DMZ에서 안쪽으로 가는 길을 닫는 것</strong>이에요. 이 규칙이 느슨하면 구역을 나눈 의미가 사라져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>DMZ 안의 서버에는 <strong>꼭 필요한 데이터만</strong> 둬요. 고객 정보 전체를 공개 웹 서버에 올려 두면, 구역을 나눈 보람이 없어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 공유기에도 있는 "DMZ"</p>
+        <p>가정용 공유기 설정에도 DMZ 항목이 있는데, 뜻이 조금 달라요. 그건 <strong>들어오는 통신을 전부 특정 기기 한 대로 넘기는</strong> 기능이에요. 구역을 나누는 게 아니라 <strong>한 대를 그냥 밖에 내놓는</strong> 쪽에 가까워서, 켜 두면 그 기기가 통째로 노출돼요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 뚫린 뒤를 좁히는 생각</p>
+        <p>같은 생각을 더 잘게 적용하면 <strong>망 분리</strong>나 구역 나누기가 돼요. 결제 서버, 개발 서버, 사무용 PC를 각각 다른 구역에 두고 서로 못 가게 하는 거예요. 한 곳이 뚫려도 <strong>옆으로 번지지 못하게</strong> 하는 게 목적이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 이름이 바뀌기도 해요</p>
+        <p>요즘은 DMZ 대신 <strong>경계 네트워크</strong>, <strong>공개 구역</strong>처럼 부르기도 해요. 클라우드에서는 같은 일을 서브넷과 보안 그룹으로 나눠서 해요. 이름은 달라도 <strong>바깥이 닿는 자리와 안쪽을 떼어 놓는다</strong>는 생각은 그대로예요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">바깥에 내놓을 것만 따로 모아, 뚫려도 거기서 멈추게 해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 망 구성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
