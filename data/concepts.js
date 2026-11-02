@@ -545,6 +545,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'message-queue',
+    title: '메시지 큐',
+    sub: '메세지큐 · 메시지 대기열 · message queue (MQ) · メッセージキュー · 비동기 처리',
+    summary: '보내는 쪽과 받는 쪽 사이에서 메시지를 줄 세워 쌓아 두는 중간 통로',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'mtbf',
     title: 'MTBF',
     sub: '평균 고장 간격 · Mean Time Between Failures · 平均故障間隔',

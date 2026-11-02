@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>메시지 큐 — 기억해봐요</title>
+  <meta name="description" content="메시지 큐는 보내는 쪽과 받는 쪽 사이에 메시지를 쌓아 두는 중간 통로예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="message-queue">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>메시지 큐</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">통신 방식</span>
+      </div>
+      <h1 class="title">메시지 큐</h1>
+      <p class="reading">메세지큐 · 메시지 대기열 · message queue (MQ) · メッセージキュー</p>
+      <p class="define">메시지 큐는 <mark>보내는 쪽과 받는 쪽 사이에서 메시지를 줄 세워 쌓아 두는 중간 통로</mark>예요. <strong>둘이 동시에 깨어 있지 않아도 일이 이어져요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 통신 방식</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>식당에서 홀 직원이 주방에 대고 주문을 외치지 않죠. <strong>전표를 꽂이에 꽂아</strong> 둬요. 주방은 손이 비는 대로 앞에서부터 가져가 만들고요. 덕분에 홀은 주방이 바쁜지 신경 쓰지 않고 손님을 계속 받을 수 있어요.</p>
+      <p>메시지 큐가 그 전표 꽂이예요. 보내는 쪽은 메시지를 큐에 넣고 <strong>바로 자기 일로 돌아가요.</strong> 받는 쪽은 준비됐을 때 하나씩 꺼내 처리하고요. 서로 기다리지 않는다고 해서 <strong>비동기</strong> 방식이라고 해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">넣는 쪽</p>
+          <p class="fact__value">생산자 (producer)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">꺼내는 쪽</p>
+          <p class="fact__value">소비자 (consumer)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">이점</p>
+          <p class="fact__value">기다리지 않음 · 몰림 완충</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">회원 가입 뒤 환영 메일을 보내는 일을 큐에 맡겨 봤어요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">생산자</p>
+          <p class="node__note">"환영 메일 보내기" 메시지를 넣고 끝내요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">넣는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">메시지 큐</p>
+          <p class="node__note">순서대로 쌓여 기다려요</p>
+          <p><span class="chip-mono">쌓였다가 하나씩</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">꺼낸다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">소비자</p>
+          <p class="node__note"><a href="background.html">백그라운드</a>에서 하나씩 처리해요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="큐를 두면 좋은 점">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>기다리지 않아요</p>
+          <p class="jobs__note">메일 보내기가 3초 걸려도, 가입 화면은 곧바로 "완료"를 띄울 수 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>몰림을 받아 줘요</p>
+          <p class="jobs__note">갑자기 요청이 쏟아져도 큐에 쌓일 뿐이에요. 처리하는 쪽은 자기 속도로 소화해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>한쪽이 멈춰도 돼요</p>
+          <p class="jobs__note">메일 담당이 잠시 죽어도 메시지는 큐에 남아 있어요. 살아나면 이어서 처리해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>서로 몰라도 돼요</p>
+          <p class="jobs__note">보내는 쪽은 누가 처리하는지 몰라요. 받는 쪽을 늘리거나 바꿔도 보내는 쪽은 그대로예요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>큐에 넣는 순간 <strong>"했다"가 아니라 "맡겼다"</strong>가 돼요. 그래서 결과를 바로 화면에 보여 줄 수 없어요. 진행 상태를 따로 알려 주는 장치가 필요해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>처리하는 쪽이 느리면 큐가 <strong>점점 길어져요.</strong> 큐의 길이는 가장 중요한 감시 대상이에요. 계속 늘어난다면 처리하는 쪽을 늘려야 한다는 신호예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>같은 메시지가 <strong>두 번 처리될 수</strong> 있어요. 처리 도중에 멈추면 다시 꺼내 쓰게 되거든요. 그래서 "두 번 해도 결과가 같게" 만들어 둬요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="trio" role="list" aria-label="나눠 주는 방식 두 가지">
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">큐</p>
+          <p class="trio__key">한 명만 받아요</p>
+          <p class="trio__note">여럿이 붙어 있어도 메시지 하나는 <strong>한 소비자에게만</strong> 가요. 일을 나눠 할 때 써요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">발행-구독</p>
+          <p class="trio__key">모두가 받아요</p>
+          <p class="trio__note">한 메시지를 <strong>구독한 모두에게</strong> 보내요. "가입했다"를 메일·통계·추천이 각자 받아 쓰는 식이에요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">섞어 쓰기</p>
+          <p class="trio__key">주제별로 나눠서</p>
+          <p class="trio__note">주제마다 큐를 두고, 그 안에서는 여럿이 나눠 처리하게 해요. 실제로 가장 흔한 모양이에요.</p>
+        </div>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 어디에 쓰나</p>
+        <p>메일·알림 보내기, 이미지와 영상 변환, 보고서 만들기, 결제 뒤처리처럼 <strong>시간이 걸리고 당장 답하지 않아도 되는 일</strong>에 써요. 서비스를 여러 조각으로 나눠 만들 때는 조각끼리 주고받는 통로로도 쓰고요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 순서는 보장될까</p>
+        <p>한 줄로 세우면 순서가 지켜지지만, 빨리 처리하려고 <strong>여럿이 동시에 꺼내면</strong> 순서가 뒤섞여요. "입금 뒤 출금"처럼 순서가 중요한 일은 같은 줄에 묶거나, 순서를 지켜 주는 방식을 골라야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 처리하지 못한 메시지</p>
+        <p>아무리 다시 해도 실패하는 메시지가 생겨요. 계속 다시 꺼내면 뒤에 쌓인 것까지 막히죠. 그래서 몇 번 실패하면 <strong>따로 빼 두는 자리</strong>를 만들어요. 나중에 사람이 보고 처리하려고요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">말로 전하지 않고 전표를 꽂아 둬요. 서로 기다리지 않아도 일이 이어져요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 통신 방식</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
