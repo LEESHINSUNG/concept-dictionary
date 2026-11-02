@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>트로이 목마 — 기억해봐요</title>
+  <meta name="description" content="트로이 목마는 쓸모 있는 프로그램인 척 들어와 뒤에서 다른 일을 하는 악성 프로그램이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="trojan-horse">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>트로이 목마</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">악성 코드</span>
+      </div>
+      <h1 class="title">트로이 목마</h1>
+      <p class="reading">트로이안 · Trojan horse · トロイの木馬</p>
+      <p class="define">트로이 목마는 <mark>쓸모 있는 프로그램인 척 들어와 뒤에서 다른 일을 하는 악성 프로그램</mark>이에요. <strong>스스로 퍼지지 않고, 사용자가 직접 들여놓게 만들어요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 보안 › 악성 코드</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>그리스 군대가 트로이 성을 못 뚫자 <strong>커다란 목마</strong>를 두고 물러갔죠. 성 안 사람들이 전리품인 줄 알고 직접 끌고 들어갔고, 밤이 되자 목마 안에서 병사들이 나왔어요. <strong>문은 안에서 열렸어요.</strong></p>
+      <p>악성 프로그램 중에도 같은 방식이 있어요. 무료 유틸리티, 급해 보이는 청구서 파일, 게임 보조 도구처럼 <strong>갖고 싶게 생긴 모습</strong>으로 와요. 사용자가 직접 내려받아 실행하면, 겉으로는 그 일을 하면서 뒤에서는 뒷문을 열거나 정보를 빼내요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">들어오는 방법</p>
+          <p class="fact__value">사용자가 직접 실행</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">자기 복제</p>
+          <p class="fact__value">하지 않아요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">노리는 것</p>
+          <p class="fact__value">뒷문 · 정보 · 돈</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">목마가 성 안으로 들어간 순서 그대로예요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">쓸모 있어 보인다</p>
+          <p class="node__note">무료 도구·청구서·설치 파일로 위장해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">내가 연다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">실행하면</p>
+          <p class="node__note">보이는 일은 그대로 하면서</p>
+          <p><span class="chip-mono">위장</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">몰래</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">뒤에서 딴 일</p>
+          <p class="node__note">뒷문을 열고 밖과 연결해요</p>
+        </div>
+      </div>
+      <div class="trio" role="list" aria-label="바이러스·웜·트로이 목마 비교">
+        <div class="trio__item trio__item--off">
+          <p class="trio__name">바이러스</p>
+          <p class="trio__key">남의 파일에 붙어요</p>
+          <p class="trio__note">혼자서는 못 움직이고, 숙주 파일이 실행될 때 함께 깨어나요.</p>
+        </div>
+        <div class="trio__item trio__item--off">
+          <p class="trio__name">웜</p>
+          <p class="trio__key">혼자 퍼져요</p>
+          <p class="trio__note">사람 손 없이 네트워크를 타고 스스로 복제하며 번져요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">트로이 목마</p>
+          <p class="trio__key">사람이 들여놔요</p>
+          <p class="trio__note">복제하지 않아요. 대신 <strong>믿게 만드는 것</strong>에 공을 들여요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>퍼지는 힘이 <strong>기술이 아니라 사람</strong>에게 있어요. 그래서 그럴듯한 이름, 익숙한 아이콘, 급한 제목이 핵심 무기예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>실행되면 보통 <strong>조용히 자리를 잡아요.</strong> 시작할 때 함께 켜지게 해 두고, <a href="c2-server.html">C&amp;C 서버</a>에 "저 여기 있어요" 하고 알려요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그다음은 주인이 시키는 대로예요. 정보를 빼내거나, <a href="botnet.html">봇넷</a>의 일부가 되거나, 다른 악성 코드를 더 받아 와요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 자주 보는 모습</p>
+        <p>원격으로 조종하는 <strong>RAT</strong>(원격 접속 도구), 가짜 백신, 크랙 프로그램에 끼워 넣은 설치 파일, 은행 로그인 화면을 덮어 쓰는 뱅킹 트로이 같은 것들이에요. 공통점은 하나예요. <strong>사용자가 "이건 괜찮겠지" 하고 직접 허락했다</strong>는 것.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 혼자 오지 않아요</p>
+        <p>요즘은 역할이 나뉘어 있어요. 먼저 들어오는 작은 프로그램이 문을 열면(드로퍼), 뒤이어 본체가 내려오고, <a href="rootkit.html">루트킷</a>이 그 흔적을 덮어요. 그래서 "트로이 목마 하나를 지웠다"로 끝내지 말고 <strong>무엇이 더 들어왔는지</strong>를 봐야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 막는 쪽</p>
+        <p>백신도 필요하지만, 들여놓는 사람이 마지막 문이에요. <strong>출처가 분명한 곳에서만 받기</strong>, 확장자 숨김 끄기(<code>청구서.pdf.exe</code> 같은 걸 보려고요), 관리자 권한을 함부로 주지 않기가 기본이에요. 속이는 기술을 다룬 <a href="social-engineering.html">소셜 엔지니어링</a>과 짝으로 보면 이해가 빨라요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">문은 밖에서 뚫린 게 아니라, 안에서 열려요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 보안 › 악성 코드</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

@@ -817,6 +817,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'trojan-horse',
+    title: '트로이 목마',
+    sub: '트로이안 · 트로이 목마 바이러스 · Trojan horse · トロイの木馬',
+    summary: '쓸모 있는 프로그램인 척 들어와 뒤에서 다른 일을 하는 악성 프로그램',
+    category: '보안',
+    date: '2026-11-02'
+  },
+  {
     slug: 'typescript',
     title: 'TypeScript',
     sub: '타입스크립트 · TS',
