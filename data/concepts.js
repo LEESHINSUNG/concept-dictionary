@@ -857,6 +857,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'tkip',
+    title: 'TKIP',
+    sub: '티킵 · Temporal Key Integrity Protocol · 임시 키 무결성 프로토콜 · WPA',
+    summary: 'WEP이 깨진 뒤 기존 장비를 그대로 쓰려고 만든 임시 무선 암호 방식',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'tls',
     title: 'TLS',
     sub: '전송 계층 보안 · Transport Layer Security',
