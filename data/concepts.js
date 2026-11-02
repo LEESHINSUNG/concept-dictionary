@@ -625,6 +625,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'rasis',
+    title: 'RASIS',
+    sub: '라시스 · 신뢰성 · 가용성 · 보수성 · 완전성 · 안전성 · Reliability · Availability · Serviceability · Integrity · Security',
+    summary: '시스템의 믿음직함을 신뢰성·가용성·보수성·완전성·안전성으로 나눠 보는 평가 틀',
+    category: '품질관리',
+    date: '2026-11-02'
+  },
+  {
     slug: 'rc4',
     title: 'RC4',
     sub: '알씨 포 · Rivest Cipher 4',

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RASIS — 기억해봐요</title>
+  <meta name="description" content="RASIS는 시스템이 얼마나 믿을 만한가를 신뢰성·가용성·보수성·완전성·안전성 다섯 가지로 나눠 보는 평가 틀이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .formula { margin-top: 18px; padding: 18px 14px; text-align: center; background: var(--panel); border-radius: 12px; color: var(--code-ink); font-family: var(--mono); font-size: 15px; line-height: 1.9; }
+    .formula b { color: var(--code-prompt); }
+    @media (max-width: 479px) { .formula { font-size: 13px; } }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="rasis">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>RASIS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">신뢰성</span>
+      </div>
+      <h1 class="title">RASIS</h1>
+      <p class="reading">라시스 · 신뢰성 · 가용성 · 보수성 · 완전성 · 안전성 · Reliability · Availability · Serviceability · Integrity · Security</p>
+      <p class="define">RASIS는 <mark>시스템이 얼마나 믿을 만한가를 다섯 가지로 나눠 보는 평가 틀</mark>이에요. <strong>"좋은 시스템"이라는 막연한 말을 다섯 개의 질문으로 바꿔 줘요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 품질관리 › 신뢰성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>"이 차 괜찮아요?"라는 질문에는 답하기 어려워요. 그런데 <strong>잘 고장 나지 않는지, 필요할 때 바로 쓸 수 있는지, 고치기 쉬운지, 계기판 숫자가 정확한지, 함부로 못 타게 돼 있는지</strong>로 나눠 물으면 하나씩 답할 수 있어요.</p>
+      <p>RASIS가 그 다섯 질문이에요. 시스템을 평가할 때 쓰는 다섯 낱말의 머리글자를 모은 말이에요. 앞의 세 가지(R·A·S)만 떼어 <strong>RAS</strong>라고 부르기도 해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">무엇</p>
+          <p class="fact__value">다섯 낱말의 머리글자</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">앞의 셋</p>
+          <p class="fact__value">RAS — 안 멈추는 힘</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">뒤의 둘</p>
+          <p class="fact__value">데이터와 접근을 지키는 힘</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">다섯 글자를 하나씩 풀면 이런 질문이에요.</p>
+      <div class="jobs" role="list" aria-label="RASIS 다섯 가지">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>R · 신뢰성 <span style="color:var(--muted);font-weight:400">Reliability</span></p>
+          <p class="jobs__note">얼마나 <strong>안 고장 나는가.</strong> 대표 지표는 고장 사이의 평균 시간인 <a href="mtbf.html">MTBF</a>예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>A · 가용성 <span style="color:var(--muted);font-weight:400">Availability</span></p>
+          <p class="jobs__note">쓰고 싶을 때 <strong>얼마나 쓸 수 있는가.</strong> 대표 지표는 가용률(가동률)이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>S · 보수성 <span style="color:var(--muted);font-weight:400">Serviceability</span></p>
+          <p class="jobs__note">고장 났을 때 <strong>얼마나 빨리 고치는가.</strong> 대표 지표는 평균 복구 시간인 <a href="mttr.html">MTTR</a>이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>I · 완전성 <span style="color:var(--muted);font-weight:400">Integrity</span></p>
+          <p class="jobs__note">데이터가 <strong>깨지거나 어긋나지 않는가.</strong> 무결성이라고도 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>05</span>S · 안전성 <span style="color:var(--muted);font-weight:400">Security</span></p>
+          <p class="jobs__note">허락되지 않은 사람이 <strong>못 보고 못 건드리게</strong> 돼 있는가.</p>
+        </div>
+      </div>
+      <div class="formula">
+        가용률 = <b>MTBF</b> ÷ ( <b>MTBF</b> + <b>MTTR</b> )
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>R과 S가 모여 A를 만들어요.</strong> 잘 고장 나지 않고(MTBF가 길고) 빨리 고치면(MTTR이 짧으면) 쓸 수 있는 시간의 비율, 곧 가용률이 올라가요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>MTBF가 1,000시간이고 MTTR이 1시간이면 가용률은 1000 ÷ 1001, 약 <strong>99.9%</strong>예요. 1년(8,760시간)으로 치면 멈추는 시간이 <strong>8.76시간</strong>이라는 뜻이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>뒤의 I와 S는 <strong>돌아가느냐</strong>가 아니라 <strong>믿을 수 있느냐</strong>를 봐요. 멀쩡히 돌아가도 숫자가 틀리거나 아무나 볼 수 있으면 좋은 시스템이 아니니까요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 9가 하나 늘면</p>
+        <p>가용률 <strong>99.9%</strong>는 1년에 약 8.76시간을 멈출 수 있다는 뜻이고, <strong>99.99%</strong>는 약 52.6분, <strong>99.999%</strong>는 약 5.3분이에요. 9를 하나 더 붙일 때마다 멈춤이 10분의 1로 줄지만, 그만큼 돈이 들어요. "얼마나 필요한가"를 먼저 정하는 게 그래서 중요해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 올리는 방법은 두 갈래</p>
+        <p>가용률을 올리려면 <strong>덜 고장 나게</strong> 하거나(부품을 좋은 걸로, 예방 점검) <strong>빨리 고치게</strong> 해요(예비 장비, 자동 전환, 당직 체계). 현실에서는 뒤쪽이 더 효과적인 경우가 많아요. 고장을 없앨 수는 없지만 복구 시간은 꽤 줄일 수 있거든요. 복구 목표를 숫자로 정해 둔 것이 <a href="rto.html">RTO</a>·<a href="rpo.html">RPO</a>예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · S의 뜻이 갈려요</p>
+        <p>마지막 S를 <strong>안전성(Security)</strong>으로 적지만, 자료에 따라 <strong>기밀성</strong>으로 풀기도 해요. 세 번째 S(Serviceability)도 보수성·유지보수성·서비스성으로 번역이 갈려요. 시험이나 문서에서 만나면 <strong>그 자료의 표기를 따라</strong> 읽는 게 안전해요.</p>
+      </div>
+      <p class="callout">정보 보안에서 말하는 <strong>CIA</strong>(기밀성·무결성·가용성)와 겹치는 부분이 있어요. RASIS는 <strong>시스템이 잘 돌아가는가</strong>에서 출발하고, CIA는 <strong>정보를 지키는가</strong>에서 출발한다는 점이 달라요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">"좋은 시스템"을 다섯 개의 물음으로 나눠 봐요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 품질관리 › 신뢰성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
