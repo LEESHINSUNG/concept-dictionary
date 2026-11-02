@@ -497,6 +497,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'load-balancing',
+    title: '로드 밸런싱',
+    sub: '부하 분산 · 로드 밸런서 · load balancing · load balancer · ロードバランシング',
+    summary: '들어오는 요청을 여러 서버에 나눠 보내 몰림과 멈춤을 막는 방법',
+    category: '네트워크',
+    date: '2026-11-02'
+  },
+  {
     slug: 'logic-tree',
     title: '로직 트리',
     sub: '로직트리 · Why 트리 · logic tree · 논리 나무',

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>로드 밸런싱 — 기억해봐요</title>
+  <meta name="description" content="로드 밸런싱은 들어오는 요청을 여러 서버에 나눠 보내 한 대에 몰리지 않게 하는 것이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="load-balancing">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>로드 밸런싱</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">부하 분산</span>
+      </div>
+      <h1 class="title">로드 밸런싱</h1>
+      <p class="reading">부하 분산 · load balancing · ロードバランシング · 로드 밸런서</p>
+      <p class="define">로드 밸런싱은 <mark>들어오는 요청을 여러 서버에 나눠 보내는 것</mark>이에요. <strong>한 대에 몰리지 않게 하고, 한 대가 죽어도 서비스는 살아 있게 해요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 네트워크 › 부하 분산</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>은행에 창구가 넷인데 줄이 하나라면, 번호표 기계가 <strong>비어 있는 창구로</strong> 보내 주죠. 손님은 어느 창구가 한가한지 몰라도 되고, 한 창구가 자리를 비워도 나머지가 받아요.</p>
+      <p>로드 밸런싱이 그 번호표 기계예요. 손님(요청)은 대표 주소 하나만 알면 되고, 그 뒤에서 <strong>로드 밸런서</strong>가 서버 여러 대에 일을 나눠 줘요. 손님이 늘면 창구를 늘리면 되고, 한 대가 고장 나면 그 서버에는 안 보내요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">손님이 아는 것</p>
+          <p class="fact__value">대표 주소 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">얻는 것</p>
+          <p class="fact__value">많이 받기 + 안 끊기기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">꼭 필요한 것</p>
+          <p class="fact__value">건강 검사</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">요청은 모두 로드 밸런서를 거쳐 뒤쪽 서버로 흩어져요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">사용자 요청</p>
+          <p class="node__note">대표 주소 하나로 들어와요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">받는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">로드 밸런서</p>
+          <p class="node__note">지금 가장 알맞은 서버를 골라 넘겨요</p>
+          <p><span class="chip-mono">한 대가 빠져도 계속</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">나눠 보낸다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">서버 여러 대</p>
+          <p class="node__note">같은 일을 할 수 있는 <a href="server.html">서버</a>들이에요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="나누는 방법 몇 가지">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>돌아가며</p>
+          <p class="jobs__note">1번, 2번, 3번, 다시 1번. 가장 단순해요. 라운드 로빈이라고 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>가장 한가한 쪽</p>
+          <p class="jobs__note">지금 붙어 있는 연결이 가장 적은 서버로 보내요. 요청마다 걸리는 시간이 들쭉날쭉할 때 좋아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>힘센 쪽에 더</p>
+          <p class="jobs__note">서버 성능이 다르면 좋은 서버에 더 많이 보내요. 가중치를 준다고 해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>같은 손님은 같은 곳으로</p>
+          <p class="jobs__note">로그인 상태를 서버가 기억하고 있을 때 써요. 고정 세션이라고 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>로드 밸런서는 <strong>서버가 살아 있는지 계속 확인</strong>해요. 짧은 요청을 주기적으로 보내 답이 없으면 명단에서 빼요. 이걸 건강 검사(헬스 체크)라고 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 서버 한 대를 <strong>서비스 중에 내려서 고칠 수</strong> 있어요. 먼저 명단에서 빼고, 손님이 빠져나가길 기다린 뒤 작업해요. 새 버전을 한 대씩 바꿔 배포할 때도 같은 방법을 써요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>대신 <strong>로드 밸런서 자신이 멈추면 전부 멈춰요.</strong> 그래서 로드 밸런서도 보통 두 대로 갖춰 둬요. <a href="hot-standby.html">핫 스탠바이</a>처럼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="trio" role="list" aria-label="어디서 나누느냐에 따라">
+        <div class="trio__item">
+          <p class="trio__name">4계층</p>
+          <p class="trio__key">주소와 포트만 보고</p>
+          <p class="trio__note">내용은 안 열어 봐요. 빠르지만 "어떤 주소로 온 요청인가"로는 못 나눠요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">7계층</p>
+          <p class="trio__key">요청 내용을 보고</p>
+          <p class="trio__note">주소가 <code>/image</code>면 이쪽, <code>/api</code>면 저쪽처럼 나눌 수 있어요. 대신 일이 더 들어요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">DNS</p>
+          <p class="trio__key">이름을 물을 때</p>
+          <p class="trio__note">지역마다 가까운 서버 주소를 알려 줘요. 아주 큰 규모에서 함께 써요.</p>
+        </div>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 세션이 걸림돌이 돼요</p>
+        <p>서버가 로그인 상태를 <strong>자기 안에</strong> 들고 있으면, 다음 요청이 다른 서버로 가는 순간 로그아웃돼요. 그래서 같은 손님을 같은 서버로 묶어 두거나, 아예 <strong>상태를 서버 밖</strong>(공용 저장소)에 두는 쪽으로 만들어요. 뒤쪽이 더 깔끔해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 분산과 이중화는 다른 말이에요</p>
+        <p>로드 밸런싱은 <strong>평소에 여럿이 나눠 일하는</strong> 것이고, 이중화는 <strong>고장에 대비해 갖춰 두는</strong> 것이에요. 로드 밸런싱을 하면 자연스럽게 이중화도 되지만, 목적은 달라요. 평소 한 대로 충분해도 장애가 두려우면 <a href="hot-standby.html">핫 스탠바이</a>를 택해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 뒤에 서는 자리</p>
+        <p>로드 밸런서는 보통 <a href="dmz.html">DMZ</a> 앞쪽에 서요. <a href="proxy-server.html">프록시 서버</a> 중에서도 서버 쪽을 대신하는 리버스 프록시가 이 일을 함께 맡는 경우가 많아요. 역할이 겹쳐 보이는 이유예요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">창구를 여러 개 두고, 번호표로 골고루 보내요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 네트워크 › 부하 분산</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
