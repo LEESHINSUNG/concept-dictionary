@@ -129,6 +129,14 @@ window.WORDS = [
     date: '2026-10-29'
   },
   {
+    slug: 'taikikei',
+    word: '待機系',
+    kana: 'たいきけい',
+    meaning: '대기계 — 평소엔 쉬다가 장애가 나면 넘겨받는 쪽',
+    pos: '명사',
+    date: '2026-11-02'
+  },
+  {
     slug: 'tanaoroshi',
     word: '棚卸',
     kana: 'たなおろし',
