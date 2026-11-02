@@ -649,6 +649,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'rootkit',
+    title: '루트킷',
+    sub: 'rootkit · 루트권한 은닉 도구 · 스텔스',
+    summary: '침입 뒤 자기 존재를 숨기려고 시스템의 답을 바꿔 다는 도구 묶음',
+    category: '보안',
+    date: '2026-11-02'
+  },
+  {
     slug: 'router',
     title: '라우터',
     sub: 'router · ルータ',
