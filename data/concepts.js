@@ -929,6 +929,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'web-beacon',
+    title: '웹 비콘',
+    sub: '추적 픽셀 · 웹 버그 · 투명 GIF · web beacon · tracking pixel · web bug · ウェブビーコン',
+    summary: '보이지 않는 작은 그림을 끼워 열람 사실을 기록하는 추적 장치',
+    category: '웹',
+    date: '2026-11-02'
+  },
+  {
     slug: 'what-tree',
     title: '요소 분해 트리',
     sub: '요소분해 트리 · What 트리 · element breakdown tree · 要素分解ツリー',

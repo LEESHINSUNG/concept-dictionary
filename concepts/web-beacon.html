@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>웹 비콘 — 기억해봐요</title>
+  <meta name="description" content="웹 비콘은 눈에 보이지 않는 작은 그림을 끼워 넣어, 그것을 받아 가는 순간을 기록하는 추적 장치예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="web-beacon">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>웹 비콘</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">웹</span>
+        <span class="chip">추적</span>
+      </div>
+      <h1 class="title">웹 비콘</h1>
+      <p class="reading">추적 픽셀 · 웹 버그 · web beacon · tracking pixel · ウェブビーコン</p>
+      <p class="define">웹 비콘은 <mark>보이지 않는 작은 그림을 끼워 넣어, 그걸 받아 가는 순간을 기록하는 추적 장치</mark>예요. <strong>"열었다"는 사실 자체가 신호예요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-02">2026-11-02</time></span>
+        <span>카테고리 웹 › 추적</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>편지에 <strong>아주 얇은 종이 한 장</strong>을 끼워 두고, 봉투를 열면 그 종이가 보낸 사람에게 날아가 "지금 열었어요"라고 알린다고 해 볼게요. 받는 사람은 그런 종이가 있는 줄도 몰라요.</p>
+      <p>웹 비콘이 그 종이예요. 메일이나 웹페이지 안에 <strong>1×1 크기의 투명한 그림</strong>을 넣어 둬요. 화면에는 아무것도 안 보이지만, 그 그림을 보여 주려면 브라우저나 메일 앱이 <strong>추적 서버에 그림을 받으러 가야</strong> 해요. 그 요청이 도착한 순간이 기록돼요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">크기</p>
+          <p class="fact__value">1×1 투명 그림</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">신호가 되는 것</p>
+          <p class="fact__value">그림을 받으러 가는 요청</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표 쓰임</p>
+          <p class="fact__value">메일 열람 확인</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">보낸 사람이 "읽음"을 알게 되는 과정이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">메일을 연다</p>
+          <p class="node__note">본문에 1×1 투명 그림이 섞여 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">그림 요청</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">추적 서버로 요청</p>
+          <p class="node__note">언제·어디서·무엇으로 열었는지 함께 전해져요</p>
+          <p><span class="chip-mono">1×1 투명 GIF</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">기록</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">보낸 쪽 화면</p>
+          <p class="node__note">"읽음", 열어 본 시각까지 보여요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="요청 하나로 알 수 있는 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>열었는지 · 언제</p>
+          <p class="jobs__note">가장 기본이에요. 몇 번 다시 열었는지도 남아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>누가</p>
+          <p class="jobs__note">그림 주소에 사람마다 다른 번호를 붙여 두면 누가 열었는지 알 수 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>대략 어디서</p>
+          <p class="jobs__note">접속 주소로 나라·지역 정도를 짐작해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>무슨 기기로</p>
+          <p class="jobs__note">어떤 앱·브라우저로 열었는지 전해져요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>그림일 필요는 없어요. <strong>받으러 가는 요청이 생기기만 하면</strong> 되니까, 작은 스크립트나 빈 파일도 같은 일을 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><a href="cookie.html">쿠키</a>와는 역할이 달라요. 쿠키가 <strong>내 쪽에 남겨 두는 표시</strong>라면, 웹 비콘은 <strong>요청이 상대에게 가는 것</strong> 자체가 기록이에요. 둘을 함께 써서 "같은 사람이 다시 왔다"를 잇기도 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>같은 기술이 <strong>방문자 수 세기</strong>나 <strong>A/B 비교</strong>처럼 평범한 분석에도 쓰여요. 기술 자체보다 <strong>무엇을 어디까지 모으느냐</strong>가 문제가 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 메일 "읽음 확인"의 정체</p>
+        <p>상대가 내 메일을 읽었는지 알려 주는 기능 대부분이 이 방식이에요. 그래서 메일 앱에서 <strong>이미지 자동 표시를 끄면</strong> 보낸 쪽은 열람을 알 수 없어요. 반대로 애플 메일처럼 <strong>열기 전에 미리 그림을 받아 두는</strong> 방식도 있어서, 요즘 열람률 숫자는 실제보다 부풀어 보이기도 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 막는 쪽, 밝히는 쪽</p>
+        <p>이미지 자동 표시 끄기, 추적 차단 기능, 광고 차단기로 상당 부분 막을 수 있어요. 한편 많은 나라에서 이런 추적을 쓰려면 <strong>개인정보 처리방침에 적고 동의를 받도록</strong> 요구해요. 사이트의 방침 문서에 "웹 비콘"이라는 말이 자주 보이는 이유예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 이름이 여럿이에요</p>
+        <p>추적 픽셀, 픽셀 태그, 투명 GIF, 웹 버그 — 모두 같은 것을 가리켜요. 업계에서 쓰는 점잖은 이름이 <strong>웹 비콘</strong>, 비판하는 쪽에서 부르던 이름이 <strong>웹 버그</strong>예요.</p>
+      </div>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">보이지 않는 그림 한 장이, 열었다는 사실을 알려 줘요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-02 · 카테고리 웹 › 추적</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
