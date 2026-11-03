@@ -625,6 +625,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'positioning-matrix',
+    title: '포지셔닝 매트릭스',
+    sub: '포지셔닝 맵 · positioning matrix · positioning map · ポジショニングマップ',
+    summary: '기준 두 개를 축으로 잡고 우리와 경쟁자를 찍어 빈 자리를 찾는 그림',
+    category: '업무 시스템',
+    date: '2026-11-03'
+  },
+  {
     slug: 'postprocessing',
     title: '후처리',
     sub: '후처리 · postprocessing · 後処理 · 뒷정리',
