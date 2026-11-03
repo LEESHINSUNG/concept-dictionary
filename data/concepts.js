@@ -913,6 +913,14 @@ window.CONCEPTS = [
     date: '2026-11-02'
   },
   {
+    slug: 'supply-chain-attack',
+    title: '공급망 공격',
+    sub: '서플라이 체인 공격 · 공급망 침해 · supply chain attack · サプライチェーン攻撃 · SBOM',
+    summary: '표적이 믿고 받아 쓰는 것을 먼저 더럽혀 들어가는 공격',
+    category: '보안',
+    date: '2026-11-03'
+  },
+  {
     slug: 'symmetric-key',
     title: '공통키',
     sub: '대칭키 · symmetric key · 共通鍵',
