@@ -601,6 +601,14 @@ window.CONCEPTS = [
     date: '2026-11-02'
   },
   {
+    slug: 'metadata',
+    title: '메타데이터',
+    sub: 'metadata · メタデータ · 데이터에 대한 데이터',
+    summary: '데이터를 설명하는 데이터. 찾고 믿는 데 쓰이는 꼬리표',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'mtbf',
     title: 'MTBF',
     sub: '평균 고장 간격 · Mean Time Between Failures · 平均故障間隔',
