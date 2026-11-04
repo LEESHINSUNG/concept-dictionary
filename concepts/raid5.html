@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RAID 5 — 기억해봐요</title>
+  <meta name="description" content="RAID 5는 데이터를 여러 디스크에 나눠 쓰면서 복구용 패리티를 모든 디스크에 골고루 흩어 두는 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .raid { margin-top: 4px; }
+    .raid__row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+    .raid__disk { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .raid__name { margin: 0; padding: 7px 2px; background: var(--chip-bg); font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent); text-align: center; }
+    .raid__disk .raid__blk { margin: 0; padding: 9px 2px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12.5px; font-weight: 700; text-align: center; }
+    .raid__blk--p { background: var(--chip-bg); color: var(--accent); }
+    .raid__blk--gone { background: var(--bg); color: var(--line-strong); text-decoration: line-through; }
+    .raid__cap { margin: 9px 0 0; font-size: 13.5px; color: var(--muted); text-align: center; word-break: keep-all; }
+    .code pre { white-space: pre; overflow-x: auto; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="raid5">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>RAID 5</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">신뢰성</span>
+      </div>
+      <h1 class="title">RAID 5</h1>
+      <p class="reading">레이드 5 · RAID 5 · 분산 패리티 · distributed parity</p>
+      <p class="define">RAID 5는 <mark>데이터를 여러 디스크에 나눠 쓰면서, 복구용 정보를 모든 디스크에 골고루 흩어 두는</mark> 방식이에요. <strong>하나가 망가져도 나머지로 되살려요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 품질관리 › 신뢰성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>친구 셋이 각자 숫자를 하나씩 외우고 있어요. 그리고 네 번째 친구가 <strong>"셋을 더하면 짝수"</strong>라는 쪽지를 들고 있다고 해 볼게요. 이제 누구 하나가 숫자를 잊어버려도 괜찮아요. 남은 둘의 숫자와 쪽지를 보면 <strong>잊은 숫자를 계산해 낼 수 있거든요.</strong></p>
+      <p>RAID 5가 정확히 이거예요. 데이터를 여러 디스크에 나눠 쓰면서, <strong>되살리기 위한 정보(패리티)</strong>를 함께 적어 둬요. 디스크 하나가 통째로 망가져도 나머지 디스크로 그 내용을 다시 만들어 낼 수 있어요.</p>
+      <p>특이한 점은 패리티를 <strong>한 디스크에 몰아 두지 않는다</strong>는 거예요. 줄마다 다른 디스크에 흩어 놓아요. 한 곳에 몰면 거기만 계속 바빠져서 전체가 느려지거든요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">최소 디스크</p>
+          <p class="fact__value">3개 (보통 4개 이상)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">견디는 고장</p>
+          <p class="fact__value">한 개까지</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓸 수 있는 용량</p>
+          <p class="fact__value">디스크 수 − 1개분</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">A·B·C는 데이터 조각, <strong>p</strong>가 붙은 것이 패리티예요. 줄마다 패리티 자리가 옮겨 다녀요.</p>
+      <div class="raid" role="img" aria-label="RAID 5의 패리티 배치">
+        <div class="raid__row">
+        <div class="raid__disk">
+          <p class="raid__name">디스크1</p>
+          <p class="raid__blk">A1</p>
+          <p class="raid__blk">B1</p>
+          <p class="raid__blk">C1</p>
+        </div>
+        <div class="raid__disk">
+          <p class="raid__name">디스크2</p>
+          <p class="raid__blk">A2</p>
+          <p class="raid__blk">B2</p>
+          <p class="raid__blk raid__blk--p">Cp</p>
+        </div>
+        <div class="raid__disk">
+          <p class="raid__name">디스크3</p>
+          <p class="raid__blk">A3</p>
+          <p class="raid__blk raid__blk--p">Bp</p>
+          <p class="raid__blk">C2</p>
+        </div>
+        <div class="raid__disk">
+          <p class="raid__name">디스크4</p>
+          <p class="raid__blk raid__blk--p">Ap</p>
+          <p class="raid__blk">B3</p>
+          <p class="raid__blk">C3</p>
+        </div>
+        </div>
+        <p class="raid__cap">디스크가 넷이면 한 줄은 데이터 셋 + 패리티 하나예요. 그래서 쓸 수 있는 용량이 <strong>네 개 중 세 개분</strong>이 돼요.</p>
+      </div>
+      <div class="jobs" role="list" aria-label="알아 둘 네 가지">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>하나까지만 견뎌요</p>
+          <p class="jobs__note">한 개가 망가지면 나머지로 되살려요. 그런데 <strong>두 개가 동시에</strong> 망가지면 계산할 근거가 사라져서 못 살려요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>쓰기가 느려요</p>
+          <p class="jobs__note">값 하나를 고쳐도 <strong>패리티까지 다시 계산해 적어야</strong> 해요. 읽기는 빠르지만 쓰기는 손해를 봐요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>되살리는 동안이 위험해요</p>
+          <p class="jobs__note">망가진 디스크를 새것으로 갈면 나머지를 전부 읽어 내용을 다시 만들어요. 이때 디스크들이 <strong>가장 혹사당해서</strong>, 그 와중에 또 하나가 망가지는 일이 실제로 일어나요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>둘까지 견디려면</p>
+          <p class="jobs__note">패리티를 두 벌 두는 <strong>RAID 6</strong>을 써요. 용량을 하나 더 내주는 대신 <strong>두 개까지</strong> 견뎌요. 디스크가 크고 많을수록 이쪽을 고르는 경우가 늘었어요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>패리티는 어려운 계산이 아니에요. <strong>세로로 1의 개수가 짝수가 되게</strong> 한 자리를 더 적어 두는 것뿐이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 되살리기도 같은 방법이에요. 사라진 자리에 <strong>무엇이 있어야 짝수가 되는지</strong>를 거꾸로 계산해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>중요한 건 <strong>RAID는 백업이 아니라는 것</strong>이에요. 디스크 고장은 막아 주지만, 실수로 지운 파일이나 랜섬웨어에 당한 파일은 <strong>패리티까지 똑같이 망가져요.</strong></span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="code">
+        <p class="code__head">패리티로 되살리는 원리</p>
+        <pre><code>              1열  2열  3열  4열
+디스크1        1    0    1    1
+디스크2        0    1    1    0
+디스크3        1    1    1    1
+----------------------------------
+패리티         0    0    1    0    ← 세로로 1의 개수가 짝수가 되게
+
+디스크2가 통째로 망가졌다면?
+
+1열: 1 + ? + 1 과 패리티 0  →  이미 짝수이니 ? = 0
+2열: 0 + ? + 1 과 패리티 0  →  홀수를 짝수로 만들려면 ? = 1
+3열: 1 + ? + 1 과 패리티 1  →  패리티까지 합쳐 짝수여야 하니 ? = 1
+4열: 1 + ? + 1 과 패리티 0  →  이미 짝수이니 ? = 0
+
+되살린 디스크2 : 0  1  1  0      원래 값과 같아요</code></pre>
+      </div>
+      <div class="case">
+        <p class="case__title">용량은 얼마나 줄어드나</p>
+        <p>디스크 4개를 묶으면 <strong>3개분</strong>만 쓸 수 있어요. 5개면 4개분, 10개면 9개분이에요. 묶는 개수가 많을수록 손해 보는 비율이 줄어요. 다만 개수가 많아질수록 <strong>그중 하나가 망가질 확률</strong>도 같이 올라가니, 무작정 늘리지는 않아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title"><a href="disk-redundancy.html">미러링</a>과 견주면</p>
+        <p>미러링(RAID 1)은 똑같이 두 장 적어요. 용량이 절반으로 줄지만 <strong>되살릴 게 없어요.</strong> 멀쩡한 쪽을 그냥 읽으면 되니까요. RAID 5는 용량 손해가 적은 대신 <strong>계산이 필요해요.</strong> 용량을 아낄지, 단순함을 택할지의 차이예요.</p>
+      </div>
+      <p class="callout">고장 난 채로 돌아가는 상태를 그냥 두면 안 돼요. 하나가 망가진 RAID 5는 <strong>더 이상 여유가 없는 상태</strong>예요. 그래서 예비 디스크를 미리 꽂아 두고 자동으로 갈아 끼우게 해 두는 일이 많아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">하나가 빠져도, 나머지가 그 자리를 계산해 내요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 품질관리 › 신뢰성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

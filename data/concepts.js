@@ -785,6 +785,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'raid5',
+    title: 'RAID 5',
+    sub: '레이드 5 · RAID 5 · RAID5 · 분산 패리티 · distributed parity · パリティ',
+    summary: '패리티를 모든 디스크에 흩어 두어 한 개 고장까지 되살리는 방식',
+    category: '품질관리',
+    date: '2026-11-05'
+  },
+  {
     slug: 'rasis',
     title: 'RASIS',
     sub: '라시스 · 신뢰성 · 가용성 · 보수성 · 완전성 · 안전성 · Reliability · Availability · Serviceability · Integrity · Security',
