@@ -977,6 +977,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'sla',
+    title: 'SLA',
+    sub: '서비스 수준 합의 · 서비스 수준 협약 · Service Level Agreement · サービスレベル合意書 · SLM · 가동률',
+    summary: '어느 수준까지 서비스할지 숫자로 적어 둔 약속 문서',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'social-engineering',
     title: '소셜 엔지니어링',
     sub: '사회공학 · 사회공학적 기법 · social engineering · ソーシャルエンジニアリング',

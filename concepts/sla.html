@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SLA — 기억해봐요</title>
+  <meta name="description" content="SLA는 서비스를 주는 쪽과 받는 쪽이 어느 수준까지 해 주겠다고 숫자로 적어 둔 약속 문서예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="sla">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SLA</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">관리</span>
+      </div>
+      <h1 class="title">SLA</h1>
+      <p class="reading">서비스 수준 합의 · 서비스 수준 협약 · Service Level Agreement · サービスレベル合意書</p>
+      <p class="define">SLA는 <mark>어느 수준까지 해 주겠다고 숫자로 적어 둔 약속 문서</mark>예요. "최선을 다하겠습니다" 같은 말을 <strong>잴 수 있는 숫자로</strong> 바꾼 거예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>서비스를 맡기면서 "잘 좀 부탁드립니다"라고만 하면, 나중에 문제가 생겼을 때 할 말이 없어요. 느리다고 따져도 <strong>"원래 이 정도인데요"</strong>라고 하면 끝이거든요. 무엇이 "잘"인지 아무도 안 정했으니까요.</p>
+      <p>그래서 미리 숫자로 적어 둬요. <strong>"한 해에 멈추는 시간은 다 합쳐 9시간 안", "문의하면 4시간 안에 답", "장애가 나면 2시간 안에 복구"</strong>처럼요. 이렇게 적어 둔 문서가 SLA예요.</p>
+      <p>좋은 점은 약속을 받는 쪽만이 아니에요. <strong>해 주는 쪽도 어디까지 하면 되는지</strong>가 분명해져요. 끝없이 요구받는 일이 줄어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">누구와 누구</p>
+          <p class="fact__value">주는 쪽과 받는 쪽</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">무엇을</p>
+          <p class="fact__value">잴 수 있는 숫자로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">못 지키면</p>
+          <p class="fact__value">미리 정해 둔 조치</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">실제 SLA에는 이런 항목이 들어가요. 전부 <strong>재서 확인할 수 있는</strong> 모양이어야 해요.</p>
+      <div class="dict" role="img" aria-label="예 · 업무 시스템 운영 SLA 항목 정의">
+        <p class="dict__head">예 · 업무 시스템 운영 SLA</p>
+        <div class="dict__row">
+          <span class="dict__k">서비스 범위</span>
+          <span class="dict__v">업무 시스템 운영과 장애 대응 (업무 시간 09:00–18:00)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">가동률</span>
+          <span class="dict__v">월 99.5% 이상 (계획된 점검 시간은 빼고 셈)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">장애 복구</span>
+          <span class="dict__v">중대 장애는 접수 뒤 2시간 안에 복구 착수</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">문의 응답</span>
+          <span class="dict__v">업무 시간 안에 접수된 문의는 4시간 안에 1차 회신</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">측정 방법</span>
+          <span class="dict__v">감시 도구의 기록을 기준으로 매월 집계</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">보고</span>
+          <span class="dict__v">매월 10일까지 지난달 실적을 서면으로 보고</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">못 지켰을 때</span>
+          <span class="dict__v">월 이용료의 일부 감면 (기준은 별표)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">다시 볼 때</span>
+          <span class="dict__v">6개월마다 양쪽이 모여 목표값을 조정</span>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="적을 때 조심할 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>잴 수 있어야 해요</p>
+          <p class="jobs__note">"빠르게 응답"은 약속이 아니에요. <strong>무엇을 어떻게 재서 몇이면 지킨 것인지</strong>까지 적어야 다툼이 안 생겨요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>높을수록 좋은 게 아니에요</p>
+          <p class="jobs__note">가동률을 99.99%로 올리려면 장비도 사람도 몇 배가 들어요. <strong>값이 같이 올라가요.</strong> 업무에 필요한 만큼만 잡는 게 실력이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>빼는 것도 적어요</p>
+          <p class="jobs__note">계획된 점검, 천재지변, 받는 쪽 잘못으로 생긴 일은 보통 셈에서 빼요. <strong>무엇을 빼는지</strong>가 숫자만큼 중요해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>못 지켰을 때를 적어요</p>
+          <p class="jobs__note">감면이든 개선 계획이든, <strong>어떻게 할지</strong>가 적혀 있어야 숫자가 힘을 가져요. 안 적으면 그냥 희망 사항이에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>가동률 99.9%는 1년에 <strong>약 8.76시간</strong>까지 멈춰도 된다는 뜻이에요. 99.99%면 <strong>약 53분</strong>, 99.5%면 <strong>약 43.8시간</strong>이에요. 숫자 하나에 자릿수가 달라져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>SLA는 문서고, 그 약속을 정하고 재고 고쳐 나가는 <strong>활동</strong>은 따로 SLM이라고 불러요. 적어 두기만 하고 재지 않으면 아무 일도 안 일어나요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>목표를 못 지키면 벌을 주는 게 목적이 아니에요. <strong>왜 못 지켰는지 보고 고치는 것</strong>이 목적이에요. 그래서 정기 보고와 다시 보는 자리를 함께 정해 둬요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">숫자를 고를 때 생각할 것</p>
+        <p>업무 시간에만 쓰는 사내 시스템이라면 <strong>새벽에 멈추는 건 아무도 모르고 아프지도 않아요.</strong> 그런데 24시간 가동률로 약속하면 새벽 점검까지 위반이 돼요. 반대로 쇼핑몰이라면 <strong>세일 첫날 10분</strong>이 평소 몇 시간보다 아파요. 그래서 "언제의 몇 %인지"까지 적어야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title"><a href="rto.html">RTO</a>·<a href="rpo.html">RPO</a>와의 관계</p>
+        <p>언제까지 되살릴지(RTO)와 어디까지의 자료를 포기할지(RPO)는 <strong>사고가 난 다음</strong>의 약속이에요. SLA는 <strong>평소</strong>의 약속이고요. 실제 계약서에는 둘이 같이 들어가는 경우가 많아요. 평소에 얼마나 잘 돌아가고, 터졌을 때 얼마나 빨리 돌아오는지는 다른 질문이니까요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">안에서도 써요</p>
+        <p>SLA는 바깥 업체와만 맺는 게 아니에요. <strong>회사 안의 정보시스템 부서와 현업 부서 사이</strong>에도 맺어요. "문의하면 언제까지 답한다"가 정해져 있으면 서로 덜 답답해요. 이쪽을 따로 OLA라고 부르기도 해요.</p>
+      </div>
+      <p class="callout">지킬 수 없는 숫자를 적는 건 안 적는 것보다 나빠요. 매달 위반이 쌓이면 <strong>아무도 그 문서를 안 보게</strong> 돼요. 처음에는 지금 실제로 되는 수준에서 시작해 조금씩 올리는 쪽이 오래가요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">"잘해 드릴게요"를 숫자로 적어 둔 거예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
