@@ -81,6 +81,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'big-data',
+    title: '빅데이터',
+    sub: 'big data · ビッグデータ · 3V · Volume · Variety · Velocity',
+    summary: '전에 쓰던 방법으로는 벅찰 만큼 크고 제각각이고 빨리 쏟아지는 데이터',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'botnet',
     title: '봇넷',
     sub: 'botnet · ボットネット',

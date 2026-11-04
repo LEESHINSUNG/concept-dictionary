@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>빅데이터 — 기억해봐요</title>
+  <meta name="description" content="빅데이터는 양이 너무 많고 종류가 제각각이고 쉬지 않고 쏟아져서, 전에 쓰던 방법으로는 다루기 벅찬 데이터예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="big-data">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>빅데이터</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">빅데이터</h1>
+      <p class="reading">big data · ビッグデータ · 3V</p>
+      <p class="define">빅데이터는 <mark>양이 너무 많고, 종류가 제각각이고, 쉬지 않고 쏟아져서 전에 쓰던 방법으로는 벅찬 데이터</mark>예요. 그리고 그런 데이터를 <strong>모으고 다루는 기술 전체</strong>를 함께 가리켜요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네 구멍가게라면 장부 한 권이면 돼요. 하루에 손님 쉰 명, 연필로 적어도 충분하죠. 그런데 전국에 매장이 수천 개고, 손님마다 앱을 켜고, 결제하고, 리뷰를 쓰고, 매장 카메라까지 돌아간다면 어떨까요. 장부로는 안 돼요. <strong>적는 방법부터 다시 생각해야</strong> 해요.</p>
+      <p>빅데이터는 "데이터가 많다"는 말이 아니라, <strong>많아져서 다루는 방법이 달라져야 하는 상태</strong>를 가리켜요. 그래서 얼마나 커야 빅데이터냐고 물으면 딱 떨어지는 기준이 없어요. 쓰던 도구로 감당이 안 되면 그때부터예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">양 Volume</p>
+          <p class="fact__value">한 대로는 못 담을 만큼</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">종류 Variety</p>
+          <p class="fact__value">표·글·사진·소리 뒤섞임</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">속도 Velocity</p>
+          <p class="fact__value">쌓이는 게 아니라 쏟아짐</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">흩어져 들어오는 것을 일단 한곳에 모아 두고, 거기서 몰랐던 규칙을 찾아내는 흐름이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">여기저기서 들어옴</p>
+          <p class="node__note">결제·앱 기록·센서·글·사진이 제각각 모양으로 와요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">일단 모은다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">한곳에 쌓아 둔 곳</p>
+          <p class="node__note"><a href="data-lake.html">데이터 레이크</a>나 <a href="data-warehouse.html">데이터 웨어하우스</a>에 담아요</p>
+          <p><span class="chip-mono">한 대로는 못 하니 여러 대로</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">뒤져 본다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">몰랐던 규칙</p>
+          <p class="node__note">사람이 미리 묻지 않은 패턴이 나와요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="빅데이터의 세 가지 V">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>양이 많다 (Volume)</p>
+          <p class="jobs__note">한 대의 컴퓨터에 담기지 않아서, 여러 대에 나눠 담고 나눠 계산해요. 그래서 빅데이터는 <strong>저장과 계산 방식부터</strong> 달라져요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>종류가 많다 (Variety)</p>
+          <p class="jobs__note">깔끔한 표만 오는 게 아니에요. 글, 사진, 소리, 센서값이 섞여요. 표에 바로 못 넣는 것이 더 많아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>빨리 쏟아진다 (Velocity)</p>
+          <p class="jobs__note">하루에 한 번 정리하는 게 아니라 <strong>지금 이 순간에도</strong> 들어와요. 다 모인 뒤에 보기 시작하면 이미 늦는 일도 있어요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>세 가지 V 말고 <strong>정확성(Veracity)</strong>과 <strong>가치(Value)</strong>를 더해 4V·5V로 설명하기도 해요. 많이 모았다고 다 맞는 값은 아니고, 돈이 되는 것도 아니라는 뜻이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 모으는 것보다 <strong>버리고 다듬는 일</strong>에 시간이 더 들어요. 빈 값, 중복, 모양이 다른 날짜 같은 것을 손보는 <a href="preprocessing.html">전처리</a>가 실제 작업의 큰 몫이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>목적이 없으면 창고만 커져요. "무엇을 알고 싶은가"를 먼저 정해 두지 않으면, 쌓아 놓고 아무도 안 보는 데이터가 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">어디에 쓰나 · 버스 회사</p>
+        <p>교통카드 기록은 한 사람 한 사람으로 보면 그냥 탔다 내린 기록이에요. 그런데 <strong>몇 달 치를 다 모아</strong> 보면 어느 시간대 어느 구간에 사람이 몰리는지가 보여요. 설문으로 "언제 불편하세요?"라고 묻는 것보다, 실제로 찍힌 기록 쪽이 더 정확해요. 사람이 미리 생각하지 못한 구간까지 나오니까요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">왜 전에는 못 했나</p>
+        <p>옛날에도 기록은 있었어요. 다만 <strong>담아 둘 곳이 비쌌고</strong>, 다 뒤지려면 너무 오래 걸렸어요. 저장 장치 값이 내려가고, 여러 대에 나눠 계산하는 방법이 퍼지면서 "일단 다 모아 두고 나중에 뒤져 보자"가 가능해진 거예요.</p>
+      </div>
+      <p class="callout">빅데이터는 도구 이름이 아니라 <strong>상황을 가리키는 말</strong>이에요. 같은 양이라도 어떤 회사에는 빅데이터고 어떤 회사에는 아니에요. 중요한 건 크기 자체가 아니라, 그 크기 때문에 <strong>방법을 바꿔야 하는가</strong>예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">커서 문제가 아니라, 커져서 방법이 달라져야 하는 거예요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
