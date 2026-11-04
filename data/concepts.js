@@ -337,6 +337,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'disk-redundancy',
+    title: '디스크 이중화 기술',
+    sub: '디스크 다중화 · 미러링 · 듀플렉싱 · RAID · disk redundancy · ディスクの二重化',
+    summary: '디스크가 망가져도 멈추지 않게 같은 내용이나 복구 정보를 함께 두는 기술',
+    category: '품질관리',
+    date: '2026-11-05'
+  },
+  {
     slug: 'django-orm',
     title: 'Django ORM',
     sub: '장고 ORM · 객체 관계 매핑 · Object-Relational Mapping · QuerySet · 마이그레이션 · N+1',

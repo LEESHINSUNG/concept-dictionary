@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>디스크 이중화 기술 — 기억해봐요</title>
+  <meta name="description" content="디스크 이중화 기술은 디스크가 망가져도 데이터가 사라지거나 멈추지 않게, 같은 내용을 둘 이상 두거나 되살릴 정보를 함께 두는 기술이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="disk-redundancy">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>디스크 이중화 기술</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">신뢰성</span>
+      </div>
+      <h1 class="title">디스크 이중화 기술</h1>
+      <p class="reading">디스크 다중화 · 미러링 · 듀플렉싱 · disk redundancy · ディスクの二重化</p>
+      <p class="define">디스크 이중화 기술은 <mark>디스크가 망가져도 멈추지 않게, 같은 내용을 둘 이상 두거나 되살릴 정보를 함께 두는</mark> 기술이에요. 흔히 <strong>RAID</strong>라는 이름으로 묶어서 불러요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 품질관리 › 신뢰성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>디스크는 언젠가 망가져요. 좋은 제품을 써도 그래요. 그래서 "안 망가지게 하는" 쪽이 아니라 <strong>"망가져도 괜찮게"</strong> 만드는 쪽으로 생각해요.</p>
+      <p>방법은 크게 둘이에요. 하나는 <strong>똑같이 두 장 적어 두는 것</strong>이에요. 한쪽이 죽으면 다른 쪽을 읽으면 돼요. 다른 하나는 <strong>되살릴 수 있는 힌트를 함께 적어 두는 것</strong>이에요. 자리는 덜 차지하지만 되살릴 때 계산이 필요하죠.</p>
+      <p>중요한 건 <strong>이 중 어느 것도 백업이 아니라는 것</strong>이에요. 이중화는 <strong>디스크 고장</strong>에 대한 대비지, 실수나 공격에 대한 대비가 아니에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">막는 것</p>
+          <p class="fact__value">디스크 고장</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">못 막는 것</p>
+          <p class="fact__value">실수 삭제 · 랜섬웨어</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">대표 방식</p>
+          <p class="fact__value">미러링 · 패리티</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">RAID 0은 이중화가 아니에요. 자주 틀리는 자리라 셋을 나란히 놓고 볼게요.</p>
+      <div class="trio" role="list" aria-label="세 가지를 견줘 보면">
+        <div class="trio__item trio__item--off">
+          <p class="trio__name">스트라이핑 (RAID 0)</p>
+          <p class="trio__key">이중화가 아니에요</p>
+          <p class="trio__note">여러 디스크에 나눠 적어 <strong>빠르기만</strong> 해요. 하나라도 망가지면 전부 날아가요. 오히려 더 위험해요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">미러링 (RAID 1)</p>
+          <p class="trio__key">똑같이 두 장</p>
+          <p class="trio__note">쓸 때 양쪽에 같이 적어요. 용량은 <strong>절반</strong>이 되지만, 하나가 죽어도 다른 쪽을 그냥 읽으면 돼요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">패리티 (RAID 5·6)</p>
+          <p class="trio__key">되살릴 힌트를 함께</p>
+          <p class="trio__note"><a href="raid5.html">RAID 5</a>는 하나까지, RAID 6은 둘까지 견뎌요. 용량 손해가 적은 대신 <strong>계산이 필요해요.</strong></p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="더 알아 둘 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>듀플렉싱</p>
+          <p class="jobs__note">미러링은 디스크만 둘로 해요. 그런데 <strong>디스크를 읽고 쓰는 장치</strong>가 망가지면 양쪽 다 못 써요. 그래서 그 장치까지 둘로 두는 것이 듀플렉싱이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>묶어 쓰기도 해요</p>
+          <p class="jobs__note">빠르기와 안전을 같이 가지려고 <strong>미러링한 묶음을 다시 나눠 적는</strong> 식으로 섞어 쓰기도 해요. RAID 10이라고 불러요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>예비 디스크</p>
+          <p class="jobs__note">하나가 망가지면 사람이 올 때까지 위태로워요. 그래서 <strong>빈 디스크를 미리 꽂아 두고</strong> 자동으로 갈아 끼우게 해 둬요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>장비 전체의 이중화와는 달라요</p>
+          <p class="jobs__note">디스크 이중화는 <strong>디스크만</strong> 지켜요. 서버가 통째로 멈추는 것은 <a href="hot-standby.html">핫 스탠바이</a>처럼 장비를 둘 두는 쪽에서 다뤄요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>이중화는 <a href="rasis.html">RASIS</a>에서 <strong>가용성</strong>을 올리는 대표적인 방법이에요. 멈추는 시간을 줄이는 쪽이죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그런데 <strong>데이터를 잃지 않는 것</strong>은 또 다른 이야기예요. 어디까지 되돌릴 수 있는지를 정한 <a href="rpo.html">RPO</a>는 백업이 맡아요. 이중화로는 어제 지운 파일을 못 가져와요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 현장에서는 둘을 함께 둬요. <strong>이중화로 멈추지 않게 하고, 백업으로 되돌릴 수 있게</strong> 해요. 하나만 하면 반쪽이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">가장 흔한 오해</p>
+        <p>"RAID로 묶어 놨으니 백업은 안 해도 되지 않나요?" — 안 돼요. 실수로 파일을 지우면 <strong>양쪽에서 똑같이 지워져요.</strong> 랜섬웨어에 걸리면 양쪽이 똑같이 암호화돼요. 이중화는 <strong>디스크가 고장 나는 경우</strong>만 막아 줘요. 사람의 실수와 공격은 전혀 다른 문제예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">용량과 안전의 맞바꿈</p>
+        <p>디스크 4개를 미러링으로 묶으면 쓸 수 있는 건 <strong>2개분</strong>이에요. 같은 4개를 <a href="raid5.html">RAID 5</a>로 묶으면 <strong>3개분</strong>을 써요. 대신 되살릴 때 계산이 필요하고 쓰기가 느려요. 어느 쪽이 맞다기보다, <strong>무엇이 더 아쉬운지</strong>로 고르는 문제예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">고장 났는지 알고 있어야 해요</p>
+        <p>이중화의 함정은 <strong>고장이 티가 안 난다</strong>는 거예요. 하나가 죽어도 서비스는 멀쩡히 돌아가니까요. 그 상태로 몇 달을 보내다가 나머지 하나까지 죽으면 그때 전부 잃어요. 그래서 <strong>고장을 알려 주는 감시</strong>가 이중화와 한 묶음이에요.</p>
+      </div>
+      <p class="callout">이름에 "이중"이 들어가지만 꼭 두 개라는 뜻은 아니에요. 셋 이상으로 묶기도 하고, 둘까지 견디게 만들기도 해요. 핵심은 개수가 아니라 <strong>하나가 빠져도 돌아가는가</strong>예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">똑같이 두거나, 되살릴 힌트를 함께 두거나. 백업과는 다른 일이에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 품질관리 › 신뢰성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
