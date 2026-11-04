@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SIEM — 기억해봐요</title>
+  <meta name="description" content="SIEM은 여러 장비와 프로그램의 로그를 한곳에 모아 서로 맞춰 보고, 수상한 흐름이 보이면 알려 주는 체계예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="siem">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SIEM</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">SIEM</h1>
+      <p class="reading">시큐리티 인포메이션 앤드 이벤트 매니지먼트 · Security Information and Event Management · セキュリティ情報イベント管理</p>
+      <p class="define">SIEM은 <mark>흩어진 로그를 한곳에 모아 서로 맞춰 보고, 수상하면 알려 주는 체계</mark>예요. 하나하나는 평범한 기록도 <strong>겹쳐 놓으면 말을 하거든요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>큰 건물에 층마다 카메라가 있고, 출입문마다 카드 기록이 남고, 주차장에는 번호판 기록이 남는다고 해 볼게요. 각각은 잘 돌아가요. 그런데 <strong>아무도 전체를 보지 않아요.</strong> 3층 카메라만 보는 사람은 "누가 지나갔네" 하고 넘어가죠.</p>
+      <p>경비실에 전부 모아 놓으면 달라져요. <strong>"지하에서 카드를 찍은 사람이 3분 뒤에 옥상 문을 열었다"</strong>는 게 보여요. 각각은 아무 문제가 없는 기록인데, 합쳐 놓으니 이상한 거예요.</p>
+      <p>SIEM이 그 경비실이에요. 방화벽, 서버, 백신, 업무 프로그램이 각자 남기는 로그를 한곳에 모아 두고, <strong>서로 맞춰 보면서</strong> 수상한 흐름을 찾아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">모으는 것</p>
+          <p class="fact__value">장비·프로그램의 로그 전부</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">맞춰 보고 알려 주기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">풀이</p>
+          <p class="fact__value">SIM + SEM</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">모으기만 해서는 안 돼요. 모양을 맞춰야 서로 비교할 수 있어요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">흩어진 로그</p>
+          <p class="node__note">방화벽·서버·백신·업무 프로그램이 제각각 모양으로 남겨요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">모아서 모양 맞춤</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">한곳에 쌓임</p>
+          <p class="node__note">시각·사용자·주소를 같은 형식으로 바꿔 둬요</p>
+          <p><span class="chip-mono">합쳐야 보이는 것들</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">서로 맞춰 봄</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">수상하면 경보</p>
+          <p class="node__note">사람이 볼 수 있는 양으로 줄여서 올려요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="SIEM이 하는 네 가지 일">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>모으기</p>
+          <p class="jobs__note">장비마다 따로 보관하면 하나가 지워지거나 공격자가 지워 버릴 수 있어요. <strong>딴 곳에 모아 두는 것</strong>만으로도 의미가 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>모양 맞추기</p>
+          <p class="jobs__note">어떤 장비는 <code>2026/11/05</code>, 어떤 장비는 <code>05-Nov-26</code>으로 적어요. 시각과 사용자 이름을 통일해야 <strong>순서를 따질 수</strong> 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>맞춰 보기</p>
+          <p class="jobs__note">여러 기록을 겹쳐 "이 일 다음에 저 일이 일어났나"를 봐요. 이걸 <a href="correlation-analysis.html">상관분석</a>이라고 불러요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>알리고 남기기</p>
+          <p class="jobs__note">정해 둔 조건에 걸리면 경보를 올려요. 동시에 <a href="audit-trail.html">감사 증적</a>으로 오래 보관해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><a href="ids.html">IDS</a>나 백신은 <strong>자기가 보는 자리</strong>에서 수상한 걸 잡아요. SIEM은 그 결과들까지 한데 모아 <strong>전체 그림</strong>을 봐요. 서로 대신하는 게 아니라 층이 달라요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>가장 큰 어려움은 <strong>경보가 너무 많다</strong>는 거예요. 조건을 느슨하게 잡으면 하루에 수천 건이 올라오고, 그러면 사람이 다 못 보고 진짜를 놓쳐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 처음부터 다 넣지 않아요. 중요한 장비 몇 개로 시작해서 <strong>조건을 다듬어 가며</strong> 넓히는 쪽이 보통이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 따로 보면 아무 일도 아닌 기록</p>
+        <p><strong>①</strong> 어떤 계정이 로그인에 서른 번 실패했어요. 흔한 일이에요. <strong>②</strong> 그다음 한 번 성공했어요. 비밀번호가 기억난 거겠죠. <strong>③</strong> 그 계정이 평소 안 보던 파일 서버에 접속했어요. 권한이 있으니 막히지도 않아요.<br>셋 다 따로 보면 넘어갈 기록이에요. 그런데 <strong>5분 안에 이 순서로 일어났다면</strong> 이야기가 달라요. <a href="brute-force-attack.html">무차별 대입 공격</a>이 성공한 모양이거든요. SIEM이 잡아내는 건 이런 <strong>순서와 간격</strong>이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 시계가 안 맞으면 못 해요</p>
+        <p>맞춰 보기는 <strong>시각이 정확해야</strong> 가능해요. 장비마다 시계가 몇 분씩 어긋나 있으면 "그다음에 일어났다"는 판단 자체가 틀려요. 그래서 SIEM을 들이기 전에 모든 장비의 시각을 맞추는 일부터 해요. 기초처럼 보이지만 여기서 틀어지면 뒤가 전부 소용없어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 공격자가 지우려는 것</p>
+        <p>침입한 쪽이 가장 먼저 하는 일 중 하나가 <strong>로그 지우기</strong>예요. 그런데 로그가 이미 다른 서버로 넘어가 있으면 지울 수가 없어요. SIEM이 "실시간 탐지"만이 아니라 <strong>나중에 되짚기</strong> 위해서도 쓰이는 이유예요.</p>
+      </div>
+      <p class="callout">이름은 <strong>SIM</strong>(모아서 오래 보관하고 보고서 만들기)과 <strong>SEM</strong>(지금 일어나는 일을 보고 알리기)을 합친 말이에요. 한쪽은 과거를 보고 한쪽은 현재를 봐요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">따로 보면 평범한 기록도, 겹쳐 놓으면 말을 해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

@@ -897,6 +897,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'siem',
+    title: 'SIEM',
+    sub: 'Security Information and Event Management · セキュリティ情報イベント管理 · 보안 정보 이벤트 관리 · 로그 통합',
+    summary: '흩어진 로그를 한곳에 모아 맞춰 보고 수상하면 알려 주는 체계',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'social-engineering',
     title: '소셜 엔지니어링',
     sub: '사회공학 · 사회공학적 기법 · social engineering · ソーシャルエンジニアリング',
