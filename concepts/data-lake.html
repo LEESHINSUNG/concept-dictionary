@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>데이터 레이크 — 기억해봐요</title>
+  <meta name="description" content="데이터 레이크는 가공하지 않은 원본 그대로, 형식을 가리지 않고 일단 부어 두는 저장소예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="data-lake">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>데이터 레이크</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">데이터 레이크</h1>
+      <p class="reading">data lake · データレイク</p>
+      <p class="define">데이터 레이크는 <mark>가공하지 않은 원본 그대로, 형식을 가리지 않고 일단 부어 두는 저장소</mark>예요. 창고가 선반에 정리해 넣는다면, <strong>호수는 흘러들어 오는 대로 받아요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p><a href="data-warehouse.html">데이터 웨어하우스</a>는 넣기 전에 모양을 정해요. 어느 칸에 무엇을 넣을지 설계를 끝내야 담을 수 있죠. 깔끔하지만, <strong>새로운 종류가 생기면 설계부터 고쳐야</strong> 해요. 동영상이나 센서값처럼 표에 안 들어가는 것은 아예 담기 어렵고요.</p>
+      <p>그래서 생각을 뒤집었어요. <strong>일단 원본 그대로 다 부어 두고, 꺼내 쓸 때 모양을 정하자.</strong> 강물이 흘러드는 호수 같다고 해서 데이터 레이크예요. 나중에 쓸모가 생길지 모르니 버리지 않고 받아 둬요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">담는 모양</p>
+          <p class="fact__value">원본 그대로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">모양 정하는 때</p>
+          <p class="fact__value">꺼낼 때</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">가장 큰 위험</p>
+          <p class="fact__value">정리 안 하면 늪이 돼요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">언제 모양을 정하느냐가 창고와 호수를 가르는 지점이에요.</p>
+      <div class="trio" role="list" aria-label="웨어하우스와 레이크">
+        <div class="trio__item">
+          <p class="trio__name">데이터 웨어하우스</p>
+          <p class="trio__key">넣을 때 모양을 정해요</p>
+          <p class="trio__note">미리 설계한 칸에만 담겨요. 꺼내 쓰긴 편하지만 <strong>새 종류를 넣으려면 설계부터</strong> 손봐야 해요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">데이터 레이크</p>
+          <p class="trio__key">꺼낼 때 모양을 정해요</p>
+          <p class="trio__note">원본 그대로 받아 두고, 쓸 사람이 그때 해석해요. <strong>무엇이든 받지만</strong> 받아 둔 것이 뭔지는 따로 적어 둬야 해요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="호수에 담기는 것들">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>표로 된 것</p>
+          <p class="jobs__note">업무 시스템에서 뽑은 기록이에요. 창고에도 들어갈 수 있는 종류죠.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>반쯤 모양이 있는 것</p>
+          <p class="jobs__note">설정 파일이나 통신 기록처럼 <strong>규칙은 있는데 표는 아닌</strong> 것들이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>모양이 없는 것</p>
+          <p class="jobs__note">사진, 음성, 문서, 동영상이에요. 표에는 못 넣지만 쓸모가 생길 수 있어서 받아 둬요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>원본을 남겨요</p>
+          <p class="jobs__note">다듬은 뒤의 값만 남기면 나중에 다르게 해석할 수 없어요. 그래서 <strong>손대기 전 모습</strong>을 함께 둬요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>꺼낼 때 모양을 정한다는 건 <strong>부담이 뒤로 미뤄진다</strong>는 뜻이지 없어진다는 뜻이 아니에요. 쓰는 사람마다 매번 해석해야 하니 손이 더 갈 수도 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>그래서 <strong>무엇이 들어 있는지 적어 두는 일</strong>이 호수에서는 창고보다 더 중요해요. <a href="metadata.html">메타데이터</a>를 함께 쌓지 않으면 찾을 수가 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>정리 없이 붓기만 하면 아무도 못 쓰는 <strong>데이터 늪</strong>이 돼요. 들어 있는 건 많은데 뭐가 뭔지 몰라서 결국 아무도 안 보는 상태예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">둘 중 하나를 고르는 게 아니에요</p>
+        <p>실제로는 <strong>둘 다 두는</strong> 경우가 많아요. 일단 호수에 원본을 다 받아 두고, 그중 자주 보는 것을 다듬어 창고에 넣는 식이에요. 호수는 "버리지 않는 곳", 창고는 "믿고 쓰는 곳"으로 역할을 나누는 거죠.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">나중에 쓸모가 생기는 경우</p>
+        <p>고객센터 통화 녹음을 생각해 볼게요. 처음엔 분쟁에 대비해 보관만 했어요. 그런데 나중에 말을 글로 옮기는 기술이 쓸 만해지면서, <strong>어떤 불만이 많았는지</strong>를 셀 수 있게 됐어요. 처음부터 표로만 남겼다면 못 했을 일이에요. 호수가 원본을 남기는 이유예요.</p>
+      </div>
+      <p class="callout">"일단 다 받아 둔다"는 생각은 <strong>지켜야 할 것도 함께 받아 둔다</strong>는 뜻이에요. 개인정보가 섞여 들어오면 호수 전체가 관리 대상이 돼요. 무엇을 받을지는 처음부터 정해 두는 게 좋아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">창고는 넣을 때 모양을 정하고, 호수는 꺼낼 때 정해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

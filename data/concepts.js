@@ -257,6 +257,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'data-lake',
+    title: '데이터 레이크',
+    sub: 'data lake · データレイク · 데이터 늪',
+    summary: '가공하지 않은 원본 그대로 형식을 가리지 않고 부어 두는 저장소',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'data-mart',
     title: '데이터 마트',
     sub: 'data mart · データマート',
