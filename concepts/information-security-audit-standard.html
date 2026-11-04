@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>정보보안 감사 기준 — 기억해봐요</title>
+  <meta name="description" content="정보보안 감사 기준은 감사하는 사람이 어떻게 감사해야 하는지를 정해 둔 행동 기준이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="information-security-audit-standard">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>정보보안 감사 기준</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">감사</span>
+      </div>
+      <h1 class="title">정보보안 감사 기준</h1>
+      <p class="reading">정보보안 감사기준 · 情報セキュリティ監査基準 · information security audit standard</p>
+      <p class="define">정보보안 감사 기준은 <mark>감사하는 사람이 어떻게 감사해야 하는지를 정해 둔 행동 기준</mark>이에요. 무엇을 평가할지가 아니라 <strong>감사인이 지켜야 할 것</strong>을 담아요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 감사</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>시험장을 떠올려 볼게요. 거기엔 서로 다른 두 가지 규칙이 있어요. 하나는 <strong>채점 기준표</strong>예요. 몇 점짜리 문제고 어디까지 맞아야 정답인지가 적혀 있죠. 다른 하나는 <strong>감독관이 지켜야 할 규칙</strong>이에요. 자기 가족이 보는 시험장에는 못 들어간다거나, 부정행위를 보면 어떻게 적어야 한다거나 하는 것들이요.</p>
+      <p>정보보안 감사에도 이 둘이 따로 있어요. <strong>감사 기준</strong>은 감독관 규칙 쪽이에요. 감사인이 어떤 자격을 갖춰야 하고, 어떻게 조사하고, 어떻게 보고해야 하는지를 정해요. 채점 기준표 쪽은 <a href="information-security-management-standard.html">정보보안 관리 기준</a>이 맡아요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">누구를 위한 기준</p>
+          <p class="fact__value">감사하는 사람</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">정하는 것</p>
+          <p class="fact__value">자격 · 수행 방법 · 보고</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">짝이 되는 것</p>
+          <p class="fact__value">관리 기준 (판단의 자)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">감사 한 번에 두 가지 기준이 같이 쓰여요. 역할이 다릅니다.</p>
+      <div class="trio" role="list" aria-label="두 기준의 역할">
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">정보보안 감사 기준</p>
+          <p class="trio__key">감사인이 어떻게 할지</p>
+          <p class="trio__note">자격과 독립성, 조사 방법, 보고 방식을 정해요. <strong>감사의 품질</strong>을 지키는 쪽이에요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">정보보안 관리 기준</p>
+          <p class="trio__key">무엇에 비춰 볼지</p>
+          <p class="trio__note">점검 항목을 모아 둔 <strong>판단의 자</strong>예요. 감사인은 이 항목에 비춰 조직을 봐요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="감사 기준의 세 부분">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>일반 기준</p>
+          <p class="jobs__note">감사인이 갖춰야 할 것을 정해요. 전문 능력, 그리고 <strong>감사 대상과 이해관계가 없어야 한다</strong>는 독립성이 핵심이에요. 자기가 만든 시스템을 자기가 감사할 수는 없어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>실시 기준</p>
+          <p class="jobs__note">어떻게 조사할지를 정해요. 계획을 세우고, 증거를 모으고, 그 증거를 <a href="audit-working-papers.html">감사 조서</a>로 남기는 절차예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>보고 기준</p>
+          <p class="jobs__note">결과를 어떻게 전할지를 정해요. 무엇을 근거로 그런 의견을 냈는지가 드러나야 하고, <strong>고칠 점은 고칠 수 있게</strong> 적어야 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>이 기준은 <strong>일본 경제산업성</strong>이 만들어 운영하는 정보보안 감사 제도의 일부예요. 그래서 일본 IT 시험에 자주 나와요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>감사의 생명은 <strong>독립성</strong>이에요. 만든 사람이 스스로 점검하는 것도 의미는 있지만, 그건 감사라고 부르지 않아요. 보는 눈이 따로 있어야 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>증거 없이 의견을 내면 안 돼요. 무엇을 보고 그렇게 판단했는지가 <a href="audit-trail.html">감사 증적</a>과 조서로 남아 있어야, 나중에 누가 물어도 설명할 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">두 기준을 헷갈리지 않으려면</p>
+        <p>한 글자 차이라 섞기 쉬워요. <strong>감사</strong> 기준은 <strong>감사하는 사람</strong>에 대한 규칙이고, <strong>관리</strong> 기준은 <strong>관리되고 있는지를 재는 항목</strong>이에요. "감사인용 / 점검표용"으로 외우면 덜 헷갈려요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">두 종류의 감사 의견</p>
+        <p>정보보안 감사는 크게 두 갈래로 나와요. 하나는 <strong>잘 갖춰져 있다고 보증하는</strong> 쪽이고, 다른 하나는 <strong>부족한 곳을 짚어 고치라고 권하는</strong> 쪽이에요. 앞쪽은 바깥에 보여 주는 데 쓰이고, 뒤쪽은 안에서 개선하는 데 쓰여요. 같은 감사라도 목적이 다르면 보고서의 모양이 달라져요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">한국에서는</p>
+        <p>한국에는 같은 이름의 제도는 없고, 비슷한 자리를 <strong>ISMS-P</strong>(정보보호 및 개인정보보호 관리체계 인증)가 맡고 있어요. 이름과 운영 주체는 달라도 <strong>바깥의 눈으로 점검받아 보여 준다</strong>는 생각은 같아요.</p>
+      </div>
+      <p class="callout">회사 안에서 하는 점검과 바깥 기관이 하는 감사는 쓰임이 달라요. <a href="euc-control.html">EUC 통제 감사</a>처럼 범위를 좁힌 점검도 같은 틀 위에서 이뤄져요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">채점 기준표가 아니라, 채점하는 사람이 지킬 규칙이에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 감사</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

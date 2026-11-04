@@ -513,6 +513,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'information-security-audit-standard',
+    title: '정보보안 감사 기준',
+    sub: '정보보안 감사기준 · 情報セキュリティ監査基準 · information security audit standard · 일반기준 · 실시기준 · 보고기준',
+    summary: '감사인이 어떻게 감사해야 하는지를 정해 둔 행동 기준',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'ips',
     title: 'IPS',
     sub: '침입 방지 시스템 · Intrusion Prevention System · 侵入防止システム',
