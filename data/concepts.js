@@ -561,6 +561,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'lan-analyzer',
+    title: 'LAN 애널라이저',
+    sub: '프로토콜 애널라이저 · 패킷 캡처 · 스니퍼 · LAN analyzer · LANアナライザ · protocol analyzer',
+    summary: '네트워크에 흐르는 패킷을 붙잡아 속을 펼쳐 보는 도구',
+    category: '네트워크',
+    date: '2026-11-05'
+  },
+  {
     slug: 'lan-topology',
     title: 'LAN 접속 형태',
     sub: '토폴로지 · network topology · ネットワークトポロジー',

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LAN 애널라이저 — 기억해봐요</title>
+  <meta name="description" content="LAN 애널라이저는 네트워크에 흐르는 패킷을 붙잡아 속을 펼쳐 보는 도구예요. 고치는 데도 쓰이고 훔쳐보는 데도 쓰여요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="lan-analyzer">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>LAN 애널라이저</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">LAN 애널라이저</h1>
+      <p class="reading">프로토콜 애널라이저 · 패킷 캡처 · LAN analyzer · LANアナライザ · protocol analyzer</p>
+      <p class="define">LAN 애널라이저는 <mark>네트워크에 흐르는 패킷을 붙잡아 속을 펼쳐 보는 도구</mark>예요. 장애를 찾는 데도 쓰이고, <strong>훔쳐보는 데도 쓰여요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 네트워크 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>통신이 안 될 때 할 수 있는 일은 보통 짐작이에요. 선을 바꿔 보고, 장비를 껐다 켜 보고요. 그런데 <strong>실제로 무엇이 오가는지</strong>를 볼 수 있다면 짐작할 필요가 없어요.</p>
+      <p>LAN 애널라이저는 네트워크를 지나가는 <a href="packet.html">패킷</a>을 붙잡아서, 봉투를 뜯듯이 펼쳐 보여 줘요. <strong>누가 누구에게, 어떤 <a href="protocol.html">프로토콜</a>로, 몇 번째 조각을, 몇 시 몇 분 몇 초에</strong> 보냈는지가 한 줄씩 나와요.</p>
+      <p>그래서 "요청은 나갔는데 답이 안 왔다", "답은 왔는데 우리 쪽이 안 받았다" 같은 <strong>어디서 끊겼는지</strong>를 정확히 짚을 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">패킷을 붙잡아 펼쳐 보기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">좋은 쓰임</p>
+          <p class="fact__value">장애 지점 찾기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">나쁜 쓰임</p>
+          <p class="fact__value">암호화 안 된 통신 엿보기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">붙잡고, 펼치고, 어디서 끊겼는지 보는 세 걸음이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">흐르는 패킷</p>
+          <p class="node__note">케이블이나 <a href="mirror-port.html">미러 포트</a>를 지나가는 것들이에요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">붙잡는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">펼쳐 보기</p>
+          <p class="node__note">보낸 곳·받는 곳·프로토콜·시각·내용이 줄줄이 나와요</p>
+          <p><span class="chip-mono">짐작 대신 기록으로</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">견줘 본다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">끊긴 자리</p>
+          <p class="node__note">어디까지 갔고 어디서 멈췄는지가 보여요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="어디에 쓰나">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>안 되는 이유 찾기</p>
+          <p class="jobs__note">요청이 나갔는지, 답이 왔는지, 어느 쪽이 먼저 끊었는지를 봐요. <strong>양쪽 말이 다를 때</strong> 결론을 내 주는 증거가 돼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>느린 이유 찾기</p>
+          <p class="jobs__note">같은 요청을 몇 번씩 다시 보내고 있거나, 한 기계가 네트워크를 혼자 쓰고 있는 게 보여요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>설정이 틀린 곳 찾기</p>
+          <p class="jobs__note">엉뚱한 주소로 묻고 있거나, <a href="dhcp.html">DHCP</a> 같은 자동 설정이 답을 못 받고 있는 게 드러나요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>훔쳐보기 (악용)</p>
+          <p class="jobs__note">암호화되지 않은 통신이면 <strong>아이디와 비밀번호가 그대로 보여요.</strong> 같은 도구가 공격 도구가 되는 지점이에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>그래서 시험에도 <strong>"LAN 애널라이저를 이용한 도청"</strong>이 자주 나와요. 특별한 공격 도구가 아니라 <strong>관리용 도구를 그대로 악용하는</strong> 것이라 막기가 까다로워요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>가장 확실한 대책은 <strong>내용을 암호화하는 것</strong>이에요. <a href="tls.html">TLS</a>로 감싸면 붙잡아도 속은 못 읽어요. 붙잡히는 것 자체를 막을 수는 없으니, <strong>읽혀도 소용없게</strong> 만드는 쪽이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그다음은 <strong>붙잡힐 기회를 줄이는 것</strong>이에요. 허브 대신 스위치를 쓰고, <a href="mirror-port.html">미러 포트</a>와 빈 포트를 잠가 두고, 쓰지 않는 자리는 막아 둬요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 서로 자기 잘못이 아니라고 할 때</p>
+        <p>앱 담당자는 "서버가 답을 안 준다"고 하고, 서버 담당자는 "요청이 안 들어온다"고 해요. 둘 다 자기 화면만 보고 있으니 결론이 안 나요. 가운데에서 패킷을 떠 보면 <strong>요청이 실제로 나갔는지</strong>가 한 줄로 나와요. 이런 다툼을 끝내는 게 이 도구의 가장 현실적인 쓸모예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 볼 수 있는 자리가 제한돼요</p>
+        <p>스위치를 쓰는 요즘 네트워크에서는 아무 데나 꽂아도 남의 통신이 안 보여요. 그래서 보려면 <a href="mirror-port.html">미러 포트</a>에 붙이거나, 통신 길 가운데에 넣어야 해요. <strong>볼 수 있는 자리 자체가 관리 대상</strong>인 셈이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 다 뜨면 못 봐요</p>
+        <p>몇 분만 떠도 수십만 줄이 쌓여요. 그래서 실제로는 <strong>조건을 걸어서</strong> 떠요. 특정 주소끼리만, 특정 프로토콜만 하는 식으로요. 조건을 잘 거는 게 이 도구를 쓰는 실력이에요.</p>
+      </div>
+      <p class="callout">이름은 여러 가지예요. <strong>프로토콜 애널라이저</strong>, <strong>패킷 캡처 도구</strong>, <strong>스니퍼</strong>라고도 불러요. 전용 장비도 있고, 보통 컴퓨터에 설치해 쓰는 프로그램도 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">오가는 봉투를 뜯어 보는 도구. 고치는 데도, 훔쳐보는 데도 써요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 네트워크 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
