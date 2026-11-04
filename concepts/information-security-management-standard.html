@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>정보보안 관리 기준 — 기억해봐요</title>
+  <meta name="description" content="정보보안 관리 기준은 정보보안이 잘 되고 있는지를 무엇에 비춰 볼지 적어 둔 점검 항목 모음이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="information-security-management-standard">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>정보보안 관리 기준</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">감사</span>
+      </div>
+      <h1 class="title">정보보안 관리 기준</h1>
+      <p class="reading">정보보안 관리기준 · 情報セキュリティ管理基準 · information security management standard</p>
+      <p class="define">정보보안 관리 기준은 <mark>무엇에 비춰 볼지를 적어 둔 점검 항목 모음</mark>이에요. 감사할 때 쓰는 <strong>판단의 자</strong> 역할을 해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 감사</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건물이 안전한지 점검한다고 해 볼게요. "대충 튼튼해 보이네요"로는 안 되죠. <strong>소화기가 몇 미터마다 있는지, 비상구에 물건이 쌓여 있지 않은지</strong> 같은 항목표가 있어야 해요. 그래야 사람이 바뀌어도 같은 결과가 나오고, 다른 건물과 견줄 수도 있어요.</p>
+      <p>정보보안 관리 기준이 그 항목표예요. <strong>관리 체계를 어떻게 세울지</strong>부터 <strong>실제로 어떤 대책을 걸어 둘지</strong>까지 폭넓게 담고 있어요. <a href="information-security-audit-standard.html">정보보안 감사 기준</a>이 감사인의 행동 규칙이라면, 이쪽은 <strong>재는 자</strong>예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">무엇인가</p>
+          <p class="fact__value">점검 항목 모음</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">바탕</p>
+          <p class="fact__value">국제 표준 ISO/IEC 27001·27002</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰는 법</p>
+          <p class="fact__value">더하고 빼서 우리 기준으로</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">기준을 그대로 쓰는 게 아니라, 우리 회사에 맞게 고쳐서 쓰는 게 전제예요.</p>
+      <div class="seq" role="img" aria-label="관리 기준을 쓰는 순서">
+        <div class="seq__row">
+          <span class="seq__dir">1단계</span>
+          <span class="seq__msg">기준을 가져온다</span>
+          <span class="seq__note">국제 표준을 바탕으로 만들어진 항목표를 출발점으로 삼아요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">2단계</span>
+          <span class="seq__msg">우리에게 필요한 것만 남긴다</span>
+          <span class="seq__note">회사마다 시스템도 위험도 달라요. <strong>필요한 항목을 더하고 해당 없는 항목은 빼서</strong> 우리 기준을 만들어요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">3단계</span>
+          <span class="seq__msg">왜 뺐는지를 적는다</span>
+          <span class="seq__note">뺀 이유를 적어 두지 않으면 "귀찮아서 뺐다"와 구별이 안 돼요. 이걸 문서로 만든 것이 <a href="statement-of-applicability.html">적용 선언서</a>예요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">4단계</span>
+          <span class="seq__msg">그 기준으로 점검받는다</span>
+          <span class="seq__note">감사인은 이렇게 만든 기준에 비춰 조직을 봐요. 자가 흔들리면 결과도 흔들려요.</span>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="이 기준이 담는 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>체계를 세우는 부분</p>
+          <p class="jobs__note">보안을 <strong>한 번 하고 끝내는 일</strong>이 아니라 돌아가는 체계로 만드는 쪽이에요. 방침을 정하고, 위험을 재고, 점검하고, 고치는 순환이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>구체적인 대책 부분</p>
+          <p class="jobs__note">접근 권한, 암호 관리, 물리적 출입, 협력업체 관리처럼 <strong>실제로 걸어 두는 대책</strong>의 목록이에요. <a href="safeguard.html">세이프가드</a>가 여기에 해당해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>국제 표준을 따라가요</p>
+          <p class="jobs__note">세계 공통 기준인 ISO/IEC 27001·27002에 맞춰 만들어졌고, <strong>국제 표준이 바뀌면 따라서 고쳐요.</strong> 그래서 바깥에도 설명하기 쉬워요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>인증에도 감사에도</p>
+          <p class="jobs__note">ISMS 인증을 준비하는 조직도, 감사를 하는 조직도 같은 기준을 봐요. <strong>보는 눈을 맞추는</strong> 역할이에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>항목을 고르려면 <strong>무엇이 위험한지를 먼저 알아야</strong> 해요. 그래서 <a href="risk-analysis-steps.html">위험 분석</a>이 앞에 오고, 그 결과에 따라 어떤 항목이 필요한지가 정해져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>전부 적용하는 게 좋은 것도 아니에요. 위험이 작은 곳에 비싼 대책을 걸면 <strong>돈과 시간만 쓰고</strong> 정작 급한 곳이 비어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 뺀 항목의 이유가 중요해요. <a href="risk-acceptance.html">위험 수용</a>처럼 "알면서 두기로 했다"는 판단도 적어 두면 떳떳한 결정이 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">기준이 없으면 생기는 일</p>
+        <p>"우리 회사 보안 괜찮나요?"라는 질문에 담당자마다 답이 달라요. 어떤 사람은 방화벽이 있으니 괜찮다고 하고, 어떤 사람은 비밀번호 규칙이 허술하니 아니라고 해요. <strong>둘 다 자기 머릿속 기준으로 말하고 있는 것</strong>이에요. 공통 항목표가 있으면 "스물세 개 중 열일곱 개 충족"처럼 말이 통해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">더하고 빼는 게 정상이에요</p>
+        <p>서버를 직접 운영하지 않고 전부 빌려 쓰는 회사라면, 서버실 출입 통제 항목은 해당이 없어요. 대신 <strong>빌려 쓰는 쪽을 어떻게 관리하는지</strong>가 더 중요해지죠. 기준을 통째로 따르는 게 아니라, <strong>왜 이 항목을 쓰고 저 항목을 뺐는지 설명할 수 있는 상태</strong>가 목표예요.</p>
+      </div>
+      <p class="callout">감사 기준과 관리 기준은 짝이에요. 한쪽만 있으면 감사가 성립하지 않아요. <strong>재는 자(관리 기준)</strong>와 <strong>재는 사람의 규칙(감사 기준)</strong>이 같이 있어야 결과를 믿을 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">감사할 때 들이대는 자예요. 그대로 쓰는 게 아니라 맞춰 쓰는 자고요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 감사</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

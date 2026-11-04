@@ -521,6 +521,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'information-security-management-standard',
+    title: '정보보안 관리 기준',
+    sub: '정보보안 관리기준 · 情報セキュリティ管理基準 · information security management standard · ISMS · ISO/IEC 27001',
+    summary: '정보보안을 무엇에 비춰 볼지 적어 둔 점검 항목 모음',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'ips',
     title: 'IPS',
     sub: '침입 방지 시스템 · Intrusion Prevention System · 侵入防止システム',
