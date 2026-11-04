@@ -201,6 +201,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'correlation-analysis',
+    title: '상관분석',
+    sub: '상관관계 분석 · correlation analysis · 相関分析 · 상관계수 · 산점도',
+    summary: '두 가지가 함께 움직이는지와 그 세기를 재는 방법',
+    category: '품질관리',
+    date: '2026-11-05'
+  },
+  {
     slug: 'crypto-compromise',
     title: '암호 알고리즘의 위태화',
     sub: 'cryptographic compromise · 暗号アルゴリズムの危殆化',

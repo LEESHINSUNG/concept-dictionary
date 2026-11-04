@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>상관분석 — 기억해봐요</title>
+  <meta name="description" content="상관분석은 두 가지가 함께 움직이는지, 얼마나 세게 함께 움직이는지를 재는 방법이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .scat { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 4px; }
+    .scat__item { min-width: 0; }
+    .scat__box { position: relative; aspect-ratio: 1 / 1; background: var(--bg); border: 1px solid var(--line); border-left: 2px solid var(--line-strong); border-bottom: 2px solid var(--line-strong); border-radius: 6px; }
+    .scat__dot { position: absolute; width: 7px; height: 7px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--accent); }
+    .scat__cap { margin: 8px 0 0; font-size: 13px; font-weight: 700; text-align: center; line-height: 1.4; word-break: keep-all; }
+    .scat__r { display: block; margin-top: 3px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="correlation-analysis">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>상관분석</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">품질관리</span>
+        <span class="chip">데이터 분석</span>
+      </div>
+      <h1 class="title">상관분석</h1>
+      <p class="reading">상관관계 분석 · correlation analysis · 相関分析 · 상관계수</p>
+      <p class="define">상관분석은 <mark>두 가지가 함께 움직이는지, 얼마나 세게 그런지를 재는</mark> 방법이에요. 다만 <strong>함께 움직인다고 해서 하나가 다른 하나를 만든 건 아니에요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 품질관리 › 데이터 분석</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>키가 큰 사람이 대체로 몸무게도 더 나간다는 건 느낌으로 알죠. 그런데 "대체로"가 얼마만큼인지는 느낌으로 말하기 어려워요. <strong>그 세기를 숫자 하나로 만든 것</strong>이 상관분석이에요.</p>
+      <p>방법은 간단해요. 두 값을 가로축과 세로축에 놓고 점을 찍어요. 점들이 <strong>한 줄에 가깝게 늘어서면</strong> 둘은 세게 함께 움직이는 거고, <strong>흩어져 있으면</strong> 별 관계가 없는 거예요. 이 세기를 -1부터 +1까지의 숫자로 적은 게 <strong>상관계수</strong>예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">재는 것</p>
+          <p class="fact__value">함께 움직이는 세기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">범위</p>
+          <p class="fact__value">-1 ~ 0 ~ +1</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">못 재는 것</p>
+          <p class="fact__value">무엇이 원인인지</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">같은 개수의 점을 세 가지로 찍어 봤어요. 점이 줄에 가까울수록 상관이 세요.</p>
+      <div class="scat" role="img" aria-label="상관의 세 가지 모양">
+        <div class="scat__item">
+          <div class="scat__box"><span class="scat__dot" style="left: 10%; top: 85%;"></span><span class="scat__dot" style="left: 21%; top: 76%;"></span><span class="scat__dot" style="left: 30%; top: 68%;"></span><span class="scat__dot" style="left: 40%; top: 58%;"></span><span class="scat__dot" style="left: 49%; top: 51%;"></span><span class="scat__dot" style="left: 58%; top: 41%;"></span><span class="scat__dot" style="left: 67%; top: 33%;"></span><span class="scat__dot" style="left: 79%; top: 21%;"></span><span class="scat__dot" style="left: 89%; top: 12%;"></span></div>
+          <p class="scat__cap">같이 오른다<span class="scat__r">+1에 가까움</span></p>
+        </div>
+        <div class="scat__item">
+          <div class="scat__box"><span class="scat__dot" style="left: 12%; top: 41%;"></span><span class="scat__dot" style="left: 25%; top: 76%;"></span><span class="scat__dot" style="left: 35%; top: 19%;"></span><span class="scat__dot" style="left: 47%; top: 58%;"></span><span class="scat__dot" style="left: 55%; top: 31%;"></span><span class="scat__dot" style="left: 63%; top: 81%;"></span><span class="scat__dot" style="left: 72%; top: 46%;"></span><span class="scat__dot" style="left: 82%; top: 24%;"></span><span class="scat__dot" style="left: 89%; top: 66%;"></span></div>
+          <p class="scat__cap">관계가 없다<span class="scat__r">0에 가까움</span></p>
+        </div>
+        <div class="scat__item">
+          <div class="scat__box"><span class="scat__dot" style="left: 10%; top: 14%;"></span><span class="scat__dot" style="left: 21%; top: 24%;"></span><span class="scat__dot" style="left: 31%; top: 31%;"></span><span class="scat__dot" style="left: 43%; top: 44%;"></span><span class="scat__dot" style="left: 52%; top: 53%;"></span><span class="scat__dot" style="left: 61%; top: 63%;"></span><span class="scat__dot" style="left: 70%; top: 70%;"></span><span class="scat__dot" style="left: 80%; top: 79%;"></span><span class="scat__dot" style="left: 90%; top: 88%;"></span></div>
+          <p class="scat__cap">하나가 오르면 내린다<span class="scat__r">-1에 가까움</span></p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="숫자를 어떻게 읽나">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>부호는 방향</p>
+          <p class="jobs__note"><strong>+</strong>는 같이 오르내린다는 뜻이고, <strong>−</strong>는 하나가 오르면 하나가 내린다는 뜻이에요. 부호만으로는 세기를 알 수 없어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>크기는 세기</p>
+          <p class="jobs__note">0에 가까울수록 관계가 흐릿하고, 1에 가까울수록 또렷해요. −0.8은 +0.3보다 <strong>훨씬 센</strong> 관계예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>0이라고 무관한 건 아니에요</p>
+          <p class="jobs__note">상관계수는 <strong>직선 관계</strong>만 재요. U자처럼 휘어진 관계는 0으로 나올 수 있어요. 숫자만 보지 말고 점 그림을 꼭 봐야 하는 이유예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>튄 값 하나에 흔들려요</p>
+          <p class="jobs__note">멀리 떨어진 점 하나가 숫자를 크게 바꿔요. 재기 전에 <a href="preprocessing.html">전처리</a>로 이상한 값을 살펴야 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>가장 흔한 함정은 <strong>상관을 인과로 읽는 것</strong>이에요. 아이스크림이 많이 팔린 날에 물놀이 사고도 많았다고 해서, 아이스크림이 사고를 일으킨 건 아니에요. <strong>둘 다 더위 때문</strong>이죠.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이렇게 뒤에 숨어서 양쪽을 함께 밀어 올리는 것이 있을 수 있어요. 그래서 상관이 나오면 <strong>"둘을 같이 움직이게 하는 다른 것이 없나"</strong>를 먼저 생각해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래도 상관분석은 쓸모가 커요. <strong>어디를 더 파 볼지 고르는 데</strong> 쓰거든요. 원인인지 확인하려면 조건을 바꿔 가며 직접 해 보는 단계가 따로 필요해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 품질 현장에서</p>
+        <p>불량률이 왜 오르는지 모를 때, 온도·습도·기계 속도·작업 시간을 불량률과 각각 재 봐요. 그중 <strong>세게 함께 움직이는 것</strong>이 나오면 거기부터 들여다봐요. 전부를 다 뒤지는 대신 <strong>볼 곳을 좁히는</strong> 거예요. <a href="pareto-chart.html">파레토 차트</a>가 "무엇부터"를 정해 준다면, 상관분석은 "어디를 볼까"를 좁혀 줘요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 보안에서 말하는 상관분석</p>
+        <p><a href="siem.html">SIEM</a> 설명에도 <strong>상관분석</strong>이라는 말이 나와요. 그런데 뜻이 조금 달라요. 통계의 상관분석이 <strong>두 숫자가 함께 움직이는 세기를 재는</strong> 것이라면, 보안의 상관분석은 <strong>여러 로그의 사건을 겹쳐 놓고 "이 일 다음에 저 일이 일어났나"를 규칙으로 맞춰 보는</strong> 것이에요. 상관계수를 내는 게 아니에요. <strong>따로 보면 안 보이는 것을 겹쳐서 본다</strong>는 생각만 같아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 점 그림을 먼저 봐요</p>
+        <p>상관계수가 같아도 점이 흩어진 모양은 전혀 다를 수 있어요. 한쪽으로 몰린 점 떼가 둘인데 숫자만 보면 깔끔한 직선처럼 보이기도 하고요. <strong>숫자를 내기 전에 점을 찍어 보는 습관</strong>이 가장 확실한 안전장치예요.</p>
+      </div>
+      <p class="callout">값이 두 개뿐이거나 기간이 짧으면 우연히 센 상관이 나와요. <strong>데이터가 적을 때의 높은 상관계수</strong>는 특히 믿지 않는 게 좋아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">같이 움직인다고 해서, 하나가 다른 하나를 만든 건 아니에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 품질관리 › 데이터 분석</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
