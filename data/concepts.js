@@ -257,6 +257,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'data-dictionary',
+    title: '데이터 딕셔너리',
+    sub: '데이터 사전 · data dictionary · データディクショナリ · 시스템 카탈로그',
+    summary: '데이터 항목의 뜻과 모양을 적어 둔 사전',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'data-lake',
     title: '데이터 레이크',
     sub: 'data lake · データレイク · 데이터 늪',

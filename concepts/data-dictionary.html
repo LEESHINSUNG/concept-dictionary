@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>데이터 딕셔너리 — 기억해봐요</title>
+  <meta name="description" content="데이터 딕셔너리는 데이터 항목 하나하나가 무슨 뜻이고 어떤 모양인지 적어 둔 사전이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="data-dictionary">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>데이터 딕셔너리</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">데이터 딕셔너리</h1>
+      <p class="reading">데이터 사전 · data dictionary · データディクショナリ</p>
+      <p class="define">데이터 딕셔너리는 <mark>데이터 항목 하나하나가 무슨 뜻이고 어떤 모양인지 적어 둔 사전</mark>이에요. 값을 담는 곳이 아니라 <strong>값에 대한 설명을 담는 곳</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사 표에 <code>cust_cd</code>라는 칸이 있다고 해 볼게요. 처음 보는 사람은 이게 뭔지 알 수가 없어요. 고객 코드인 것 같긴 한데 몇 자리인지, 숫자인지 글자인지, 탈퇴한 고객도 들어 있는지 모르죠. 만든 사람한테 물어봐야 하는데 그 사람은 이미 퇴사했어요.</p>
+      <p>그래서 <strong>칸마다 설명을 적어 두는 사전</strong>을 만들어요. 이름이 무엇이고, 무슨 뜻이고, 어떤 값이 들어갈 수 있고, 누가 관리하는지요. 국어사전이 낱말을 설명하듯, 데이터 딕셔너리는 <strong>데이터 항목을 설명해요.</strong></p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">담는 것</p>
+          <p class="fact__value">값이 아니라 값의 설명</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">누가 보나</p>
+          <p class="fact__value">만드는 사람과 쓰는 사람</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">없으면</p>
+          <p class="fact__value">같은 이름이 다른 뜻이 돼요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">항목 하나에 이런 내용이 붙어요. 값은 한 줄도 없고 전부 설명이에요.</p>
+      <div class="dict" role="img" aria-label="고객코드 · cust_cd 항목 정의">
+        <p class="dict__head">고객코드 · cust_cd</p>
+        <div class="dict__row">
+          <span class="dict__k">뜻</span>
+          <span class="dict__v">우리 회사가 고객 한 명에게 붙이는 고유 번호</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">모양</span>
+          <span class="dict__v">영문 대문자 1자 + 숫자 7자 (예: <code>C0001234</code>)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">허용 값</span>
+          <span class="dict__v">첫 글자는 개인 <code>C</code> 또는 법인 <code>B</code></span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">빈 값</span>
+          <span class="dict__v">허용하지 않음</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">만드는 곳</span>
+          <span class="dict__v">회원 가입 화면 (회원 시스템)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">쓰는 곳</span>
+          <span class="dict__v">주문·배송·상담 시스템</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">관리 담당</span>
+          <span class="dict__v">회원 운영팀</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">주의</span>
+          <span class="dict__v">탈퇴해도 번호는 다시 쓰지 않음</span>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="적어 두면 달라지는 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>말이 통해요</p>
+          <p class="jobs__note">"고객 수"를 세자고 할 때 탈퇴한 사람을 넣을지 뺄지가 사전에 적혀 있으면 다툴 일이 없어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>고칠 때 덜 무서워요</p>
+          <p class="jobs__note">이 칸을 어디서 쓰는지 적혀 있으면, 고쳤을 때 <strong>무엇이 같이 망가지는지</strong>를 미리 알 수 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>새로 온 사람이 빨라져요</p>
+          <p class="jobs__note">칸 이름만 보고 짐작하지 않아도 돼요. 짐작은 거의 틀려요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>검사를 걸 수 있어요</p>
+          <p class="jobs__note">허용 값이 정해져 있으면 그대로 <strong>입력 검사 규칙</strong>으로 옮길 수 있어요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>데이터베이스 관리 시스템이 스스로 가지고 있는 <strong>시스템 카탈로그</strong>도 데이터 딕셔너리의 하나예요. 어떤 표에 어떤 칸이 있는지를 시스템이 적어 두는 거예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>다만 시스템 카탈로그에는 <strong>"무슨 뜻인지"가 없어요.</strong> 자료형과 길이는 알아도 업무상 의미는 사람이 적어 넣어야 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>사전이 실제와 어긋나면 없느니만 못해요. 칸을 고칠 때 사전도 같이 고치는 절차가 없으면 <strong>아무도 믿지 않는 문서</strong>가 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">같은 이름, 다른 뜻</p>
+        <p>영업팀의 "회원 수"는 <strong>가입한 사람 전부</strong>였고, 운영팀의 "회원 수"는 <strong>최근 석 달 안에 접속한 사람</strong>이었다고 해 볼게요. 둘 다 "회원 수"라고 부르니 보고서에 나란히 놓이면 숫자가 안 맞아요. 사전에 두 이름을 다르게 적어 두는 것만으로 이런 일이 사라져요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title"><a href="metadata.html">메타데이터</a>와 무엇이 다른가</p>
+        <p>메타데이터는 <strong>데이터를 설명하는 데이터</strong>를 가리키는 넓은 말이에요. 데이터 딕셔너리는 그중에서도 <strong>항목의 정의를 모아 둔 문서나 시스템</strong>을 가리켜요. 메타데이터가 재료라면 딕셔너리는 그 재료로 만든 사전이라고 보면 돼요.</p>
+      </div>
+      <p class="callout">창고가 커질수록 사전이 중요해져요. <a href="data-warehouse.html">데이터 웨어하우스</a>나 <a href="data-mart.html">데이터 마트</a>를 여럿 두면, 같은 이름이 창고마다 다른 뜻이 되기 쉽거든요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">값이 아니라 값의 뜻을 적어 두는 사전이에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
