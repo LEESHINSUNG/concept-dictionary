@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SDN — 기억해봐요</title>
+  <meta name="description" content="SDN은 네트워크 장비에서 길을 정하는 두뇌를 떼어내, 소프트웨어가 한곳에서 전체를 지휘하게 만든 방식이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .plane { margin-top: 4px; }
+    .plane__ctl { padding: 13px 16px; background: var(--accent); color: #FFFFFF; border-radius: 12px; word-break: keep-all; }
+    .plane__ctl p { margin: 0; }
+    .plane__ctl p:first-child { font-size: 15px; font-weight: 700; }
+    .plane__ctl p:last-child { margin-top: 3px; font-size: 13.5px; opacity: 0.9; }
+    .plane__link { margin: 7px 0; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); text-align: center; }
+    .plane__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+    .plane__sw { padding: 11px 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; text-align: center; font-size: 13.5px; font-weight: 700; word-break: keep-all; }
+    .plane__sw span { display: block; margin-top: 3px; font-size: 12px; font-weight: 400; color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="sdn">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SDN</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">구조</span>
+      </div>
+      <h1 class="title">SDN</h1>
+      <p class="reading">소프트웨어 정의 네트워킹 · Software-Defined Networking · ソフトウェア定義ネットワーク</p>
+      <p class="define">SDN은 <mark>장비마다 들어 있던 "길을 정하는 두뇌"를 떼어내, 소프트웨어가 한곳에서 전체를 지휘하게 만든 방식</mark>이에요. 장비는 <strong>시키는 대로 보내기만</strong> 해요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 네트워크 › 구조</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>교차로마다 경찰이 서서 수신호를 한다고 해 볼게요. 각자 열심히 해요. 그런데 길 하나를 막아야 하면 <strong>교차로를 전부 돌면서</strong> 한 명씩 말해 줘야 해요. 빠뜨린 곳이 생기고, 전체가 지금 어떤 상태인지는 아무도 몰라요.</p>
+      <p>관제실을 만들면 달라져요. 모든 신호등을 <strong>한 화면에서</strong> 보고 한 번에 바꿔요. 교차로에 있는 장치는 지시받은 대로 불만 켜면 돼요.</p>
+      <p>SDN이 그 관제실이에요. 전에는 <a href="router.html">라우터</a>나 스위치가 저마다 설정을 품고 길을 정했어요. SDN은 그 판단을 <strong>컨트롤러 한 곳</strong>으로 올리고, 장비에는 <strong>보내는 일만</strong> 남겨요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">떼어낸 것</p>
+          <p class="fact__value">길을 정하는 판단</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">남긴 것</p>
+          <p class="fact__value">패킷을 보내는 일</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">좋은 점</p>
+          <p class="fact__value">한 화면에서 한 번에</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">위가 판단하는 쪽(제어부), 아래가 실제로 보내는 쪽(전달부)이에요.</p>
+      <div class="plane" role="img" aria-label="제어부와 전달부가 나뉜 구조">
+        <div class="plane__ctl">
+          <p>컨트롤러 — 제어부 (control plane)</p>
+          <p>네트워크 전체를 보면서 "어느 길로 보낼지"를 정해 아래로 내려보내요.</p>
+        </div>
+        <p class="plane__link">↓ 규칙을 내려보냄 · ↑ 상태를 올려보냄</p>
+        <div class="plane__row">
+          <div class="plane__sw">스위치<span>시킨 대로 보냄</span></div>
+          <div class="plane__sw">스위치<span>시킨 대로 보냄</span></div>
+          <div class="plane__sw">스위치<span>시킨 대로 보냄</span></div>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="무엇이 달라지나">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>설정이 한 곳에</p>
+          <p class="jobs__note">장비 수십 대에 하나씩 접속해 고치던 일을 <strong>한 번에</strong> 해요. 빠뜨리거나 장비마다 설정이 어긋나는 일이 줄어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>상황에 따라 길이 바뀜</p>
+          <p class="jobs__note">어디가 막히면 컨트롤러가 전체를 보고 길을 다시 그려요. 장비 하나가 자기 주변만 보고 정하는 것과는 달라요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>장비를 덜 가려요</p>
+          <p class="jobs__note">규칙을 주고받는 약속만 맞으면 돼요. <strong>오픈플로(OpenFlow)</strong>가 그 약속의 대표예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>컨트롤러가 급소</p>
+          <p class="jobs__note">한곳에 모았다는 건 <strong>그곳이 멈추면 전체가 흔들린다</strong>는 뜻이에요. 그래서 컨트롤러는 <a href="hot-standby.html">핫 스탠바이</a>처럼 이중으로 두는 게 보통이에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>나눈 두 쪽을 <strong>제어부</strong>(control plane)와 <strong>전달부</strong>(data plane)라고 불러요. 전에는 장비 한 대 안에 둘이 같이 있었어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>이 구조가 퍼진 건 <strong>클라우드와 가상화</strong> 때문이에요. 서버가 수시로 생겼다 없어지는데, 그때마다 사람이 장비를 손볼 수는 없거든요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>네트워크 설정을 <strong>프로그램으로 다룰 수 있게</strong> 되는 것도 큰 변화예요. 서버를 만들면서 그 서버의 통신 규칙까지 코드로 함께 만들 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 장비를 하나씩 손보던 때</p>
+        <p>부서 하나를 다른 층으로 옮기면서 통신 규칙을 바꿔야 한다고 해 볼게요. 예전에는 스위치와 <a href="router.html">라우터</a>에 차례로 접속해 설정을 고쳤어요. 스무 대쯤 되면 <strong>한두 대는 빠뜨려요.</strong> 그러면 "어떤 자리에서만 안 된다"는 희한한 장애가 생기고, 원인을 찾느라 며칠이 가요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 한곳에 모은 대가</p>
+        <p>편해진 만큼 위험도 한곳에 모였어요. 컨트롤러가 멈추면 새 규칙을 못 내려보내고, 컨트롤러가 뚫리면 <strong>네트워크 전체의 길을 공격자가 정하게</strong> 돼요. 그래서 컨트롤러는 이중화하고, 접근 권한을 아주 좁게 걸어요.</p>
+      </div>
+      <p class="callout">이름이 "소프트웨어 정의"인 건 <strong>하드웨어가 아니라 소프트웨어가 동작을 정한다</strong>는 뜻이에요. 같은 생각을 저장 장치에 적용한 것도, 데이터센터 전체에 적용한 것도 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">장비마다 손대던 걸, 한 화면에서 지휘해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 네트워크 › 구조</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

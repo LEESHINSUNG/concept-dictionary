@@ -873,6 +873,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'sdn',
+    title: 'SDN',
+    sub: '소프트웨어 정의 네트워킹 · Software-Defined Networking · ソフトウェア定義ネットワーク · 오픈플로 · OpenFlow',
+    summary: '길을 정하는 판단을 장비에서 떼어내 소프트웨어가 한곳에서 지휘하는 방식',
+    category: '네트워크',
+    date: '2026-11-05'
+  },
+  {
     slug: 'segment',
     title: '세그먼트',
     sub: 'segment · 네트워크 세그먼트 · TCP 세그먼트',
