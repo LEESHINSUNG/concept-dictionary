@@ -265,6 +265,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'data-warehouse',
+    title: '데이터 웨어하우스',
+    sub: 'DWH · data warehouse · データウェアハウス · ETL',
+    summary: '흩어진 업무 데이터를 한곳에 모아 분석용으로 쌓아 두는 창고',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>데이터 웨어하우스 — 기억해봐요</title>
+  <meta name="description" content="데이터 웨어하우스는 여기저기 업무 시스템의 데이터를 한곳에 모아, 분석하기 좋은 모양으로 지우지 않고 쌓아 두는 창고예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="data-warehouse">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>데이터 웨어하우스</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">데이터 웨어하우스</h1>
+      <p class="reading">DWH · data warehouse · データウェアハウス</p>
+      <p class="define">데이터 웨어하우스는 <mark>흩어진 업무 데이터를 한곳에 모아, 분석하기 좋은 모양으로 쌓아 두는 창고</mark>예요. 한번 넣은 것은 <strong>고치지도 지우지도 않아요.</strong></p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사에 판매 시스템, 재고 시스템, 회원 시스템이 따로 있다고 해 볼게요. 각자 잘 돌아가요. 그런데 "작년 가을에 이 상품을 산 회원이 올해도 샀나?"를 물으면 답이 안 나와요. <strong>셋을 같이 봐야</strong> 하는데, 날짜 모양도 다르고 회원을 부르는 번호도 다르거든요.</p>
+      <p>그래서 따로 창고를 하나 만들어요. 세 시스템에서 데이터를 퍼 와서 <strong>양식을 맞춰 넣고</strong>, 넣은 것은 그대로 쌓아 둬요. 업무 시스템은 "지금 처리하는 곳"이고, 웨어하우스는 <strong>"모아 놓고 돌아보는 곳"</strong>이에요. 역할이 아예 달라요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">모으는 것</p>
+          <p class="fact__value">여러 업무 시스템의 데이터</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">넣기 전에</p>
+          <p class="fact__value">양식을 맞춰요 (ETL)</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">넣은 뒤엔</p>
+          <p class="fact__value">고치지도 지우지도 않아요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">퍼 와서(E), 양식을 맞추고(T), 넣는(L) 이 세 걸음을 줄여서 ETL이라고 불러요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">업무 시스템들</p>
+          <p class="node__note">판매·재고·회원 시스템이 각자 다른 모양으로 가지고 있어요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">ETL로 맞춘다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">양식 맞추기</p>
+          <p class="node__note">날짜 모양·회원 번호·단위를 하나로 통일해요</p>
+          <p><span class="chip-mono">업무는 건드리지 않아요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">쌓는다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">웨어하우스</p>
+          <p class="node__note">시간 순서대로 지우지 않고 쌓여요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="웨어하우스의 네 가지 성격">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>주제별로 모아요</p>
+          <p class="jobs__note">시스템 단위가 아니라 <strong>"매출" "고객"처럼 보고 싶은 주제</strong>로 묶어 둬요. 어느 시스템에서 왔는지는 중요하지 않아요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>양식을 맞춰 둬요</p>
+          <p class="jobs__note">같은 고객이 시스템마다 다른 번호였다면 하나로 합쳐요. 이게 안 되면 합쳐 놓고도 못 세요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>시간이 남아요</p>
+          <p class="jobs__note">지금 값만이 아니라 <strong>언제 그랬는지</strong>가 함께 남아요. 그래서 작년과 비교할 수 있어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>지우지 않아요</p>
+          <p class="jobs__note">업무 시스템은 주소가 바뀌면 덮어써요. 웨어하우스는 <strong>바뀌기 전 값도 남겨요.</strong> 과거를 되돌아보는 게 목적이니까요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>업무 시스템에서 무거운 분석을 직접 돌리면 <strong>실제 업무가 느려져요.</strong> 창고를 따로 두는 가장 현실적인 이유예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>퍼 오는 중간에 <a href="preprocessing.html">전처리</a>가 들어가요. 단위가 다르거나 빈 값이 섞인 채로 쌓으면, 창고가 커질수록 숫자를 못 믿게 돼요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>창고 전체는 크고 느려요. 그래서 부서가 자주 보는 것만 따로 떼어 <a href="data-mart.html">데이터 마트</a>를 만들어 쓰는 경우가 많아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">업무 시스템과 무엇이 다른가</p>
+        <p>업무 시스템은 <strong>한 건을 빠르게 처리</strong>하는 데 맞춰져 있어요. 주문 하나 넣고, 재고 하나 빼고요. 웨어하우스는 반대로 <strong>수백만 건을 한꺼번에 훑는</strong> 데 맞춰져 있어요. 같은 데이터라도 담는 모양이 달라야 하는 이유예요. 한 곳에서 둘 다 잘하려고 하면 둘 다 어정쩡해져요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">"지우지 않는다"가 왜 중요한가</p>
+        <p>회원의 주소가 서울에서 부산으로 바뀌었다고 해 볼게요. 업무 시스템은 부산으로 덮어써요. 지금 배송할 곳만 알면 되니까요. 그런데 웨어하우스가 그렇게 덮어쓰면 <strong>작년 매출이 전부 부산 매출로 바뀌어요.</strong> 그래서 "언제부터 언제까지 서울이었다"를 함께 남겨요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">모양을 정해 놓고 넣어요</p>
+        <p>웨어하우스는 <strong>넣기 전에 모양을 정해요.</strong> 어떤 칸에 무엇이 들어갈지 미리 설계해 두는 거예요. 덕분에 꺼내 쓰기 편하지만, 새 종류의 데이터를 넣으려면 설계부터 손봐야 해요. 이 점이 불편해서 나온 게 <a href="data-lake.html">데이터 레이크</a>예요.</p>
+      </div>
+      <p class="callout">창고에 무엇이 들어 있는지 적어 두지 않으면 금방 길을 잃어요. 항목의 뜻을 적어 두는 <a href="data-dictionary.html">데이터 딕셔너리</a>를 함께 갖추는 게 보통이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">업무 시스템은 지금을 처리하고, 웨어하우스는 지난 일을 돌아봐요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
