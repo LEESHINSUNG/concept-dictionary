@@ -849,6 +849,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'risk-analysis-steps',
+    title: '위험 분석 작업 순서',
+    sub: '리스크 분석 순서 · リスク分析の作業順序 · risk analysis steps · 리스크 어세스먼트 · 정보자산 식별',
+    summary: '자산을 꼽고 위협을 찾고 크기를 재어 우선순위를 정하는 차례',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'risk-based-authentication',
     title: '위험 기반 인증',
     sub: 'Risk-Based Authentication (RBA) · リスクベース認証',

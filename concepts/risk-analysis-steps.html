@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>위험 분석 작업 순서 — 기억해봐요</title>
+  <meta name="description" content="위험 분석 작업 순서는 지킬 자산을 먼저 꼽고, 위협을 찾고, 크기를 재고, 기준과 견줘 우선순위를 정하는 차례예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="risk-analysis-steps">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>위험 분석 작업 순서</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">위험 관리</span>
+      </div>
+      <h1 class="title">위험 분석 작업 순서</h1>
+      <p class="reading">리스크 분석 순서 · リスク分析の作業順序 · risk analysis steps</p>
+      <p class="define">위험 분석은 <mark>지킬 것을 먼저 꼽고, 무서운 것을 찾고, 크기를 재고, 기준과 견주는</mark> 차례로 해요. <strong>자산을 꼽는 것이 언제나 처음</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 위험 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>집을 지킨다고 해 볼게요. 제일 먼저 할 일은 자물쇠를 사는 게 아니에요. <strong>집에 무엇이 있는지</strong> 적어 보는 거예요. 금고가 있는지, 노트북이 있는지, 아니면 잃어도 그만인 것뿐인지요.</p>
+      <p>그걸 모르면 어디에 돈을 써야 할지 정할 수가 없어요. 현관에 비싼 자물쇠를 달아 놓고 창문은 열어 두는 일이 생기죠.</p>
+      <p>위험 분석도 같아요. <strong>지킬 자산을 꼽는 것</strong>이 언제나 첫 걸음이에요. 그다음에야 "무엇이 이걸 위협하나", "일어나면 얼마나 아픈가", "그래서 무엇부터 할까"로 넘어갈 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">첫 걸음</p>
+          <p class="fact__value">자산 꼽기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">재는 두 가지</p>
+          <p class="fact__value">피해 크기 × 일어날 가능성</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">마지막</p>
+          <p class="fact__value">우선순위를 정하기</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">순서를 묻는 문제가 자주 나와요. <strong>자산 → 위협 → 크기 → 견주기 → 대응</strong>으로 기억하면 돼요.</p>
+      <div class="seq" role="img" aria-label="위험 분석의 다섯 걸음">
+        <div class="seq__row">
+          <span class="seq__dir">1단계</span>
+          <span class="seq__msg">정보자산을 꼽고 분류한다</span>
+          <span class="seq__note">어떤 정보와 시스템이 있는지 빠짐없이 적어요. 무엇을 지킬지 모르면 <strong>위협을 셀 수도 없어요.</strong> 중요도에 따라 등급을 나눠 두면 뒤가 편해요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">2단계</span>
+          <span class="seq__msg">위험을 찾아낸다</span>
+          <span class="seq__note">자산마다 <strong>무엇이 위협이고 어디가 약한지</strong>를 꼽아요. 공격만이 아니라 고장, 실수, 재해도 포함해요. 빠뜨린 것은 뒤에서 절대 다뤄지지 않아요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">3단계</span>
+          <span class="seq__msg">크기를 잰다</span>
+          <span class="seq__note"><strong>일어나면 얼마나 아픈지</strong>와 <strong>얼마나 자주 일어날지</strong>를 매겨요. 금액으로 재기도 하고, 상·중·하로 재기도 해요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">4단계</span>
+          <span class="seq__msg">기준과 견준다</span>
+          <span class="seq__note">미리 정해 둔 <strong>받아들일 수 있는 선</strong>과 비교해요. 선을 넘는 것만 손대고, 넘지 않는 것은 그대로 두기로 정해요. 여기서 <strong>우선순위</strong>가 나와요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">5단계</span>
+          <span class="seq__msg">대응을 고른다</span>
+          <span class="seq__note">줄일지, 피할지, 넘길지, <a href="risk-acceptance.html">받아들일지</a>를 정해요. 실제로 거는 대책이 <a href="safeguard.html">세이프가드</a>예요.</span>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="헷갈리기 쉬운 말 정리">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>위험 분석 vs 위험 평가</p>
+          <p class="jobs__note">좁게 보면 <strong>분석</strong>은 3단계(크기 재기), <strong>평가</strong>는 4단계(기준과 견주기)예요. 넓게는 2~4단계를 묶어 <strong>위험 평가(리스크 어세스먼트)</strong>라고 불러요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>위협 vs 취약점</p>
+          <p class="jobs__note"><strong>위협</strong>은 바깥에서 오는 나쁜 일(해킹, 화재)이고, <strong>취약점</strong>은 안쪽의 약한 곳(낡은 소프트웨어, 허술한 비밀번호)이에요. 둘이 만나야 위험이 돼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>정량과 정성</p>
+          <p class="jobs__note">금액으로 재면 비교가 쉽지만 숫자를 구하기 어려워요. 상·중·하로 재면 빠르지만 사람마다 다르게 매겨요. <strong>섞어 쓰는 경우가 많아요.</strong></p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>한 번으로 안 끝나요</p>
+          <p class="jobs__note">시스템도 위협도 계속 바뀌어요. <a href="risk-management-process.html">위험관리 프로세스</a>의 한 바퀴로 들어가 <strong>주기적으로 다시 돌려요.</strong></p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>순서를 외울 때 <strong>"지킬 것 → 무서운 것 → 얼마나 → 그래서 무엇부터"</strong>로 풀어 두면 헷갈리지 않아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>가장 자주 틀리는 건 <strong>자산 꼽기를 건너뛰는 것</strong>이에요. 바로 위협부터 세기 시작하면, 정작 중요한 자산이 목록에 없는 채로 끝나요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>여기서 나온 결과가 <a href="information-security-management-standard.html">정보보안 관리 기준</a>에서 <strong>어떤 항목을 쓸지</strong>를 정하는 근거가 돼요. 분석 없이 고른 대책은 설명할 수가 없어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">왜 자산이 먼저인가</p>
+        <p>회사 전체의 위협을 먼저 나열한다고 해 볼게요. 해킹, 화재, 내부 유출… 끝이 없어요. 그런데 "우리가 지킬 건 고객 개인정보와 설계 도면 둘"이라고 정하고 나면, <strong>볼 곳이 확 줄어요.</strong> 자산을 꼽는 건 범위를 정하는 일이기도 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">크기를 재는 두 축</p>
+        <p><strong>자주 일어나지만 피해가 작은 것</strong>과 <strong>거의 안 일어나지만 한 번에 망하는 것</strong>은 다르게 다뤄야 해요. 앞쪽은 절차로 줄이고, 뒤쪽은 보험을 들거나 대비 계획을 세워요. 그래서 크기를 잴 때 <strong>두 축을 함께</strong> 봐요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">받아들일 선을 먼저 정해요</p>
+        <p>4단계에서 견주려면 기준이 있어야 하는데, 이 기준은 <strong>분석을 시작하기 전에</strong> 정해 두는 게 좋아요. 결과를 보고 나서 선을 그으면, <strong>손대기 싫은 것은 선 아래로</strong> 밀어 넣게 되거든요.</p>
+      </div>
+      <p class="callout">모든 위험을 없앨 수는 없어요. 목표는 <strong>0으로 만드는 것이 아니라 설명할 수 있는 상태로 만드는 것</strong>이에요. 왜 이건 손댔고 저건 두기로 했는지가 말이 되면 된 거예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">지킬 것을 먼저 꼽고, 그다음에 무서운 것을 세요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 위험 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
