@@ -617,6 +617,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'mirror-port',
+    title: '미러 포트',
+    sub: '포트 미러링 · mirror port · port mirroring · ミラーポート · SPAN',
+    summary: '다른 포트의 통신을 복사해서 내보내 주는 스위치 포트',
+    category: '네트워크',
+    date: '2026-11-05'
+  },
+  {
     slug: 'mtbf',
     title: 'MTBF',
     sub: '평균 고장 간격 · Mean Time Between Failures · 平均故障間隔',

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>미러 포트 — 기억해봐요</title>
+  <meta name="description" content="미러 포트는 스위치가 다른 포트로 흐르는 패킷을 똑같이 복사해서 내보내 주는 포트예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="mirror-port">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>미러 포트</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">미러 포트</h1>
+      <p class="reading">포트 미러링 · mirror port · ミラーポート · port mirroring</p>
+      <p class="define">미러 포트는 <mark>스위치가 다른 포트로 흐르는 패킷을 똑같이 복사해 내보내 주는 포트</mark>예요. <strong>원본은 그대로 가고, 사본 한 장이 감시 쪽으로</strong> 가요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 네트워크 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>통신 내용을 들여다보려면 감시 장비를 꽂아야 해요. 그런데 꽂아 놓고 봐도 <strong>남의 통신은 하나도 안 보여요.</strong> 스위치가 똑똑하기 때문이에요.</p>
+      <p>스위치는 "이 <a href="packet.html">패킷</a>은 3번 포트의 기계 것"이라고 알아서 <strong>3번 포트로만</strong> 보내요. 다른 포트에는 안 보내죠. 통신이 빠르고 안전해진 대신, 감시 장비 자리에는 아무것도 안 지나가게 된 거예요.</p>
+      <p>그래서 스위치에 <strong>일부러 복사본을 뱉어 주는 포트</strong>를 하나 지정해요. 그게 미러 포트예요. 복사기에서 원본은 받을 사람에게 가고, 사본 한 장이 감시실로 가는 모양이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">누가 만드나</p>
+          <p class="fact__value">스위치 설정으로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">나오는 것</p>
+          <p class="fact__value">다른 포트 통신의 사본</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">왜 필요한가</p>
+          <p class="fact__value">스위치는 남에게 안 보여줘서</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">허브에서 스위치로 바뀌면서 감시가 어려워졌고, 그래서 미러 포트가 생겼어요.</p>
+      <div class="trio" role="list" aria-label="왜 미러 포트가 필요한가">
+        <div class="trio__item trio__item--off">
+          <p class="trio__name">허브 (옛날)</p>
+          <p class="trio__key">모두에게 뿌려요</p>
+          <p class="trio__note">들어온 것을 <strong>모든 포트로</strong> 내보냈어요. 꽂기만 하면 다 보였죠. 느리고 안전하지 않았어요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">스위치</p>
+          <p class="trio__key">받을 사람에게만</p>
+          <p class="trio__note">어느 포트의 기계 것인지 알고 <strong>거기로만</strong> 보내요. 빨라졌지만 감시 장비에는 아무것도 안 지나가요.</p>
+        </div>
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">스위치 + 미러 포트</p>
+          <p class="trio__key">사본을 한 장 더</p>
+          <p class="trio__note">정해 둔 포트의 통신을 <strong>복사해서</strong> 미러 포트로도 보내요. 원래 통신은 그대로 가요.</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="쓸 때 알아 둘 것">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>원본에는 영향이 거의 없어요</p>
+          <p class="jobs__note">복사해서 내보내는 것이라, 통신하던 쪽은 감시당하는 줄 몰라요. <strong>끼어드는 게 아니라 엿보는</strong> 구조예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>양이 넘치면 샐 수 있어요</p>
+          <p class="jobs__note">여러 포트를 한 미러 포트로 몰면, 복사본의 양이 미러 포트 용량을 넘겨요. 그러면 <strong>조용히 버려져요.</strong> 다 본 줄 알았는데 빠진 게 있는 거죠.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>무엇을 뜰지 고를 수 있어요</p>
+          <p class="jobs__note">특정 포트만, 들어오는 것만, 나가는 것만 같은 식으로 범위를 정해요. 다 뜨면 감당이 안 돼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>그 자체가 위험이에요</p>
+          <p class="jobs__note">미러 포트에 접근할 수 있으면 <strong>남의 통신을 전부 볼 수 있어요.</strong> 설정 권한과 포트 위치를 엄격히 관리해야 해요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>여기에 <a href="lan-analyzer.html">LAN 애널라이저</a>를 꽂으면 통신 내용을 펼쳐 볼 수 있어요. <a href="nids.html">NIDS</a>처럼 네트워크를 지켜보는 장비도 흔히 미러 포트에 붙여요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>통신 흐름에 끼어들지 않으니 <strong>감시 장비가 멈춰도 통신은 그대로</strong> 돌아가요. 통신 길 가운데에 장비를 넣는 방식과 가장 다른 점이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>다만 끼어들지 않으니 <strong>막을 수는 없어요.</strong> 보고 알리는 것까지가 끝이에요. 막으려면 <a href="ips.html">IPS</a>처럼 길 가운데에 서는 장비가 필요해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 느린 원인을 찾을 때</p>
+        <p>"오후만 되면 느려진다"는 신고가 들어왔어요. 눈으로는 알 수 없죠. 해당 구간의 통신을 미러 포트로 떠서 들여다보면, <strong>어떤 기계가 무엇을 그렇게 많이 주고받는지</strong>가 나와요. 짐작으로 장비를 바꾸는 대신 실제로 흐르는 것을 보는 거예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 사고가 난 뒤에</p>
+        <p>침입이 의심될 때 미러 포트로 뜬 기록이 있으면 <strong>그때 실제로 무엇이 오갔는지</strong>를 되짚을 수 있어요. 다만 통신 양이 많아서 전부 오래 보관하기는 어려워요. 그래서 중요한 구간만 뜨고, 요약은 <a href="siem.html">SIEM</a> 쪽에 남기는 식으로 나눠요.</p>
+      </div>
+      <p class="callout">장비 제조사마다 부르는 이름이 달라요. <strong>포트 미러링</strong>, <strong>모니터 포트</strong>, <strong>SPAN</strong> 같은 말이 같은 기능을 가리켜요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">원본은 그대로 가고, 사본 한 장만 감시실로 가요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 네트워크 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
