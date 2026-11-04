@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>데이터 마이닝 — 기억해봐요</title>
+  <meta name="description" content="데이터 마이닝은 쌓인 데이터를 뒤져서 사람이 미리 묻지 않은 규칙과 패턴을 찾아내는 일이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="data-mining">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>데이터 마이닝</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">데이터 마이닝</h1>
+      <p class="reading">데이터 채굴 · data mining · データマイニング</p>
+      <p class="define">데이터 마이닝은 <mark>쌓인 데이터를 뒤져서 사람이 몰랐던 규칙을 찾아내는 일</mark>이에요. 마이닝은 <strong>광산에서 캐낸다</strong>는 뜻이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>광산에서 금을 캔다고 해 볼게요. 흙을 퍼내는 게 목적이 아니에요. 흙은 이미 거기 쌓여 있고, 그 안에서 <strong>쓸 만한 것만 골라내는</strong> 게 일이죠. 데이터 마이닝의 이름이 여기서 왔어요.</p>
+      <p>그런데 보통의 검색이나 집계와는 결이 달라요. "지난달 라떼가 몇 잔 팔렸지?"는 <strong>물음을 이미 알고</strong> 숫자를 꺼내는 거예요. 데이터 마이닝은 반대예요. <strong>물음 자체를 데이터에서 찾아요.</strong> "라떼를 산 사람들이 이상하게 샌드위치도 같이 사네?" 같은, 아무도 묻지 않았던 것이 튀어나오는 쪽이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">찾는 것</p>
+          <p class="fact__value">사람이 묻지 않은 규칙</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">재료</p>
+          <p class="fact__value">이미 쌓여 있는 기록</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">조심할 것</p>
+          <p class="fact__value">우연도 규칙처럼 보임</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">쌓인 기록을 뒤져서 규칙을 꺼내고, 그 규칙이 진짜인지 다시 확인하는 흐름이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">쌓인 기록</p>
+          <p class="node__note">영수증·방문 기록처럼 그냥 남은 것들이에요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">뒤져 본다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">규칙 찾기</p>
+          <p class="node__note">함께 일어나는 것, 비슷한 것끼리 묶기를 기계가 훑어요</p>
+          <p><span class="chip-mono">물음을 모르고 시작해요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">진짜인지 본다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">쓸 수 있는 발견</p>
+          <p class="node__note">다른 기간·다른 지점에서도 맞아야 쓸 수 있어요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="자주 쓰는 네 가지 방법">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>함께 사는 것 찾기</p>
+          <p class="jobs__note">"A를 산 사람이 B도 산다" 같은 <strong>연관 규칙</strong>이에요. 매대를 어떻게 붙여 놓을지, 무엇을 추천할지에 써요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>묶기</p>
+          <p class="jobs__note">비슷한 손님끼리 저절로 묶이게 둬요. 사람이 "20대·30대"로 나누는 게 아니라 <strong>행동이 비슷한 덩어리</strong>가 나와요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>가르기</p>
+          <p class="jobs__note">이미 답을 아는 기록으로 배워서, 새로 온 것이 어느 쪽인지 맞혀요. 정상 결제인지 이상 결제인지 가르는 식이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>앞일 맞히기</p>
+          <p class="jobs__note">지금까지의 흐름으로 다음 달 수요나 이탈할 손님을 미리 짚어요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>마이닝에 들어가기 전이 더 길어요. 모양이 제각각인 기록을 맞추고 빈 값을 손보는 <a href="preprocessing.html">전처리</a>가 끝나야 제대로 캐낼 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>나온 규칙을 다 믿으면 안 돼요.</strong> 데이터가 크면 우연히 맞아떨어지는 조합도 반드시 나와요. 다른 기간이나 다른 지점에서도 같은 규칙이 나오는지 확인해야 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그리고 <strong>함께 움직인다고 해서 하나가 다른 하나를 만든 건 아니에요.</strong> 이 함정은 <a href="correlation-analysis.html">상관분석</a> 쪽에서 더 자세히 다뤄요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 장바구니를 들여다보면</p>
+        <p>편의점 영수증을 몇 달 치 모아 "같은 영수증에 함께 찍힌 물건"을 세어 보면, 담당자가 생각 못 한 짝이 나와요. 그러면 <strong>두 물건을 가까이 놓거나</strong> 묶음 할인을 걸어 볼 수 있어요. 여기서 중요한 건 사람이 "이 둘이 같이 팔릴까?"라고 물어본 적이 없다는 점이에요. 기록이 먼저 말해 준 거예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 규칙이 나와도 쓸모가 없을 때</p>
+        <p>"우유를 산 사람의 대부분이 봉투를 샀다"는 규칙은 맞긴 맞아요. 그런데 <strong>누구나 아는 이야기</strong>라 아무 결정도 못 바꿔요. 마이닝 결과는 맞는지뿐 아니라 <strong>알고 나서 할 수 있는 게 있는지</strong>로도 걸러야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 창고가 먼저 필요해요</p>
+        <p>마이닝을 하려면 여기저기 흩어진 기록이 한곳에 모여 있어야 해요. 그 자리를 만들어 주는 게 <a href="data-warehouse.html">데이터 웨어하우스</a>나 <a href="data-lake.html">데이터 레이크</a>예요. 창고 없이 매번 업무 시스템을 직접 뒤지면, 분석하는 동안 <strong>실제 업무가 느려져요.</strong></p>
+      </div>
+      <p class="callout">기계가 규칙을 꺼내 주더라도, <strong>그게 말이 되는지 판단하는 건 사람</strong>이에요. 왜 그런 규칙이 나왔는지 설명할 수 없으면 현장에서 쓰기 어려워요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">물음을 알고 꺼내는 게 아니라, 물음을 데이터에서 찾는 일이에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

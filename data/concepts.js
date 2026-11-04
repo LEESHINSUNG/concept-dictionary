@@ -257,6 +257,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'data-mining',
+    title: '데이터 마이닝',
+    sub: '데이터 채굴 · data mining · データマイニング · 연관 규칙 · 장바구니 분석',
+    summary: '쌓인 데이터를 뒤져 사람이 몰랐던 규칙과 패턴을 찾아내는 일',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'ddos',
     title: 'DDoS',
     sub: '디도스 · Distributed Denial of Service',
