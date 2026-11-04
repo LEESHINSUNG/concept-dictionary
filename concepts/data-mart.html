@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>데이터 마트 — 기억해봐요</title>
+  <meta name="description" content="데이터 마트는 큰 데이터 웨어하우스에서 한 부서나 한 목적에 필요한 것만 떼어 만든 작은 창고예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="data-mart">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>데이터 마트</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">데이터 마트</h1>
+      <p class="reading">data mart · データマート</p>
+      <p class="define">데이터 마트는 <mark>큰 창고에서 한 부서·한 목적에 필요한 것만 떼어 만든 작은 창고</mark>예요. 큰 창고가 <a href="data-warehouse.html">데이터 웨어하우스</a>고, 그 앞의 <strong>동네 가게</strong>가 마트예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>큰 물류 창고에 회사의 모든 물건이 있어요. 그런데 매장 직원이 양말 하나 꺼내려고 매번 그 창고를 뒤질 수는 없죠. 그래서 <strong>매장 가까이에 작은 가게</strong>를 두고, 자주 나가는 것만 갖다 놔요.</p>
+      <p>데이터도 같아요. 웨어하우스에는 회사 전부가 들어 있어서 크고 느려요. 영업팀은 매번 그걸 다 뒤질 필요가 없어요. <strong>영업팀이 보는 것만 미리 골라 담아 둔 작은 창고</strong>를 만들어 주면, 훨씬 빨리 보고 덜 헷갈려요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">어디서 오나</p>
+          <p class="fact__value">웨어하우스에서 떼어 와요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">누구 것</p>
+          <p class="fact__value">한 부서 · 한 목적</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">좋은 점</p>
+          <p class="fact__value">빠르고, 볼 것만 보여요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">큰 창고 하나에 작은 가게 여럿이 매달리는 모양이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">데이터 웨어하우스</p>
+          <p class="node__note">회사 전체가 들어 있어 크고 무거워요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">필요한 것만 추려</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">부서별 마트</p>
+          <p class="node__note">영업용·재무용·재고용으로 따로 만들어요</p>
+          <p><span class="chip-mono">같은 숫자를 나눠 써요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">바로 꺼내 본다</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">보고서와 대시보드</p>
+          <p class="node__note">열면 바로 떠요. 매번 전체를 뒤지지 않아요</p>
+        </div>
+      </div>
+      <div class="jobs" role="list" aria-label="왜 따로 만드나">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>빠르니까</p>
+          <p class="jobs__note">볼 것만 들어 있으니 가볍고, 미리 합계를 내 둘 수도 있어요. 매번 전체를 훑는 것과는 속도가 달라요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>헷갈리지 않으니까</p>
+          <p class="jobs__note">영업팀에게 회사 전체 표를 주면 어느 칸을 봐야 할지부터 헤매요. <strong>볼 것만 주는 게 친절해요.</strong></p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>권한을 나누기 쉬우니까</p>
+          <p class="jobs__note">인사 데이터는 인사팀 마트에만 두면 돼요. 큰 창고를 통째로 열어 주지 않아도 돼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>부서마다 셈이 다르니까</p>
+          <p class="jobs__note">같은 "매출"도 부서마다 기준이 달라요. 마트에서 각자의 기준으로 미리 계산해 두면 매번 다투지 않아요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span>만드는 순서는 두 가지예요. <strong>큰 창고를 먼저 짓고 쪼개는</strong> 방식과, <strong>급한 마트부터 만들고 나중에 합치는</strong> 방식이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span>쪼개는 쪽은 숫자가 어긋날 일이 적지만 처음에 오래 걸려요. 마트부터 만드는 쪽은 빨리 쓸 수 있지만, <strong>부서마다 다른 숫자</strong>가 나오기 쉬워요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span>그래서 어느 쪽이든 기준이 되는 정의를 한곳에 적어 둬야 해요. <a href="data-dictionary.html">데이터 딕셔너리</a>가 그 역할을 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">같은 "매출"이 다르게 나올 때</p>
+        <p>영업팀 마트는 <strong>계약한 날</strong>을 기준으로 매출을 세고, 재무팀 마트는 <strong>돈이 들어온 날</strong>을 기준으로 세었다고 해 볼게요. 둘 다 틀리지 않았는데 숫자가 달라요. 회의에서 이런 일이 터지면 분석이 아니라 숫자 싸움이 돼요. 마트를 여럿 두는 대신 <strong>정의를 한곳에 못 박아 두는 일</strong>이 꼭 따라와야 하는 이유예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">마트만 있고 창고가 없으면</p>
+        <p>급해서 부서마다 따로 마트를 만들다 보면, 어느새 <strong>같은 데이터를 다섯 번 퍼 오는</strong> 상태가 돼요. 한 곳이 고장 나면 어디까지 영향인지도 모르게 되고요. 그래서 마트가 늘어나면 뒤늦게라도 가운데 창고를 세우는 경우가 많아요.</p>
+      </div>
+      <p class="callout">마트는 <strong>창고의 복사본</strong>이지 원본이 아니에요. 마트에서 값을 직접 고치기 시작하면 원본과 어긋나요. 고칠 일이 있으면 창고 쪽, 더 거슬러 올라가면 업무 시스템 쪽을 고쳐야 해요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">큰 창고는 하나, 꺼내 보는 작은 가게는 부서마다 하나씩.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

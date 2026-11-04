@@ -257,6 +257,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'data-mart',
+    title: '데이터 마트',
+    sub: 'data mart · データマート',
+    summary: '웨어하우스에서 한 부서·한 목적에 필요한 것만 떼어 만든 작은 창고',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'data-mining',
     title: '데이터 마이닝',
     sub: '데이터 채굴 · data mining · データマイニング · 연관 규칙 · 장바구니 분석',
