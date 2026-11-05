@@ -497,6 +497,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'hdd',
+    title: 'HDD',
+    sub: '하드디스크 · 자기 디스크 · Hard Disk Drive · ハードディスク · 탐색 시간 · 회전 대기',
+    summary: '도는 원판에 자기로 기록하는, 움직이는 부품이 있는 저장장치',
+    category: '운영체제',
+    date: '2026-11-05'
+  },
+  {
     slug: 'hids',
     title: 'HIDS',
     sub: '호스트 침입 탐지 시스템 · Host-based IDS · ホスト型IDS',

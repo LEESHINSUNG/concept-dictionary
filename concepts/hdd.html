@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HDD — 기억해봐요</title>
+  <meta name="description" content="HDD는 도는 원판에 자기로 기록하는 저장장치예요. 움직이는 부품이 있어서 띄엄띄엄 읽을 때 느려져요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .disk { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 4px; }
+    .disk__fig { position: relative; flex: 0 0 auto; width: 146px; height: 146px; }
+    .disk__plate { position: absolute; inset: 0; border-radius: 50%; background: var(--surface); border: 2px solid var(--line-strong); }
+    .disk__ring { position: absolute; border-radius: 50%; border: 1px dashed var(--line-strong); }
+    .disk__ring--1 { inset: 16px; }
+    .disk__ring--2 { inset: 33px; }
+    .disk__ring--3 { inset: 50px; }
+    .disk__hub { position: absolute; inset: 64px; border-radius: 50%; background: var(--line-strong); }
+    .disk__arm { position: absolute; top: 50%; right: 4px; width: 78px; height: 7px; margin-top: -3.5px; border-radius: 4px; background: var(--accent); transform: rotate(-22deg); transform-origin: 100% 50%; }
+    .disk__head { position: absolute; top: 50%; left: 0; width: 11px; height: 11px; margin-top: -5.5px; border-radius: 50%; background: var(--accent); }
+    .disk__legend { flex: 1 1 190px; min-width: 0; margin: 0; }
+    .disk__li { display: block; font-size: 14px; line-height: 1.65; color: var(--muted); word-break: keep-all; }
+    .disk__li + .disk__li { margin-top: 7px; }
+    .disk__li b { display: inline-block; min-width: 17px; font-family: var(--mono); font-weight: 700; color: var(--accent); }
+    .disk__li strong { color: var(--text); }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="hdd">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>HDD</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">하드웨어</span>
+      </div>
+      <h1 class="title">HDD</h1>
+      <p class="reading">하드디스크 · 자기 디스크 · Hard Disk Drive · ハードディスク</p>
+      <p class="define">HDD는 <mark>도는 원판에 자기로 기록하는 저장장치</mark>예요. 바늘처럼 움직이는 부품이 있어서 <strong>순서대로 읽을 때는 빠르고 띄엄띄엄 읽을 때는 느려요</strong>. 용량당 값이 싼 게 강점이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 운영체제 › 하드웨어</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>LP판과 바늘을 떠올려 보세요. 판이 빙빙 돌고, 바늘이 원하는 곡의 자리로 옮겨가서 읽어요. 처음부터 끝까지 쭉 듣는 건 아주 매끄러워요. 바늘이 가만히 있어도 음악이 계속 흐르니까요.</p>
+      <p>그런데 1번 곡 조금, 7번 곡 조금, 다시 3번 곡 조금씩 듣고 싶다면 어떨까요. 바늘이 계속 옮겨 다녀야 해요. <strong>옮겨가는 시간</strong>이 걸리고, 도착해서도 <strong>그 자리가 바늘 밑으로 돌아올 때까지 기다려야</strong> 해요. 음악은 몇 초밖에 안 들었는데 시간은 훌쩍 가죠.</p>
+      <p>HDD가 정확히 이 구조예요. 그래서 HDD의 모든 성격이 여기서 나와요. 큰 파일 하나는 빠르고, <strong>작은 파일 수천 개는 느려요.</strong> 움직이는 부품이 있으니 <strong>떨어뜨리면 다치고</strong>, 소리가 나고, 결국 닳아요. 대신 넓은 판에 촘촘히 기록하니 <strong>같은 돈으로 훨씬 큰 용량</strong>을 얻어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">기록 방식</p>
+          <p class="fact__value">도는 원판에 자기로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">느려지는 까닭</p>
+          <p class="fact__value">바늘이 옮겨가고 기다려요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">강점</p>
+          <p class="fact__value">용량당 값이 싸요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">원판 하나와 바늘(헤드) 하나를 위에서 본 그림이에요. 자료 한 조각을 읽을 때 세 가지 시간이 차례로 들어요.</p>
+      <div class="disk" role="img" aria-label="HDD의 원판과 헤드 구조">
+        <div class="disk__fig">
+          <span class="disk__plate"></span>
+          <span class="disk__ring disk__ring--1"></span>
+          <span class="disk__ring disk__ring--2"></span>
+          <span class="disk__ring disk__ring--3"></span>
+          <span class="disk__hub"></span>
+          <span class="disk__arm"><span class="disk__head"></span></span>
+        </div>
+        <p class="disk__legend">
+          <span class="disk__li"><b>1</b>바늘이 <strong>그 줄로 옮겨가요.</strong> 안쪽이냐 바깥쪽이냐에 따라 거리가 달라요. 이게 <strong>탐색 시간</strong>이에요.</span>
+          <span class="disk__li"><b>2</b>도착해도 바로 못 읽어요. <strong>찾는 자리가 바늘 밑으로 돌아올 때까지 기다려요.</strong> 이게 <strong>회전 대기 시간</strong>이고, 판이 빨리 돌면 짧아져요.</span>
+          <span class="disk__li"><b>3</b>그제서야 읽어서 보내요. 이게 <strong>전송 시간</strong>이에요. 셋을 합친 게 자료 하나에 닿는 데 걸리는 시간이에요.</span>
+          <span class="disk__li"><b>4</b>그래서 <strong>①과 ②를 줄이는 게 전부</strong>예요. 붙어 있는 자료를 이어서 읽으면 바늘이 안 움직이니 ①②가 거의 0이 돼요.</span>
+        </p>
+      </div>
+      <div class="dict" role="img" aria-label="접근 시간 = ① + ② + ③ 항목 정의">
+        <p class="dict__head">접근 시간 = ① + ② + ③</p>
+        <div class="dict__row">
+          <span class="dict__k">탐색 시간</span>
+          <span class="dict__v">바늘이 원하는 줄로 옮겨가는 시간 (seek time)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">회전 대기</span>
+          <span class="dict__v">그 자리가 돌아오기를 기다리는 시간 (latency)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">전송 시간</span>
+          <span class="dict__v">실제로 읽어 보내는 시간 (transfer time)</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>붙여 두면 빨라져요.</strong> 한 파일이 판 위 여러 자리에 흩어져 있으면 읽을 때마다 바늘이 옮겨 다녀요. 이 흩어진 상태를 <strong>조각화</strong>라고 하고, 모아 붙이는 작업이 조각 모음이에요. HDD에서는 이게 실제로 효과가 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>움직이는 부품이 약점이에요.</strong> 돌고 있는 중에 충격을 받으면 바늘이 판에 닿아 긁혀요. 긁힌 자리의 자료는 되살리기 어려워요. 그래서 돌아가는 중에는 옮기지 않고, 들고 다니는 기기에는 <a href="ssd.html">SSD</a>를 쓰는 쪽이 맞아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>하나로는 못 믿어요.</strong> 기계는 언젠가 닳아요. 그래서 중요한 자료는 여러 장에 나눠 담거나 겹쳐 담아요. 그 방법을 모아 둔 게 <a href="disk-redundancy.html">디스크 이중화 기술</a>이고, 그중 많이 쓰이는 게 <a href="raid5.html">RAID 5</a>예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 큰 파일은 빠른데 작은 파일은 느려요</p>
+        <p>10GB 영상 파일 하나를 복사하면 꽤 빠르게 끝나요. 그런데 <strong>1KB짜리 파일 10만 개</strong>가 든 폴더를 복사하면 전체 용량이 훨씬 적은데도 몇 배로 오래 걸려요. 파일마다 바늘이 다른 자리로 옮겨가고 기다려야 하니, 실제 읽는 시간보다 <strong>옮겨 다니는 시간이 대부분</strong>이 되는 거예요.<br><br>그래서 HDD를 쓰는 환경에서는 작은 파일을 묶어서 하나로 만들어 옮기는 쪽이 빨라요. 수많은 작은 파일을 자주 읽어야 하는 일(데이터베이스, 프로그램 설치 폴더)이라면 애초에 HDD가 맞지 않아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 떨어뜨렸어요</p>
+        <p>외장 HDD를 쓰는 중에 책상에서 떨어뜨렸다면, 가장 나쁜 건 <strong>다시 꽂아서 켜 보는 것</strong>이에요. 바늘이 판에 닿은 상태로 또 돌리면 긁힌 자리가 넓어져요. <strong>전원을 넣지 말고</strong> 그대로 두는 게 되살릴 가능성을 가장 크게 남겨요. 중요한 자료라면 전문 업체에 맡기는 쪽이고, 그렇지 않으면 포기하고 <a href="rpo.html">백업</a>에서 되돌리는 게 빠르고 싸요.<br><br>소리로도 짐작할 수 있어요. 규칙적으로 딸깍대는 소리가 반복되면 바늘이 자리를 못 찾고 되돌아가는 중일 때가 많아요. 그 상태에서 계속 켜 두면 나빠지기만 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 그런데 아직도 HDD를 쓰는 곳</p>
+        <p>SSD가 훨씬 빠른데 HDD가 안 사라진 건 <strong>값과 용량</strong> 때문이에요. 같은 돈으로 훨씬 큰 용량을 얻으니, <strong>한 번 쓰고 오래 두는 자료</strong>에는 지금도 HDD가 맞아요. 백업 보관, 영상 원본, 감시 카메라 기록처럼요. 이런 일은 띄엄띄엄 읽는 게 아니라 쭉 쓰고 쭉 읽는 쪽이라 HDD의 약점이 거의 드러나지 않아요.<br><br>그래서 많이 쓰는 방식이 <strong>섞어 쓰기</strong>예요. 운영체제와 자주 쓰는 프로그램은 SSD에 두고, 큰 자료는 HDD에 둬요. 빠른 쪽이 필요한 자리에만 비싼 걸 쓰는 거예요.</p>
+      </div>
+      <p class="callout">HDD든 SSD든, 여러 장을 겹쳐 둔 것은 <strong>백업이 아니에요.</strong> 겹쳐 두면 한 장이 죽어도 버티지만, 실수로 지운 파일이나 암호화 공격에 걸린 파일은 모든 장에서 똑같이 지워지고 똑같이 망가져요. 따로 떨어진 곳에 둔 사본만 백업이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">도는 판과 움직이는 바늘이라, 쭉 읽으면 빠르고 띄엄띄엄 읽으면 느려요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 운영체제 › 하드웨어</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
