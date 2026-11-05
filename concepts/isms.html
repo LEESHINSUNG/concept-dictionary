@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ISMS — 기억해봐요</title>
+  <meta name="description" content="ISMS는 보안을 대책 하나로 끝내지 않고, 계획하고 실행하고 점검하고 고치는 순환으로 돌리는 체계예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="isms">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>ISMS</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">관리</span>
+      </div>
+      <h1 class="title">ISMS</h1>
+      <p class="reading">정보보안 관리체계 · Information Security Management System · 情報セキュリティマネジメントシステム</p>
+      <p class="define">ISMS는 <mark>보안을 한 번의 대책이 아니라 계속 돌아가는 체계로 세워 두는 틀</mark>이에요. 방화벽을 사는 일이 아니라, <strong>무엇을 지킬지 정하고 점검하고 고치는 일을 멈추지 않게</strong> 만드는 쪽이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>살을 빼려고 하루 굶었다고 해 볼게요. 그날은 몸무게가 줄어요. 그런데 다음 주에 재 보면 제자리예요. 굶는 건 <strong>한 번의 대책</strong>이라서 그래요.</p>
+      <p>살이 실제로 빠지는 사람은 다르게 해요. <strong>목표를 정하고</strong>(한 달에 2kg), <strong>정한 대로 지내고</strong>, <strong>주마다 재서 확인하고</strong>, 안 빠지면 <strong>방법을 바꿔요</strong>. 그리고 다시 목표를 정해요. 이 네 칸이 계속 돌아가는 게 체계예요.</p>
+      <p>ISMS가 보안에서 바로 이거예요. 백신을 깔거나 방화벽을 사는 건 "하루 굶기"쪽이에요. ISMS는 <strong>무엇이 얼마나 위험한지 재고, 대책을 정하고, 지키는지 점검하고, 안 되는 걸 고치는 일을 계속 돌리는 틀</strong>이에요. 그래서 ISMS를 "세웠다"고 하지 않고 <strong>"돌린다"</strong>고 말해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">핵은</p>
+          <p class="fact__value">PDCA 순환</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">바탕 규격</p>
+          <p class="fact__value">ISO/IEC 27001</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">지키는 것</p>
+          <p class="fact__value">기밀성 · 완전성 · 가용성</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">네 칸이 한 바퀴 돌고, 끝나면 다시 처음으로 가요. 마지막 줄이 "다시 처음으로"인 게 이 그림의 핵이에요.</p>
+      <div class="seq" role="img" aria-label="ISMS의 PDCA 순환">
+        <div class="seq__row">
+          <span class="seq__dir">Plan · 계획</span>
+          <span class="seq__msg">무엇을 어디까지 지킬지 정해요</span>
+          <span class="seq__note">지킬 범위를 고르고, <a href="risk-analysis-steps.html">위험을 분석</a>해 어떤 대책을 쓸지 정해요. 쓴다·안 쓴다를 이유까지 적은 게 <a href="statement-of-applicability.html">적용 선언서</a>예요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">Do · 실행</span>
+          <span class="seq__msg">정한 대로 운영하고 기록을 남겨요</span>
+          <span class="seq__note">대책을 적용하고 교육하고, 실제로 했다는 <a href="audit-trail.html">기록</a>을 남겨요. 기록이 없으면 했는지 안 했는지 아무도 모르게 돼요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">Check · 점검</span>
+          <span class="seq__msg">정한 대로 되고 있는지 확인해요</span>
+          <span class="seq__note">안에서 스스로 보는 내부 감사와 바깥에서 보는 심사가 있어요. 무엇에 비춰 볼지 적어 둔 게 <a href="information-security-management-standard.html">정보보안 관리 기준</a>이에요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">Act · 개선</span>
+          <span class="seq__msg">어긋난 것을 고쳐요</span>
+          <span class="seq__note">점검에서 나온 어긋남을 고치고, 고쳐도 남는 위험은 <a href="risk-acceptance.html">받아들일지</a> 판단해요.</span>
+        </div>
+        <div class="seq__row seq__row--back">
+          <span class="seq__dir">다시 Plan으로</span>
+          <span class="seq__msg">한 바퀴로 끝나지 않아요</span>
+          <span class="seq__note">회사도 바뀌고 공격도 바뀌니 작년의 판단이 올해도 맞지 않아요. 그래서 다시 처음으로 돌아가요.</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>범위를 정하는 일이 먼저예요.</strong> 회사 전체를 한 번에 할 필요는 없어요. 한 서비스나 한 부서만 정해서 돌릴 수도 있어요. 범위를 넓게 잡고 느슨하게 돌리는 것보다, 좁게 잡고 제대로 돌리는 쪽이 나아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>지키려는 건 세 가지예요.</strong> 남이 못 보게(기밀성), 바뀌지 않게(완전성), 필요할 때 쓸 수 있게(가용성)예요. 세 번째를 빼먹기 쉬운데, 너무 꽁꽁 묶어서 정작 일이 안 돌아가면 그것도 보안이 깨진 거예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>ISO/IEC 27001이 "체계를 이렇게 갖춰라"를 적은 규격이에요.</strong> 그 요구를 만족한다고 심사를 받으면 인증이 돼요. 함께 쓰이는 <strong>27002</strong>는 구체적인 대책 모음 쪽이에요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 대책을 샀는데 또 뚫려요</p>
+        <p>보안 장비를 들였는데 사고가 또 났어요. 흔한 이유는 <strong>아무도 그 장비를 들여다보지 않아서</strong>예요. 경고가 쌓여 있는데 볼 사람이 정해져 있지 않거나, 규칙을 한 번 넣고 그대로 둔 상태죠. 장비는 대책 하나지만 <strong>누가 언제 확인하고 어긋나면 어떻게 할지</strong>는 체계 쪽 일이에요. 이게 없으면 돈을 쓴 만큼 안전해지지 않아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 범위를 어디까지 잡나</p>
+        <p>인증을 받을 때 "우리 회사는 ISMS 인증 회사"라고만 적혀 있으면 사실 알 수 있는 게 적어요. <strong>어느 서비스, 어느 사무실, 어느 업무까지</strong> 범위에 들어 있는지가 인증서에 적혀 있어요. 거래처를 고를 때는 인증이 있나 없나보다 <strong>범위가 우리가 맡길 일을 덮고 있나</strong>를 보는 게 실제로 쓸모 있어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 기준 세 개가 헷갈려요</p>
+        <p>이름이 비슷한 게 여러 개라 섞이기 쉬워요. <strong>ISMS</strong>는 돌리는 체계 자체예요. <a href="information-security-management-standard.html">정보보안 관리 기준</a>은 그 체계를 <strong>무엇에 비춰 볼지</strong> 적은 항목표고, <a href="information-security-audit-standard.html">정보보안 감사 기준</a>은 <strong>보는 사람이 어떻게 봐야 하는지</strong>를 적은 규칙이에요. 체계 · 채점표 · 감독관 규칙으로 짝지어 두면 덜 섞여요.</p>
+      </div>
+      <p class="callout">인증을 받는 것 자체가 목표가 되면 이상한 일이 벌어져요. 문서는 완벽한데 아무도 그대로 일하지 않는 상태요. 심사 때 급히 맞춰 놓고 끝나면 되돌아가는 회사도 있어요. ISMS는 <strong>심사를 통과하려고 돌리는 게 아니라 돌리다 보니 통과하는</strong> 쪽이 맞아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">보안은 사 오는 물건이 아니라, 계획 · 실행 · 점검 · 개선을 멈추지 않는 일이에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

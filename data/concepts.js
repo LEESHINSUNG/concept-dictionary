@@ -553,6 +553,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'isms',
+    title: 'ISMS',
+    sub: '정보보안 관리체계 · Information Security Management System · 情報セキュリティマネジメントシステム · ISO/IEC 27001',
+    summary: '보안을 계획·실행·점검·개선의 순환으로 돌리는 체계',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'issue-tree',
     title: '이슈 트리',
     sub: '이슈트리 · How 트리 · 가설 트리 · issue tree · hypothesis tree',
