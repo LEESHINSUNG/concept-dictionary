@@ -1153,6 +1153,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'waf-blacklist-whitelist',
+    title: 'WAF의 블랙리스트·화이트리스트',
+    sub: '거부 목록 · 허용 목록 · blacklist · whitelist · denylist · allowlist · WAFのブラックリスト・ホワイトリスト',
+    summary: '막을 것만 적는 방식과 통과시킬 것만 적는 방식의 차이',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'wan',
     title: 'WAN',
     sub: '완 · Wide Area Network',
