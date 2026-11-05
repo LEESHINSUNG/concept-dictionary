@@ -273,6 +273,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'cvss-v3',
+    title: 'CVSS v3',
+    sub: 'CVSS 버전 3 · CVSS v3.1 · 기본·현재·환경 평가 기준 · 基本評価基準 · 現状評価基準 · 環境評価基準 · 벡터',
+    summary: '취약점 점수를 기본·현재·환경 세 묶음으로 나눠 매기는 CVSS 세 번째 판',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'data-dictionary',
     title: '데이터 딕셔너리',
     sub: '데이터 사전 · data dictionary · データディクショナリ · 시스템 카탈로그',

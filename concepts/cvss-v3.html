@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CVSS v3 — 기억해봐요</title>
+  <meta name="description" content="CVSS v3는 취약점 점수를 기본·현재·환경 세 묶음으로 나눠 매겨요. 각 항목의 뜻과 벡터 표기를 정리했어요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .code pre { white-space: pre; overflow-x: auto; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="cvss-v3">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>CVSS v3</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">취약점</span>
+      </div>
+      <h1 class="title">CVSS v3</h1>
+      <p class="reading">CVSS 버전 3 · CVSS v3.1 · 기본·현재·환경 평가 기준 · 基本評価基準 · 現状評価基準 · 環境評価基準</p>
+      <p class="define"><a href="cvss.html">CVSS</a>의 세 번째 판이에요. 점수를 <mark>기본 · 현재 · 환경 세 묶음</mark>으로 나눠 매기고, 무엇을 어떻게 골랐는지를 <strong>벡터라는 한 줄 글자</strong>로 함께 적어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 취약점</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>건강검진 결과표를 떠올려 보세요. 거기엔 세 종류의 정보가 섞여 있어요. <strong>바뀌지 않는 것</strong>(혈액형, 키), <strong>지금 상태</strong>(이번 달 혈압), <strong>내 사정</strong>(가족력, 하는 일)이요. 같은 수치라도 세 번째를 알아야 "나에게 얼마나 급한가"가 나와요.</p>
+      <p>CVSS v3가 점수를 이렇게 세 묶음으로 쪼개 놨어요.</p>
+      <p><strong>기본</strong>은 취약점 자체의 성질이에요. 누가 매겨도 같고 시간이 가도 안 바뀌어요. <strong>현재</strong>는 지금 사정이에요. 공격 코드가 돌아다니는지, 고칠 패치가 나왔는지요. 시간이 지나면 바뀌어요. <strong>환경</strong>은 우리 사정이에요. 그 시스템이 우리 회사에서 얼마나 중요한지요. 회사마다 달라요.</p>
+      <p>발표되는 점수는 거의 <strong>기본뿐</strong>이에요. 나머지 둘은 우리가 더해야 하는 몫이에요. 그래서 "9.8점이라던데 우리는 급한 게 아니었다"가 틀린 말이 아니에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">묶음 셋</p>
+          <p class="fact__value">기본 · 현재 · 환경</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">기본 항목</p>
+          <p class="fact__value">8개</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">함께 적는 것</p>
+          <p class="fact__value">벡터 한 줄</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">세 묶음이 어떻게 다른지가 먼저예요. 색칠한 쪽이 발표되는 점수고, 나머지 둘은 쓰는 쪽이 더해요.</p>
+      <div class="trio" role="list" aria-label="CVSS v3의 세 평가 기준">
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">기본 평가 기준</p>
+          <p class="trio__key">Base · 안 바뀌어요</p>
+          <p class="trio__note">취약점 자체의 성질만 봐요. 어디에 설치됐든 같은 값이에요. 발표되는 점수가 보통 이거예요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">현재 평가 기준</p>
+          <p class="trio__key">Temporal · 시간에 따라</p>
+          <p class="trio__note">지금 공격 코드가 돌아다니는지, 고칠 패치가 나왔는지, 보고가 믿을 만한지를 더해요. 시간이 가면 값이 바뀌어요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">환경 평가 기준</p>
+          <p class="trio__key">Environmental · 우리 사정</p>
+          <p class="trio__note">그 시스템이 우리에게 얼마나 중요한지, 우리 환경에서 조건이 달라지는지를 더해요. 회사마다 값이 달라요.</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">기본 평가 기준은 여덟 항목이에요. 앞의 넷은 <strong>찌르기가 얼마나 쉬운가</strong>, 뒤의 넷은 <strong>뚫리면 얼마나 아픈가</strong>예요.</p>
+      <div class="dict" role="img" aria-label="기본 평가 기준 8항목 항목 정의">
+        <p class="dict__head">기본 평가 기준 8항목</p>
+        <div class="dict__row">
+          <span class="dict__k">AV · 공격 경로</span>
+          <span class="dict__v">인터넷에서 / 같은 네트워크에서 / 그 기기에서 / 직접 손으로 — 멀리서 될수록 점수가 높아요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">AC · 공격 조건</span>
+          <span class="dict__v">언제든 되나, 아니면 특별한 조건이 맞아떨어져야 하나</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">PR · 필요 권한</span>
+          <span class="dict__v">계정이 필요 없나, 일반 계정이면 되나, 관리자여야 하나</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">UI · 사용자 관여</span>
+          <span class="dict__v">혼자 되나, 아니면 누가 링크를 눌러 줘야 하나</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">S · 영향 범위</span>
+          <span class="dict__v">뚫린 그 자리에서 끝나나, <strong>바깥으로 번지나</strong> — v3에서 새로 들어왔어요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">C · 기밀성</span>
+          <span class="dict__v">남이 보면 안 되는 게 보이게 되나</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">I · 완전성</span>
+          <span class="dict__v">자료가 바뀌거나 심어지게 되나</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">A · 가용성</span>
+          <span class="dict__v">멈추거나 못 쓰게 되나</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">고른 값을 한 줄로 적은 게 벡터예요. 점수만 적으면 왜 그 점수인지 알 수 없으니 늘 함께 적어요.</p>
+      <div class="code">
+        <p class="code__head">벡터 표기</p>
+        <pre><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code></pre>
+      </div>
+      <div class="dict" role="img" aria-label="벡터 읽는 법 항목 정의">
+        <p class="dict__head">벡터 읽는 법</p>
+        <div class="dict__row">
+          <span class="dict__k">CVSS:3.1</span>
+          <span class="dict__v">이 점수는 <strong>3.1판</strong>으로 매겼어요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">AV:N</span>
+          <span class="dict__v">Network — <strong>인터넷에서</strong> 찌를 수 있어요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">AC:L</span>
+          <span class="dict__v">Low — 특별한 조건이 필요 없어요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">PR:N</span>
+          <span class="dict__v">None — <strong>계정이 없어도</strong> 돼요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">UI:N</span>
+          <span class="dict__v">None — 누가 눌러 주지 않아도 돼요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">S:U</span>
+          <span class="dict__v">Unchanged — 뚫린 자리 밖으로는 안 번져요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">C:H I:H A:H</span>
+          <span class="dict__v">High — 보이고, 바뀌고, 멈춰요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">점수</span>
+          <span class="dict__v">계산하면 <strong>9.8</strong>, 등급은 <strong>심각</strong>이에요</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>발표된 점수는 기본뿐이라고 보면 돼요.</strong> 제품을 만든 곳이나 <a href="jvn.html">JVN</a> 같은 곳이 기본 점수를 매겨 알려요. 현재와 환경은 쓰는 쪽이 자기 사정으로 더하는 몫이라 거기엔 안 들어 있어요. 그래서 <strong>같은 취약점의 최종 점수가 회사마다 달라요.</strong></span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>S(영향 범위)가 v3에서 생긴 자리예요.</strong> 뚫린 곳에서 끝나는 것과, 거기를 발판 삼아 <strong>바깥까지 번지는 것</strong>은 아픈 정도가 전혀 달라요. 이전 판에는 이걸 적을 칸이 없어서 둘이 같은 점수로 나왔어요. 그래서 v3 점수와 그 앞 판 점수는 바로 견줄 수 없어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>등급은 구간으로 불러요.</strong> 낮음 · 보통 · 높음 · 심각으로 나뉘어서, "높음 이상은 이번 주 안에"처럼 사내 규칙을 세울 수 있어요. 구간은 <a href="cvss.html">CVSS</a> 쪽에 정리해 뒀어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 같은 7점이 아니에요</p>
+        <p>7.5점짜리 두 개가 있다고 급한 정도가 같지 않아요. 벡터를 펴 보면 알아요.<br><br>하나가 <code>AV:N/PR:N</code>이면 <strong>인터넷에서 계정도 없이</strong> 찌를 수 있어요. 발표되는 순간부터 위험해요. 다른 하나가 <code>AV:L/PR:H</code>면 <strong>그 기기 앞에 앉아서 관리자 권한으로만</strong> 되는 거예요. 이미 관리자를 쥔 사람이 할 수 있는 일이라 실제로는 급하지 않을 수 있어요.<br><br>그래서 <strong>점수보다 벡터를 먼저 보는</strong> 습관이 쓸모 있어요. 특히 <code>AV</code>와 <code>PR</code>, <code>UI</code> 세 개만 봐도 "오늘 밤에 손봐야 하나"가 거의 갈려요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 범위가 번진다는 게 무슨 뜻이냐면</p>
+        <p><code>S:C</code>(Changed)는 뚫린 곳의 울타리를 넘는다는 뜻이에요. 예를 들어 서버 한 대에 가상 기계 여러 대를 돌리는데, <strong>가상 기계 하나를 뚫은 사람이 그 아래 서버까지</strong> 건드릴 수 있다면 범위가 번진 거예요. 옆에 있던 남의 가상 기계도 위험해지죠.<br><br>웹에서도 같아요. 어떤 사이트의 취약점으로 <strong>그 사이트를 보는 사람의 브라우저</strong>에서 뭔가가 실행되면, 아픈 쪽은 사이트가 아니라 방문자예요. <a href="xss.html">XSS</a>가 그래서 <code>S:C</code>로 매겨지는 일이 많아요. 점수가 올라가는 건 당연해요. 피해가 울타리 밖으로 나갔으니까요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 기본 점수만 보고 줄 세우면</p>
+        <p>취약점이 수백 개 쏟아질 때 기본 점수로만 줄을 세우면, <strong>세상 모든 회사가 같은 순서</strong>를 보게 돼요. 그런데 우리 사정은 다르죠. 9.8점짜리가 우리가 아예 안 켜 둔 기능에 있을 수도 있고, 6점짜리가 <strong>우리 결제 서버 정면</strong>에 있을 수도 있어요.<br><br>환경 평가 기준이 바로 이걸 적는 칸이에요. 전부 다 계산하지 않아도 돼요. 실무에서 많이 쓰는 방법은 <strong>시스템마다 중요도를 미리 매겨 두고</strong>(이건 대외 서비스, 이건 사내 전용) 기본 점수와 함께 보는 거예요. 이 판단의 바탕은 <a href="risk-analysis-steps.html">위험 분석</a>에서 이미 만들어 둔 자산 목록이에요.</p>
+      </div>
+      <p class="callout">v3에는 <strong>3.0과 3.1</strong>이 있고 계산이 조금 달라서, 벡터 맨 앞에 어느 판인지 적게 돼 있어요. 지금은 <strong>v4</strong>도 나와 있어서 현장에 여러 판이 섞여 있어요. 점수를 견줄 때는 <strong>같은 판으로 매긴 값인지</strong>부터 확인해야 해요. 판이 다르면 숫자를 나란히 놓는 의미가 없어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">점수 하나보다, 왜 그 점수인지 적어 둔 벡터가 더 많은 걸 알려 줘요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 취약점</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
