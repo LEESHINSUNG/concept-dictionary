@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SSD — 기억해봐요</title>
+  <meta name="description" content="SSD는 움직이는 부품 없이 반도체에 기록하는 저장장치예요. 띄엄띄엄 읽어도 빠르지만 지우고 쓰는 횟수에 한계가 있어요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="ssd">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>SSD</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">운영체제</span>
+        <span class="chip">하드웨어</span>
+      </div>
+      <h1 class="title">SSD</h1>
+      <p class="reading">솔리드 스테이트 드라이브 · 반도체 저장장치 · Solid State Drive · ソリッドステートドライブ</p>
+      <p class="define">SSD는 <mark>움직이는 부품 없이 반도체에 기록하는 저장장치</mark>예요. 옮겨갈 바늘이 없어서 <strong>어디를 읽어도 비슷하게 빨라요</strong>. 대신 <strong>지우고 쓰는 횟수에 한계</strong>가 있어요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 운영체제 › 하드웨어</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p><a href="hdd.html">HDD</a>가 LP판이라면 SSD는 <strong>칸칸이 나뉜 책장</strong>이에요. 1번 칸을 꺼내고 바로 500번 칸을 꺼내도 걸리는 시간이 거의 같아요. 옮겨 다닐 바늘도, 돌아올 때까지 기다릴 판도 없으니까요. 그래서 HDD가 가장 힘들어하던 <strong>작은 자료를 띄엄띄엄 읽는 일</strong>이 SSD에서는 아무 일도 아니에요. 컴퓨터를 SSD로 바꾸면 체감이 크게 달라지는 이유예요.</p>
+      <p>그런데 이 책장에는 이상한 규칙이 하나 있어요. <strong>칸에 든 내용을 바로 덮어 쓸 수가 없어요.</strong> 먼저 비워야 쓸 수 있는데, 비울 때는 한 칸씩이 아니라 <strong>선반 하나를 통째로</strong> 비워야 해요. 그래서 한 칸만 고치려고 해도 선반에 든 나머지를 옮겨 두고, 선반을 비우고, 다시 넣는 일이 벌어져요.</p>
+      <p>게다가 선반은 <strong>비울 수 있는 횟수가 정해져</strong> 있어요. 그래서 SSD 이야기의 절반은 "어떻게 한곳만 닳지 않게 고르게 나눠 쓸까"예요. 이 일은 SSD가 안에서 알아서 해요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">기록 방식</p>
+          <p class="fact__value">반도체에 전기로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">빠른 까닭</p>
+          <p class="fact__value">옮겨갈 바늘이 없어요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">닳는 곳</p>
+          <p class="fact__value">지우고 쓰는 횟수</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">같은 자리를 두고 HDD와 견줘 봤어요. 색칠한 두 줄이 차이가 가장 크게 나는 곳이에요.</p>
+      <div class="cmp" role="img" aria-label="HDD와 SSD 비교">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">보는 항목</span>
+          <span class="cmp__c">HDD</span>
+          <span class="cmp__c">SSD</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">기록하는 곳</span>
+          <span class="cmp__c">도는 원판</span>
+          <span class="cmp__c">반도체 칩</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">움직이는 부품</span>
+          <span class="cmp__c">있어요</span>
+          <span class="cmp__c">없어요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">순서대로 읽기</span>
+          <span class="cmp__c"><span class="cmp__ok">빨라요</span></span>
+          <span class="cmp__c"><span class="cmp__ok">빨라요</span></span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">띄엄띄엄 읽기</span>
+          <span class="cmp__c">느려요</span>
+          <span class="cmp__c"><span class="cmp__no">빨라요</span></span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">충격</span>
+          <span class="cmp__c">약해요</span>
+          <span class="cmp__c"><span class="cmp__no">강해요</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">조각 모음</span>
+          <span class="cmp__c">도움이 돼요</span>
+          <span class="cmp__c">하면 안 돼요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">같은 용량 값</span>
+          <span class="cmp__c">싸요</span>
+          <span class="cmp__c">비싸요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">닳는 부분</span>
+          <span class="cmp__c">기계가 닳아요</span>
+          <span class="cmp__c">쓰기 횟수가 줄어요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">소리 · 열 · 전기</span>
+          <span class="cmp__c">많아요</span>
+          <span class="cmp__c">적어요</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>조각 모음을 하면 안 돼요.</strong> 흩어져 있어도 꺼내는 속도가 같으니 모아 붙일 이유가 없어요. 그런데 조각 모음은 파일을 옮겨 쓰는 일이라 <strong>쓰기 횟수만 깎아요.</strong> 요즘 운영체제는 SSD를 알아보고 조각 모음을 알아서 끄지만, 옛 습관으로 직접 돌리면 손해만 봐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>고르게 나눠 써요.</strong> 같은 자리만 계속 쓰면 그 선반만 먼저 죽어요. 그래서 SSD는 안에서 쓰는 자리를 계속 옮겨 가며 <strong>닳는 정도를 고르게</strong> 만들어요. 겉으로 보이는 주소는 그대로인데 안의 실제 자리는 계속 바뀌는 거예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>여유를 남겨 둬요.</strong> 비어 있는 선반이 있으면 바로 거기에 쓰면 되지만, 꽉 차 있으면 <strong>옮기고 비우고 쓰는 일</strong>을 해야 해서 느려져요. 그래서 SSD는 끝까지 채우지 않고 얼마쯤 비워 두는 쪽이 빠르고 오래가요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 꽉 채웠더니 느려졌어요</p>
+        <p>SSD를 거의 다 채우면 쓰기가 눈에 띄게 느려져요. 빈 선반이 없어서, 쓸 때마다 <strong>쓸 자리를 만드는 일부터</strong> 해야 하기 때문이에요. 선반에 남아 있는 쓸모 있는 내용을 다른 데로 옮기고, 선반을 비우고, 그제서야 써요. 한 번 쓰려고 여러 번 쓰는 셈이라 느려지고 수명도 더 깎여요.<br><br>그래서 용량을 꽉 맞춰 사지 않고 <strong>쓸 양보다 넉넉하게</strong> 사는 게 요령이에요. 이미 꽉 찼다면 안 쓰는 큰 파일을 <a href="hdd.html">HDD</a>나 바깥으로 옮겨 자리를 만들어 주면 속도가 돌아와요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 지운 파일이 안 되살아나요</p>
+        <p>HDD에서는 파일을 지워도 실제 내용은 당장 사라지지 않아요. "이 자리는 안 쓴다"는 표시만 바뀌어서, 덮어 쓰이기 전이라면 꽤 되살릴 수 있어요. 실수로 지웠을 때 복구 도구가 먹히는 이유예요.<br><br>SSD는 달라요. 운영체제가 "이 칸은 이제 안 쓴다"고 알려 주면(<strong>TRIM</strong>), SSD는 다음에 쓸 때 빠르게 쓰려고 <strong>그 자리를 미리 비워 둬요.</strong> 그래서 지운 지 얼마 안 돼도 내용이 이미 없을 수 있어요. 실수로 지웠다면 되살릴 가능성이 HDD보다 낮고, <a href="digital-forensics.html">디지털 포렌식</a>에서도 SSD는 증거가 덜 남는 쪽으로 다뤄요. <strong>백업이 더 중요해지는 이유</strong>이기도 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 어디에 무엇을 둘까</p>
+        <p>값 차이가 있으니 보통은 섞어 써요. 기준은 간단해요. <strong>자주 그리고 띄엄띄엄 읽는 것</strong>은 SSD에, <strong>한 번 쓰고 오래 두는 것</strong>은 HDD에 둬요.<br><br>SSD에 둘 것은 운영체제, 자주 켜는 프로그램, 작업 중인 파일, 데이터베이스예요. HDD에 둘 것은 영상 원본, 사진 보관함, 백업, 감시 카메라 기록이에요. <strong>쓰기가 쉬지 않고 들어오는 일</strong>(기록을 계속 남기는 서버)은 SSD의 수명을 빨리 깎으니, 그런 자리에는 쓰기 수명을 넉넉하게 만든 제품을 골라요.</p>
+      </div>
+      <p class="callout">"SDD"로 적는 일이 잦은데 <strong>SSD</strong>가 맞아요. Solid State Drive, 즉 <strong>움직이지 않는(solid) 상태의</strong> 장치라는 뜻이에요. 움직이는 부품이 없다는 게 이름에 그대로 들어 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">움직이는 부품이 없어 어디를 읽어도 빠르지만, 지우고 쓰는 횟수가 수명이에요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 운영체제 › 하드웨어</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

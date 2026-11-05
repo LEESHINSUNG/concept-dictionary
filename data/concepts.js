@@ -1065,6 +1065,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'ssd',
+    title: 'SSD',
+    sub: '솔리드 스테이트 드라이브 · 반도체 저장장치 · Solid State Drive · ソリッドステートドライブ · 플래시 메모리 · TRIM',
+    summary: '움직이는 부품 없이 반도체에 기록하는 저장장치',
+    category: '운영체제',
+    date: '2026-11-05'
+  },
+  {
     slug: 'ssh',
     title: 'SSH',
     sub: '시큐어 셸 · Secure Shell',
