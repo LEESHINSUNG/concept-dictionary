@@ -769,6 +769,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'payback-period',
+    title: '회수 기간법',
+    sub: '자금 회수 기간법 · 투자 회수 기간 · payback period method · 回収期間法',
+    summary: '투자한 돈을 되돌려 받는 기간으로 투자안을 고르는 방법',
+    category: '업무 시스템',
+    date: '2026-11-05'
+  },
+  {
     slug: 'php',
     title: 'PHP',
     sub: '피에이치피',

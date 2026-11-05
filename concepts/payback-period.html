@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>회수 기간법 — 기억해봐요</title>
+  <meta name="description" content="회수 기간법은 투자한 돈을 몇 년 만에 되돌려 받는지로 투자안을 고르는 방법이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="payback-period">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>회수 기간법</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">경영 전략</span>
+      </div>
+      <h1 class="title">회수 기간법</h1>
+      <p class="reading">자금 회수 기간법 · 투자 회수 기간 · payback period method · 回収期間法</p>
+      <p class="define">회수 기간법은 <mark>투자한 돈을 되돌려 받는 데 걸리는 기간으로 투자안을 고르는 방법</mark>이에요. 기간이 <strong>짧은 쪽을 고르는데</strong>, 되돌려 받은 <strong>뒤의 이익은 보지 않아요</strong>.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 업무 시스템 › 경영 전략</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>집 전구를 전부 LED로 바꾼다고 해 볼게요. 10만원이 들어요. 바꾸면 전기료가 <strong>매달 2,500원씩</strong> 줄어요.</p>
+      <p>그러면 자연스럽게 이 질문이 나와요. <strong>"언제 원금을 뽑아?"</strong> 계산은 나누기 하나예요. 10만원 ÷ 2,500원 = <strong>40개월</strong>, 3년 4개월이에요. 그 뒤부터는 매달 2,500원이 그냥 이득이고요.</p>
+      <p>회수 기간법이 이 질문이에요. 회사에서 장비를 사거나 시스템을 새로 넣을 때 <strong>"이 돈이 몇 년 만에 돌아오나"</strong>를 재서, 여러 안 가운데 <strong>가장 빨리 돌아오는 쪽</strong>을 고르는 거예요.</p>
+      <p>쉬워서 많이 쓰여요. 그런데 이 질문에는 <strong>안 들어 있는 게 있어요.</strong> "원금 뽑은 다음엔 얼마나 버는데?"를 묻지 않아요. 그게 이 방법의 가장 큰 빈칸이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">계산</p>
+          <p class="fact__value">투자액 ÷ 해마다 돌아오는 돈</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">고르는 법</p>
+          <p class="fact__value">기간이 짧은 쪽</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">못 보는 것</p>
+          <p class="fact__value">회수 뒤의 이익</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">해마다 돌아오는 돈이 다를 때는 누적으로 쌓아서, 투자액을 넘어서는 해를 찾아요. 아래는 1,000만원을 투자한 경우예요.</p>
+      <div class="cmp" role="img" aria-label="누적 회수액이 투자액을 넘는 시점 찾기">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">연차</span>
+          <span class="cmp__c">그 해 돌아온 돈</span>
+          <span class="cmp__c">쌓인 금액</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">1년차</span>
+          <span class="cmp__c">200만원</span>
+          <span class="cmp__c">200만원</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">2년차</span>
+          <span class="cmp__c">300만원</span>
+          <span class="cmp__c">500만원</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">3년차</span>
+          <span class="cmp__c">400만원</span>
+          <span class="cmp__c">900만원</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">4년차</span>
+          <span class="cmp__c">500만원</span>
+          <span class="cmp__c">1,400만원</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">5년차</span>
+          <span class="cmp__c">500만원</span>
+          <span class="cmp__c">1,900만원</span>
+        </div>
+      </div>
+      <div class="dict" role="img" aria-label="회수 기간 구하기 항목 정의">
+        <p class="dict__head">회수 기간 구하기</p>
+        <div class="dict__row">
+          <span class="dict__k">3년차까지</span>
+          <span class="dict__v">쌓인 금액 900만원 — 아직 100만원이 모자라요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">4년차에</span>
+          <span class="dict__v">그 해 500만원이 들어와요 → 100 ÷ 500 = 0.2년</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">회수 기간</span>
+          <span class="dict__v">3년 + 0.2년 = <strong>3.2년</strong></span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">해마다 같다면</span>
+          <span class="dict__v">더 간단해요. 투자액 ÷ 연간 회수액으로 끝이에요</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>기준 기간과 견줘서 결정해요.</strong> 회사가 "3년 안에 돌아오는 것만 한다"고 정해 뒀다면 위 투자안은 3.2년이라 떨어져요. 여러 안을 놓고 고를 때는 <strong>기간이 가장 짧은 쪽</strong>을 뽑아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>쓰는 이유는 자금 사정이에요.</strong> 아무리 많이 버는 투자라도 돈이 묶여 있는 동안 회사가 버티지 못하면 뜻이 없어요. 회수 기간은 <strong>"얼마나 오래 돈이 묶이나"</strong>를 바로 알려 줘서, 자금이 넉넉하지 않은 곳에서 특히 먼저 봐요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>먼 미래를 덜 믿는다는 뜻도 있어요.</strong> 10년 뒤 매출 예측은 거의 추측이에요. 회수 기간법은 가까운 몇 년만 보니 <strong>틀린 예측에 덜 휘둘려요.</strong> 단점으로 꼽히는 "뒤를 안 본다"가, 뒤집으면 장점이기도 한 거예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 더 많이 버는 안을 떨어뜨려요</p>
+        <p>이게 이 방법의 가장 유명한 빈칸이에요. 투자액이 똑같이 600만원인 두 안을 봐요.<br><br><strong>A안</strong>은 1~3년차에 매년 200만원이 들어오고 <strong>그 뒤로는 0</strong>이에요. 회수 기간은 <strong>정확히 3년</strong>이에요. 그런데 5년을 통틀어 들어온 돈이 600만원이라 <strong>남은 이익이 0</strong>이에요.<br><br><strong>B안</strong>은 1~5년차에 매년 150만원씩 들어와요. 4년차에 쌓인 금액이 600만원이 되니 회수 기간은 <strong>4년</strong>이에요. 5년을 통틀면 750만원이라 <strong>150만원이 남아요.</strong><br><br>회수 기간법은 3년 < 4년이니 <strong>A안을 고릅니다.</strong> 하지만 실제로 돈을 벌어 주는 건 B안이에요. 회수된 다음을 안 보기 때문에 생기는 일이라, <strong>이 방법만으로 결정하지 말라는</strong> 말이 늘 따라붙어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 올해 100만원과 5년 뒤 100만원</p>
+        <p>두 번째 빈칸은 <strong>시간이 돈의 값을 바꾼다는 걸 무시</strong>한다는 점이에요. 올해 받는 100만원과 5년 뒤 받는 100만원은 같지 않아요. 지금 받으면 그 돈을 쓰거나 굴릴 수 있고, 5년 뒤면 물가가 올라 살 수 있는 게 줄어요.<br><br>회수 기간법은 들어오는 돈을 그냥 <strong>더하기만</strong> 해요. 1년차 200만원과 4년차 200만원을 똑같이 세는 거예요. 이걸 바로잡으려면 미래의 돈을 <strong>지금 값으로 깎아서</strong>(할인) 더해야 하는데, 그렇게 하는 방법들은 따로 있어요. 그래서 실무에서는 회수 기간법을 <strong>혼자 쓰지 않고 곁들여</strong> 봐요. 빠르게 걸러내는 데 쓰고, 최종 판단은 다른 지표와 함께 하는 식이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 전산 투자에 대 보면</p>
+        <p>회수 기간법이 전산 쪽에서 쓰이는 전형적인 자리가 <strong>멈춤을 막는 투자</strong>예요. 예를 들어 <a href="disk-redundancy.html">디스크 이중화</a> 장비를 들이는 데 500만원이 든다고 해 볼게요. 돌아오는 돈이 매출이 아니라 <strong>안 잃게 된 돈</strong>이라 좀 다르게 세요.<br><br>먼저 멈췄을 때 시간당 얼마를 잃는지, 1년에 몇 시간쯤 멈추는지를 재요. 이 숫자는 <a href="bcp.html">BCP</a>를 만들 때 이미 따져 둔 것과 같아요. 시간당 50만원을 잃고 1년에 네 시간 멈춘다면 연 200만원이고, 회수 기간은 2.5년이에요.<br><br>여기서 조심할 게 있어요. <strong>멈추는 시간은 예측이지 사실이 아니에요.</strong> 운 좋은 해에는 0시간이라 영원히 회수가 안 되고, 크게 한 번 터진 해에는 반년 만에 회수돼요. 그래서 이런 투자는 회수 기간만으로 정하기 어렵고, <strong>못 버티는 손해</strong>가 있는지를 함께 봐야 해요.</p>
+      </div>
+      <p class="callout">회수 기간법은 "좋은 투자를 골라내는 방법"이 아니라 <strong>"위험한 투자를 걸러내는 방법"</strong>에 가까워요. 돌아오는 데 너무 오래 걸리는 안을 먼저 치워 두는 데는 빠르고 분명해요. 다만 남은 안 중에서 무엇이 가장 좋은지를 묻기 시작하면, 이 방법은 거기서 답을 못 줘요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">원금이 언제 돌아오는지는 알려 주는데, 그 뒤에 얼마를 버는지는 안 알려 줘요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 업무 시스템 › 경영 전략</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
