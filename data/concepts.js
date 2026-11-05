@@ -97,6 +97,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'bios',
+    title: 'BIOS',
+    sub: '바이오스 · Basic Input/Output System · バイオス · UEFI · POST',
+    summary: '전원이 켜진 직후 하드웨어를 점검하고 운영체제를 불러오는 프로그램',
+    category: '운영체제',
+    date: '2026-11-05'
+  },
+  {
     slug: 'botnet',
     title: '봇넷',
     sub: 'botnet · ボットネット',
