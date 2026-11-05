@@ -129,6 +129,14 @@ window.CONCEPTS = [
     date: '2026-10-30'
   },
   {
+    slug: 'byod',
+    title: 'BYOD',
+    sub: 'Bring Your Own Device · 개인 기기 업무 사용 · 私物端末の業務利用',
+    summary: '직원 개인 기기를 업무에 쓰게 하는 방식과 그 관리 문제',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'c2-server',
     title: 'C&C 서버',
     sub: 'Command and Control (C2) · C&Cサーバ',
