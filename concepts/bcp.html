@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BCP — 기억해봐요</title>
+  <meta name="description" content="BCP는 큰 사고가 나도 중요한 업무를 멈추지 않거나 빨리 되살리려고 미리 정해 두는 계획이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .lvl { margin-top: 4px; }
+    .lvl__plot { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; align-items: end; height: 128px; padding: 8px 8px 0; background: var(--bg); border: 1px solid var(--line); border-bottom: 0; border-radius: 12px 12px 0 0; }
+    .lvl__bar { min-width: 0; background: var(--accent); border-radius: 4px 4px 0 0; }
+    .lvl__bar--low { background: var(--line-strong); }
+    .lvl__bar--mid { background: var(--chip-bg); border: 2px solid var(--accent); border-bottom: 0; }
+    .lvl__axis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; padding: 7px 8px 9px; background: var(--bg); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 12px 12px; }
+    .lvl__t { min-width: 0; font-size: 10.5px; font-weight: 700; color: var(--muted); text-align: center; line-height: 1.35; word-break: keep-all; }
+    .lvl__cap { margin: 10px 0 0; font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+    .lvl__cap strong { color: var(--accent); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="bcp">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>BCP</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">사업 연속성</span>
+      </div>
+      <h1 class="title">BCP</h1>
+      <p class="reading">사업 계속 계획 · 업무 연속성 계획 · Business Continuity Plan · 事業継続計画</p>
+      <p class="define">BCP는 <mark>큰 사고가 나도 중요한 업무를 이어 가려고 미리 정해 두는 계획</mark>이에요. 사고를 막는 쪽이 아니라 <strong>이미 터진 뒤에 무엇부터 어떻게 되살릴지</strong>를 적어 두는 쪽이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-05">2026-11-05</time></span>
+        <span>카테고리 보안 › 사업 연속성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>집에 불이 났다고 해 볼게요. 그 순간에 "어느 창문으로 나가지", "애들은 어디서 만나지", "오늘 밤은 어디서 자지"를 생각할 시간이 없어요. 연기 속에서는 머리가 안 돌아가요.</p>
+      <p>그래서 <strong>불이 나기 전에</strong> 정해 둬요. 나가는 길, 만나는 자리, 들고 나올 것, 전화할 사람, 며칠 지낼 곳까지요. 불이 안 나게 하는 것(예방)과는 다른 일이에요. <strong>이미 났다는 전제로</strong> 적어 두는 거죠.</p>
+      <p>BCP가 회사에서 이거예요. 지진, 화재, 서버 전체가 죽는 사고, 랜섬웨어로 모든 파일이 잠기는 일처럼 <strong>평소 대책으로는 못 막은 상황</strong>을 가정하고, 그때 <strong>무슨 업무를 어떤 순서로 어떤 수단으로 이어 갈지</strong>를 미리 적어 둬요. 핵은 "복구"가 아니라 <strong>"계속"</strong>이에요. 시스템만 살려 놓는 게 아니라 일이 돌아가게 만드는 쪽이에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">먼저 하는 일</p>
+          <p class="fact__value">중요 업무 고르기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">목표 두 개</p>
+          <p class="fact__value">RTO · RPO</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">없으면</p>
+          <p class="fact__value">그 순간에 생각할 시간이 없어요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">사고가 났을 때 업무가 어떻게 떨어지고 돌아오는지 그린 거예요. BCP가 하는 일은 떨어지는 깊이를 얕게, 돌아오는 시간을 짧게 만드는 쪽이에요.</p>
+      <div class="lvl" role="img" aria-label="사고 뒤 업무 수준이 떨어지고 되살아나는 흐름">
+        <div class="lvl__plot">
+          <span class="lvl__bar" style="height: 100%;"></span>
+          <span class="lvl__bar lvl__bar--low" style="height: 18%;"></span>
+          <span class="lvl__bar lvl__bar--mid" style="height: 55%;"></span>
+          <span class="lvl__bar lvl__bar--mid" style="height: 58%;"></span>
+          <span class="lvl__bar" style="height: 82%;"></span>
+          <span class="lvl__bar" style="height: 100%;"></span>
+        </div>
+        <div class="lvl__axis">
+          <span class="lvl__t">평소</span>
+          <span class="lvl__t">사고<br>직후</span>
+          <span class="lvl__t">대체<br>수단</span>
+          <span class="lvl__t">버티며<br>복구</span>
+          <span class="lvl__t">되살림</span>
+          <span class="lvl__t">평소로</span>
+        </div>
+        <p class="lvl__cap">바닥까지 떨어진 상태로 오래 있으면 손님과 거래처가 떠나요. 그래서 BCP는 완전 복구를 기다리지 않고 <strong>최소한 돌아가는 수준(대체 수단)으로 먼저 올려</strong> 버텨요. 이 수준에 언제까지 올릴지가 <a href="rto.html">RTO</a>, 어느 시점 자료까지 되살릴지가 <a href="rpo.html">RPO</a>예요.</p>
+      </div>
+      <div class="dict" role="img" aria-label="BCP를 만드는 순서 항목 정의">
+        <p class="dict__head">BCP를 만드는 순서</p>
+        <div class="dict__row">
+          <span class="dict__k">1 · 고르기</span>
+          <span class="dict__v">멈추면 가장 아픈 업무를 골라요 (전부는 못 지켜요)</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">2 · 재기</span>
+          <span class="dict__v">그 업무가 멈추면 시간당 얼마나 아픈지 따져요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">3 · 정하기</span>
+          <span class="dict__v">언제까지 어느 수준으로 되살릴지 목표를 정해요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">4 · 짜기</span>
+          <span class="dict__v">그 목표를 맞출 대체 수단과 담당·연락 경로를 정해요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">5 · 돌리기</span>
+          <span class="dict__v">훈련하고, 어긋난 것을 고치고, 바뀐 걸 반영해요</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>전부 지키려 하면 아무것도 못 지켜요.</strong> 자원이 한정돼 있으니 업무에 순서를 매겨야 해요. 하루 멈춰도 되는 일과 한 시간도 못 멈추는 일을 갈라내는 게 BCP의 첫 단추예요. 이 판단은 전산 부서가 아니라 <strong>업무를 하는 쪽</strong>이 해야 맞아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>목표를 시간으로 적어요.</strong> "빨리 복구한다"는 계획이 아니에요. <a href="rto.html">RTO</a>는 <strong>언제까지 되살릴지</strong>, <a href="rpo.html">RPO</a>는 <strong>어느 시점 자료까지 살릴지</strong>예요. 이 두 숫자가 정해지면 백업을 얼마나 자주 받을지, 대체 장비를 미리 켜 둘지가 따라 나와요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>훈련하지 않은 계획은 안 돌아가요.</strong> 문서만 있고 해 본 적이 없으면, 그 순간에 담당자가 자리에 없거나 연락처가 바뀌었거나 백업이 안 풀려요. 해 보면 꼭 빠진 게 나와요. BCP를 한 번 만들고 끝내지 않고 <a href="isms.html">ISMS</a>처럼 <strong>돌리는 체계</strong>로 두는 걸 BCM이라고 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 계획서를 찾을 수 없어요</p>
+        <p>꽤 자주 벌어지는 일이에요. BCP를 잘 만들어서 <strong>사내 서버의 공유 폴더에 PDF로</strong> 올려 뒀는데, 사고라는 게 보통 그 서버가 죽는 일이에요. 계획서를 열 수가 없어요.<br><br>그래서 BCP는 <strong>종이로 뽑아 두고</strong>, 담당자가 집에도 사본을 두고, 바깥 클라우드에도 올려 둬요. 연락망도 같아요. 사내 메신저와 사내 주소록만 있으면 그게 죽는 순간 아무에게도 연락할 수 없어요. <strong>회사 시스템에 기대지 않는 두 번째 연락 수단</strong>을 정해 두는 게 기본이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 시스템은 살았는데 일이 안 돌아가요</p>
+        <p>백업에서 서버를 다 되살렸는데도 업무가 멈춰 있는 경우가 있어요. 사무실에 들어갈 수 없거나, 그 일을 아는 사람이 한 명뿐인데 연락이 안 되거나, 거래처 쪽이 멈춰 있어서예요.<br><br>BCP가 <strong>복구 계획과 다른 점</strong>이 여기예요. 시스템만이 아니라 <strong>사람 · 장소 · 연락 · 거래처</strong>까지 봐요. 그래서 BCP에는 "담당자가 못 올 때 누가 대신하나", "사무실에 못 들어갈 때 어디서 일하나", "시스템이 멈춘 동안 종이와 손으로 어떻게 받아 두나"가 함께 적혀요. 멈춘 동안 종이에 받아 둔 주문을 나중에 입력하는 식의 <strong>수작업 대체</strong>가 실제로 많이 쓰여요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 어디까지 가정할까</p>
+        <p>모든 사고를 다 가정하면 계획이 끝나지 않아요. 그렇다고 지진만 가정하면 <strong>랜섬웨어로 모든 파일이 잠긴 날</strong>에 쓸 수 없어요. 그래서 원인별로 쓰지 않고 <strong>결과별로</strong> 쓰는 쪽이 요령이에요.<br><br>"사무실을 못 쓰게 됐을 때", "시스템이 멈췄을 때", "사람이 절반 이상 못 나올 때", "자료가 망가졌을 때" 네 가지로 두면, 원인이 지진이든 화재든 감염이든 같은 계획을 쓸 수 있어요. 무엇이 얼마나 일어날 만한지는 <a href="risk-analysis-steps.html">위험 분석</a>에서 가려내고, 그래도 남는 위험은 <a href="risk-acceptance.html">받아들일지</a> 판단해요.</p>
+      </div>
+      <p class="callout">BCP는 문서고, 그 문서를 만들고 훈련하고 고치는 활동 전체를 <strong>BCM</strong>(사업 계속 관리)이라고 불러요. 문서만 있고 BCM이 없으면 몇 년 지난 연락처가 적힌 종이만 남아요. <strong>사람이 바뀌면 고치고, 해 보고 고치는 것</strong>까지가 BCP예요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">터진 뒤에 생각할 시간은 없어요. 무엇부터 어떻게 이어 갈지 미리 적어 둬요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-05 · 카테고리 보안 › 사업 연속성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

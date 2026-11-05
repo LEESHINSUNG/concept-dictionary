@@ -81,6 +81,14 @@ window.CONCEPTS = [
     date: '2026-10-29'
   },
   {
+    slug: 'bcp',
+    title: 'BCP',
+    sub: '사업 계속 계획 · 업무 연속성 계획 · Business Continuity Plan · 事業継続計画 · BCM',
+    summary: '사고가 나도 중요한 업무를 이어 가려고 미리 정해 두는 계획',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'big-data',
     title: '빅데이터',
     sub: 'big data · ビッグデータ · 3V · Volume · Variety · Velocity',
