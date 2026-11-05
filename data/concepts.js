@@ -953,6 +953,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'security-by-design',
+    title: '시큐리티 바이 디자인',
+    sub: 'security by design · セキュリティバイデザイン · 설계 단계부터 보안 · 시큐리티 바이 디폴트 · 프라이버시 바이 디자인',
+    summary: '보안을 나중에 덧붙이지 않고 기획·설계 단계부터 넣는 사고방식',
+    category: '보안',
+    date: '2026-11-05'
+  },
+  {
     slug: 'segment',
     title: '세그먼트',
     sub: 'segment · 네트워크 세그먼트 · TCP 세그먼트',
