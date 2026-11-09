@@ -401,6 +401,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'dns-record-tampering',
+    title: 'DNS 정보 변조',
+    sub: 'DNS 레코드 변조 · DNS 하이재킹 · DNS情報の改ざん · DNS hijacking · 도메인 탈취',
+    summary: '원본 등록 정보나 권위 서버를 바꿔 도메인 전체를 가짜로 돌리는 공격',
+    category: '보안',
+    date: '2026-11-10'
+  },
+  {
     slug: 'docker',
     title: 'Docker',
     sub: '도커 · 컨테이너 · container',

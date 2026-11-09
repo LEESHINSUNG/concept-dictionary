@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DNS 정보 변조 — 기억해봐요</title>
+  <meta name="description" content="DNS 정보 변조는 캐시가 아니라 원본 등록 정보나 권위 서버를 바꿔 도메인 전체를 가짜로 돌리는 공격이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .seq { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .seq__row { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; word-break: keep-all; }
+    .seq__row--back { border-left: 1px solid var(--line); border-right: 4px solid var(--line-strong); background: var(--bg); }
+    .seq__dir { display: block; margin-bottom: 3px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+    .seq__row--back .seq__dir { color: var(--muted); }
+    .seq__msg { display: block; font-size: 15px; font-weight: 700; }
+    .seq__note { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="dns-record-tampering">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>DNS 정보 변조</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">DNS 정보 변조</h1>
+      <p class="reading">DNS 레코드 변조 · DNS 하이재킹 · DNS情報の改ざん · DNS hijacking · 도메인 탈취</p>
+      <p class="define">DNS 정보 변조는 <mark>캐시가 아니라 원본을 바꾸는 공격</mark>이에요. <a href="dns-cache-poisoning.html">캐시 포이즈닝</a>이 전화번호부 한 권을 고친 것이라면, 이쪽은 <strong>전화국의 원부를 고친 것</strong>이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네 전화번호부 한 권의 한 줄을 몰래 고쳐 놓는 것과, <strong>전화국의 원부를 고쳐 놓는 것</strong>은 피해가 전혀 달라요.</p>
+      <p>앞의 것은 그 책을 보는 사람만 속아요. 책을 새로 찍으면 저절로 고쳐지고요. 뒤의 것은 <strong>앞으로 찍는 모든 전화번호부가 다 틀려요.</strong> 그리고 주인이 알아채고 되돌리기 전까지 계속 틀려요.</p>
+      <p>DNS도 층이 있어요. 가까운 캐시 서버가 답을 잠시 보관하고, 그 위에 <strong>그 도메인의 진짜 답을 가진 서버</strong>가 있고, 더 위에 <strong>"이 도메인의 답은 저 서버에 물어라"고 적어 둔 등록 정보</strong>가 있어요. 캐시 포이즈닝은 맨 아래를 노리고, DNS 정보 변조는 <strong>위의 둘</strong>을 노려요. 위를 건드릴수록 피해가 넓고 오래가요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">노리는 곳</p>
+          <p class="fact__value">등록 정보 · 권위 서버</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">번지는 범위</p>
+          <p class="fact__value">전 세계</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">되돌리는 사람</p>
+          <p class="fact__value">도메인 주인</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">DNS는 층으로 되어 있어요. 어느 층을 건드리느냐에 따라 공격 이름과 피해 크기가 달라져요.</p>
+      <div class="seq" role="img" aria-label="DNS의 층과 공격 지점">
+        <div class="seq__row">
+          <span class="seq__dir">1 · 등록 정보</span>
+          <span class="seq__msg">이 도메인의 답은 어느 서버에 물을지 적혀 있어요</span>
+          <span class="seq__note">레지스트라 계정에서 관리해요. <strong>여기가 바뀌면 도메인 전체가 넘어가요.</strong> 가장 치명적이에요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">2 · 권위 서버</span>
+          <span class="seq__msg">그 도메인의 진짜 답을 가진 서버예요</span>
+          <span class="seq__note">존 파일이 바뀌면 그 뒤로 나가는 <strong>모든 답이 가짜</strong>가 돼요. 서버에 침입하거나 관리 화면이 열려 있으면 당해요.</span>
+        </div>
+        <div class="seq__row">
+          <span class="seq__dir">3 · 캐시 서버</span>
+          <span class="seq__msg">답을 잠시 보관해 두는 가까운 서버예요</span>
+          <span class="seq__note">여기에 가짜를 밀어 넣는 게 <a href="dns-cache-poisoning.html">캐시 포이즈닝</a>이에요. 보관 시간이 지나면 저절로 사라져요.</span>
+        </div>
+        <div class="seq__row seq__row--back">
+          <span class="seq__dir">4 · 이용자</span>
+          <span class="seq__msg">가까운 캐시 서버에 물어요</span>
+          <span class="seq__note">어느 층이 오염돼도 이용자 쪽에서는 <strong>똑같이 보여요.</strong> 주소도 바르게 쳤고 오타도 없으니까요.</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">캐시 포이즈닝과 나란히 놓고 보면 차이가 분명해져요. 마지막 줄이 가장 무서운 대목이에요.</p>
+      <div class="cmp" role="img" aria-label="캐시 포이즈닝과 정보 변조 비교">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">보는 항목</span>
+          <span class="cmp__c">캐시 포이즈닝</span>
+          <span class="cmp__c">DNS 정보 변조</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">노리는 곳</span>
+          <span class="cmp__c">캐시 서버의 보관함</span>
+          <span class="cmp__c">등록 정보 · 권위 서버</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">속는 사람</span>
+          <span class="cmp__c">그 서버를 쓰는 사람</span>
+          <span class="cmp__c"><span class="cmp__no">전 세계</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">얼마나 가나</span>
+          <span class="cmp__c">보관 시간이 지나면 사라져요</span>
+          <span class="cmp__c"><span class="cmp__no">되돌릴 때까지</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">막는 쪽</span>
+          <span class="cmp__c">DNS 서버 운영자</span>
+          <span class="cmp__c">도메인 주인</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">인증서 경고</span>
+          <span class="cmp__c">떠요</span>
+          <span class="cmp__c"><span class="cmp__no">안 뜰 수 있어요</span></span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>등록 계정이 가장 약한 고리예요.</strong> 도메인을 산 사이트의 계정 하나만 뚫리면 끝이에요. 답을 줄 서버를 공격자 것으로 바꿔 버리면 <strong>도메인 아래 전부</strong>가 넘어가요. 웹도 메일도 함께요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>그래서 그 계정에 2단계 인증과 도메인 잠금을 걸어요.</strong> 잠금을 걸어 두면 바꾸려 할 때 등록 기관을 거쳐야 해서, 비밀번호만으로는 못 바꿔요. 중요한 도메인이라면 <strong>꼭 켜 둘 설정</strong>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>바뀌었는지 밖에서 지켜봐요.</strong> 우리 도메인의 답을 줄 서버와 주소가 바뀌지 않았는지 <strong>바깥에서 주기적으로 조회해</strong> 보는 거예요. 안에서는 멀쩡해 보여도 바깥에서는 이미 가짜를 받고 있을 수 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 자물쇠가 안 지켜 줄 때</p>
+        <p>캐시 포이즈닝에는 든든한 2차 방어가 있어요. 가짜 서버로 끌려가도 <strong>진짜 도메인의 인증서가 없어서</strong> 브라우저가 경고를 띄우죠. 경고만 무시하지 않으면 거기서 멈춰요.<br><br>그런데 정보 변조에서는 이 방어가 흔들려요. 도메인의 DNS를 쥔 사람은 <strong>그 도메인의 주인임을 증명하는 절차를 통과할 수 있어서</strong>, 진짜 인증서를 발급받아 가짜 서버에 달 수 있어요. 그러면 자물쇠도 잠겨 있고 주소도 맞아서 <strong>이용자가 알아챌 방법이 사실상 없어요.</strong> 이게 정보 변조를 훨씬 위험하게 만드는 대목이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 메일까지 함께 넘어가요</p>
+        <p>웹만 생각하기 쉬운데 DNS에는 <strong>메일을 어디로 보낼지</strong>도 적혀 있어요. 이게 바뀌면 그 도메인으로 오는 메일이 공격자에게 가요.<br><br>무서운 건 조용하다는 점이에요. 웹사이트가 이상하면 금방 신고가 들어오지만, 메일은 <strong>받아서 읽고 원래 서버로 넘겨 주면</strong> 아무도 모를 수 있어요. 그사이 거래 메일과 비밀번호 재설정 메일이 전부 새어 나가고요. <a href="spf.html">SPF</a> 같은 장치도 결국 DNS에 적어 두는 것이라, DNS가 넘어가면 그 설정까지 공격자가 고칠 수 있어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 되돌리는 데 시간이 걸려요</p>
+        <p>변조를 알아채고 바로 고쳐도 끝이 아니에요. 바뀐 답이 이미 <strong>세계 곳곳의 캐시 서버에 퍼져</strong> 있거든요. 그 서버들은 보관 시간이 지나야 다시 물어봐요.<br><br>그래서 사고가 난 뒤에도 한동안은 <strong>어떤 사람은 정상, 어떤 사람은 가짜</strong>로 갈려요. 보관 시간을 길게 설정해 뒀다면 더 오래 가고요. 평소에 이 값을 적당히 짧게 두면 사고 때 회복이 빨라지는데, 너무 짧으면 평소 질의가 늘어요. <strong>미리 정해 두는 판단</strong>이지 사고 난 뒤에 고를 수 있는 게 아니에요.</p>
+      </div>
+      <p class="callout">도메인 등록 계정은 보통 <strong>담당자 한 사람의 이메일</strong>에 묶여 있어요. 그 사람이 회사를 떠난 뒤에도 그대로인 경우도 많고요. 비싼 보안 장비를 들여놓고도 <strong>그 메일 하나가 뚫려서</strong> 도메인을 통째로 잃는 일이 실제로 벌어져요. 대장에 적어 두고 주인이 누구인지 관리해야 할 자산이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">캐시는 시간이 지나면 낫지만, 원본이 바뀌면 되돌릴 때까지 전 세계가 속아요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
