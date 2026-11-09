@@ -753,6 +753,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'open-resolver',
+    title: '오픈 리졸버',
+    sub: 'open resolver · オープンリゾルバ · 공개 캐시 서버 · DNS 증폭 공격 · DNS amp · 재귀 질의',
+    summary: '아무나 물어볼 수 있게 열려 있어 공격 발판이 되는 DNS 캐시 서버',
+    category: '보안',
+    date: '2026-11-10'
+  },
+  {
     slug: 'osi-model',
     title: 'OSI 참조 모델',
     sub: 'OSI reference model · OSI参照モデル',

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>오픈 리졸버 — 기억해봐요</title>
+  <meta name="description" content="오픈 리졸버는 아무나 물어볼 수 있게 열려 있는 DNS 캐시 서버예요. 남을 공격하는 발판이 돼요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .amp { margin-top: 4px; }
+    .amp__row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 11px 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .amp__row + .amp__row { margin-top: 8px; }
+    .amp__lab { flex: 0 0 72px; font-size: 13px; font-weight: 700; word-break: keep-all; }
+    .amp__track { flex: 1 1 140px; min-width: 0; }
+    .amp__bar { display: block; height: 15px; border-radius: 4px; background: var(--accent); }
+    .amp__bar--sm { background: var(--line-strong); }
+    .amp__note { flex: 1 1 100%; margin: 0; font-size: 12.5px; color: var(--muted); word-break: keep-all; line-height: 1.5; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="open-resolver">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>오픈 리졸버</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">오픈 리졸버</h1>
+      <p class="reading">open resolver · オープンリゾルバ · 공개 캐시 서버 · DNS 증폭 공격 · DNS amp</p>
+      <p class="define">오픈 리졸버는 <mark>인터넷 아무나 물어볼 수 있게 열려 있는 DNS 캐시 서버</mark>예요. 무서운 건 우리가 당하는 게 아니라, <strong>우리 서버가 남을 때리는 흉기가 된다</strong>는 점이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>동네에 <strong>누구 전화든 받아서 대신 알아봐 주는 안내소</strong>가 있다고 해 볼게요. 친절한 곳이죠. 짧게 물으면 길게 알아봐서 자료를 보내 줘요.</p>
+      <p>그런데 사기꾼이 이걸 이렇게 써요. 안내소에 전화를 걸면서 <strong>발신 번호를 피해자의 번호로 속여</strong> 놓고 "두꺼운 자료 보내 주세요"라고 해요. 안내소는 친절하게 <strong>피해자 집으로</strong> 자료를 보내죠. 이걸 수백 군데 안내소에 동시에 하면, 피해자 집은 자료 더미에 파묻혀요.</p>
+      <p>DNS에서 이 안내소 노릇을 하는 게 오픈 리졸버예요. 원래 캐시 서버는 <strong>우리 쪽 사람만</strong> 쓰라고 두는 건데, 아무나 쓸 수 있게 열려 있으면 이렇게 쓰여요. 안내소는 잘못한 게 없어요. <strong>친절했을 뿐인데 흉기가 된</strong> 거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">무엇인가</p>
+          <p class="fact__value">아무나 쓸 수 있는 캐시 서버</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">쓰이는 곳</p>
+          <p class="fact__value">DNS 증폭 공격의 발판</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">우리 처지</p>
+          <p class="fact__value">피해자가 아니라 가해자</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">이 공격이 먹히는 이유는 <strong>질문은 작은데 답은 크기</strong> 때문이에요. 보내는 쪽 힘보다 훨씬 큰 양이 피해자에게 쏟아져요.</p>
+      <div class="amp" role="img" aria-label="질문과 답의 크기 차이">
+        <div class="amp__row">
+          <span class="amp__lab">보낸 질문</span>
+          <span class="amp__track"><span class="amp__bar amp__bar--sm" style="width: 14%;"></span></span>
+          <p class="amp__note">공격자가 쓰는 힘은 이만큼이에요</p>
+        </div>
+        <div class="amp__row">
+          <span class="amp__lab">돌아온 답</span>
+          <span class="amp__track"><span class="amp__bar" style="width: 94%;"></span></span>
+          <p class="amp__note">피해자가 받는 양은 이만큼이에요</p>
+        </div>
+      </div>
+      <p style="margin-top: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.65;">공격자가 쓰는 회선은 조금인데 피해자에게는 몇 배가 쏟아져요. 게다가 <strong>수많은 오픈 리졸버를 동시에</strong> 쓰면 그만큼 또 곱해져요. 그래서 혼자서도 큰 <a href="ddos.html">DDoS</a>를 만들 수 있어요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">공격자</p>
+          <p class="node__note">출발지를 피해자 주소로 속여요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">작은 질문을 잔뜩</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">오픈 리졸버</p>
+          <p class="node__note">친절하게 답해 줘요</p>
+          <p><span class="chip-mono">수많은 서버</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">큰 답이 쏟아져</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">피해자</p>
+          <p class="node__note">받기만 하다 마비돼요</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>출발지를 속일 수 있는 게 전제예요.</strong> DNS는 빠르려고 <a href="handshake.html">악수</a> 없이 한 번에 묻고 답하는 방식을 써요. 서로 확인하는 절차가 없으니 <strong>"답은 저쪽으로 보내 주세요"라고 거짓말</strong>을 할 수 있어요. 받는 쪽은 그게 거짓인지 알 방법이 없고요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>그래서 재귀 질의를 안쪽에만 열어요.</strong> 우리 사내 기기에서 온 질문에만 대신 알아봐 주고, 바깥에서 온 질문은 거절하는 거예요. 이것 하나로 오픈 리졸버 문제는 거의 끝나요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>권위 서버와 캐시 서버를 갈라 두세요.</strong> 바깥에 답해야 하는 서버(우리 도메인의 답을 주는 곳)와 안쪽을 위해 대신 물어봐 주는 서버는 <strong>역할이 달라요.</strong> 한 대가 둘 다 하면 "바깥에 열어야 하니까"라며 재귀까지 열어 두게 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 우리가 가해자가 돼요</p>
+        <p>이 문제의 성격이 보통의 보안 사고와 달라요. <strong>우리 자료는 하나도 안 새요.</strong> 서버가 멈추지도 않고요. 그런데 우리 서버와 우리 회선이 <strong>남을 때리는 데</strong> 쓰이고 있어요.<br><br>그 결과로 돌아오는 건 꽤 실질적이에요. 트래픽이 늘어 <strong>회선 요금</strong>이 올라가고, 우리 주소가 <strong>공격원으로 차단 목록</strong>에 오르고, 피해자 쪽에서 <strong>연락이 와요.</strong> 모르고 있었다는 말은 통하지만, 알려 주고도 안 고치면 이야기가 달라져요. 우리 쪽 피해가 안 보이니 <strong>알아채기까지 오래 걸리는</strong> 것도 문제고요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 집 공유기도 오픈 리졸버가 돼요</p>
+        <p>이 문제를 큰 회사 서버 이야기로만 생각하기 쉬운데, 실제로는 <strong>가정과 작은 사무실의 공유기</strong>가 큰 몫을 차지해요.<br><br>공유기 안에는 간단한 DNS 기능이 들어 있어요. 원래는 집 안 기기만 쓰라고 있는 건데, 설정이 잘못되거나 옛날 제품이면 <strong>바깥에서 온 질문에도 답해</strong> 버려요. 수가 워낙 많아서 전체로 보면 영향이 커요.<br><br>할 일은 간단해요. <strong>펌웨어를 올리고</strong>, 바깥에서 관리 화면이나 DNS에 닿을 수 있게 열어 두지 않는 거예요. 통신사에서 받은 장비라면 그쪽에 문의하면 되고요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 열려 있는 게 늘 나쁜 건 아니에요</p>
+        <p>누구나 쓸 수 있는 <strong>공개 DNS 서비스</strong>도 있어요. 그건 일부러 열어 둔 것이라 오픈 리졸버가 맞는데, 문제가 안 돼요. <strong>대비를 해 뒀기 때문</strong>이에요.<br><br>같은 곳에서 오는 질문의 수를 제한하고, 답하는 속도를 조절하고, 이상한 흐름을 감지해 끊어요. 그래서 증폭 발판으로 쓰기 어려워요.<br><br>문제가 되는 건 <strong>모르고 열려 있는</strong> 쪽이에요. 아무도 안 보고 있고 아무 제한도 없죠. 그래서 점검의 질문은 "열려 있나"가 아니라 <strong>"열어 두기로 하고 대비해 뒀나"</strong>예요. 그게 아니면 닫아야 해요.</p>
+      </div>
+      <p class="callout">오픈 리졸버는 <a href="dns-cache-poisoning.html">캐시 포이즈닝</a>의 표적이 되기도 쉬워요. 아무나 질문을 보낼 수 있다는 건, <strong>공격자가 원하는 순간에 질문을 시킬 수 있다</strong>는 뜻이거든요. 가짜 답을 밀어 넣을 기회를 마음대로 만들 수 있는 셈이에요. 닫아 두면 두 문제가 함께 줄어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">친절한 안내소가 흉기가 돼요. 우리 쪽 사람만 쓰게 닫아 두세요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
