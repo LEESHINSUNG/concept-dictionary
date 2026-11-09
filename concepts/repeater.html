@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>리피터 — 기억해봐요</title>
+  <meta name="description" content="리피터는 선을 타며 약해진 신호를 되살려 그대로 내보내는 1계층 장치예요. 내용은 보지 않아요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .relay { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .relay__row { display: grid; grid-template-columns: minmax(0, 92px) minmax(0, 1fr); }
+    .relay__row + .relay__row { border-top: 1px solid var(--line); }
+    .relay__row--on { background: var(--chip-bg); }
+    .relay__name { min-width: 0; padding: 10px; border-right: 1px solid var(--line); font-size: 13px; font-weight: 700; word-break: keep-all; line-height: 1.45; }
+    .relay__row--on .relay__name { color: var(--accent); }
+    .relay__body { min-width: 0; padding: 9px 11px; }
+    .relay__see { display: block; font-size: 13.5px; word-break: keep-all; line-height: 1.5; }
+    .relay__see b { margin-right: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent); }
+    .relay__dom { display: block; margin-top: 4px; font-size: 12.5px; color: var(--muted); word-break: keep-all; line-height: 1.5; }
+    .relay__dom i { font-style: normal; font-weight: 700; color: var(--text); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="repeater">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>리피터</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">장비</span>
+      </div>
+      <h1 class="title">리피터</h1>
+      <p class="reading">중계기 · repeater · リピータ · 허브 · hub</p>
+      <p class="define">리피터는 <mark>약해진 신호를 되살려 그대로 내보내는 장치</mark>예요. 주소도 내용도 보지 않고 <strong>신호만</strong> 다뤄서, 할 수 있는 일은 <strong>거리를 늘리는 것</strong> 하나예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 네트워크 › 장비</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>운동회에서 멀리 있는 사람에게 말을 전한다고 해 볼게요. 소리를 아무리 크게 질러도 멀어지면 흐려져요. 그래서 중간에 사람을 세워 <strong>들은 대로 다시 크게 외치게</strong> 해요.</p>
+      <p>중간에 선 사람은 <strong>무슨 뜻인지 알 필요가 없어요.</strong> 누구에게 가는 말인지도 몰라요. 들린 대로 다시 외칠 뿐이에요. 그래서 일이 아주 단순하고 빨라요. 대신 <strong>잘못된 말도 똑같이 크게</strong> 전해지고, 두 사람이 동시에 외치면 겹친 소리까지 그대로 퍼져요.</p>
+      <p>리피터가 바로 이 사람이에요. 전기 신호는 선을 타고 가면서 약해지고 모양이 흐트러져요. 리피터는 그 신호를 <strong>증폭하고 모양을 다듬어</strong> 다시 보내요. 포트를 여러 개 달아 놓은 리피터를 <strong>허브</strong>라고 불러요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">신호 — 내용은 안 봐요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">거리 늘리기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">다포트 판</p>
+          <p class="fact__value">허브</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">신호가 약해지기 전에 세워 두고 되살려요. 이 장치가 아는 것은 <strong>"신호가 들어왔다"</strong> 하나뿐이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보낸 기기</p>
+          <p class="node__note">또렷한 신호를 내보내요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">선을 타며 흐려져요</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">리피터</p>
+          <p class="node__note">증폭하고 모양을 다듬어요</p>
+          <p><span class="chip-mono">내용은 안 봐요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">다시 또렷하게</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 기기</p>
+          <p class="node__note">멀리서도 제대로 받아요</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">중계 장치는 <strong>어디까지 들여다보느냐</strong>로 갈려요. 깊이 볼수록 똑똑하게 거르지만 그만큼 느리고 비싸요.</p>
+      <div class="relay" role="img" aria-label="계층별 중계 장치 비교">
+        <div class="relay__row relay__row--on">
+          <span class="relay__name">리피터 · 허브</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>1계층</b>신호 자체 — 내용은 안 봐요</span>
+            <span class="relay__dom">충돌 영역 <i>그대로</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">브리지 · L2 스위치</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>2계층</b>MAC 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">라우터</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>3계층</b>IP 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">게이트웨이</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>4계층 위</b>규약과 내용까지</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>받은 것을 모든 포트로 보내요.</strong> 누구에게 가는 신호인지 모르니 가릴 수가 없어요. 그래서 허브에 붙은 기기는 <strong>남의 통신까지 전부 받아 봐요.</strong> 자기 것이 아니면 버릴 뿐이지, 안 오는 게 아니에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>그래서 충돌 영역이 하나로 합쳐져요.</strong> 둘이 동시에 보내면 신호가 겹쳐 둘 다 망가져요(<a href="csma-cd.html">충돌</a>). 기기가 늘수록 충돌이 늘어서, 허브는 <strong>붙일수록 느려지는</strong> 장치예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>무한정 이을 수는 없어요.</strong> 리피터를 거칠 때마다 아주 조금씩 늦어지는데, 너무 늦어지면 충돌이 났는지 제때 알아채지 못해요. 그래서 규격마다 <strong>몇 단까지 이어도 되는지</strong>가 정해져 있어요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 허브가 바로 리피터예요</p>
+        <p>포트가 여러 개인 리피터를 허브라고 불러요. 그래서 허브의 성격은 리피터 그대로예요. <strong>한 명에게 보내는 신호가 모두에게 퍼지고</strong>, 모두가 같은 선을 나눠 쓰는 셈이라 속도도 나눠 가져요.<br><br>보안으로 보면 더 심각해요. 허브에 <a href="lan-analyzer.html">LAN 애널라이저</a>를 꽂으면 <strong>그 허브를 지나는 통신을 전부 들여다볼 수</strong> 있어요. 지금 허브를 거의 안 쓰고 <a href="l2-switch.html">L2 스위치</a>로 바뀐 데에는 이 이유도 커요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 좋은 신호도 나쁜 신호도 똑같이</p>
+        <p>리피터는 판단을 안 하니까 <strong>망가진 프레임도 똑같이 되살려</strong> 퍼뜨려요. 충돌이 나서 뒤섞인 신호도 그대로 넓혀 보내고요. 한쪽 구석에서 생긴 문제가 <strong>네트워크 전체로 번지는</strong> 거예요.<br><br>반대로 <a href="bridge.html">브리지</a>는 받은 프레임이 멀쩡한지 확인하고 넘기니, 망가진 것은 거기서 멈춰요. "들여다보는 것"의 값어치가 여기서 드러나요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 지금은 어디에 남아 있나</p>
+        <p>유선 LAN에서 리피터와 허브는 거의 사라졌어요. 스위치가 더 좋으면서 값도 비슷해졌으니까요. 그런데 <strong>이름과 역할은 다른 자리에 남아</strong> 있어요.<br><br>집에서 쓰는 <strong>와이파이 중계기</strong>가 전파판 리피터예요. 신호가 약한 구석에 두면 받아서 다시 뿌려 주죠. 멀리 가는 광케이블 중간에도 신호를 되살리는 장치를 둬요. <strong>"멀어지면 약해진다"</strong>는 문제는 사라지지 않았으니, 그걸 푸는 장치도 사라지지 않아요.</p>
+      </div>
+      <p class="callout">리피터를 두면 <strong>거리는 늘지만 성능은 안 늘어요.</strong> 오히려 쓰는 기기가 늘어 충돌이 많아지면 느려져요. "느려서 장비를 하나 더 달았다"가 리피터·허브에서는 거꾸로 가는 처방이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">들은 대로 크게 다시 외칠 뿐이에요. 멀리는 가는데, 가리지는 못해요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 네트워크 › 장비</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

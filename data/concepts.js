@@ -913,6 +913,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'repeater',
+    title: '리피터',
+    sub: '중계기 · repeater · リピータ · 허브 · hub · 1계층 장비',
+    summary: '약해진 신호를 되살려 그대로 내보내 거리를 늘리는 장치',
+    category: '네트워크',
+    date: '2026-11-10'
+  },
+  {
     slug: 'rfid',
     title: 'RFID',
     sub: '알에프아이디 · Radio Frequency Identification · 무선 주파수 인식 · 전자 태그 · NFC',
