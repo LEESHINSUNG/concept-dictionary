@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>게이트웨이 — 기억해봐요</title>
+  <meta name="description" content="게이트웨이는 규약이 다른 두 네트워크를 변환해서 이어 주는 장치예요. 기본 게이트웨이라는 좁은 뜻과 섞이기 쉬워요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .relay { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .relay__row { display: grid; grid-template-columns: minmax(0, 92px) minmax(0, 1fr); }
+    .relay__row + .relay__row { border-top: 1px solid var(--line); }
+    .relay__row--on { background: var(--chip-bg); }
+    .relay__name { min-width: 0; padding: 10px; border-right: 1px solid var(--line); font-size: 13px; font-weight: 700; word-break: keep-all; line-height: 1.45; }
+    .relay__row--on .relay__name { color: var(--accent); }
+    .relay__body { min-width: 0; padding: 9px 11px; }
+    .relay__see { display: block; font-size: 13.5px; word-break: keep-all; line-height: 1.5; }
+    .relay__see b { margin-right: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent); }
+    .relay__dom { display: block; margin-top: 4px; font-size: 12.5px; color: var(--muted); word-break: keep-all; line-height: 1.5; }
+    .relay__dom i { font-style: normal; font-weight: 700; color: var(--text); }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="gateway">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>게이트웨이</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">장비</span>
+      </div>
+      <h1 class="title">게이트웨이</h1>
+      <p class="reading">gateway · ゲートウェイ · 기본 게이트웨이 · default gateway · 관문</p>
+      <p class="define">게이트웨이는 <mark>규약이 다른 두 네트워크를 변환해서 이어 주는 장치</mark>예요. 다만 실무에서는 <strong>"내 네트워크의 출구"</strong>라는 좁은 뜻으로도 쓰여서, <strong>한 낱말이 두 가지로</strong> 돌아다녀요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 네트워크 › 장비</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>지금까지 나온 중계 장치들은 <strong>모두 같은 말을 쓰는 사람들 사이</strong>를 이어 줬어요. <a href="repeater.html">리피터</a>는 목소리를 키워 주고, <a href="bridge.html">브리지</a>는 누구에게 갈지 가려 주고, <a href="router.html">라우터</a>는 어느 길로 갈지 골라 줘요. 전부 <strong>말이 통한다</strong>는 걸 전제로 해요.</p>
+      <p>그런데 아예 <strong>다른 말</strong>을 쓰는 상대라면요? 소리를 키워도 못 알아듣고, 길을 안내해 줘도 소용없어요. 필요한 건 <strong>통역사</strong>예요.</p>
+      <p>게이트웨이가 그 통역사예요. 한쪽 규약으로 들어온 것을 <strong>다른 쪽 규약으로 바꿔서</strong> 내보내요. 그래서 게이트웨이는 내용을 <strong>가장 깊이까지 들여다보는</strong> 장치예요. 뜻을 알아야 옮길 수 있으니까요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">하는 일</p>
+          <p class="fact__value">규약을 바꿔서 잇기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보는 깊이</p>
+          <p class="fact__value">4계층 위 — 때로 끝까지</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">좁은 뜻</p>
+          <p class="fact__value">기본 게이트웨이 = 출구</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">말이 다른 두 세계 사이에 서서 옮겨 줘요. 앞의 세 장치가 못 하던 일이에요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">A 네트워크</p>
+          <p class="node__note">규약 A로 말해요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">규약 A 그대로</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">게이트웨이</p>
+          <p class="node__note">받아서 뜻을 읽고 바꿔요</p>
+          <p><span class="chip-mono">프로토콜 변환</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">규약 B로 바뀌어</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">B 네트워크</p>
+          <p class="node__note">규약 B로 알아들어요</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">헷갈리는 건 <strong>같은 낱말이 두 자리에서 쓰인다</strong>는 점이에요. 둘을 갈라 두면 안 섞여요.</p>
+      <div class="dict" role="img" aria-label="게이트웨이의 두 가지 뜻 항목 정의">
+        <p class="dict__head">게이트웨이의 두 가지 뜻</p>
+        <div class="dict__row">
+          <span class="dict__k">넓은 뜻</span>
+          <span class="dict__v">규약이 다른 네트워크를 <strong>변환해서</strong> 잇는 장치. 시험에서 묻는 건 거의 이쪽이에요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">좁은 뜻</span>
+          <span class="dict__v">내 네트워크에서 <strong>바깥으로 나가는 출구</strong>. "기본 게이트웨이"라고 부르고, 그 정체는 보통 <a href="router.html">라우터</a>예요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">왜 섞이나</span>
+          <span class="dict__v">출구도 "두 세계의 경계에 선 문"이라서 같은 낱말을 쓰게 됐어요</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">중계 장치는 <strong>어디까지 들여다보느냐</strong>로 갈려요. 깊이 볼수록 똑똑하게 거르지만 그만큼 느리고 비싸요.</p>
+      <div class="relay" role="img" aria-label="계층별 중계 장치 비교">
+        <div class="relay__row">
+          <span class="relay__name">리피터 · 허브</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>1계층</b>신호 자체 — 내용은 안 봐요</span>
+            <span class="relay__dom">충돌 영역 <i>그대로</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">브리지 · L2 스위치</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>2계층</b>MAC 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">라우터</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>3계층</b>IP 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+        <div class="relay__row relay__row--on">
+          <span class="relay__name">게이트웨이</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>4계층 위</b>규약과 내용까지</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>라우터와 결정적으로 달라요.</strong> 라우터는 양쪽이 <strong>같은 규약(IP)</strong>이라는 전제 위에서 길만 골라요. 게이트웨이는 <strong>규약 자체가 다를 때</strong> 쓰는 말이에요. 바꿔 주지 않으면 아예 안 통하는 상황이요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>깊이 보는 만큼 느리고 복잡해요.</strong> 신호만 보는 리피터는 거의 즉시 넘기지만, 뜻을 읽고 바꾸는 게이트웨이는 그만큼 시간이 들어요. 그래서 꼭 필요한 자리에만 둬요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>깊이 보니 막는 일도 잘해요.</strong> 내용을 읽을 수 있다는 건 <strong>걸러낼 수도 있다</strong>는 뜻이에요. 응용 계층까지 보며 거르는 방화벽을 응용 게이트웨이라고 부르고, <a href="proxy-server.html">프록시 서버</a>가 그 자리에서 일해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 설정 화면의 "기본 게이트웨이"</p>
+        <p>네트워크를 손으로 설정해 보면 칸이 셋 나와요. IP 주소, 서브넷 마스크, 그리고 <strong>기본 게이트웨이</strong>요. 여기 적는 값은 거의 언제나 <strong>공유기나 라우터의 주소</strong>예요.<br><br>뜻은 간단해요. "내가 보내려는 주소가 <strong>우리 동네 안</strong>이면 바로 보내고, <strong>바깥</strong>이면 이 주소로 넘겨라"는 거예요. 그래서 이 값이 비어 있거나 틀리면 <strong>사내 서버에는 닿는데 인터넷만 안 되는</strong> 증상이 나와요. 같은 구역 안은 게이트웨이를 안 거치니까요. 이 증상을 보면 제일 먼저 볼 칸이 여기예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · ○○ 게이트웨이라는 이름들</p>
+        <p>세상에 게이트웨이라는 이름이 붙은 게 많아요. <strong>메일 게이트웨이</strong>는 바깥 메일을 받아 검사하고 사내 메일 시스템으로 넘기고, <strong>SMS 게이트웨이</strong>는 인터넷 요청을 통신망의 문자로 바꾸고, <strong>결제 게이트웨이</strong>는 가게의 요청을 카드사 규약으로 바꿔요. <strong>API 게이트웨이</strong>는 바깥 요청을 받아 안쪽 서비스들에 나눠 주고요.<br><br>생김새는 다 달라 보이는데 공통점이 하나예요. 전부 <strong>두 세계의 경계에 서서 말을 바꿔 주고 있어요.</strong> 이름에 게이트웨이가 붙어 있으면 "여기가 경계구나"라고 읽으면 거의 맞아요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 시험에서 묻는 건 한 줄이에요</p>
+        <p>중계 장치를 계층으로 묻는 문제가 자주 나와요. 답은 거의 이 네 줄로 정리돼요.<br><br><strong>리피터는 신호를, 브리지와 스위치는 MAC 주소를, 라우터는 IP 주소를, 게이트웨이는 그 위의 규약까지</strong> 봐요. 그리고 게이트웨이를 고르게 하는 열쇳말은 대개 <strong>"프로토콜 변환"</strong>이에요. 이 낱말이 보기에 있으면 게이트웨이를 고르면 돼요.<br><br>반대로 "집 공유기에 적는 그 값"을 묻는 문제라면 <strong>기본 게이트웨이</strong> 쪽이에요. 같은 낱말인데 묻는 자리가 다르니, 문제에 <strong>"변환"이 나오는지 "출구"가 나오는지</strong>로 갈라 읽으면 돼요.</p>
+      </div>
+      <p class="callout">"게이트웨이는 라우터와 같은 건가요?"라는 질문에는 <strong>둘 다 맞고 둘 다 틀려요.</strong> 좁은 뜻(기본 게이트웨이)으로 쓸 때는 실제로 라우터를 가리키니 같은 말이에요. 넓은 뜻(프로토콜 변환)으로 쓸 때는 라우터가 못 하는 일을 가리키니 다른 말이고요. <strong>어느 뜻으로 쓰고 있는지</strong>를 먼저 보는 게 답이에요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">말이 다른 두 세계 사이의 통역사예요. 설정 화면의 그 칸은 좁은 뜻이고요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 네트워크 › 장비</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

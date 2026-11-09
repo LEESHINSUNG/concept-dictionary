@@ -489,6 +489,14 @@ window.CONCEPTS = [
     date: '2026-10-26'
   },
   {
+    slug: 'gateway',
+    title: '게이트웨이',
+    sub: 'gateway · ゲートウェイ · 기본 게이트웨이 · default gateway · 관문 · 프로토콜 변환',
+    summary: '규약이 다른 두 네트워크를 변환해서 이어 주는 장치',
+    category: '네트워크',
+    date: '2026-11-10'
+  },
+  {
     slug: 'hacktivist',
     title: '핵티비스트',
     sub: 'hacktivist · ハクティビスト',
