@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>소프트웨어 관리 가이드라인 — 기억해봐요</title>
+  <meta name="description" content="소프트웨어 관리 가이드라인은 위법 복제를 막으려고 조직이 해야 할 일을 역할별로 정리한 일본 경제산업성의 지침이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .trio { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .trio__item { flex: 1 1 190px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .trio__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .trio__item--off { opacity: 0.72; }
+    .trio__name { margin: 0; font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--accent); }
+    .trio__key { margin: 4px 0 4px; font-size: 15px; font-weight: 700; }
+    .trio__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="software-management-guideline">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>소프트웨어 관리 가이드라인</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">관리</span>
+      </div>
+      <h1 class="title">소프트웨어 관리 가이드라인</h1>
+      <p class="reading">ソフトウェア管理ガイドライン · software management guideline · 소프트웨어 자산 관리 · SAM</p>
+      <p class="define"><mark>위법 복제를 막으려고 법인·단체가 소프트웨어를 쓸 때 해야 할 일을 정리한 지침</mark>이에요. 일본 경제산업성이 냈고, <strong>법인 · 관리 책임자 · 이용자</strong> 셋으로 나눠 각자 할 일을 적어 둔 게 특징이에요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 보안 › 관리</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>작은 도서관을 맡았다고 해 볼게요. 책이 몇 권인지도 모르고, 누가 뭘 빌려 갔는지도 안 적고, 몰래 복사해 가도 알 수 없는 상태예요. 이때 "복사하지 마세요" 안내문을 붙이는 걸로는 아무것도 안 바뀌어요.</p>
+      <p>실제로 바뀌려면 네 가지가 필요해요. <strong>책임지는 사서를 정하고</strong>, <strong>규칙을 만들어 알리고</strong>, <strong>대장에 적고</strong>, <strong>가끔 세어 보는</strong> 거예요.</p>
+      <p>소프트웨어 관리 가이드라인이 회사에 이 네 가지를 하라고 적어 둔 문서예요. 노린 건 <strong>위법 복제</strong>예요. 직원이 회사 PC에 산 적 없는 프로그램을 깔아 쓰면, 그건 <strong>회사의 책임</strong>이 돼요. "직원이 혼자 한 일"이라는 말이 통하지 않거든요. 그래서 "하지 마세요"가 아니라 <strong>관리 체계를 갖추라</strong>는 쪽으로 쓰여 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">노리는 것</p>
+          <p class="fact__value">위법 복제 막기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">나누는 방식</p>
+          <p class="fact__value">법인 · 책임자 · 이용자</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">핵심 도구</p>
+          <p class="fact__value">소프트웨어 관리 대장</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">셋으로 나눈 게 이 지침의 생김새예요. <strong>누가 무엇을 하는지</strong>가 갈라져 있어서 책임이 흐려지지 않아요.</p>
+      <div class="trio" role="list" aria-label="세 역할과 할 일">
+        <div class="trio__item trio__item--on">
+          <p class="trio__name">법인 등</p>
+          <p class="trio__key">틀을 만들어요</p>
+          <p class="trio__note">관리 책임자를 임명하고, 관리 체제를 갖추고, 관리 규칙을 만들고, 소프트웨어 감사를 해요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">관리 책임자</p>
+          <p class="trio__key">실제로 돌려요</p>
+          <p class="trio__note">관리 대장을 만들어 사용 현황을 적고, 법령과 규칙과 사용 허락 조건을 알리고, 위법 복제를 발견하면 조치해요.</p>
+        </div>
+        <div class="trio__item">
+          <p class="trio__name">이용자</p>
+          <p class="trio__key">지켜요</p>
+          <p class="trio__note">사용 조건과 책임자의 지시를 지켜요. <strong>개인이 가진 소프트웨어를 사업장에서 쓸 때는 미리 책임자의 승낙</strong>을 받아요.</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">법인이 할 네 가지는 순서가 있어요. 앞의 것이 없으면 뒤의 것이 안 돌아가요.</p>
+      <div class="jobs" role="list" aria-label="법인 등이 할 일">
+        <div class="jobs__item jobs__item--on">
+          <p class="jobs__name"><span>01</span>관리 책임자를 임명해요</p>
+          <p class="jobs__note">맡은 사람이 없으면 아무 일도 안 일어나요. 이게 첫 단추예요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>관리 체제를 갖춰요</p>
+          <p class="jobs__note">책임자 혼자 수백 대를 볼 수는 없어요. 부서마다 창구를 두는 식으로 손이 닿게 만들어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>관리 규칙을 만들어요</p>
+          <p class="jobs__note">무엇을 깔아도 되는지, 누구에게 신청하는지, 어기면 어떻게 되는지를 글로 정해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>소프트웨어 감사를 해요</p>
+          <p class="jobs__note">적어 둔 것과 실제가 맞는지 확인해요. 재어 보지 않는 관리는 관리가 아니에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>대장이 없으면 나머지가 다 안 돌아가요.</strong> 무엇을 몇 개 샀고 지금 어디에 깔려 있는지를 적은 게 소프트웨어 관리 대장이에요. 이게 없으면 감사를 해도 비교할 대상이 없고, 모자란지 남는지도 알 수 없어요. 더 넓게 정보자산 전체를 적은 것이 <a href="information-asset-ledger.html">정보자산 관리대장</a>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>발견했을 때 무엇을 하는지까지 정해 둬요.</strong> 위법 복제를 찾으면 사정을 알아본 뒤 <strong>지우는 등의 조치를 빨리</strong> 하라고 적혀 있어요. 찾고도 그냥 두면 "알고도 뒀다"가 되어 더 나빠져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>이용자 쪽 항목이 자주 빠져요.</strong> 집에서 산 프로그램을 회사 PC에 깔아 쓰는 일이 흔한데, 사용 허락이 <strong>개인용으로만</strong> 되어 있으면 회사에서 쓰는 순간 어긋나요. 그래서 미리 책임자의 승낙을 받으라고 못 박아 둔 거예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · "직원이 혼자 깐 건데요"</p>
+        <p>회사 PC에서 허락받지 않은 프로그램이 나왔을 때 가장 흔한 해명이에요. 그런데 이 말은 보통 안 통해요. <strong>관리할 수 있는 자리에 있었으면서 관리하지 않았다</strong>는 쪽으로 보이거든요.<br><br>그래서 이 지침은 "하지 마라"가 아니라 <strong>"관리하고 있었다는 걸 보일 수 있게 하라"</strong>는 모양으로 쓰여 있어요. 규칙을 만들어 알렸고, 대장을 적고 있었고, 정기적으로 감사했고, 발견했을 때 바로 지웠다는 기록이 있으면 서는 자리가 완전히 달라져요. <strong>기록이 곧 방패</strong>인 셈이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 개인 소프트웨어와 개인 기기</p>
+        <p>이용자 항목의 "개인이 가진 소프트웨어를 사업장에서 쓰려면 미리 승낙을 받아라"는 문장은, 요즘 말로 바꾸면 <a href="byod.html">BYOD</a>와 같은 고민이에요.<br><br>둘 다 <strong>회사 것이 아닌 것이 업무에 들어오는</strong> 상황이고, 회사가 통제할 수 없는 상태에서 책임만 지게 되는 구조거든요. 그래서 답도 비슷해요. 금지하기보다 <strong>신고하고 승낙받는 길을 만들어 두는</strong> 쪽이에요. 길이 없으면 사람은 몰래 쓰고, 몰래 쓰면 회사는 아무것도 모르게 돼요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 요즘은 라이선스보다 취약점</p>
+        <p>이 지침이 나왔을 때 가장 큰 걱정은 <strong>불법 복제</strong>였어요. 지금은 구독으로 사는 소프트웨어가 늘어서 그 걱정이 줄었죠. 그런데 <strong>대장의 값어치는 오히려 올라갔어요.</strong><br><br>이유는 보안이에요. 어떤 소프트웨어에 심각한 구멍이 발표된 날, 가장 먼저 답해야 할 질문이 <strong>"우리가 그걸 쓰고 있나, 어디에 깔려 있나"</strong>예요. 대장이 없으면 이 질문에 며칠이 걸려요. 그사이 공격은 이미 돌아다니고요. <a href="supply-chain-attack.html">공급망 공격</a>이 가져다 쓴 부품을 노리는 것도, <a href="security-by-design.html">시큐리티 바이 디자인</a>에서 쓰는 부품 목록을 챙기라고 하는 것도 전부 같은 이야기예요. <strong>세어 두지 않으면 지킬 수 없어요.</strong></p>
+      </div>
+      <p class="callout">이름은 "관리"지만 실제로 하는 일은 거의 <strong>세고 적는 일</strong>이에요. 멋진 규정집을 만드는 것보다 <strong>대장 한 장을 계속 맞게 유지하는 것</strong>이 훨씬 어렵고 훨씬 쓸모 있어요. 한 번 만들고 묵힌 대장은 없는 것보다 나쁠 수도 있어요. 있다고 믿게 되니까요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">"하지 마세요" 안내문 말고, 책임자·규칙·대장·감사 넷을 두세요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 보안 › 관리</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

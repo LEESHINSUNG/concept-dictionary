@@ -1057,6 +1057,14 @@ window.CONCEPTS = [
     date: '2026-11-02'
   },
   {
+    slug: 'software-management-guideline',
+    title: '소프트웨어 관리 가이드라인',
+    sub: 'ソフトウェア管理ガイドライン · software management guideline · 소프트웨어 자산 관리 · SAM · 위법 복제',
+    summary: '위법 복제를 막으려고 조직이 할 일을 역할별로 정리한 지침',
+    category: '보안',
+    date: '2026-11-10'
+  },
+  {
     slug: 'spf',
     title: 'SPF',
     sub: '에스피에프 · Sender Policy Framework',
