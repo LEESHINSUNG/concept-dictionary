@@ -1217,6 +1217,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'tight-coupling',
+    title: '밀결합',
+    sub: '밀결합 · 강결합 · tight coupling · 密結合 · 높은 결합도 · 결합도',
+    summary: '부분들이 깊이 얽혀 하나를 고치면 다른 것도 고쳐야 하는 상태',
+    category: '업무 시스템',
+    date: '2026-11-10'
+  },
+  {
     slug: 'tkip',
     title: 'TKIP',
     sub: '티킵 · Temporal Key Integrity Protocol · 임시 키 무결성 프로토콜 · WPA',
