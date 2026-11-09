@@ -561,6 +561,14 @@ window.CONCEPTS = [
     date: '2026-10-23'
   },
   {
+    slug: 'information-asset-ledger',
+    title: '정보자산 관리대장',
+    sub: '情報資産管理台帳 · 정보자산 목록 · information asset register · 자산 대장 · 자산 식별',
+    summary: '조직의 정보자산을 빠짐없이 적고 중요도를 매겨 둔 목록',
+    category: '보안',
+    date: '2026-11-10'
+  },
+  {
     slug: 'information-security-audit-standard',
     title: '정보보안 감사 기준',
     sub: '정보보안 감사기준 · 情報セキュリティ監査基準 · information security audit standard · 일반기준 · 실시기준 · 보고기준',
