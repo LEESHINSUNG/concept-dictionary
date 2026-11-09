@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>브리지 — 기억해봐요</title>
+  <meta name="description" content="브리지는 MAC 주소를 보고 필요한 쪽에만 프레임을 넘겨 주는 2계층 장치예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .relay { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .relay__row { display: grid; grid-template-columns: minmax(0, 92px) minmax(0, 1fr); }
+    .relay__row + .relay__row { border-top: 1px solid var(--line); }
+    .relay__row--on { background: var(--chip-bg); }
+    .relay__name { min-width: 0; padding: 10px; border-right: 1px solid var(--line); font-size: 13px; font-weight: 700; word-break: keep-all; line-height: 1.45; }
+    .relay__row--on .relay__name { color: var(--accent); }
+    .relay__body { min-width: 0; padding: 9px 11px; }
+    .relay__see { display: block; font-size: 13.5px; word-break: keep-all; line-height: 1.5; }
+    .relay__see b { margin-right: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent); }
+    .relay__dom { display: block; margin-top: 4px; font-size: 12.5px; color: var(--muted); word-break: keep-all; line-height: 1.5; }
+    .relay__dom i { font-style: normal; font-weight: 700; color: var(--text); }
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .cmp__row { grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.75fr) minmax(0, 1.45fr); }
+    .cmp__c:last-child { text-align: left; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="bridge">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>브리지</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">장비</span>
+      </div>
+      <h1 class="title">브리지</h1>
+      <p class="reading">bridge · ブリッジ · 다리 · 2계층 장비</p>
+      <p class="define">브리지는 <mark>MAC 주소를 보고 넘길지 말지 가리는 장치</mark>예요. <a href="repeater.html">리피터</a>가 무조건 퍼뜨린다면, 브리지는 <strong>지나다니는 프레임을 보며 누가 어느 쪽에 있는지 외워 두고</strong> 필요할 때만 넘겨요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 네트워크 › 장비</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>사무실 두 개를 잇는 문 앞에 안내인을 세운다고 해 볼게요. 처음에는 이 사람도 누가 어디 앉는지 몰라요. 그래서 <strong>지나다니는 사람을 보면서 외워요.</strong> "김 대리가 왼쪽 방에서 나왔네" 하고 적어 두는 거예요.</p>
+      <p>그러다 보면 판단할 수 있게 돼요. 왼쪽 방 사람이 <strong>같은 왼쪽 방 사람</strong>을 찾으면 문을 안 열어요. 굳이 오른쪽까지 시끄럽게 할 일이 없으니까요. <strong>오른쪽 사람</strong>을 찾을 때만 문을 열어 줘요.</p>
+      <p>브리지가 이 안내인이에요. 효과는 생각보다 커요. 왼쪽에서 벌어지는 대화가 오른쪽으로 안 넘어가니, <strong>양쪽이 서로의 소음에 시달리지 않아요.</strong> 리피터가 못 하던 일이 바로 이거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">MAC 주소</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">외우는 법</p>
+          <p class="fact__value">지나간 프레임으로</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">나누는 것</p>
+          <p class="fact__value">충돌 영역</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">브리지가 들고 있는 표예요. 왼쪽 포트에서 온 프레임을 보고 "이 주소는 왼쪽"이라고 적어 둔 거예요.</p>
+      <div class="dict" role="img" aria-label="브리지가 외워 둔 표 항목 정의">
+        <p class="dict__head">브리지가 외워 둔 표</p>
+        <div class="dict__row">
+          <span class="dict__k">A</span>
+          <span class="dict__v">왼쪽 포트</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">B</span>
+          <span class="dict__v">왼쪽 포트</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">C</span>
+          <span class="dict__v">오른쪽 포트</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">이 표를 들고 네 가지 상황을 판단해요. 마지막 두 줄이 브리지의 한계를 보여 줘요.</p>
+      <div class="cmp" role="img" aria-label="브리지의 판단 네 가지">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">들어온 프레임</span>
+          <span class="cmp__c">브리지 판단</span>
+          <span class="cmp__c">왜 그런가</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c"><span class="cmp__req">A → B</span></span>
+          <span class="cmp__c"><span class="cmp__ok">안 넘겨요</span></span>
+          <span class="cmp__c">B도 <strong>같은 쪽</strong>이라고 적혀 있어요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c"><span class="cmp__req">A → C</span></span>
+          <span class="cmp__c"><span class="cmp__no">넘겨요</span></span>
+          <span class="cmp__c">C는 <strong>건너편</strong>이라고 적혀 있어요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c"><span class="cmp__req">A → D</span></span>
+          <span class="cmp__c"><span class="cmp__no">전부로</span></span>
+          <span class="cmp__c">D는 아직 표에 없어요. 뿌려 보고 배워요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c"><span class="cmp__req">A → 전체</span></span>
+          <span class="cmp__c"><span class="cmp__no">넘겨요</span></span>
+          <span class="cmp__c">브로드캐스트는 <strong>늘 전달해요</strong></span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">중계 장치는 <strong>어디까지 들여다보느냐</strong>로 갈려요. 깊이 볼수록 똑똑하게 거르지만 그만큼 느리고 비싸요.</p>
+      <div class="relay" role="img" aria-label="계층별 중계 장치 비교">
+        <div class="relay__row">
+          <span class="relay__name">리피터 · 허브</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>1계층</b>신호 자체 — 내용은 안 봐요</span>
+            <span class="relay__dom">충돌 영역 <i>그대로</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row relay__row--on">
+          <span class="relay__name">브리지 · L2 스위치</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>2계층</b>MAC 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">라우터</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>3계층</b>IP 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">게이트웨이</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>4계층 위</b>규약과 내용까지</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>보낸 쪽 주소로 배워요.</strong> 프레임에는 보낸 쪽과 받을 쪽 MAC이 둘 다 적혀 있는데, 브리지는 <strong>보낸 쪽</strong>을 보고 "이 주소는 이 포트에 있구나"를 적어요. 답장을 기다리지 않아도 배우는 셈이라, 통신이 오가기 시작하면 금방 표가 채워져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>충돌 영역은 나누는데 브로드캐스트 영역은 못 나눠요.</strong> "거기 누구 없어요?" 같은 전체 호출은 받는 사람을 모르니 가릴 수가 없어요. 그래서 브로드캐스트를 나누려면 <a href="router.html">라우터</a>나 VLAN이 필요해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>고리가 생기면 위험해요.</strong> 브리지 두 대를 양쪽으로 이어 고리를 만들면, 브로드캐스트 하나가 <strong>영원히 뱅뱅 돌며 불어나요.</strong> 이걸 막으려고 일부러 한쪽 길을 끊어 두는 장치(스패닝 트리)가 함께 쓰여요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 표는 영원하지 않아요</p>
+        <p>외운 표를 그대로 두면 곤란해요. 자리를 옮긴 기기가 생기면 틀린 자리로 보내게 되니까요. 그래서 브리지는 <strong>일정 시간 소식이 없는 주소를 지워요.</strong> 지워지면 다음에 올 때 다시 배우면 되고요.<br><br>이게 가끔 이상하게 보일 때가 있어요. 오래 조용히 있던 기기에 처음 말을 걸면 그 프레임이 <strong>잠깐 모든 포트로 퍼져요.</strong> 고장이 아니라 "아직 못 외운 주소"라서 그래요. 한 번 답이 오면 그 뒤로는 정상으로 돌아와요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 나눴더니 조용해졌어요</p>
+        <p>한 사무실에 기기가 늘어 느려졌다고 해 볼게요. <a href="repeater.html">리피터</a>나 허브를 더 다는 건 도움이 안 돼요. 같은 선을 더 많이 나눠 쓰게 될 뿐이니까요.<br><br>브리지로 가운데를 갈라 두면 달라져요. <strong>왼쪽끼리의 통신은 왼쪽에서만</strong> 벌어지고 오른쪽은 그 시간에 자기 통신을 할 수 있어요. 양쪽이 동시에 쓰는 셈이라 전체가 빨라져요. 통신이 많이 오가는 기기끼리 <strong>같은 쪽에 모아 두는</strong> 게 이 나누기의 요령이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 그럼 L2 스위치와 뭐가 다른가</p>
+        <p>거의 같아요. 하는 일과 보는 것이 똑같고, 교과서에서도 나란히 2계층 장비로 묶여요. 다른 건 <strong>포트 수와 처리 방식</strong>이에요.<br><br>브리지는 포트가 두세 개쯤이고 소프트웨어로 판단해요. <a href="l2-switch.html">L2 스위치</a>는 포트를 수십 개 달고 전용 칩으로 판단해서 훨씬 빨라요. 그래서 요즘 실제로 사는 물건은 거의 스위치고, <strong>브리지는 그 원리를 설명하는 이름</strong>으로 남아 있어요.</p>
+      </div>
+      <p class="callout">브리지를 두 번째로 두면 효과가 줄어요. 가르는 자리가 중요해요. <strong>통신이 적게 오가는 자리를 골라</strong> 끊어야 양쪽이 서로를 안 건드려요. 서로 쉴 새 없이 주고받는 둘 사이를 갈라 놓으면, 모든 프레임이 브리지를 거치느라 오히려 느려져요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">지나다니는 걸 보며 누가 어느 쪽인지 외워 뒀다가, 필요할 때만 넘겨요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 네트워크 › 장비</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

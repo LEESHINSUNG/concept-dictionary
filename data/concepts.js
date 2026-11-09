@@ -121,6 +121,14 @@ window.CONCEPTS = [
     date: '2026-10-21'
   },
   {
+    slug: 'bridge',
+    title: '브리지',
+    sub: 'bridge · ブリッジ · 다리 · 2계층 장비 · MAC 주소 학습',
+    summary: 'MAC 주소를 보고 필요한 쪽에만 프레임을 넘겨 주는 장치',
+    category: '네트워크',
+    date: '2026-11-10'
+  },
+  {
     slug: 'broken-windows-theory',
     title: '깨진 유리창 이론',
     sub: 'broken windows theory · 割れ窓理論',
