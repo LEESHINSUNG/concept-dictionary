@@ -649,6 +649,14 @@ window.CONCEPTS = [
     date: '2026-10-27'
   },
   {
+    slug: 'l2-switch',
+    title: 'L2 스위치',
+    sub: '레이어 2 스위치 · L2スイッチ · 스위칭 허브 · switching hub · 2계층 스위치 · VLAN',
+    summary: 'MAC 주소를 보고 필요한 포트에만 보내는 포트 많은 브리지',
+    category: '네트워크',
+    date: '2026-11-10'
+  },
+  {
     slug: 'lan',
     title: 'LAN',
     sub: '랜 · Local Area Network',

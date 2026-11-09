@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>L2 스위치 — 기억해봐요</title>
+  <meta name="description" content="L2 스위치는 MAC 주소를 보고 필요한 포트에만 보내 주는 장치예요. 포트가 많고 빠른 브리지예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .relay { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .relay__row { display: grid; grid-template-columns: minmax(0, 92px) minmax(0, 1fr); }
+    .relay__row + .relay__row { border-top: 1px solid var(--line); }
+    .relay__row--on { background: var(--chip-bg); }
+    .relay__name { min-width: 0; padding: 10px; border-right: 1px solid var(--line); font-size: 13px; font-weight: 700; word-break: keep-all; line-height: 1.45; }
+    .relay__row--on .relay__name { color: var(--accent); }
+    .relay__body { min-width: 0; padding: 9px 11px; }
+    .relay__see { display: block; font-size: 13.5px; word-break: keep-all; line-height: 1.5; }
+    .relay__see b { margin-right: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent); }
+    .relay__dom { display: block; margin-top: 4px; font-size: 12.5px; color: var(--muted); word-break: keep-all; line-height: 1.5; }
+    .relay__dom i { font-style: normal; font-weight: 700; color: var(--text); }
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="l2-switch">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>L2 스위치</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">네트워크</span>
+        <span class="chip">장비</span>
+      </div>
+      <h1 class="title">L2 스위치</h1>
+      <p class="reading">레이어 2 스위치 · L2スイッチ · 스위칭 허브 · switching hub · 2계층 스위치</p>
+      <p class="define">L2 스위치는 <mark>MAC 주소를 보고 필요한 포트에만 보내는 장치</mark>예요. 하는 일은 <a href="bridge.html">브리지</a>와 같은데 <strong>포트가 많고 전용 칩으로 처리해서 훨씬 빨라요</strong>. 지금 LAN의 한가운데에 있는 장비예요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 네트워크 › 장비</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>교실에서 한 사람에게 말을 전한다고 해 볼게요. <strong>반 전체에 대고 소리치는 것</strong>과 <strong>그 사람 자리로 가서 귓속말하는 것</strong>은 많이 달라요.</p>
+      <p>허브가 앞의 방식이에요. 누구에게 가는 건지 모르니 전부에게 뿌려요. 그래서 한 사람이 말하는 동안 다른 사람은 기다려야 하고, 옆 사람은 <strong>듣고 싶지 않아도 다 듣게</strong> 돼요.</p>
+      <p>L2 스위치가 뒤의 방식이에요. 누가 어디 앉는지 외워 두고 <strong>그 자리로만</strong> 보내요. 그러면 신기한 일이 생겨요. A와 B가 이야기하는 동안 <strong>C와 D도 동시에</strong> 이야기할 수 있어요. 서로의 말이 겹치지 않으니까요. 기기를 더 붙여도 느려지지 않는 이유예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">MAC 주소</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">보내는 곳</p>
+          <p class="fact__value">받을 기기의 포트만</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">같은 원리</p>
+          <p class="fact__value">브리지</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">A가 B에게 보낼 때 무슨 일이 벌어지는지를 허브와 견줘 봤어요. 색칠한 두 줄이 실제로 체감되는 차이예요.</p>
+      <div class="cmp" role="img" aria-label="허브와 L2 스위치 비교">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">A가 B에게 보낼 때</span>
+          <span class="cmp__c">허브</span>
+          <span class="cmp__c">L2 스위치</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">신호가 가는 곳</span>
+          <span class="cmp__c">모든 포트</span>
+          <span class="cmp__c"><span class="cmp__no">B의 포트만</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">옆 기기가 보는 것</span>
+          <span class="cmp__c">남의 통신도 보여요</span>
+          <span class="cmp__c"><span class="cmp__no">안 보여요</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">동시에 주고받기</span>
+          <span class="cmp__c">못 해요</span>
+          <span class="cmp__c">할 수 있어요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">딴 쌍이 동시에</span>
+          <span class="cmp__c">기다려야 해요</span>
+          <span class="cmp__c">같이 쓸 수 있어요</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">기기가 늘면</span>
+          <span class="cmp__c">느려져요</span>
+          <span class="cmp__c">거의 그대로</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">충돌 영역</span>
+          <span class="cmp__c">전부 하나</span>
+          <span class="cmp__c">포트마다 따로</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">중계 장치는 <strong>어디까지 들여다보느냐</strong>로 갈려요. 깊이 볼수록 똑똑하게 거르지만 그만큼 느리고 비싸요.</p>
+      <div class="relay" role="img" aria-label="계층별 중계 장치 비교">
+        <div class="relay__row">
+          <span class="relay__name">리피터 · 허브</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>1계층</b>신호 자체 — 내용은 안 봐요</span>
+            <span class="relay__dom">충돌 영역 <i>그대로</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row relay__row--on">
+          <span class="relay__name">브리지 · L2 스위치</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>2계층</b>MAC 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>그대로</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">라우터</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>3계층</b>IP 주소</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+        <div class="relay__row">
+          <span class="relay__name">게이트웨이</span>
+          <span class="relay__body">
+            <span class="relay__see"><b>4계층 위</b>규약과 내용까지</span>
+            <span class="relay__dom">충돌 영역 <i>나눠요</i> · 브로드캐스트 영역 <i>나눠요</i></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>포트마다 충돌 영역이 따로예요.</strong> 선 하나에 기기 하나만 매달린 셈이라 겹칠 상대가 없어요. 그래서 <a href="csma-cd.html">충돌을 피하려고 기다리는 규칙</a>이 사실상 필요 없어지고, <strong>보내면서 동시에 받는</strong> 것도 가능해져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>브로드캐스트는 여전히 다 퍼져요.</strong> 받을 사람을 모르는 전체 호출은 가릴 수가 없거든요. 그래서 기기가 아주 많아지면 브로드캐스트만으로도 시끄러워져요. 이걸 나누려고 쓰는 게 <strong>VLAN</strong>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>VLAN은 선을 안 바꾸고 나누는 방법이에요.</strong> 스위치 한 대의 포트를 <strong>논리적으로 몇 묶음</strong>으로 갈라 두면, 묶음이 다른 포트끼리는 서로 안 보여요. 물리적으로 스위치를 따로 산 것과 같은 효과를 설정만으로 내는 거예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 스위치 때문에 감시가 어려워졌어요</p>
+        <p>허브 시절에는 아무 포트에나 <a href="lan-analyzer.html">LAN 애널라이저</a>를 꽂으면 그 네트워크의 통신이 다 보였어요. 스위치로 바뀌면서 <strong>자기에게 오는 것만</strong> 보이게 됐죠. 보안으로는 좋아진 건데, 문제를 들여다봐야 하는 관리자에게는 곤란해졌어요.<br><br>그래서 스위치에 <strong>"다른 포트로 흐르는 걸 복사해서 이 포트로도 보내 줘"</strong> 하는 기능을 넣었어요. 그게 <a href="mirror-port.html">미러 포트</a>예요. 스위치가 똑똑해진 탓에 생긴 기능이라, 허브 시절에는 있을 이유가 없던 거예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 번호가 붙은 스위치들</p>
+        <p>L2의 2는 <a href="osi-model.html">OSI</a>의 2계층이에요. <strong>어디까지 들여다보는지</strong>를 번호로 부르는 거예요.<br><br><strong>L2 스위치</strong>는 MAC 주소까지 보고, <strong>L3 스위치</strong>는 IP 주소까지 봐서 <a href="router.html">라우터</a>처럼 다른 네트워크로도 넘겨요. <strong>L7</strong>까지 붙으면 요청 안의 내용(어느 주소를 찾는지)까지 읽고 나누는 거고요. <a href="load-balancing.html">부하 분산</a> 장비에 L4니 L7이니 붙는 게 이 뜻이에요. 번호가 클수록 똑똑하게 가르는 대신 느리고 비싸요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 요즘 파는 "허브"</p>
+        <p>가게에서 "유선 허브"라고 파는 물건은 거의 다 <strong>사실 L2 스위치</strong>예요. 진짜 허브는 만들지 않은 지 오래됐어요. 스위치가 더 좋으면서 값 차이도 거의 없어졌거든요. 그래서 상자에 허브라고 적혀 있어도 안을 열면 스위치예요.<br><br>이름만 남은 셈인데, 구분이 필요한 자리는 아직 있어요. 시험에서는 둘을 <strong>확실히 다른 장비로</strong> 묻고, 네트워크를 설계할 때도 "이 구간은 충돌 영역이 어디까지인가"를 따질 때 구분이 그대로 쓰여요.</p>
+      </div>
+      <p class="callout">스위치를 많이 사서 겹겹이 쌓으면 해결되는 문제와 아닌 문제가 있어요. <strong>충돌과 대역</strong>은 스위치가 풀어 줘요. 그런데 <strong>브로드캐스트가 시끄러운 문제</strong>는 스위치를 아무리 더해도 그대로예요. 그건 VLAN이나 <a href="router.html">라우터</a>로 구역을 갈라야 풀려요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">누가 어느 포트에 있는지 외워 두고 그 자리로만 보내요. 그래서 여럿이 동시에 쓸 수 있어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 네트워크 › 장비</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
