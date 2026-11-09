@@ -713,6 +713,14 @@ window.CONCEPTS = [
     date: '2026-10-30'
   },
   {
+    slug: 'loose-coupling',
+    title: '소결합',
+    sub: '소결합 · 약결합 · 느슨한 결합 · loose coupling · 疎結合 · 낮은 결합도 · 결합도',
+    summary: '부분들이 약속만 공유하고 서로의 속은 모르게 떼어 놓은 상태',
+    category: '업무 시스템',
+    date: '2026-11-10'
+  },
+  {
     slug: 'mece',
     title: 'MECE',
     sub: '미시 · 중복 없이 누락 없이 · Mutually Exclusive and Collectively Exhaustive · 漏れなくダブりなく',

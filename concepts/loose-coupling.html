@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>소결합 — 기억해봐요</title>
+  <meta name="description" content="소결합은 부분들이 약속만 공유하고 서로의 속은 모르게 떼어 놓은 상태예요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="loose-coupling">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>소결합</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">시스템 구성</span>
+      </div>
+      <h1 class="title">소결합</h1>
+      <p class="reading">소결합 · 약결합 · 느슨한 결합 · loose coupling · 疎結合 · 낮은 결합도</p>
+      <p class="define">소결합은 <mark>부분들이 약속만 공유하고 서로의 속은 모르는 상태</mark>예요. 따로 고치고 따로 멈출 수 있게 되지만, <strong>느려지고 흐름을 따라가기 어려워지는</strong> 값을 치러요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 업무 시스템 › 시스템 구성</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>콘센트와 플러그를 떠올려 보세요. 전등은 발전소가 어떻게 생겼는지, 화력인지 태양광인지 <strong>전혀 몰라요.</strong> 아는 건 <strong>구멍 모양과 전압</strong>뿐이에요.</p>
+      <p>그 덕에 신기한 일이 돼요. 발전소를 통째로 바꿔도 전등은 그대로 켜지고, 전등을 선풍기로 바꿔 꽂아도 발전소는 아무것도 몰라요. <strong>약속만 지키면 양쪽이 서로를 신경 쓸 필요가 없어요.</strong></p>
+      <p>소결합이 이 상태예요. A가 B를 직접 부르는 대신 <strong>정해진 약속</strong>을 거쳐요. 그러면 B를 통째로 바꿔 끼워도 A는 모르고, B가 잠깐 멈춰도 A는 하던 일을 이어 갈 수 있어요. 대신 <strong>콘센트를 거치는 만큼</strong> 일이 늘어요. 공짜가 아니에요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">공유하는 것</p>
+          <p class="fact__value">약속만</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">얻는 것</p>
+          <p class="fact__value">따로 고치고 따로 멈추기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">치르는 값</p>
+          <p class="fact__value">느려지고 추적이 어려워요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">떼어 놓는다는 건 <strong>사이에 무언가를 세운다</strong>는 뜻이에요. 그 무언가가 약속이거나 중간 통로예요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">보내는 쪽</p>
+          <p class="node__note">B가 누구인지 몰라요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">약속대로 보내요</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">약속 · 중간 통로</p>
+          <p class="node__note">모양만 맞으면 받아 줘요</p>
+          <p><span class="chip-mono">서로를 몰라요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">약속대로 꺼내</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">받는 쪽</p>
+          <p class="node__note">A가 누구인지 몰라요</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">떼어내는 방법은 크게 셋이에요. 아래로 갈수록 더 느슨해지고, 그만큼 값도 더 들어요.</p>
+      <div class="jobs" role="list" aria-label="떼어내는 세 가지 방법">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>약속만 공유하기</p>
+          <p class="jobs__note">어떻게 만들어졌는지는 숨기고 <strong>무엇을 주고받을지</strong>만 정해요. 속을 바꿔도 약속이 그대로면 상대는 몰라요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>중간에 통로 두기</p>
+          <p class="jobs__note">직접 건네지 않고 <a href="message-queue.html">메시지 큐</a>에 넣어 둬요. 받는 쪽이 잠깐 멈춰 있어도 쌓여 있다가 나중에 처리돼요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>사건만 알리기</p>
+          <p class="jobs__note">"주문이 들어왔다"고 알리기만 하고 <strong>누가 받는지는 신경 쓰지 않아요.</strong> 나중에 듣는 쪽을 하나 더 붙여도 보내는 쪽은 그대로예요.</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;"><a href="tight-coupling.html">밀결합</a>과 견주면 무엇을 주고 무엇을 받는지가 분명해져요.</p>
+      <div class="cmp" role="img" aria-label="밀결합과 소결합">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">보는 항목</span>
+          <span class="cmp__c">밀결합</span>
+          <span class="cmp__c">소결합</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">부르는 방법</span>
+          <span class="cmp__c">직접 불러요</span>
+          <span class="cmp__c">약속을 거쳐요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">한쪽을 고치면</span>
+          <span class="cmp__c">다른 쪽도 고쳐요</span>
+          <span class="cmp__c">약속만 지키면 그대로</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">배포</span>
+          <span class="cmp__c">같이 해야 해요</span>
+          <span class="cmp__c">따로 할 수 있어요</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">한쪽이 멈추면</span>
+          <span class="cmp__c">같이 멈춰요</span>
+          <span class="cmp__c">버틸 수 있어요</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">속도</span>
+          <span class="cmp__c">빨라요</span>
+          <span class="cmp__c">중간 단계만큼 느려요</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">흐름 따라가기</span>
+          <span class="cmp__c">쉬워요</span>
+          <span class="cmp__c">어려워요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">맞는 자리</span>
+          <span class="cmp__c">작고 한 팀</span>
+          <span class="cmp__c">크고 여러 팀</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>약속이 생명이에요.</strong> 떼어 놓았다고 아무 사이나 된 게 아니라, <strong>약속이라는 가느다란 끈</strong>으로 이어져 있어요. 그래서 약속을 함부로 바꾸면 소결합의 뜻이 사라져요. 바꿔야 할 때는 <strong>옛 약속도 한동안 같이 받아 주는</strong> 식으로 넘어가요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>바로 일관되지 않아요.</strong> 중간 통로를 거치면 보낸 직후에 받는 쪽은 아직 모를 수 있어요. 주문은 들어갔는데 재고 화면에는 <strong>몇 초 뒤에</strong> 반영되는 식이에요. 돈이 걸린 곳에서는 이 틈을 어떻게 다룰지 미리 정해 둬야 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>흐름을 따라가기 어려워져요.</strong> 밀결합에서는 부르는 자리를 따라가면 끝까지 읽히는데, 소결합에서는 <strong>어디로 갔는지 코드만 봐서는 안 보여요.</strong> 그래서 소결합으로 가면 <strong>흔적을 모아 보는 장치</strong>가 같이 필요해져요. 없으면 고장 났을 때 어디서 끊겼는지 못 찾아요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 공짜가 아니에요</p>
+        <p>소결합이 늘 옳다고 여기면 꼭 치르는 값을 놓쳐요. 셋이 따라와요.<br><br><strong>느려져요.</strong> 직접 부르면 끝날 일에 중간 단계가 붙으니까요. <strong>볼 데가 늘어요.</strong> 통로도 돌아가고 있어야 하고, 쌓인 게 밀리지 않는지도 봐야 해요. <strong>고장이 어렵게 나요.</strong> 밀결합에서는 "안 됩니다"로 끝나는데, 소결합에서는 <strong>어떤 건 되고 어떤 건 몇 분 늦게 되는</strong> 식으로 애매하게 나요.<br><br>그래서 판단은 늘 같아요. <strong>떼어내서 얻는 게 이 값보다 큰가.</strong> 작은 시스템에서는 대개 아니에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 떼어 놓으면 안 되는 것도 있어요</p>
+        <p>늘 같이 바뀌고 <strong>늘 같이 맞아야 하는</strong> 둘이라면 붙여 두는 게 맞아요.<br><br>주문을 넣으면서 재고를 깎는 일을 생각해 보세요. 둘이 <strong>함께 되거나 함께 안 되어야</strong> 해요. 이걸 떼어 놓으면 주문은 들어갔는데 재고는 안 깎인 상태가 잠깐 생기고, 그사이 다른 손님이 마지막 하나를 또 사 가요. 그러면 "둘 다 됐는지 확인하고 아니면 되돌리는" 장치를 따로 만들어야 하는데, <strong>그게 떼어내서 얻은 이득보다 복잡해져요.</strong><br><br>경계는 <strong>따로 틀려도 되는 자리</strong>에 그어야 해요. 주문과 영수증 메일 발송 사이라면 떼어 놓는 게 맞고요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 여러 CPU 이야기의 소결합</p>
+        <p>컴퓨터 구조에서는 여러 CPU가 <strong>각자 자기 메모리를 가지고</strong> 통신으로 주고받는 방식을 소결합이라고 불러요.<br><br>성격이 똑같이 따라와요. 메모리를 다투지 않으니 <strong>수를 늘리기 쉬워요.</strong> 대신 주고받을 때마다 통신이 필요해서 <strong>가까이 붙어 있을 때보다 느려요.</strong> 한 대가 죽어도 나머지는 돌아가고요.<br><br><a href="tight-coupling.html">밀결합</a>이 "가까워서 빠른데 늘리기 어렵다"면 소결합은 <strong>"멀어서 느린데 늘리기 쉽다"</strong>예요. 소프트웨어든 하드웨어든 <strong>같은 맞바꿈</strong>이 되풀이되는 거예요.</p>
+      </div>
+      <p class="callout">"느슨하게 만들자"는 말은 목표가 아니라 <strong>수단</strong>이에요. 진짜 목표는 <strong>따로 고치고 따로 내보낼 수 있게 되는 것</strong>이고요. 떼어 놓았는데도 여전히 같이 배포하고 같이 멈춘다면, 중간 단계만 늘고 얻은 건 없는 상태예요. 그럴 때는 돌아가는 게 나아요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">콘센트 모양만 맞추면 돼요. 서로를 모르게 되는 대신 값을 치러요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 업무 시스템 › 시스템 구성</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
