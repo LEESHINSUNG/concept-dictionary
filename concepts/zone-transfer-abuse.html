@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>존 전송 악용 — 기억해봐요</title>
+  <meta name="description" content="존 전송 악용은 DNS 서버끼리 쓰는 복사 기능을 아무나 쓰게 둬서 도메인 아래 이름이 통째로 새는 것이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .code pre { white-space: pre; overflow-x: auto; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="zone-transfer-abuse">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>존 전송 악용</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">존 전송 악용</h1>
+      <p class="reading">존 전송 · 영역 전송 · AXFR · zone transfer · ゾーン転送の悪用</p>
+      <p class="define">존 전송은 <mark>DNS 서버끼리 목록을 통째로 복사하는 정상 기능</mark>이에요. 문제는 <strong>요청하는 쪽을 가리지 않을 때</strong>예요. 아무나 받아 갈 수 있으면 <strong>도메인 아래 모든 이름이 한 번에</strong> 새어 나가요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-10">2026-11-10</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>회사 안내 데스크에 전화를 걸어 <strong>"영업부 김 과장님 내선 좀 알려 주세요"</strong>라고 물으면 알려 주겠죠. 그건 자연스러운 일이에요.</p>
+      <p>그런데 <strong>"내선 전화번호부 전체를 파일로 보내 주세요"</strong>라고 했는데 그냥 보내 준다면요? 한 번에 조직도가 통째로 넘어가요. 안 쓰는 옛날 번호, 사내 전용 번호, 아직 공개 안 한 부서까지 전부요.</p>
+      <p>DNS에는 이 "통째로 주기"가 <strong>정식 기능으로 들어 있어요.</strong> 서버를 여러 대 두려면 한 대가 가진 목록을 다른 대로 복사해야 하거든요. 이게 존 전송이에요. 필요한 기능인데, <strong>받을 자격이 있는 곳만</strong> 받게 해 두지 않으면 아무나 받아 가요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">원래 쓰임</p>
+          <p class="fact__value">보조 DNS 서버로 복사</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">새는 것</p>
+          <p class="fact__value">도메인 아래 이름 전부</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">성격</p>
+          <p class="fact__value">공격이 아니라 정찰</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">같은 요청이 설정에 따라 어떻게 갈리는지 봐요. 가운데 줄 하나가 전부를 가르는 자리예요.</p>
+      <div class="cmp" role="img" aria-label="존 전송 요청이 들어왔을 때">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">누가 요청했나</span>
+          <span class="cmp__c">제대로 된 설정</span>
+          <span class="cmp__c">열어 둔 설정</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">등록해 둔 보조 서버</span>
+          <span class="cmp__c"><span class="cmp__ok">허용</span></span>
+          <span class="cmp__c"><span class="cmp__ok">허용</span></span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">모르는 곳에서</span>
+          <span class="cmp__c"><span class="cmp__ok">거절</span></span>
+          <span class="cmp__c"><span class="cmp__no">전부 내줘요</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">공격자가 얻는 것</span>
+          <span class="cmp__c">없어요</span>
+          <span class="cmp__c"><span class="cmp__no">이름 목록 전체</span></span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">열려 있을 때 넘어가는 건 이런 모습이에요. 마지막 두 줄이 공격자가 진짜로 노리는 것이에요.</p>
+      <div class="code">
+        <p class="code__head">새어 나간 존 파일 (예시)</p>
+        <pre><code>example.com.            NS    ns1.example.com.
+www.example.com.        A     203.0.113.10
+mail.example.com.       A     203.0.113.20
+vpn.example.com.        A     203.0.113.30
+dev.example.com.        A     192.168.10.5     &lt;- 사내 주소까지
+old-admin.example.com.  A     203.0.113.99     &lt;- 잊고 있던 서버</code></pre>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>이건 공격이 아니라 정찰이에요.</strong> 받아 갔다고 바로 뭔가 망가지지는 않아요. 대신 공격자가 <strong>어디를 찌를지 고를 수 있게</strong> 돼요. 정면은 잘 지켜도 옆문은 허술한 법이라, 목록이 있으면 옆문을 쉽게 찾아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>가장 위험한 건 잊고 있던 서버예요.</strong> 몇 년 전 테스트로 만들고 안 쓰는 서버는 패치도 안 되고 감시도 안 돼요. 그런데 목록에는 멀쩡히 남아 있죠. 공격자 입장에서는 <strong>가장 먼저 두드릴 문</strong>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>막는 방법은 두 겹이에요.</strong> 먼저 <strong>전송을 허용할 IP를 못 박아</strong> 두고, 거기에 <strong>열쇠로 요청을 확인</strong>하게(TSIG) 해요. IP는 속일 수 있으니 열쇠까지 있어야 제대로 막혀요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 어차피 공개된 정보 아닌가요</p>
+        <p>맞는 말이면서 틀린 말이에요. 하나하나는 물어보면 알려 주는 정보예요. <code>www</code>가 어느 주소인지는 누구나 조회할 수 있죠.<br><br>차이는 <strong>"한꺼번에 주느냐"</strong>예요. 열려 있지 않으면 공격자는 이름을 하나씩 <strong>찍어서 맞혀야</strong> 해요. <code>test</code>, <code>dev</code>, <code>admin</code> 같은 흔한 이름은 걸리겠지만 <code>proj-2019-backup</code> 같은 건 영영 못 찾아요. 그런데 존 전송이 열려 있으면 <strong>맞힐 필요 없이 정답지를 받는</strong> 거예요. 추측과 확정은 공격자에게 전혀 다른 이야기예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 그냥 기능을 꺼 버리면 안 되나요</p>
+        <p>끄면 안 되는 경우가 있어요. DNS 서버를 두 대 이상 두고 있다면 <strong>보조 서버가 목록을 못 받아</strong> 와요. 그러면 주 서버가 죽었을 때 대신 답해 줄 수가 없죠. 가용성을 지키려고 둔 두 번째 서버가 무용지물이 돼요.<br><br>그래서 끄는 게 아니라 <strong>좁히는</strong> 거예요. 보조 서버의 IP만 허용하고 열쇠를 맞춰 두면, 정상 복사는 그대로 되면서 바깥에서 오는 요청만 막혀요. 요즘 DNS 소프트웨어는 기본값이 닫혀 있는 편이라, 열려 있다면 대개 <strong>예전 설정이 그대로 남아</strong> 있는 경우예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 내부 이름을 바깥 DNS에 두지 마세요</p>
+        <p>존 전송을 잘 막아도 남는 문제가 있어요. <strong>사내에서만 쓰는 이름이 외부 DNS에 올라가 있는</strong> 경우예요. 위 예시의 <code>dev.example.com</code>이 사내 주소를 가리키는 게 그 모습이에요.<br><br>이러면 존 전송을 막아도 하나씩 조회하면 드러나요. 그래서 <strong>바깥용과 안쪽용 DNS를 아예 갈라 둬요.</strong> 바깥 DNS에는 바깥에서 닿아야 하는 이름만 두고, 사내 이름은 안쪽 DNS에만 두는 거예요. <a href="dmz.html">DMZ</a>를 나누는 것과 같은 생각이에요. <strong>안쪽 구조가 바깥에서 안 보이게</strong> 하는 거죠.</p>
+      </div>
+      <p class="callout">우리 도메인이 열려 있는지는 <strong>바깥에서 존 전송을 걸어 보면</strong> 바로 알 수 있어요. 응답이 오면 열린 거예요. 자기 도메인을 점검하는 건 문제가 없지만, <strong>남의 도메인에 거는 건 정찰 행위</strong>라 그 자체로 문제가 될 수 있어요. 점검은 우리 것에만 하세요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">번호 하나를 묻는 것과 전화번호부를 통째로 받는 건 달라요. 받을 곳만 받게 하세요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-10 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

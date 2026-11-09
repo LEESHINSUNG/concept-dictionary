@@ -1295,5 +1295,13 @@ window.CONCEPTS = [
     summary: '고칠 방법이 아직 없는 상태에서 알려진 취약점',
     category: '보안',
     date: '2026-10-23'
+  },
+  {
+    slug: 'zone-transfer-abuse',
+    title: '존 전송 악용',
+    sub: '존 전송 · 영역 전송 · AXFR · zone transfer · ゾーン転送の悪用 · TSIG',
+    summary: 'DNS 복사 기능을 아무나 쓰게 둬서 도메인 아래 이름이 통째로 새는 것',
+    category: '보안',
+    date: '2026-11-10'
   }
 ];
