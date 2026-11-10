@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TEMPEST — 기억해봐요</title>
+  <meta name="description" content="TEMPEST는 기기에서 저절로 새어 나오는 전자파를 멀리서 잡아 내용을 되살리는 도청과, 그것을 막는 대책을 가리켜요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="tempest">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>TEMPEST</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">공격 기법</span>
+      </div>
+      <h1 class="title">TEMPEST</h1>
+      <p class="reading">템페스트 · 전자파 누설 도청 · TEMPEST · テンペスト · 사이드 채널</p>
+      <p class="define">TEMPEST는 <mark>기기에서 저절로 새어 나오는 전자파로 내용을 되살려 내는 도청</mark>, 그리고 <strong>그걸 막는 대책</strong>을 가리켜요. 선을 타지 않으니 <strong>인터넷을 끊어 둬도 통해요</strong>.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-11">2026-11-11</time></span>
+        <span>카테고리 보안 › 공격 기법</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>밤에 방 안에서 커튼을 안 치고 있다고 해 볼게요. 문도 잠갔고 아무에게도 말을 안 했는데, <strong>바깥에서는 창으로 다 보여요.</strong> 내가 뭔가를 내보낸 게 아니라, <strong>저절로 새어 나간</strong> 거예요.</p>
+      <p>전자 기기도 똑같아요. 화면에 글자를 그리고 케이블로 신호를 보낼 때 <strong>전파가 저절로 조금씩 새어 나가요.</strong> 그런데 그 전파에는 <strong>원래 신호의 모양이 희미하게 남아</strong> 있어요. 그래서 벽 너머에서 안테나로 받아 다듬으면 <strong>화면에 뜬 글자를 되살려</strong> 낼 수 있어요.</p>
+      <p>이게 TEMPEST예요. 무서운 대목은 <strong>아무것도 안 건드린다</strong>는 점이에요. 악성 프로그램을 깔 필요도, 선에 끼어들 필요도, 로그인할 필요도 없어요. 당한 쪽에는 <strong>아무 기록도 안 남아요.</strong></p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">새는 것</p>
+          <p class="fact__value">전자파</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">무서운 점</p>
+          <p class="fact__value">선을 안 타요</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">막는 법</p>
+          <p class="fact__value">차폐 · 거리 · 잡음</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">공격자가 하는 일은 <strong>받아서 다듬는 것</strong>뿐이에요. 보내는 쪽은 자기가 보내고 있다는 걸 몰라요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">일하는 기기</p>
+          <p class="node__note">화면과 케이블에 신호가 흘러요</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">전파가 저절로 새어</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">새어 나온 전자파</p>
+          <p class="node__note">원래 신호의 모양이 남아 있어요</p>
+          <p><span class="chip-mono">아무 기록도 안 남아요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">안테나로 받아</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">벽 너머의 공격자</p>
+          <p class="node__note">다듬어서 화면을 되살려요</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">TEMPEST는 더 큰 갈래의 하나예요. <strong>내용을 깨지 않고, 새어 나오는 부수적인 것으로 알아내는</strong> 방법들이에요.</p>
+      <div class="dict" role="img" aria-label="새어 나오는 것들 — 사이드 채널 항목 정의">
+        <p class="dict__head">새어 나오는 것들 — 사이드 채널</p>
+        <div class="dict__row">
+          <span class="dict__k">전자파</span>
+          <span class="dict__v">화면과 케이블에서 나오는 전파 — <strong>TEMPEST가 다루는 것</strong>이에요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">소리</span>
+          <span class="dict__v">키를 누르는 소리나 기계가 내는 소리로 무엇을 쳤는지 짐작해요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">전력</span>
+          <span class="dict__v">계산할 때 쓰는 전기의 오르내림으로 열쇠를 짐작해요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">시간</span>
+          <span class="dict__v">계산에 걸린 시간의 차이로 안쪽 값을 짐작해요</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">막는 방법은 네 가지인데, 생각이 전부 같아요. <strong>새는 것을 줄이거나, 닿지 못하게 하거나, 묻어 버리거나</strong>예요.</p>
+      <div class="jobs" role="list" aria-label="막는 법">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>감싸요</p>
+          <p class="jobs__note">방이나 기기를 금속으로 둘러싸 전파가 못 빠져나가게 해요. 가장 확실한 대신 가장 비싸요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>멀리 둬요</p>
+          <p class="jobs__note">전파는 멀어질수록 약해져요. 중요한 기기를 건물 바깥 경계에서 떨어뜨려 두는 것만으로도 꽤 달라져요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>묻어 버려요</p>
+          <p class="jobs__note">일부러 잡음을 뿌려 새어 나온 신호를 알아보기 어렵게 만들어요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>덜 새는 것을 써요</p>
+          <p class="jobs__note">누설이 적게 설계된 기기와 차폐 케이블을 써요. 아예 전파가 안 나오는 <strong>광케이블</strong>도 한 방법이에요.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>인터넷을 끊어도 막히지 않아요.</strong> 아주 중요한 시스템은 아예 네트워크에서 떼어 놓기도 해요. 그런데 TEMPEST는 <strong>선을 타지 않으니</strong> 그 분리가 소용없어요. 물리적으로 끊는 것이 만능이 아니라는 걸 보여 주는 대표 사례예요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>암호화도 이 자리는 못 지켜요.</strong> 암호는 <strong>저장될 때와 오갈 때</strong>를 지켜요. 그런데 사람이 읽으려면 결국 <strong>화면에 띄워야</strong> 하고, 새어 나가는 건 바로 그 순간이에요. 디스크를 아무리 단단히 잠가도 그 앞은 못 막아요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>이름은 원래 대책 쪽이었어요.</strong> TEMPEST는 미국 정부가 <strong>이 누설을 막기 위해</strong> 만든 규격의 이름이에요. 그게 널리 알려지면서 지금은 <strong>공격을 가리키는 말로도</strong> 쓰여요. 문서를 읽을 때 "TEMPEST 공격"인지 "TEMPEST 대책"인지 문맥으로 갈라 읽어야 해요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 선을 타는 도청과 무엇이 다른가</p>
+        <p><a href="lan-analyzer.html">LAN 애널라이저</a>로 하는 도청과 견주면 성격이 분명해져요.<br><br>LAN 애널라이저는 <strong>통신 경로에 닿아야</strong> 해요. 그래서 <a href="mirror-port.html">미러 포트</a>에 꽂거나 어딘가에 장비를 붙여야 하고, 그 흔적이 남아요. 대책도 분명해요. <strong>암호화해 두면</strong> 붙잡아도 읽지 못하죠.<br><br>TEMPEST는 둘 다 다릅니다. <strong>아무 데도 안 닿고</strong>, 암호화해도 화면에 뜨는 순간은 새어 나가요. 대신 <strong>훨씬 어려워요.</strong> 장비와 기술이 필요하고 거리도 가까워야 하니까요. 그래서 한쪽은 흔하고 막기 쉬운 공격, 다른 한쪽은 드물고 막기 비싼 공격이에요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 우리 회사도 걱정해야 하나요</p>
+        <p>솔직하게 말하면 <strong>대부분은 아니에요.</strong> TEMPEST는 장비와 기술과 거리가 모두 맞아떨어져야 하고, 노력에 견줘 얻는 게 적어요. 같은 수고로 <strong>피싱 메일 한 통을 보내는</strong> 쪽이 훨씬 쉽고 확실하죠. 그래서 보통 회사의 보안 우선순위에서는 한참 뒤에 있어요.<br><br>그래도 따져 볼 자리는 있어요. <strong>군·정부·연구소</strong>처럼 지킬 값어치가 아주 큰 곳, 그리고 <strong>벽 하나 건너가 남의 회사인 공유 사무실</strong>처럼 거리 조건이 유리한 곳이에요. 중요한 건 <strong>싼 대책부터</strong> 한다는 거예요. 차폐실을 짓기 전에 <strong>중요한 화면을 바깥 벽에서 떨어뜨리는 것</strong>만으로도 할 수 있는 일이 있어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 암호가 못 지키는 자리들</p>
+        <p>TEMPEST가 알려 주는 더 큰 교훈이 있어요. <strong>암호는 "내용"을 지키지 "쓰는 순간"을 지키지 않아요.</strong><br><br>같은 빈틈이 여럿이에요. 화면에 띄우는 순간, 메모리에 풀어 놓은 상태, 인쇄하는 순간, 어깨 너머로 보이는 각도요. <a href="digital-forensics.html">디지털 포렌식</a>에서 켜져 있는 PC의 전원을 함부로 뽑지 않는 것도 같은 이유예요. <strong>메모리 안에는 암호가 풀린 상태</strong>로 들어 있으니까요.<br><br>그래서 보안은 암호 하나로 끝나지 않아요. <strong>물리적인 자리</strong>를 같이 봐야 해요. 어디에 두는지, 누가 볼 수 있는지, 무엇이 새는지요. <a href="information-asset-ledger.html">정보자산 관리대장</a>에 "어디 있나"를 적는 칸이 있는 것도 그래서예요.</p>
+      </div>
+      <p class="callout">이 공격이 자주 이야기되는 건 흔해서가 아니라 <strong>가정을 흔들기 때문</strong>이에요. "네트워크를 끊었으니 안전하다", "암호화했으니 안전하다"는 말이 <strong>어디까지 참인지</strong>를 되묻게 만들어요. 실제로 대비하느냐와 별개로, <strong>안전하다고 믿는 근거를 점검하는 데</strong> 쓸모가 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">커튼 안 친 방이에요. 아무것도 안 보냈는데 저절로 새어 나가요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-11 · 카테고리 보안 › 공격 기법</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

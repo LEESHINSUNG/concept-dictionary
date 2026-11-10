@@ -1233,6 +1233,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'tempest',
+    title: 'TEMPEST',
+    sub: '템페스트 · 전자파 누설 도청 · TEMPEST · テンペスト · 사이드 채널 · 차폐',
+    summary: '기기에서 새어 나오는 전자파로 내용을 되살려 내는 도청과 그 대책',
+    category: '보안',
+    date: '2026-11-11'
+  },
+  {
     slug: 'tight-coupling',
     title: '밀결합',
     sub: '밀결합 · 강결합 · tight coupling · 密結合 · 높은 결합도 · 결합도',
