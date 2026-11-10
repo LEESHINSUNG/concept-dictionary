@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>스토어드 프로시저 — 기억해봐요</title>
+  <meta name="description" content="스토어드 프로시저는 자주 쓰는 SQL 묶음을 데이터베이스 안에 미리 저장해 두고 이름으로 부르는 것이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .code pre { white-space: pre; overflow-x: auto; }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="stored-procedure">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>스토어드 프로시저</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">업무 시스템</span>
+        <span class="chip">데이터</span>
+      </div>
+      <h1 class="title">스토어드 프로시저</h1>
+      <p class="reading">저장 프로시저 · Stored Procedure · ストアドプロシージャ · SP</p>
+      <p class="define">스토어드 프로시저는 <mark>SQL 묶음을 데이터베이스 안에 미리 저장해 두고 이름으로 부르는 것</mark>이에요. <strong>오가는 횟수가 줄고 권한을 좁힐 수 있는</strong> 대신, <strong>그 데이터베이스 제품에 묶여요</strong>.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-11">2026-11-11</time></span>
+        <span>카테고리 업무 시스템 › 데이터</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>단골 식당에 갈 때마다 이렇게 주문한다고 해 볼게요. "면은 꼬들하게, 국물은 덜 짜게, 파는 빼고, 계란은 반숙으로, 면은 곱빼기로." 매번 다섯 마디를 해야 하고, 한 마디라도 빠뜨리면 다른 게 나와요.</p>
+      <p>그래서 사장님과 약속을 해 둬요. <strong>"그 조합을 1번 세트로 해 둡시다."</strong> 그 뒤로는 <strong>"1번이요"</strong> 한마디면 끝나요. 말이 줄고, 빠뜨릴 일도 없고, 주방도 외워 뒀으니 빨라요.</p>
+      <p>스토어드 프로시저가 이 1번 세트예요. 프로그램이 데이터베이스에 SQL을 매번 길게 보내는 대신, <strong>자주 쓰는 묶음을 데이터베이스 안에 이름 붙여 저장해</strong> 두고 그 이름만 부르는 거예요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">무엇인가</p>
+          <p class="fact__value">DB 안에 저장해 둔 SQL 묶음</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">얻는 것</p>
+          <p class="fact__value">왕복 줄이기 · 권한 좁히기</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">치르는 값</p>
+          <p class="fact__value">DB 제품에 묶여요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">같은 일을 두 방식으로 해 봐요. 오가는 횟수가 눈에 띄게 달라져요.</p>
+      <div class="code">
+        <p class="code__head">회원 정보를 가져오고 방문 시각을 남기는 일</p>
+        <pre><code>-- 프로시저 없이
+SELECT * FROM 회원
+  WHERE 번호 = 1024;
+SELECT * FROM 주문
+  WHERE 회원번호 = 1024;
+UPDATE 회원
+  SET 마지막방문 = NOW()
+  WHERE 번호 = 1024;
+  -&gt; 세 번 오가요
+
+-- 프로시저로 묶으면
+CALL 회원정보_가져오기(1024);
+  -&gt; 한 번이면 돼요</code></pre>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">오가는 횟수 말고도 달라지는 게 여럿이에요. 아래 두 줄이 얻는 것이고, 마지막 두 줄이 치르는 값이에요.</p>
+      <div class="cmp" role="img" aria-label="매번 SQL을 보낼 때와 프로시저를 부를 때">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">보는 항목</span>
+          <span class="cmp__c">매번 SQL</span>
+          <span class="cmp__c">프로시저</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">오가는 횟수</span>
+          <span class="cmp__c">보낼 때마다</span>
+          <span class="cmp__c"><span class="cmp__no">한 번</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">보내는 것</span>
+          <span class="cmp__c">SQL 문장 전체</span>
+          <span class="cmp__c">이름과 값만</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">권한</span>
+          <span class="cmp__c">테이블에 직접</span>
+          <span class="cmp__c"><span class="cmp__no">실행만 허용</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">고칠 때</span>
+          <span class="cmp__c">앱을 다시 배포해요</span>
+          <span class="cmp__c">DB에서 바꿔요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">버전 관리</span>
+          <span class="cmp__c">코드와 함께</span>
+          <span class="cmp__c"><span class="cmp__ok">따로 챙겨야 해요</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">다른 DB로 옮길 때</span>
+          <span class="cmp__c">비교적 쉬워요</span>
+          <span class="cmp__c"><span class="cmp__ok">제품에 묶여요</span></span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">언제 쓸지 고르는 기준이에요. 위쪽이면 쓸 만하고, 아래쪽이면 앱에 두는 쪽이 나아요.</p>
+      <div class="dict" role="img" aria-label="어느 쪽이 나은가 항목 정의">
+        <p class="dict__head">어느 쪽이 나은가</p>
+        <div class="dict__row">
+          <span class="dict__k">프로시저</span>
+          <span class="dict__v">수백만 건을 한꺼번에 다루는 일 · 여러 앱이 <strong>같이 지켜야 할 규칙</strong> · 권한을 좁혀야 하는 자리</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">앱 쪽</span>
+          <span class="dict__v">자주 바뀌는 업무 규칙 · 한 앱만 쓰는 일 · 시험을 촘촘히 해야 하는 곳</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">가르는 질문</span>
+          <span class="dict__v"><strong>데이터 가까이에서 해야 빨라지는 일인가</strong>, 아니면 그냥 업무 규칙인가</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>왕복이 줄어드는 게 가장 큰 효과예요.</strong> 앱과 DB가 다른 서버에 있으면 한 번 오가는 데 시간이 들어요. SQL 열 개를 따로 보내면 그 시간이 열 번 들고, 프로시저로 묶으면 한 번이에요. <strong>건수가 많을수록</strong> 차이가 커져요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>권한을 좁힐 수 있어요.</strong> 앱 계정에 테이블을 직접 읽고 쓸 권한을 주지 않고 <strong>"이 프로시저를 실행할 권한"만</strong> 줄 수 있어요. 그러면 앱 계정이 새어 나가도 정해진 일 말고는 못 해요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>대신 DB 제품에 묶여요.</strong> 프로시저 문법은 제품마다 달라서 그대로 옮기지 못해요. 프로시저가 많을수록 <a href="tight-coupling.html">밀결합</a>이 깊어져서, 나중에 DB를 바꾸려 할 때 <strong>그것이 가장 큰 걸림돌</strong>이 돼요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · SQL 주입을 막아 주나요</p>
+        <p>"프로시저를 쓰면 안전하다"는 말을 자주 듣는데 <strong>반만 맞아요.</strong><br><br>입력을 <strong>값으로 받아 그대로 쓰면</strong> 안전해요. 사용자가 뭘 넣든 값으로만 다뤄지니 문장 구조가 안 바뀌거든요. 그런데 프로시저 <strong>안에서 글자를 이어 붙여</strong> SQL 문장을 만들면 똑같이 뚫려요. 프로시저라는 껍데기만 썼을 뿐 안에서 하는 일은 같으니까요.<br><br>그래서 중요한 건 프로시저냐 아니냐가 아니라 <strong>값을 값으로 다루느냐</strong>예요. 앱에서 자리표시자를 쓰는 방식도 같은 보호를 해 줘요. <a href="waf.html">WAF</a>는 그 위에 덧대는 그물이지 <strong>이 문제의 답은 아니에요.</strong></p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 왜 요즘은 덜 쓸까요</p>
+        <p>예전에는 업무 규칙을 통째로 프로시저에 넣는 곳이 많았어요. 지금은 앱 쪽에 두는 경우가 늘었는데, 이유가 몇 가지 있어요.<br><br><strong>코드가 DB 안에 있어서 잘 안 보여요.</strong> 저장소를 뒤져도 안 나오니 누가 언제 왜 바꿨는지 따라가기 어렵고, 배포 절차도 따로 챙겨야 해요. <strong>시험하기도 번거로워요.</strong> 앱 코드는 가볍게 돌려 볼 수 있지만 프로시저는 DB를 띄워야 하죠.<br><br>무게 문제도 커요. <strong>앱 서버는 늘리기 쉬운데 DB 서버는 늘리기 어려워요.</strong> 계산을 프로시저로 몰면 가장 늘리기 힘든 자리에 일을 쌓는 셈이에요. 그리고 로직이 앱과 DB 두 군데로 갈려서 <strong>어디를 고쳐야 하는지</strong> 찾는 데 시간이 들어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 그래도 프로시저가 이기는 자리</p>
+        <p>덜 쓴다고 쓸모없어진 건 아니에요. <strong>데이터가 아주 많을 때</strong>는 여전히 프로시저 쪽이 분명히 빨라요.<br><br>수백만 건을 집계한다고 해 볼게요. 앱에서 하려면 그 데이터를 <strong>전부 앱으로 끌어와야</strong> 해요. 그 자체로 엄청난 시간과 회선이 들죠. 프로시저는 <strong>데이터가 있는 자리에서</strong> 계산하고 결과만 돌려줘요. 밤에 도는 정산·집계 같은 일이 대표적이에요.<br><br>여러 앱이 같은 DB를 쓸 때도 그래요. 같은 규칙을 앱마다 따로 구현하면 <strong>언젠가 서로 달라져요.</strong> 한 곳에 두면 그럴 일이 없고요. <a href="django-orm.html">ORM</a>이 SQL을 앱 쪽으로 끌어오는 방향이라면, 프로시저는 <strong>반대 방향</strong>이에요. 어느 쪽이 맞는지는 다루는 양과 쓰는 앱 수로 갈려요.</p>
+      </div>
+      <p class="callout">프로시저를 쓸지 말지보다 중요한 게 하나 있어요. <strong>쓰기로 했으면 코드처럼 다루는 것</strong>이에요. 저장소에 파일로 두고, 바뀐 내역을 남기고, 배포 절차에 넣는 거예요. DB 관리 화면에서 바로 고치고 끝내는 순간, <strong>아무도 지금 뭐가 돌고 있는지 모르는 상태</strong>가 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">단골집 1번 세트예요. 말이 줄고 빨라지는 대신, 그 집에 묶여요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-11 · 카테고리 업무 시스템 › 데이터</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>

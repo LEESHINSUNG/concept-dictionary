@@ -1217,6 +1217,14 @@ window.CONCEPTS = [
     date: '2026-11-02'
   },
   {
+    slug: 'stored-procedure',
+    title: '스토어드 프로시저',
+    sub: '저장 프로시저 · Stored Procedure · ストアドプロシージャ · SP · SQL',
+    summary: 'SQL 묶음을 데이터베이스 안에 저장해 두고 이름으로 부르는 것',
+    category: '업무 시스템',
+    date: '2026-11-11'
+  },
+  {
     slug: 'supply-chain-attack',
     title: '공급망 공격',
     sub: '서플라이 체인 공격 · 공급망 침해 · supply chain attack · サプライチェーン攻撃 · SBOM',
