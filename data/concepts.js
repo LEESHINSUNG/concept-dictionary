@@ -89,6 +89,14 @@ window.CONCEPTS = [
     date: '2026-11-05'
   },
   {
+    slug: 'behavior-detection',
+    title: '비헤이비어법',
+    sub: '행위 탐지 · 동적 분석 · ビヘイビア法 · behavior method · 비헤이비어 블로킹 · 샌드박스',
+    summary: '파일의 생김새 대신 하는 짓을 보고 악성인지 가려내는 방법',
+    category: '보안',
+    date: '2026-11-11'
+  },
+  {
     slug: 'big-data',
     title: '빅데이터',
     sub: 'big data · ビッグデータ · 3V · Volume · Variety · Velocity',

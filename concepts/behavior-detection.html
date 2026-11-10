@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>비헤이비어법 — 기억해봐요</title>
+  <meta name="description" content="비헤이비어법은 파일의 생김새 대신 실제로 하는 짓을 보고 악성인지 가려내는 방법이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="behavior-detection">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>비헤이비어법</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">보안</span>
+        <span class="chip">탐지</span>
+      </div>
+      <h1 class="title">비헤이비어법</h1>
+      <p class="reading">행위 탐지 · 동적 분석 · ビヘイビア法 · behavior method · 비헤이비어 블로킹</p>
+      <p class="define">비헤이비어법은 <mark>파일의 생김새가 아니라 하는 짓을 보고 가려내는 방법</mark>이에요. 그래서 <strong>처음 보는 악성 프로그램도 잡을 수 있는</strong> 대신, <strong>멀쩡한 것까지 자주 걸려요</strong>.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-11">2026-11-11</time></span>
+        <span>카테고리 보안 › 탐지</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>수배 전단을 들고 사람을 가려낸다고 해 볼게요. 얼굴이 전단과 같으면 잡아요. 빠르고 확실하죠. 그런데 <strong>전단에 없는 사람</strong>은 그냥 지나가요. 수염을 깎거나 모자를 써도 못 알아보고요.</p>
+      <p>다른 방법도 있어요. 얼굴 대신 <strong>행동을 보는</strong> 거예요. 남의 가방을 열어 보고, 자물쇠를 만지작거리고, CCTV를 가리는 사람이 있다면 <strong>누구인지 몰라도</strong> 수상하죠.</p>
+      <p>앞의 것이 <strong>패턴(시그니처) 매칭</strong>이고, 뒤의 것이 <strong>비헤이비어법</strong>이에요. 전단에 없는 사람도 잡을 수 있는 게 큰 장점이에요. 그런데 문제가 하나 따라와요. <strong>멀쩡한 사람도 가끔 수상한 행동을 해요.</strong> 열쇠를 잃어버려 자기 집 자물쇠를 만지작거리는 사람처럼요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">보는 것</p>
+          <p class="fact__value">생김새가 아니라 하는 짓</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">강점</p>
+          <p class="fact__value">처음 보는 악성도</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">약점</p>
+          <p class="fact__value">헛걸림이 많아요</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">두 방법을 견줘 봐요. 색칠한 두 줄이 비헤이비어법을 쓰는 이유이고, 그 아래 두 줄이 그 대가예요.</p>
+      <div class="cmp" role="img" aria-label="패턴 매칭과 비헤이비어법">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">보는 항목</span>
+          <span class="cmp__c">패턴 매칭</span>
+          <span class="cmp__c">비헤이비어법</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">보는 것</span>
+          <span class="cmp__c">파일의 생김새</span>
+          <span class="cmp__c">하는 짓</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">처음 보는 악성</span>
+          <span class="cmp__c"><span class="cmp__ok">못 잡아요</span></span>
+          <span class="cmp__c"><span class="cmp__no">잡을 수 있어요</span></span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">조금 고친 변형</span>
+          <span class="cmp__c"><span class="cmp__ok">못 잡아요</span></span>
+          <span class="cmp__c"><span class="cmp__no">잡을 수 있어요</span></span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">헛걸림</span>
+          <span class="cmp__c">적어요</span>
+          <span class="cmp__c">많아요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">속도 · 부담</span>
+          <span class="cmp__c">빠르고 가벼워요</span>
+          <span class="cmp__c">느리고 무거워요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">판단하는 때</span>
+          <span class="cmp__c">실행 전에</span>
+          <span class="cmp__c">실행하면서</span>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">"수상한 짓"이 무엇인지는 미리 정해 둬요. 아래 같은 행동이 겹쳐 나타나면 멈춰 세워요.</p>
+      <div class="jobs" role="list" aria-label="악성이 자주 하는 짓">
+        <div class="jobs__item">
+          <p class="jobs__name"><span>01</span>시스템 파일을 몰래 고쳐요</p>
+          <p class="jobs__note">운영체제의 중요한 자리를 건드리거나, 켤 때마다 자동으로 실행되게 등록해요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>02</span>다른 프로그램에 끼어들어요</p>
+          <p class="jobs__note">이미 돌고 있는 멀쩡한 프로그램 안에 자기를 밀어 넣어 그 이름으로 움직여요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>03</span>파일을 줄줄이 암호화해요</p>
+          <p class="jobs__note">짧은 시간에 수많은 문서를 차례로 고쳐 써요. 랜섬웨어의 가장 뚜렷한 발자국이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>04</span>낯선 곳에 계속 연락해요</p>
+          <p class="jobs__note">처음 보는 바깥 주소로 규칙적으로 신호를 보내요. <a href="c2-server.html">C&amp;C 서버</a>와 이야기하는 모습이에요.</p>
+        </div>
+        <div class="jobs__item">
+          <p class="jobs__name"><span>05</span>입력과 화면을 가로채요</p>
+          <p class="jobs__note">키보드로 치는 것을 받아 적거나 화면을 몰래 찍어요.</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">보는 자리도 두 가지예요. 어디서 보느냐에 따라 안전성과 정확도가 갈려요.</p>
+      <div class="dict" role="img" aria-label="어디서 행동을 보나 항목 정의">
+        <p class="dict__head">어디서 행동을 보나</p>
+        <div class="dict__row">
+          <span class="dict__k">샌드박스</span>
+          <span class="dict__v">격리된 가짜 환경에서 <strong>일부러 실행해</strong> 보고 무슨 짓을 하는지 관찰해요. 진짜 PC는 안전해요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">실제 환경</span>
+          <span class="dict__v">실제로 돌아가는 것을 지켜보다 수상하면 <strong>그 자리에서 멈춰</strong>요. 비헤이비어 블로킹이라고 해요</span>
+        </div>
+        <div class="dict__row">
+          <span class="dict__k">맞바꿈</span>
+          <span class="dict__v">샌드박스는 안전한데 속을 수 있고, 실제 환경은 정확한데 <strong>이미 조금 당한 뒤</strong>예요</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>처음 보는 것에 대응하려고 쓰는 방법이에요.</strong> 패턴 매칭은 전단이 나와야 잡는데, 전단이 만들어지려면 누군가 먼저 당해야 해요. 그 사이의 빈틈이 <a href="zero-day.html">제로데이</a>예요. 비헤이비어법은 <strong>이름을 몰라도</strong> 판단하니 그 틈을 메울 수 있어요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>기준을 어디에 두느냐가 전부예요.</strong> 느슨하게 잡으면 악성을 놓치고, 빡빡하게 잡으면 멀쩡한 프로그램이 막혀요. <a href="waf-blacklist-whitelist.html">WAF의 블랙리스트·화이트리스트</a>에서 본 것과 <strong>똑같은 맞바꿈</strong>이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>그래서 둘을 같이 써요.</strong> 아는 것은 패턴으로 빠르게 쳐내고, 남은 것만 무거운 행동 관찰로 넘겨요. <a href="ids.html">IDS</a>가 "알려진 수법 대조"와 "평소와 다름 찾기"를 함께 쓰는 것도 완전히 같은 구조예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 멀쩡한 설치 프로그램이 걸려요</p>
+        <p>비헤이비어법을 쓰면 꼭 겪는 일이에요. 평범한 설치 프로그램도 <strong>시스템 폴더에 파일을 쓰고, 자동 실행에 등록하고, 바깥에서 뭔가를 내려받아요.</strong> 목록만 보면 악성과 구분이 안 가요.<br><br>그래서 행동만으로는 끝까지 못 갈라요. 실제로는 <strong>누가 했는지</strong>를 같이 봐요. 서명이 붙은 알려진 제작사의 프로그램인지, 사내에서 쓰기로 정해 둔 것인지요. 결국 <strong>허용 목록</strong>이 필요해지는데, 이게 비헤이비어법이 혼자서는 못 서는 이유예요. 걸러낼 기준이 아니라 <strong>통과시킬 기준</strong>이 함께 있어야 해요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 샌드박스인 걸 알아채요</p>
+        <p>공격하는 쪽도 이 방법을 알아요. 그래서 요즘 악성 프로그램은 <strong>먼저 주위를 살펴봐요.</strong> 가상 환경에서 쓰는 특유의 장치 이름이 보이는지, 마우스가 한 번도 안 움직였는지, 파일이 너무 적지 않은지요.<br><br>샌드박스라고 판단하면 <strong>아무 짓도 안 하고 얌전히</strong> 끝내요. 관찰하는 쪽은 "깨끗함"이라고 적고 통과시키고요. 그러고 나서 진짜 PC에 들어가면 그때 움직여요. <strong>한참 기다렸다가</strong> 움직이는 것도 같은 수법이에요. 관찰은 몇 분이면 끝나니까요. 그래서 샌드박스는 점점 <strong>진짜 PC처럼 보이게</strong> 꾸미는 쪽으로 가고 있어요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 백신만의 이야기가 아니에요</p>
+        <p>"생김새로 볼까, 하는 짓으로 볼까"는 보안 곳곳에서 되풀이되는 질문이에요.<br><br><a href="nids.html">NIDS</a>는 알려진 공격의 생김새를 찾기도 하고 <strong>평소와 다른 흐름</strong>을 찾기도 해요. <a href="risk-based-authentication.html">위험 기반 인증</a>은 비밀번호가 맞아도 <strong>평소와 다른 곳·다른 시간</strong>이면 한 번 더 물어보죠. <a href="siem.html">SIEM</a>은 여기저기서 모은 기록을 겹쳐 보며 "따로 보면 평범한데 같이 보면 이상한" 것을 찾고요.<br><br>전부 <strong>"무엇인가"가 아니라 "어떻게 구는가"</strong>로 옮겨 간 거예요. 아는 것만 막는 방식으로는 따라갈 수 없다는 걸 겪어서 생긴 흐름이에요.</p>
+      </div>
+      <p class="callout">"처음 보는 것도 잡는다"가 "다 잡는다"는 뜻은 아니에요. 비헤이비어법은 <strong>판단이지 대조가 아니라서</strong>, 틀릴 수 있고 실제로 자주 틀려요. 그래서 혼자 쓰는 방법이 아니라 <strong>여러 겹 중 한 겹</strong>으로 써요. 한 겹에 모든 걸 거는 순간 그 겹의 약점이 전체의 약점이 돼요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">얼굴을 몰라도 하는 짓을 보면 알 수 있어요. 대신 멀쩡한 사람도 가끔 걸려요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-11 · 카테고리 보안 › 탐지</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
