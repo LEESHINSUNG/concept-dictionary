@@ -49,6 +49,14 @@ window.CONCEPTS = [
     date: '2026-10-20'
   },
   {
+    slug: 'asgi',
+    title: 'ASGI',
+    sub: '에이에스지아이 · Asynchronous Server Gateway Interface · 비동기 파이썬 웹 규격 · Uvicorn · 웹소켓',
+    summary: 'WSGI의 비동기판. 기다리는 동안 다른 일을 하고 웹소켓도 다뤄요',
+    category: 'Python',
+    date: '2026-11-12'
+  },
+  {
     slug: 'audit-trail',
     title: '감사 증적',
     sub: 'audit trail · 監査証跡',
