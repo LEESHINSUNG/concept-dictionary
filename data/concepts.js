@@ -1361,6 +1361,14 @@ window.CONCEPTS = [
     date: '2026-10-22'
   },
   {
+    slug: 'wsgi',
+    title: 'WSGI',
+    sub: '위스기 · Web Server Gateway Interface · PEP 3333 · 파이썬 웹 서버 규격 · Gunicorn · uWSGI',
+    summary: '파이썬 웹 앱과 웹 서버가 주고받는 방법을 정해 둔 약속',
+    category: 'Python',
+    date: '2026-11-12'
+  },
+  {
     slug: 'xss',
     title: 'XSS',
     sub: '크로스 사이트 스크립팅 · Cross-Site Scripting',

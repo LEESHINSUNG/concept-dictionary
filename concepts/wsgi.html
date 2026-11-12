@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WSGI — 기억해봐요</title>
+  <meta name="description" content="WSGI는 파이썬 웹 앱과 웹 서버가 무엇을 어떻게 주고받을지 정해 둔 약속이에요.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css?v=a59a653c">
+  <style>
+    .cmp { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .cmp__row { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp__row + .cmp__row { border-top: 1px solid var(--line); }
+    .cmp__row--head { background: var(--chip-bg); }
+    .cmp__row--on { background: var(--chip-bg); }
+    .cmp__row--on .cmp__c { font-weight: 700; }
+    .cmp__c { min-width: 0; padding: 9px 10px; font-size: 13.5px; line-height: 1.5; word-break: keep-all; }
+    .cmp__c + .cmp__c { border-left: 1px solid var(--line); text-align: center; }
+    .cmp__row--head .cmp__c { font-size: 12.5px; font-weight: 700; color: var(--accent); }
+    .cmp__req { display: block; font-family: var(--mono); font-size: 12.5px; }
+    .cmp__sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .cmp__no { font-weight: 700; color: var(--accent); }
+    .cmp__ok { color: var(--muted); }
+    .jobs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .jobs__item { flex: 1 1 210px; min-width: 0; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; word-break: keep-all; }
+    .jobs__item--on { background: var(--chip-bg); border: 2px solid var(--accent); }
+    .jobs__name { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+    .jobs__name span { display: inline-block; margin-right: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+    .jobs__note { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .dict { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .dict__head { margin: 0; padding: 10px 14px; background: var(--chip-bg); font-size: 14px; font-weight: 700; color: var(--accent); }
+    .dict__row { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 9px 14px; border-top: 1px solid var(--line); }
+    .dict__k { flex: 0 0 86px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .dict__v { flex: 1 1 170px; min-width: 0; font-size: 14.5px; word-break: keep-all; }
+    .dict__v code { font-family: var(--mono); font-size: 0.92em; }
+    .case code, .callout code, .step code, .define code, p > code { font-family: var(--mono); font-size: 0.92em; }
+  </style>
+</head>
+<body data-slug="wsgi">
+  <header class="page-head">
+    <div class="wrap page-head__inner">
+      <nav class="crumbs" aria-label="현재 위치">
+        <a href="../index.html" data-index-link>기억해봐요</a>
+        <span class="crumbs__sep">/</span><span data-group></span>
+        <span class="crumbs__sep">/</span><span>WSGI</span>
+      </nav>
+      <a class="back-link" href="../index.html" data-index-link>← 목차로</a>
+    </div>
+  </header>
+
+  <main class="wrap detail-main">
+    <section class="sect" id="head">
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">웹 서버</span>
+      </div>
+      <h1 class="title">WSGI</h1>
+      <p class="reading">위스기 · Web Server Gateway Interface · PEP 3333 · 파이썬 웹 서버 규격</p>
+      <p class="define">WSGI는 <mark>파이썬 웹 앱과 웹 서버 사이의 약속</mark>이에요. 이 약속 덕에 <strong>Django를 쓰든 Flask를 쓰든, 서버가 Gunicorn이든 uWSGI든</strong> 아무 조합이나 맞물려 돌아가요.</p>
+      <p class="meta">
+        <span>작성일 <time datetime="2026-11-12">2026-11-12</time></span>
+        <span>카테고리 Python › 웹 서버</span>
+      </p>
+    </section>
+
+    <section class="sect" id="easy">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">1</span>
+        <h2 class="sect__title">쉽게 말하면</h2>
+      </div>
+      <p>식당의 홀과 주방을 떠올려 보세요. 홀 직원이 주문을 받아 주방에 넘기죠. 이때 <strong>주문서 양식</strong>을 정해 두면 좋은 일이 생겨요. 홀 직원이 바뀌어도, 주방장이 바뀌어도, <strong>양식만 그대로면 그대로 돌아가요.</strong></p>
+      <p>양식이 없다면 어떨까요. 주방마다 적는 법이 달라서 홀 직원은 <strong>그 주방 전용</strong>이 돼요. 주방을 바꾸면 홀도 새로 뽑아야 하고요.</p>
+      <p>웹에서도 똑같아요. 손님 요청을 받아 주는 쪽(<strong>웹 서버</strong>)과 실제로 일하는 쪽(<strong>파이썬 앱</strong>)은 서로 다른 프로그램이에요. 둘이 주고받는 양식을 정해 둔 게 WSGI예요. 그래서 Django로 만든 앱을 <strong>코드 한 줄 안 고치고</strong> 서버만 바꿔 띄울 수 있어요.</p>
+      <div class="facts">
+        <div class="fact">
+          <p class="fact__label">무엇인가</p>
+          <p class="fact__value">서버와 앱 사이의 약속</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">앱의 모양</p>
+          <p class="fact__value">함수 하나</p>
+        </div>
+        <div class="fact">
+          <p class="fact__label">성격</p>
+          <p class="fact__value">요청 하나에 응답 하나</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" id="diagram">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">2</span>
+        <h2 class="sect__title">그림으로 보기</h2>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">가운데 약속이 있어서 양쪽을 따로 고를 수 있어요. 둘은 서로의 속을 몰라요.</p>
+      <div class="flow">
+        <div class="node">
+          <p class="node__title">웹 서버</p>
+          <p class="node__note">Gunicorn · uWSGI 같은 것</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">요청을 양식에 담아</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node node--accent">
+          <p class="node__title">WSGI 약속</p>
+          <p class="node__note">무엇을 어떤 모양으로 넘길지</p>
+          <p><span class="chip-mono">서로를 몰라요</span></p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <span class="arrow__label">응답을 양식에 담아</span>
+          <span class="arrow__line"></span>
+        </div>
+
+        <div class="node">
+          <p class="node__title">파이썬 앱</p>
+          <p class="node__note">Django · Flask 같은 것</p>
+        </div>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">약속이라고 하면 거창한데, 실제로는 <strong>이렇게 생긴 함수 하나</strong>면 WSGI 앱이에요.</p>
+      <div class="code">
+        <p class="code__head">가장 작은 WSGI 앱</p>
+        <pre><code><span class="c-comment"># environ: 요청 정보가 담긴 사전</span>
+<span class="c-comment"># start_response: 상태와 헤더를 돌려줘요</span>
+<span class="c-keyword">def</span> app(environ, start_response):
+    headers = [(<span class="c-string">"Content-Type"</span>, <span class="c-string">"text/plain"</span>)]
+    start_response(<span class="c-string">"200 OK"</span>, headers)
+    <span class="c-keyword">return</span> [b<span class="c-string">"Hello"</span>]</code></pre>
+      </div>
+      <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;"><a href="asgi.html">ASGI</a>와 나란히 놓으면 무엇을 할 수 있고 없는지가 분명해져요.</p>
+      <div class="cmp" role="img" aria-label="WSGI와 ASGI">
+        <div class="cmp__row cmp__row--head">
+          <span class="cmp__c">보는 항목</span>
+          <span class="cmp__c">WSGI</span>
+          <span class="cmp__c">ASGI</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">앱의 모양</span>
+          <span class="cmp__c">함수 하나</span>
+          <span class="cmp__c">async 함수 하나</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">주고받기</span>
+          <span class="cmp__c">요청 하나 → 응답 하나</span>
+          <span class="cmp__c">메시지를 계속</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">기다리는 동안</span>
+          <span class="cmp__c">일꾼이 묶여요</span>
+          <span class="cmp__c">다른 일을 해요</span>
+        </div>
+        <div class="cmp__row cmp__row--on">
+          <span class="cmp__c">웹소켓</span>
+          <span class="cmp__c">못 해요</span>
+          <span class="cmp__c">할 수 있어요</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">동시 접속 늘리기</span>
+          <span class="cmp__c">일꾼을 늘려요</span>
+          <span class="cmp__c">일꾼은 그대로</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">서버</span>
+          <span class="cmp__c">Gunicorn · uWSGI</span>
+          <span class="cmp__c">Uvicorn · Daphne</span>
+        </div>
+        <div class="cmp__row">
+          <span class="cmp__c">프레임워크</span>
+          <span class="cmp__c">Django · Flask</span>
+          <span class="cmp__c">FastAPI · Starlette</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <p class="step"><span class="step__no" aria-hidden="true">1</span><span><strong>주고받는 건 딱 세 가지예요.</strong> 요청 정보가 담긴 <code>environ</code>, 상태와 헤더를 돌려주는 <code>start_response</code>, 그리고 본문을 담아 돌려주는 반환값이에요. 이것만 지키면 무엇이든 WSGI 앱이에요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">2</span><span><strong>요청 하나가 끝날 때까지 일꾼이 묶여요.</strong> 처리하는 동안 그 일꾼은 다른 요청을 못 받아요. 그래서 동시에 더 많이 받으려면 <strong>일꾼(프로세스나 스레드)을 늘리는</strong> 수밖에 없고, 늘린 만큼 메모리를 써요.</span></p>
+        <p class="step"><span class="step__no" aria-hidden="true">3</span><span><strong>요청 하나에 응답 하나라서 못 하는 게 있어요.</strong> 웹소켓처럼 <strong>연결을 열어 두고 계속 주고받는</strong> 통신은 이 모양에 안 들어가요. 서버가 먼저 말을 거는 것도 안 되고요. 그걸 하려고 나온 게 <a href="asgi.html">ASGI</a>예요.</span></p>
+      </div>
+    </section>
+
+    <section class="sect" id="example">
+      <div class="sect__head">
+        <span class="badge" aria-hidden="true">3</span>
+        <h2 class="sect__title">예시로 보기</h2>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 1 · 왜 서버를 따로 띄우나요</p>
+        <p>Django를 배울 때 <code>runserver</code>로 띄워 보죠. 그런데 실제 서비스에서는 그걸 쓰지 말라고 해요. <strong>개발용으로만 만든 것</strong>이라 동시에 들어오는 요청을 제대로 감당하지 못하거든요.<br><br>그래서 실제로는 <strong>Gunicorn이나 uWSGI</strong> 같은 WSGI 서버를 앞에 두고, 그 앞에 다시 Nginx 같은 웹 <a href="server.html">서버</a>를 둬요. 역할이 나뉘어요. 앞쪽은 이미지 같은 정적 파일을 바로 내주고 연결을 관리하고, 뒤쪽은 파이썬 앱을 실제로 돌려요. <strong>이 조합이 가능한 이유가 WSGI</strong>예요. 중간 약속이 같으니 어느 것을 골라도 맞물려요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 2 · 느린 일이 섞이면</p>
+        <p>어떤 화면에서 바깥 API를 부르는데 2초가 걸린다고 해 볼게요. 그 2초 동안 <strong>일꾼 하나는 아무것도 안 하면서 묶여</strong> 있어요. 계산을 하는 게 아니라 <strong>그냥 기다리는</strong> 거예요.<br><br>일꾼이 네 개라면 그런 요청 네 개로 전부 막혀요. 다섯 번째 손님은 앞이 끝날 때까지 줄을 서고요. 해결책은 <strong>일꾼을 늘리는 것</strong>인데, 일꾼마다 메모리를 차지하니 끝없이 늘릴 수는 없어요.<br><br><strong>기다리는 시간이 대부분인 서비스</strong>라면 이게 꽤 아까워요. 바로 이 지점이 <a href="asgi.html">ASGI</a>가 나온 이유예요.</p>
+      </div>
+      <div class="case">
+        <p class="case__title">상황 3 · 앱을 감싸는 앱</p>
+        <p>WSGI 앱이 <strong>그냥 함수</strong>라는 점이 재미있는 일을 가능하게 해요. 함수를 다른 함수로 감쌀 수 있잖아요.<br><br>그래서 "요청이 들어오면 기록을 남기고, 원래 앱을 부르고, 나온 응답에 뭔가를 덧붙이는" 껍데기를 만들 수 있어요. 이 껍데기도 <strong>규격을 지키면 그 자체로 WSGI 앱</strong>이에요. 서버가 보기에는 구분이 안 되고요.<br><br>로그 남기기, 압축하기, 인증 확인하기 같은 공통 작업을 이렇게 겹겹이 끼워 넣어요. 프레임워크의 <strong>미들웨어</strong>가 이 생각에서 나왔어요. <a href="loose-coupling.html">소결합</a>에서 말한 "약속만 공유하기"가 실제로 어떤 힘을 내는지 보여 주는 예예요.</p>
+      </div>
+      <p class="callout">WSGI가 <strong>느린 건 아니에요.</strong> 계산을 많이 하는 일이라면 ASGI로 바꿔도 거의 그대로예요. WSGI의 약점은 속도가 아니라 <strong>"기다리는 동안 다른 일을 못 한다"</strong>는 쪽이에요. 무엇이 문제인지 정확히 집어야 바꿀지 말지도 정할 수 있어요.</p>
+    </section>
+
+    <section class="wrapup" id="summary">
+      <p class="wrapup__label">한 줄 정리</p>
+      <p class="wrapup__text">홀과 주방이 쓰는 주문서 양식이에요. 양식이 같으니 어느 쪽이든 바꿔 낄 수 있어요.</p>
+    </section>
+
+    <nav class="pager" id="pager" aria-label="다른 개념으로 이동">
+      <a class="pager__link pager__link--prev" data-pager="prev" href="#" hidden>
+        <span class="pager__label">← 이전 개념</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+      <a class="pager__link pager__link--next" data-pager="next" href="#" hidden>
+        <span class="pager__label">다음 개념 →</span>
+        <span class="pager__title" data-pager-title></span>
+      </a>
+    </nav>
+
+    <footer class="page-foot">
+      <span>작성일 2026-11-12 · 카테고리 Python › 웹 서버</span>
+      <a href="../index.html" data-index-link>← 목차로 돌아가기</a>
+    </footer>
+  </main>
+
+  <script src="../data/concepts.js"></script>
+  <script defer src="../assets/js/common.js?v=8939c8e2"></script>
+  <script defer src="../assets/js/concept.js?v=458273ef"></script>
+</body>
+</html>
